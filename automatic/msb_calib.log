@@ -1,0 +1,47 @@
+MSB-first power calibration -- planted certificates of known size
+machine G_m, halt set = powers of 2, convention: leading-zero invariant
+
+--- planted k=3 (m=3) ---
+  n= 2  vars=    1,530  clauses=      5,796  UNSAT (no certificate)          0.0s
+  n= 3  vars=    2,475  clauses=     17,721  SAT (certificate found)         0.0s
+      FOUND at n=3 after 0.1s total   delta=[[0, 1], [2, 0], [1, 2]] acc=[0]
+--- planted k=5 (m=5) ---
+  n= 2  vars=    1,662  clauses=      6,432  UNSAT (no certificate)          0.0s
+  n= 3  vars=    2,709  clauses=     20,211  UNSAT (no certificate)          0.0s
+  n= 4  vars=    3,900  clauses=     51,085  UNSAT (no certificate)          0.0s
+  n= 5  vars=    5,235  clauses=    110,502  SAT (certificate found)         0.1s
+      FOUND at n=5 after 0.6s total   delta=[[0, 1], [2, 3], [4, 0], [1, 2], [3, 4]] acc=[0]
+--- planted k=7 (m=7) ---
+  n= 2  vars=    1,756  clauses=      6,954  UNSAT (no certificate)          0.0s
+  n= 3  vars=    2,886  clauses=     22,454  UNSAT (no certificate)          0.0s
+  n= 4  vars=    4,184  clauses=     57,758  UNSAT (no certificate)          0.1s
+  n= 5  vars=    5,650  clauses=    126,330  UNSAT (no certificate)          0.1s
+  n= 6  vars=    7,284  clauses=    245,474  UNSAT (no certificate)          0.4s
+  n= 7  vars=    9,086  clauses=    436,334  SAT (certificate found)         0.7s
+      FOUND at n=7 after 3.8s total   delta=[[0, 1], [2, 3], [4, 5], [6, 0], [1, 2], [3, 4], [5, 6]] acc=[0]
+--- planted k=11 (m=11) ---
+  n= 2  vars=    1,852  clauses=      7,722  UNSAT (no certificate)          0.0s
+  n= 3  vars=    3,102  clauses=     26,342  UNSAT (no certificate)          0.0s
+  n= 4  vars=    4,568  clauses=     70,046  UNSAT (no certificate)          0.0s
+  n= 5  vars=    6,250  clauses=    156,330  UNSAT (no certificate)          0.1s
+  n= 6  vars=    8,148  clauses=    307,682  UNSAT (no certificate)          0.3s
+  n= 7  vars=   10,262  clauses=    551,582  UNSAT (no certificate)          0.5s
+  n= 8  vars=   12,592  clauses=    920,502  UNSAT (no certificate)          2.1s
+  n= 9  vars=   15,138  clauses=  1,451,906  UNSAT (no certificate)          7.7s
+  n=10  vars=   17,900  clauses=  2,188,250  UNSAT (no certificate)         35.9s
+  n=11  vars=   20,878  clauses=  3,176,982  SAT (certificate found)       138.3s
+      FOUND at n=11 after 213.4s total   delta=[[0, 1], [2, 3], [4, 5], [6, 7], [8, 9], [10, 0], [1, 2], [3, 4], [5, 6], [7, 8], [9, 10]] acc=[0]
+--- planted k=13 (m=13) ---
+  n= 2  vars=    1,904  clauses=      8,118  UNSAT (no certificate)          0.0s
+  n= 3  vars=    3,216  clauses=     28,312  UNSAT (no certificate)          0.0s
+  n= 4  vars=    4,768  clauses=     76,236  UNSAT (no certificate)          0.1s
+  n= 5  vars=    6,560  clauses=    171,402  UNSAT (no certificate)          0.1s
+  n= 6  vars=    8,592  clauses=    338,890  UNSAT (no certificate)          0.3s
+  n= 7  vars=   10,864  clauses=    609,348  UNSAT (no certificate)          0.9s
+  n= 8  vars=   13,376  clauses=  1,018,992  UNSAT (no certificate)          4.9s
+  n= 9  vars=   16,128  clauses=  1,609,606  UNSAT (no certificate)         15.5s
+  n=10  vars=   19,120  clauses=  2,428,542  UNSAT (no certificate)        109.1s
+  n=11  vars=   22,352  clauses=  3,528,720  UNSAT (no certificate)        664.2s
+  n=12  vars=   25,824  clauses=  4,968,628  UNSAT (no certificate)       4558.3s
+  n=13  vars=   29,536  clauses=  6,812,322  SAT (certificate found)       928.8s
+      FOUND at n=13 after 6344.6s total   delta=[[0, 1], [2, 3], [4, 5], [6, 7], [8, 9], [10, 11], [12, 0], [1, 2], [3, 4], [5, 6], [7, 8], [9, 10], [11, 12]] acc=[0]

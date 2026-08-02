@@ -1,0 +1,8 @@
+NEEDLE (interval ceiling 0.5453)
+  cap 10^240  seeds   799 nodes   1404 pooled tree branching 0.4309
+  cap 10^480  seeds  1598 nodes   2814 pooled tree branching 0.4321
+  cap 10^960  seeds  3196 nodes   5639 pooled tree branching 0.4332
+MACHINE 3 (interval ceiling 0.8081)
+  cap 3^200   seeds    66 nodes    164 pooled tree branching 0.5976
+  cap 3^400   seeds   133 nodes    308 pooled tree branching 0.5682
+  cap 3^800   seeds   266 nodes    609 pooled tree branching 0.5632

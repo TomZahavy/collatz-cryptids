@@ -1,0 +1,17 @@
+checkpoints (c, cumulative reduction steps):
+  c0 = 0   (step 0)
+  c1 = 0   (step 1)
+  c2 = 14   (step 3)
+  c3 = 11292   (step 11)
+  c4 = 10^2901.92   (step 6822)
+  c3 log10 = 2901.92  (published: 2901.92)
+  -> matches the published c1, c2, c3: reduction is faithful
+
+next halt opportunity: end of the countdown from C(c3, 8), ~0.6*c3 ~ 10^2902 reduction steps away -- unreachable
+
+per-checkpoint P(halt before next reset), random a of n bits:
+  n=10: 81/400 = 0.203
+  n=12: 58/300 = 0.193
+  n=14: 47/200 = 0.235
+
+(sligocki's heuristic: 1/5 per checkpoint)

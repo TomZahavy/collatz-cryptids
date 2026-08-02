@@ -1,0 +1,41 @@
+STEP 1 -- THE BRANCH TABLES OBEY TWO MACHINE-INDEPENDENT RECURRENCES
+------------------------------------------------------------------------
+  A_(v+2) = 3A_(v+1) - 2A_v   and   B_(v+3) = 4B_(v+2) - 5B_(v+1) + 2B_v
+  4000 random machines x 40 branches: 0 violations
+  (characteristic polynomials (X-2)(X-1) and (X-2)(X-1)^2 -- the whole
+   family lies on one 5-dimensional solution space)
+
+STEP 2 -- THEOREM R: rigid <=> v_2(B_v) < v_2(A_v)
+------------------------------------------------------------------------
+  6462 (machine, branch) pairs, k <= 899: 0 disagreements
+
+STEP 3 -- T13: how much of the family is provably computation-free
+------------------------------------------------------------------------
+  well-defined machines in the box: 19092
+  globally rigid (direct check, v < 200): 2351  (12.31%)
+  all of them have beta even: True
+  criterion exact on beta even and NONZERO (8716 machines): True (1593 rigid)
+  beta = 0 (1537 machines): 758 rigid -- the case the criterion omits
+    e.g. (1,0,1,1,0): v_2(A_v) for v = 0..5 is [1, 2, 3, 4, 5, 6] -> unbounded, so
+    rigidity is generic there, not exceptional
+
+STEP 4 -- THE COUNTING BARRIER IS REFUTED: bandwidth is at least M
+------------------------------------------------------------------------
+  M = 23   best bandwidth over 400 random machines: 100    >= M: True
+  M = 101  best bandwidth over 400 random machines: 412    >= M: True
+  M = 257  best bandwidth over 400 random machines: 1036   >= M: True
+  A Conway-style reduction mod M needs M independent branch pieces.
+  VAL(2) supplies at least that many -- so periodicity, while true,
+  yields a structure theorem and NOT an impossibility.
+
+STEP 5 -- WHAT SURVIVES: the slope-resolution bound (every machine)
+------------------------------------------------------------------------
+  #{v : |s_v - alpha| >= rho} = floor(log2(|beta|/rho))
+  9000 (machine, rho) pairs: 0 mismatches
+  => k branches pairwise rho-separated in slope cost |beta| >= rho*2^(k-1):
+     an EXPONENTIAL compression bound, not an impossibility.
+
+========================================================================
+RESULT: R and T13 proved; the counting barrier is refuted, and the
+reason retires the genre -- universality is a property of a single
+point, not of a family. VAL(2) universality remains OPEN.

@@ -1,0 +1,38 @@
+WS4.3  THREE CERTIFICATE FAMILIES IN ONE CURRENCY
+
+  m   MSB states   LSB states   ord_2   killed by MSB<=13 / LSB<=11
+   2            2            3       0   MSB LSB
+   3            3            6       2   MSB LSB
+   4            4            7       0   MSB LSB
+   5            5           20       4   MSB 
+   6            6           13       2   MSB 
+   7            7           21       3   MSB 
+   8            8           15       0   MSB 
+   9            9           54       6   MSB 
+  10           10           41       4   MSB 
+  11           11          110      10   MSB 
+  12           12           27       2   MSB 
+  13           13          156      12   MSB 
+  14           14           43       3       
+  15           15           60       4       
+  16           16           31       0       
+  17           17          136       8       
+  18           18          109       6       
+  19           19          342      18       
+  20           20           83       4       
+  ...
+
+  moduli ruled out by the MSB bound (<= 13 states): 2..13  (12 moduli)
+  moduli ruled out by the LSB bound (<= 11 states): [2, 3, 4]  (3 moduli)
+  moduli ruled out by the direct sweep: 2..20,000 (19,999 moduli)
+
+  Read it the right way round:
+   * on congruences the direct sweep beats the SAT bounds by 1,538x;
+   * on everything else the SAT bounds are the only statement there is,
+     since a union of residue classes is a vanishing fraction of the
+     2-automatic sets of any given size;
+   * the LSB bound, the headline for most of this program, is the
+     weakest of the three on this axis: 3 moduli.
+  The MSB/LSB gap here is the SAME asymmetry the solver timings
+  measured -- m states against m*ord_2(m) -- showing up as a
+  statement about content rather than about seconds.

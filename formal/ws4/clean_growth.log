@@ -1,0 +1,35 @@
+WS4 clean growth measurement -- single process, strictly sequential
+cores=10  start 2026-07-27 17:05:49  [load 3.22 3.01 3.25]
+
+--- MSB ---  [load 3.22 3.01 3.25]
+  MSB  n= 8  UNSAT        0.7s   [load 3.22 3.01 3.25]
+  MSB  n= 9  UNSAT        1.9s   [load 3.22 3.01 3.25]
+  MSB  n=10  UNSAT        7.9s   [load 3.49 3.08 3.27]
+  MSB  n=11  UNSAT       54.6s   [load 3.82 3.23 3.31]
+  MSB  n=12  UNSAT      613.3s   [load 4.78 4.35 3.84]
+  MSB  n=13  UNSAT     8046.7s   [load 3.79 4.05 4.06]
+  factors MSB:
+    n=8->9:   2.73x
+    n=9->10:   4.10x
+    n=10->11:   6.91x
+    n=11->12:  11.23x
+    n=12->13:  13.12x
+
+--- LSB ---  [load 3.79 4.05 4.06]
+  LSB  n= 6  UNSAT        0.7s   [load 3.79 4.05 4.06]
+  LSB  n= 7  UNSAT        3.1s   [load 3.81 4.05 4.06]
+  LSB  n= 8  UNSAT       13.4s   [load 3.79 4.03 4.05]
+  LSB  n= 9  UNSAT       74.5s   [load 4.48 4.16 4.10]
+  LSB  n=10  UNSAT      705.0s   [load 4.22 4.42 4.29]
+  factors LSB:
+    n=6->7:   4.30x
+    n=7->8:   4.35x
+    n=8->9:   5.55x
+    n=9->10:   9.46x
+
+--- cross-encoding ratio at equal n (same load condition) ---
+  n= 8  LSB/MSB =    18.98
+  n= 9  LSB/MSB =    38.62
+  n=10  LSB/MSB =    89.23
+
+done 2026-07-27 19:44:31  [load 4.22 4.42 4.29]

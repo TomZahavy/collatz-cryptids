@@ -1,0 +1,26 @@
+WS4.1  THE SIZE FRONTIER IN ONE SYNTAX
+
+(1) register machine -> RES-GAM, step-exact
+  ADD  r0 += r1      2 instr ->  3 rules (<= 2I = 4), modulus 429
+                     lockstep mismatches over 216 steps: 0; starts computing the wrong answer: 0/36
+  MUL  r0 += r1*r2   6 instr ->  9 rules (<= 2I = 12), modulus 3,234,846,615
+                     lockstep mismatches over 1,072 steps: 0; starts computing the wrong answer: 0/64
+  => an I-instruction register machine compiles to <= 2I rules,
+     step for step.  With Minsky's theorem, RES-GAMs are universal,
+     and the smallest universal I gives an upper bound of 2I rules.
+
+(2) PRIMEGAME -- a 14-rule RES-GAM, verified rather than cited
+  rules 14, modulus 6,469,693,230
+  pure powers 2^e in the orbit from 2:  e = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]
+  all prime: True;  consecutive primes from 2: True
+  => unbounded nontrivial computation at 14 rules, one counter.
+
+(3) where the cryptids sit -- and what that does NOT prove
+  Needle    1 counter, VAL(2), ONE schema: F(x) = (2^(v+1)+3)k + (2^v+v)
+  machine 3 1 counter, VAL(3), ONE schema: G(a) = (3^(j+1)+1)m + (r*3^j+j+c_r)
+  Fenrir    1 counter, RES-style, 2 branches (a FRACTRAN cryptid)
+  Written size is below PRIMEGAME's 14 rules.  But VAL(q) unfolds one
+  schema into infinitely many affine pieces, so smaller ON THE PAGE is
+  not smaller IN POWER.  No result here, and none we know of, lower-
+  bounds the power of a 1-schema VAL machine.  The frontier is an
+  UPPER bound on where universality starts, nothing more.

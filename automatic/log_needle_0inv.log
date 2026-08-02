@@ -1,0 +1,2 @@
+machine=needle  branches v=0..1  convention=all representations (0-invariant)
+  n=12  vars=   12,504  clauses=   920,695  UNSAT (no certificate)      1293.5s

@@ -1,0 +1,152 @@
+WS5 CENSUS -- the one-schema VAL(2) family
+
+  F(x) = (alpha*2^(v+1) + beta)k + (gamma*2^v + delta*v + eps),
+  x = 2^(v+1)k + 2^v,  halt iff x is a power of 2,  start x0 = 3
+  parameters: alpha(1, 2, 3) beta(-1, 1, 2, 3, 4, 5, 6, 7) gamma(1, 2, 3) delta(0, 1, 2) eps(-2, -1, 0, 1, 2)
+
+CALIBRATION
+  Space Needle (1,3,1,1,0) must NOT be decided: PASS
+  decided machine (1,-1,1,0,1) at m=3: orbit stays in the separating class for 400 steps: PASS
+  decided machine (1,1,1,0,-1) at m=3: orbit stays in the separating class for 400 steps: PASS
+  decided machine (1,1,1,0,2) at m=3: orbit stays in the separating class for 400 steps: PASS
+
+enumerated 1,080 machines; 3 are not well defined (F leaves the positive integers); 1,077 analysed
+
+VERDICT BY ASYMPTOTIC MULTIPLIER alpha
+  alpha  machines   HALT  CYCLE   GROW  decided  mean drift
+      1       357    116     21    220      105      0.8809
+      2       360     80      6    274      103      1.5529
+      3       360     61      0    299      110      1.9933
+
+DECIDED BY SEPARATING CONGRUENCE: 318 of 1077
+        (1,-1,1,0,1)  m=  3  drift -0.636  ceiling 1.6067
+        (1,1,1,0,-1)  m=  3  drift +0.402  ceiling 0.7645
+         (1,1,1,0,2)  m=  3  drift +0.402  ceiling 0.7645
+        (1,2,1,0,-2)  m=  3  drift +0.701  ceiling 0.6322
+         (1,2,1,0,1)  m=  3  drift +0.701  ceiling 0.6322
+         (1,3,1,0,0)  m=  3  drift +0.941  ceiling 0.5453
+        (1,4,1,0,-1)  m=  3  drift +1.143  ceiling 0.4828
+         (1,4,1,0,2)  m=  3  drift +1.143  ceiling 0.4828
+        (1,5,1,0,-2)  m=  3  drift +1.317  ceiling 0.4353
+         (1,5,1,0,1)  m=  3  drift +1.317  ceiling 0.4353
+         (1,6,1,0,0)  m=  3  drift +1.471  ceiling 0.3976
+        (1,7,1,0,-1)  m=  3  drift +1.608  ceiling 0.3670
+         (1,7,1,0,2)  m=  3  drift +1.608  ceiling 0.3670
+       (2,-1,2,0,-2)  m=  3  drift +0.729  ceiling 0.6067
+        (2,-1,2,0,1)  m=  3  drift +0.729  ceiling 0.6067
+        (2,1,2,0,-1)  m=  3  drift +1.218  ceiling 0.4312
+         (2,1,2,0,2)  m=  3  drift +1.218  ceiling 0.4312
+        (2,2,2,0,-2)  m=  3  drift +1.402  ceiling 0.3822
+         (2,2,2,0,1)  m=  3  drift +1.402  ceiling 0.3822
+         (2,3,2,0,0)  m=  3  drift +1.560  ceiling 0.3453
+        (2,4,2,0,-1)  m=  3  drift +1.701  ceiling 0.3161
+         (2,4,2,0,2)  m=  3  drift +1.701  ceiling 0.3161
+        (2,5,2,0,-2)  m=  3  drift +1.827  ceiling 0.2924
+         (2,5,2,0,1)  m=  3  drift +1.827  ceiling 0.2924
+         (2,6,2,0,0)  m=  3  drift +1.941  ceiling 0.2726
+  ... and 293 more
+
+HALTS from x0=3: 257;  CYCLES: 27
+       (1,-1,1,0,-1)  halts after 1 steps at 1
+        (1,-1,1,0,0)  halts after 1 steps at 2
+        (1,-1,1,0,2)  halts after 1 steps at 4
+       (1,-1,1,1,-1)  halts after 1 steps at 1
+        (1,-1,1,1,0)  halts after 1 steps at 2
+        (1,-1,1,1,2)  halts after 1 steps at 4
+       (1,-1,1,2,-1)  halts after 1 steps at 1
+        (1,-1,1,2,0)  halts after 1 steps at 2
+        (1,-1,1,2,2)  halts after 1 steps at 4
+       (1,-1,2,0,-2)  halts after 1 steps at 1
+        (1,-1,1,0,1)  cycle of length 1 entered at step 0
+        (1,-1,1,1,1)  cycle of length 1 entered at step 0
+        (1,-1,1,2,1)  cycle of length 1 entered at step 0
+        (1,-1,2,0,0)  cycle of length 1 entered at step 0
+        (1,-1,2,1,0)  cycle of length 1 entered at step 0
+        (1,-1,2,1,2)  cycle of length 2 entered at step 3
+        (1,-1,2,2,0)  cycle of length 1 entered at step 0
+       (1,-1,3,0,-1)  cycle of length 1 entered at step 0
+        (1,-1,3,0,1)  cycle of length 2 entered at step 3
+        (1,-1,3,0,2)  cycle of length 5 entered at step 2
+
+STRUCTURE 1: which parameter carries decidability?
+    param  value  machines  decided    rate
+    alpha      1       357      105   29.4%
+    alpha      2       360      103   28.6%
+    alpha      3       360      110   30.6%
+
+     beta     -1       132        6    4.5%
+     beta      1       135        7    5.2%
+     beta      2       135       87   64.4%
+     beta      3       135        5    3.7%
+     beta      4       135      107   79.3%
+     beta      5       135        7    5.2%
+     beta      6       135       88   65.2%
+     beta      7       135       11    8.1%
+
+    gamma      1       357      113   31.7%
+    gamma      2       360       89   24.7%
+    gamma      3       360      116   32.2%
+
+    delta      0       359      137   38.2%
+    delta      1       359       90   25.1%
+    delta      2       359       91   25.3%
+
+      eps     -2       213       70   32.9%
+      eps     -1       216       56   25.9%
+      eps      0       216       67   31.0%
+      eps      1       216       59   27.3%
+      eps      2       216       66   30.6%
+
+STRUCTURE 2: drift and the ceiling are functions of (alpha, beta) alone --
+  they cannot tell the Needle apart from its siblings.  Check:
+    (alpha,beta) classes: 24;  classes with more than one (drift, ceiling) value: 0
+    machines sharing the Needle's drift and ceiling: 45
+
+STRUCTURE 3: the sieve separates what drift cannot.  Among those twins,
+    sieve mass ranges 0.0000 to 0.7988; the Needle sits at 0.2852
+    (WS3 measured 28.7% for the Needle over v <= 35; this is v <= 8)
+    heaviest sieves among undecided growers -- the best leads for a hand proof:
+             (1,1,2,0,1)   0.9980  (9/9 branches forbidden)
+            (2,-1,2,1,1)   0.9980  (9/9 branches forbidden)
+            (2,-1,2,2,1)   0.9980  (9/9 branches forbidden)
+            (2,-1,3,0,0)   0.9980  (9/9 branches forbidden)
+            (2,-1,3,1,0)   0.9980  (9/9 branches forbidden)
+            (2,1,1,2,-1)   0.9980  (9/9 branches forbidden)
+             (3,3,2,0,1)   0.9980  (9/9 branches forbidden)
+            (2,7,1,2,-1)   0.9883  (7/9 branches forbidden)
+
+CRYPTID CANDIDATES (alpha = 1, grows, undecided): 120
+             machine    drift   ceiling  sieve mass  note
+         (1,1,1,1,2)   0.4015   0.76450      0.8105  
+         (1,1,1,2,2)   0.4015   0.76450      0.5605  
+         (1,1,2,0,1)   0.4015   0.76450      0.9980  
+         (1,1,2,1,1)   0.4015   0.76450      0.5898  
+         (1,1,2,2,2)   0.4015   0.76450      0.1230  
+         (1,1,3,0,0)   0.4015   0.76450      0.7480  
+         (1,1,3,1,0)   0.4015   0.76450      0.6230  
+         (1,1,3,1,1)   0.4015   0.76450      0.2480  
+         (1,1,3,2,0)   0.4015   0.76450      0.5605  
+         (1,1,3,2,1)   0.4015   0.76450      0.1230  
+         (1,2,2,2,0)   0.7008   0.63225      0.2949  
+        (1,2,3,1,-1)   0.7008   0.63225      0.2852  
+         (1,3,1,0,1)   0.9411   0.54528      0.2871  
+         (1,3,1,1,0)   0.9411   0.54528      0.2852  the Space Needle
+         (1,3,1,1,1)   0.9411   0.54528      0.0371  
+        (1,3,1,2,-1)   0.9411   0.54528      0.7559  
+         (1,3,1,2,0)   0.9411   0.54528      0.0352  
+         (1,3,1,2,1)   0.9411   0.54528      0.2871  
+        (1,3,2,0,-1)   0.9411   0.54528      0.2871  
+         (1,3,2,0,0)   0.9411   0.54528      0.0000  
+         (1,3,2,0,2)   0.9411   0.54528      0.2871  
+        (1,3,2,1,-2)   0.9411   0.54528      0.7988  
+        (1,3,2,1,-1)   0.9411   0.54528      0.0352  
+         (1,3,2,1,0)   0.9411   0.54528      0.3145  
+         (1,3,2,1,2)   0.9411   0.54528      0.2852  
+        (1,3,2,2,-1)   0.9411   0.54528      0.3809  
+         (1,3,2,2,0)   0.9411   0.54528      0.2852  
+         (1,3,2,2,2)   0.9411   0.54528      0.0371  
+        (1,3,3,0,-2)   0.9411   0.54528      0.0059  
+        (1,3,3,0,-1)   0.9411   0.54528      0.4102  
+  ... and 90 more
+
+elapsed 196.3s

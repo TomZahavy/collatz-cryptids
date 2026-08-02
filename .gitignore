@@ -1,0 +1,21 @@
+# Lean build artifacts
+.lake/
+*.olean
+*.ilean
+*.hash
+*.trace
+
+# Python
+__pycache__/
+*.pyc
+
+# compiled C helpers
+m4_hunt
+m2_fast
+*.o
+
+# OS
+.DS_Store
+
+# large session-local pickles
+*.pkl

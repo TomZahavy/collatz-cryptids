@@ -1,0 +1,54 @@
+WS1 power calibration -- planted certificates of known size
+machine G_m: Needle multipliers a_v = 2^{v+1}+3, b_v = a_v*inv2 mod m
+halt set: powers of 2 (as for the Needle).  convention: minimal words
+
+planted sizes available: {3: 3, 5: 5, 7: 7, 9: 9, 11: 11, 13: 13}
+
+--- planted k=3 (m=3, b_v=[1, 2], orbit 40 elts) ---
+  n= 2  vars=     1,776  clauses=      6,575  UNSAT (no certificate)        0.0s
+  n= 3  vars=     3,102  clauses=     22,655  SAT (certificate)             0.0s
+      FOUND at n=3 after 0.0s total   delta=[[0, 1], [2, 0], [1, 2]] acc=[0]
+--- planted k=5 (m=5, b_v=[0, 1], orbit 40 elts) ---
+  n= 2  vars=     1,894  clauses=      6,929  UNSAT (no certificate)        0.0s
+  n= 3  vars=     3,279  clauses=     23,422  UNSAT (no certificate)        0.0s
+  n= 4  vars=     5,148  clauses=     68,122  UNSAT (no certificate)        0.0s
+  n= 5  vars=     7,645  clauses=    171,971  SAT (certificate)             0.1s
+      FOUND at n=5 after 0.5s total   delta=[[0, 1], [2, 3], [3, 0], [4, 2], [1, 4]] acc=[0]
+--- planted k=7 (m=7, b_v=[6, 0], orbit 40 elts) ---
+  n= 2  vars=     1,920  clauses=      7,199  UNSAT (no certificate)        0.0s
+  n= 3  vars=     3,390  clauses=     25,439  UNSAT (no certificate)        0.0s
+  n= 4  vars=     5,424  clauses=     76,189  UNSAT (no certificate)        0.0s
+  n= 5  vars=     8,190  clauses=    195,575  UNSAT (no certificate)        0.1s
+  n= 6  vars=    11,856  clauses=    441,179  UNSAT (no certificate)        0.5s
+  n= 7  vars=    16,590  clauses=    897,079  SAT (certificate)             3.7s
+      FOUND at n=7 after 7.1s total   delta=[[0, 1], [2, 3], [4, 5], [6, 0], [1, 4], [3, 6], [5, 2]] acc=[0]
+--- planted k=9 (m=9, b_v=[7, 8], orbit 40 elts) ---
+  n= 2  vars=     2,058  clauses=      7,901  UNSAT (no certificate)        0.0s
+  n= 3  vars=     3,705  clauses=     29,108  SAT (certificate)             0.0s
+      FOUND at n=3 after 0.1s total   delta=[[0, 1], [2, 0], [1, 2]] acc=[0]
+--- planted k=11 (m=11, b_v=[8, 9], orbit 40 elts) ---
+  n= 2  vars=     1,950  clauses=      7,673  UNSAT (no certificate)        0.0s
+  n= 3  vars=     3,579  clauses=     29,330  UNSAT (no certificate)        0.0s
+  n= 4  vars=     5,932  clauses=     92,070  UNSAT (no certificate)        0.0s
+  n= 5  vars=     9,225  clauses=    242,387  UNSAT (no certificate)        0.1s
+  n= 6  vars=    13,674  clauses=    554,375  UNSAT (no certificate)        0.4s
+  n= 7  vars=    19,495  clauses=  1,136,208  UNSAT (no certificate)        3.1s
+  n= 8  vars=    26,904  clauses=  2,136,620  UNSAT (no certificate)       18.6s
+  n= 9  vars=    36,117  clauses=  3,751,385  UNSAT (no certificate)       96.0s
+  n=10  vars=    47,350  clauses=  6,229,797  UNSAT (no certificate)     1607.8s
+  n=11  vars=    60,819  clauses=  9,881,150  SAT (certificate)           979.5s
+      FOUND at n=11 after 2802.8s total   delta=[[0, 1], [2, 3], [4, 5], [6, 7], [3, 8], [9, 4], [7, 0], [10, 2], [5, 10], [1, 9], [8, 6]] acc=[0]
+--- planted k=13 (m=13, b_v=[9, 10], orbit 40 elts) ---
+  n= 2  vars=     2,048  clauses=      8,063  UNSAT (no certificate)        0.1s
+  n= 3  vars=     3,762  clauses=     30,891  UNSAT (no certificate)        0.0s
+  n= 4  vars=     6,240  clauses=     97,081  UNSAT (no certificate)        0.1s
+  n= 5  vars=     9,710  clauses=    255,719  UNSAT (no certificate)        0.3s
+  n= 6  vars=    14,400  clauses=    585,027  UNSAT (no certificate)        1.3s
+  n= 7  vars=    20,538  clauses=  1,199,203  UNSAT (no certificate)        9.7s
+  n= 8  vars=    28,352  clauses=  2,255,261  UNSAT (no certificate)       68.8s
+  n= 9  vars=    38,070  clauses=  3,959,871  UNSAT (no certificate)      461.7s
+  n=10  vars=    49,920  clauses=  6,576,199  UNSAT (no certificate)     3468.8s
+  n=11  vars=    64,130  clauses= 10,430,747  UNSAT (no certificate)    20279.5s
+  n=12  vars=    80,928  clauses= 15,920,193  UNSAT (no certificate)   499546.8s
+  n=13  vars=   100,542  clauses= 23,518,231  SAT (certificate)          6342.4s
+      FOUND at n=13 after 530329.3s total   delta=[[0, 1], [2, 3], [4, 5], [6, 7], [7, 8], [9, 0], [10, 11], [12, 4], [11, 6], [8, 2], [1, 10], [3, 12], [5, 9]] acc=[0]

@@ -1,0 +1,27 @@
+STEP 1 -- THE BRANCH TABLE, AGAINST THE RAW RULES
+----------------------------------------------------------------------
+  non-spine a < 60,000: 59988 values, table mismatches: 0
+  spine 3^j, j = 1..11: halt iff 3 | j -- violations: 0
+
+STEP 2 -- THE BASE-q LEMMA vs THE PROJECT'S OWN SIEVE
+----------------------------------------------------------------------
+  50 branches j <= 24: lemma verdict vs geometric_solver mismatches: 0
+  surviving branches: [(1, 1), (1, 2)]   (M3-T1: only v_3 = 1 can precede a halt)
+  positive witnesses, raw rules: 21 -> 27; 478293 -> 531441
+
+STEP 3 -- M3-N1: closure = Z_M, INDEPENDENT COMPUTATION
+----------------------------------------------------------------------
+  every modulus M = 2..250, three start residues each: 747 closures
+  closure NOT all of Z_M: 0
+
+STEP 4 -- M3-N2 SPOT CHECK: brute force the last-two-steps pinning
+----------------------------------------------------------------------
+  non-spine starts a < 10^6 halting within two return steps: 3
+  first few: [15, 21, 478293]
+  branch values en route with v_3 != 1: 0
+
+======================================================================
+RESULT: the transfer is verified on an independent code path.
+M3-N1: no modulus separates machine 3 -- unconditional. M3-T1 +
+M3-N2: the last two steps before any halt have v_3 = 1, all j.
+The Needle/machine-3 split is the rank of the sieve group.

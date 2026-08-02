@@ -1,0 +1,5 @@
+machine 3, base 3, branches j<=4, minimal-word convention
+  n= 4  vars=   119,612  clauses=  4,983,066  UNSAT (no certificate)        5.3s
+  n= 5  vars=   223,630  clauses= 14,452,763  UNSAT (no certificate)       17.9s
+  n= 6  vars=   375,078  clauses= 34,732,907  UNSAT (no certificate)      225.9s
+  n= 7  vars=   582,848  clauses= 73,193,655  UNSAT (no certificate)    12018.2s

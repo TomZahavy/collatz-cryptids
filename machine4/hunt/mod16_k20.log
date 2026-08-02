@@ -1,0 +1,8 @@
+k=20 n=800 decided=800 halts=22 p=0.0275 cap=0 ovf=0  d[-1,1,2,3,4,5]=99,13,254,22,399,13  m8[3]=556 m8[7]=244  E[l2ratio]=1.079 max_l2=3.3  E[rounds]=8.55e+05 max_rounds=3.02e+06 E[base]=1.14e+06 E[rounds]/2^k=0.8154
+k=20 n=800 decided=800 halts=16 p=0.0200 cap=0 ovf=0  d[-1,1,2,3,4,5]=99,17,264,16,379,25  m8[3]=533 m8[7]=267  E[l2ratio]=1.126 max_l2=3.3  E[rounds]=9.11e+05 max_rounds=3.39e+06 E[base]=1.21e+06 E[rounds]/2^k=0.8686
+k=20 n=800 decided=800 halts=19 p=0.0238 cap=0 ovf=0  d[-1,1,2,3,4,5]=99,12,258,19,391,21  m8[3]=563 m8[7]=237  E[l2ratio]=1.024 max_l2=3.3  E[rounds]=7.89e+05 max_rounds=3.44e+06 E[base]=1.05e+06 E[rounds]/2^k=0.7529
+k=20 n=800 decided=800 halts=17 p=0.0213 cap=0 ovf=0  d[-1,1,2,3,4,5]=94,18,246,17,406,19  m8[3]=545 m8[7]=255  E[l2ratio]=1.105 max_l2=3.3  E[rounds]=8.86e+05 max_rounds=3.01e+06 E[base]=1.18e+06 E[rounds]/2^k=0.8448
+k=20 n=800 decided=800 halts=23 p=0.0288 cap=0 ovf=0  d[-1,1,2,3,4,5]=94,19,249,23,393,22  m8[3]=551 m8[7]=249  E[l2ratio]=1.116 max_l2=3.3  E[rounds]=8.9e+05 max_rounds=3.43e+06 E[base]=1.19e+06 E[rounds]/2^k=0.8485
+k=20 n=800 decided=800 halts=22 p=0.0275 cap=0 ovf=0  d[-1,1,2,3,4,5]=103,20,241,22,395,19  m8[3]=544 m8[7]=256  E[l2ratio]=1.134 max_l2=3.3  E[rounds]=9.14e+05 max_rounds=3.45e+06 E[base]=1.22e+06 E[rounds]/2^k=0.8721
+k=20 n=800 decided=800 halts=22 p=0.0275 cap=0 ovf=0  d[-1,1,2,3,4,5]=100,15,256,22,381,26  m8[3]=541 m8[7]=259  E[l2ratio]=1.074 max_l2=3.3  E[rounds]=8.56e+05 max_rounds=3.02e+06 E[base]=1.14e+06 E[rounds]/2^k=0.8160
+k=20 n=800 decided=800 halts=20 p=0.0250 cap=0 ovf=0  d[-1,1,2,3,4,5]=104,14,256,20,378,28  m8[3]=564 m8[7]=236  E[l2ratio]=1.066 max_l2=3.3  E[rounds]=8.4e+05 max_rounds=3.02e+06 E[base]=1.12e+06 E[rounds]/2^k=0.8013

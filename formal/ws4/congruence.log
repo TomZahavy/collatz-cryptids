@@ -1,0 +1,24 @@
+WS4.3c  CONGRUENCE-PLUS-THRESHOLD CERTIFICATES
+
+  orbit prefixes: 60,500 (Needle) and 200,500 (machine 3);
+  the threshold cutoff x_500 has 142 decimal digits (Needle), 49 (machine 3)
+
+  Needle,    H = powers of 2 : moduli 2..20,000, collisions sought at orbit index >= 500
+    moduli with NO collision (would-be certificates): 0
+    worst case: modulus 14,336 needed index 11265 (i.e. every modulus fails within 10766 orbit steps of the cutoff)
+
+  machine 3, H = powers of 27: moduli 2..20,000, collisions sought at orbit index >= 500
+    moduli with NO collision (would-be certificates): 0
+    worst case: modulus 13,122 needed index 105033 (i.e. every modulus fails within 104534 orbit steps of the cutoff)
+
+  LEMMA  G(a) = v_3(a) mod 2 : mismatches 0 over 399,987 values a < 400,000
+    (proved; see docstring.  It is why modulus 2*3^8 = 13,122 was the
+     last to fall -- it needed v_3 >= 8 together with the rarer parity,
+     and first collided at orbit index 105,033.)
+
+  => no congruence certificate for either machine, at any modulus
+     m <= 20,000, with ANY threshold -- the collision residues are
+     taken by infinitely many elements of H, so no threshold escapes.
+     (0 and 0 surviving moduli.)
+
+  elapsed 30.7s

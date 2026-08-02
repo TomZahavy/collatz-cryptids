@@ -1,0 +1,38 @@
+STEP 1 -- T12, THE DELTA-SATURATION THEOREM: its proof steps
+------------------------------------------------------------------------
+  4000 (machine, odd M) pairs meeting the hypotheses
+  mu_v constant and a_v - a_v0 = delta(v-v0) on the class: 0 violations
+  delta*ord*Z = Z_M under the hypotheses: 0 violations
+  end-to-end: image = Z_M in 265 cases with M < 62, 0 failures
+
+STEP 2 -- COROLLARY: no odd prime separates the Space Needle
+------------------------------------------------------------------------
+  549 odd primes below 4000; hypotheses fail for 0
+  end-to-end on the 45 primes below 200: 0 failures
+  (ord_p(2) | p-1, so the second hypothesis is automatic for primes)
+
+STEP 3 -- FALSIFIER: every separating certificate must break a
+          hypothesis, or T12 is false
+------------------------------------------------------------------------
+  318 machines decided by a congruence
+    modulus even (T12 silent):            274
+    odd but a gcd hypothesis fails:       44
+    WOULD REFUTE T12:                     0
+
+STEP 4 -- C4 AND C6: complete on (Z_m)^5, then on the census
+------------------------------------------------------------------------
+  C4: all 1024 residue tuples mod 4 -- 128 separate, 0 mismatches
+  C6: all 7776 residue tuples mod 6 -- 1308 separate, 0 mismatches
+  against the census, all 1077 machines:
+    T3 (m = 3): predicted and decided  41, predicted not decided 0, decided not predicted 0
+    C4 (m = 4): predicted and decided 105, predicted not decided 0, decided not predicted 0
+    C6 (m = 6): predicted and decided  68, predicted not decided 0, decided not predicted 0
+
+STEP 5 -- THE DECIDING-MODULUS CENSUS (RESULTS.md omitted m = 7)
+------------------------------------------------------------------------
+  3 (41), 4 (105), 6 (68), 7 (3), 8 (18), 10 (34), 12 (17), 14 (2), 16 (14), 20 (6), 22 (1), 24 (2), 32 (1), 36 (1), 40 (2), 56 (3)
+  machines whose smallest deciding modulus is 7: [(1, 7, 1, 0, 0), (2, 7, 2, 0, 0), (3, 7, 3, 0, 1)]
+
+========================================================================
+RESULT: T12 proved and its steps verified; no odd prime can ever
+separate the Needle; C4 and C6 exact on (Z_m)^5 and on the census.

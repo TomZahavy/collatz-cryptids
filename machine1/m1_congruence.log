@@ -1,0 +1,63 @@
+==========================================================================
+MACHINE 1: the exact congruence content of F
+==========================================================================
+
+(A) ERRATUM to mod16.py
+    F(5) = 17  (1 mod 16)   producer = pump-flat
+    G(1,5) = sweep(7,4): 3*Dl = 12 > A = 7, so cascade B does NOT run
+      and D* = Dl = 4 = 0 (mod 4), breaking the proof's 'D* = 2 (mod 4)'
+
+    D = 2..400000: producers of the b = 1 anchor and the residues of F(D) mod 16 they give
+      R23        used  354928 times   F mod 16 in [9]
+      pump-flat  used       1 times   F mod 16 in [1]
+      pump-ran   used   45016 times   F mod 16 in [9]
+      two-ran    used       6 times   F mod 16 in [9]
+    D with F(D) != 9 (mod 16): 1 -> [(5, 17, 'pump-flat')]
+
+    T17 (corrected).  FOUR rules emit a b = 1 anchor, not two:
+        R23       d' = 16(d-b) - 55                = 9 (mod 16)  [proved]
+        pump-ran  d' = 4*D*+1, D* = 2 (mod 4)      = 9 (mod 16)  [proved]
+        pump-flat d' = 4*Dl+1, Dl unconstrained    = 4Dl+1       [free]
+        two-ran   d' = D*-1,   D* = 2 (mod 4)      = 1 (mod 4)   [partial]
+      So the closed forms prove '= 9 (mod 16)' only for the first two.
+      mod16.py proved exactly those two and asserted the theorem; the
+      other two are rare but real, and pump-flat breaks it at D = 5.
+      two-ran fires at D = [162, 7202, 22182, 50076, 121890, 388320]  -> F mod 16 [9] (forced only into {1,5,9,13})
+      CORRECTED STATEMENT [machine-verified, 2 <= D < 400000]:
+        F(D) = 9 (mod 16) for every D in that range except D = 5.
+      The ORBIT corollary is unaffected and stays [proved-modulo-run]:
+        D_0 = 17 never meets D = 5 nor any pump-flat/two-ran anchor outside the compliant set.
+
+(B) T16  linear-exponential saturation lemma
+    hypotheses satisfied: 1705 random (M,A,delta,eps,kappa,rho,c0) with M < 400 -- closure = Z_M in 1705, fails 0
+    falsifier -- gcd(delta,M) > 1: 437 of 671 instances fail to saturate, so the hypothesis is not decorative
+    descent chain g -> gcd(ord_g(2), g) for a few odd M:
+      M =    15: 15 -> 1
+      M =    31: 31 -> 1
+      M =    63: 63 -> 3 -> 1
+      M =   127: 127 -> 1
+      M =   255: 255 -> 1
+      M =   511: 511 -> 1
+      M =  1023: 1023 -> 1
+      M =  2047: 2047 -> 1
+    (strictly decreasing to 1 in every case: ord_g(2) | phi(g) < g)
+
+(C) M1-D and M1-N1 for machine 1
+    M1-D: closed form + interval verified at 1988 points over n = 1..21 (interval ends and 40 random interior points each), plus both endpoints+1 excluded
+      interval length 4*2^n - 2; complete residue system mod M once 2^n >= (M+2)/4
+    M1-N1: every odd M <= 401 -- closure of D_0 = 17 under the dominant relation alone is all of Z_M; exceptions: []
+    plus 25 random odd M < 1200 (max 1115): exceptions []
+
+    the even side, for contrast (dominant relation mod 2^e):
+      2^1  =     2: |closure| =    1  = [1]
+      2^2  =     4: |closure| =    1  = [1]
+      2^3  =     8: |closure| =    1  = [1]
+      2^4  =    16: |closure| =    1  = [9]
+      2^5  =    32: |closure| =    1  = [25]
+      2^6  =    64: |closure| =    2  = [25, 57]
+      2^7  =   128: |closure| =    4  = [25, 57, 89, 121]
+      2^8  =   256: |closure| =    8  = [25, 57, 89, 121, 153, 185, 217, 249]
+      2^9  =   512: |closure| =   16  (all = 9 mod 16: True)
+      2^10 =  1024: |closure| =   32  (all = 9 mod 16: True)
+
+[  36.5s] all checks passed

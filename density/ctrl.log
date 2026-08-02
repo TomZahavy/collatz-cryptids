@@ -1,0 +1,37 @@
+CONTROL: same backward tree, GENERIC roots (ceiling 0.5453)
+
+RANDOM roots, 800 bits: 2000 seeds, 4261 nodes, interval ceiling 0.5453
+  pooled 1 - seeds/nodes = 0.5306
+  depth   nodes   children   mean offspring
+      0    2000       1070           0.5350
+      1    1070        562           0.5252
+      2     562        316           0.5623
+      3     316        168           0.5316
+      4     168         76           0.4524
+      5      76         31           0.4079
+      6      31         13           0.4194
+      7      13          7           0.5385
+      8       7          7           1.0000
+      9       7          6           0.8571
+     10       6          3           0.5000
+     11       3          2           0.6667
+     12       2          0           0.0000
+  depth >= 1 pooled: 1191/2261 = 0.5268   (vs ceiling 0.5453)
+
+RANDOM roots, 1600 bits: 2000 seeds, 4346 nodes, interval ceiling 0.5453
+  pooled 1 - seeds/nodes = 0.5398
+  depth   nodes   children   mean offspring
+      0    2000       1068           0.5340
+      1    1068        577           0.5403
+      2     577        325           0.5633
+      3     325        186           0.5723
+      4     186         96           0.5161
+      5      96         52           0.5417
+      6      52         17           0.3269
+      7      17          9           0.5294
+      8       9          7           0.7778
+      9       7          6           0.8571
+     10       6          1           0.1667
+     11       1          2           2.0000
+     12       2          0           0.0000
+  depth >= 1 pooled: 1278/2346 = 0.5448   (vs ceiling 0.5453)

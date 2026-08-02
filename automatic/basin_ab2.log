@@ -1,0 +1,7 @@
+repeat, interleaved to spread load noise evenly across modes
+rep1 baseline             n= 9  vars=   26,064  clauses= 2,522,209  UNSAT (no certificate)       160.4s
+rep1 powers<2^40          n= 9  vars=   26,370  clauses= 2,526,374  UNSAT (no certificate)       197.3s
+rep1 full basin<2^40      n= 9  vars=   31,455  clauses= 2,593,395  UNSAT (no certificate)       116.0s
+rep2 baseline             n= 9  vars=   26,064  clauses= 2,522,209  UNSAT (no certificate)       198.6s
+rep2 powers<2^40          n= 9  vars=   26,370  clauses= 2,526,374  UNSAT (no certificate)       192.4s
+rep2 full basin<2^40      n= 9  vars=   31,455  clauses= 2,593,395  UNSAT (no certificate)       104.1s

@@ -1,0 +1,27 @@
+==========================================================================
+THE SHEEP MACHINE: THE DEPTH LADDER
+==========================================================================
+
+depth 1:  survivors [0, 1]
+          families carried forward: 2   (largest exponent 9, largest c 3 bits)
+          branch mass at this depth 0.750000; admissible words of length 1: 0.750000   [  0.0s]
+
+depth 2:  survivors [0, 1, 2, 3, 5]
+          families carried forward: 7   (largest exponent 75, largest c 9 bits)
+          branch mass at this depth 0.953125; admissible words of length 2: 0.714844   [  0.0s]
+
+depth 3:  survivors [0, 1, 2, 3, 4, 5, 6]
+          families carried forward: 23   (largest exponent 1461, largest c 15 bits)
+          branch mass at this depth 0.992188; admissible words of length 3: 0.709259   [  0.0s]
+
+depth 4:  survivors [0, 1, 2, 3, 4, 5, 6, 9]
+          families carried forward: 90   (largest exponent 219867, largest c 21 bits)
+          branch mass at this depth 0.993164; admissible words of length 4: 0.704411   [  1.1s]
+
+depth 5:  survivors [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 13]
+          families carried forward: 346   (largest exponent 11627373, largest c 31 bits)
+          branch mass at this depth 0.999573; admissible words of length 5: 0.704110   [ 79.6s]
+
+depth 6:  survivors [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+          families carried forward: 1421   (largest exponent 2568412791, largest c 45 bits)
+          branch mass at this depth 0.999939; admissible words of length 6: 0.704067   [22974.5s]

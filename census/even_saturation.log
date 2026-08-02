@@ -1,0 +1,64 @@
+STEP 1 -- THE MECHANISM: an even modulus reads the valuation off the
+          low bits, for v < s and only there
+------------------------------------------------------------------------
+  residues c mod 2^s with v_2(c) = v < s pin v exactly:
+  502 residues checked over s = 1..8, 40 lifts each: 0 failures
+  and c = 0 (mod 2^s) pins nothing -- every v >= s is available.
+
+STEP 2 -- T14's PROOF STEPS
+------------------------------------------------------------------------
+  3000 (machine, s, M', v >= s) instances meeting the hypotheses
+  k unconstrained mod 2^s:                    0 failures
+  k determined mod M':                        0 failures
+  targets sweep all of Z_(2^s) (beta a unit): 0 failures
+
+STEP 3 -- THE CONCLUSION: closure = Z_M whenever (i)-(iv) hold
+------------------------------------------------------------------------
+  beta-odd machines x even moduli, hypotheses (i)-(iii) met: 7840
+  of those, (iv) 2-adic reach failed:  0
+  with all four hypotheses: 7840 cases, closure NOT all of Z_M in 0
+
+STEP 4 -- FALSIFIER: every EVEN-modulus certificate must break a
+          hypothesis, or T14 is false
+------------------------------------------------------------------------
+  274 certificates at even moduli
+    (i) beta even  -- the escape hatch:      267
+    (ii) gcd(delta, M') > 1 (all have delta = 0): 7
+    (iii) gcd(ord_M'(2), M') > 1:            0
+    (iv) no 2-adic reach:                    0
+    WOULD REFUTE T14:                        0
+  (so every even-modulus certificate in the census is buying exactly
+   the beta-even hatch, or is a delta = 0 machine)
+
+STEP 5 -- WHAT T12 + T14 NOW COVER FOR THE NEEDLE, vs WS4's SWEEP
+------------------------------------------------------------------------
+  beta = 3 is odd and delta = 1, so (i) and (ii) hold at every M.
+  moduli 2..20000 whose odd part satisfies (iii): 12916 of 19999  (64.58%)
+  -> for all of those, no separation, unconditionally and with no
+     upper bound on M. WS4 checked m <= 20,000 by computation only.
+  the uncovered moduli below 300: [9, 18, 21, 25, 27, 36, 39, 42, 45, 49, 50, 54, 55, 57, 63, 72, 75, 78]
+  hypothesis (iii) is SUFFICIENT, NOT NECESSARY -- checking the
+  uncovered ones directly anyway:
+     all 18 tested: closure = Z_M in 18, not saturated in 0
+  so the uncovered set is an artefact of the proof, not a place
+  where certificates are known to live.
+
+STEP 6 -- T14', THE SHARP FORM: a_v = B_v - A_v/2, and an IFF
+------------------------------------------------------------------------
+  a_v = B_v - A_v/2 and mu_v = alpha + beta/2^(v+1): 0 violations
+  (iii') 'S = Z_M' iff the ord base points cover the g cosets':
+     4000 (machine, M') instances, 0 mismatches
+
+STEP 7 -- (iii') ACCOUNTS FOR WHAT (iii) MISSED
+------------------------------------------------------------------------
+  beta-odd machines at moduli (iii) does NOT cover: 6720 cases
+  closure not all of Z_M: 0
+  -> the conservative hypothesis was hiding nothing; (iii') is exact,
+     and 'no modulus separates the Needle' is now REDUCED to a
+     coset-covering condition rather than proved. Gap stated, not hidden.
+
+========================================================================
+RESULT: T14 proved. With T12: no modulus whose odd part M' has
+gcd(ord_M'(2), M') = 1 can separate the Space Needle -- odd or
+even, with no bound on M. The even-modulus escape hatch requires
+beta EVEN, and beta odd is exactly where it is closed.

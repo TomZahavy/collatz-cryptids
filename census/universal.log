@@ -1,0 +1,90 @@
+STEP 1 -- THE UNIVERSAL LEMMA:  S_v = 2 B_v (mod A_v), beta odd
+--------------------------------------------------------------------------
+  672 machines (630 with a non-silent sieve), 51030 branches, v = 0..80
+  mismatches: 0  ->  lemma holds
+
+STEP 2 -- THE LINEAR COROLLARY:  a S_v = 2 a d v + 2 a e - b g (mod A_v)
+--------------------------------------------------------------------------
+  51030 branches tested; mismatches: 0  ->  linear in v, every machine
+
+STEP 3 -- WHY SOME CLASSES ARE DECIDABLE BY HAND: the size of <2>
+--------------------------------------------------------------------------
+  (a,b)     ord_{A_v}(2), v = 0..7     kind
+  (1,-1)    -,2,3,4,5,6,7,8            silent (no expanding branch)
+  (1,1)     2,4,6,8,10,12,14,16        LISTABLE
+  (1,3)     4,3,10,18,12,66,130,36     thin
+  (1,5)     3,6,12,6,36,22,18,84       thin
+  (1,7)     6,10,4,11,12,35,36,131     thin
+  (2,-1)    2,3,4,5,6,7,8,9            LISTABLE
+  (2,1)     4,6,8,10,12,14,16,18       LISTABLE
+  (2,3)     3,10,18,12,66,130,36,204   thin
+  (2,5)     6,12,6,36,22,18,84,230     thin
+  (2,7)     10,4,11,12,35,36,131,172   thin
+  (3,-1)    4,10,11,23,36,95,191,348   thin
+  (3,1)     3,12,20,21,48,96,60,384    thin
+  (3,3)     6,4,18,8,30,12,42,16       LISTABLE
+  (3,5)     10,8,28,52,100,196,388,772 thin
+  (3,7)     12,18,5,20,51,99,88,20     thin
+
+STEP 4 -- THE COMPLETENESS SWEEP (v <= 22, shared baby tables)
+--------------------------------------------------------------------------
+  machines swept: 672
+  sieve-silent (no expanding branch, sieve says nothing): 42
+  with an EXPLICIT surviving branch (positive certificate): 620
+  with every branch forbidden: 10
+  matches the ten claimed machines exactly: yes
+  sample certificate: (1, 1, 1, 0, -2) survives at v = 0, 2^0 = 1 (mod 3): True
+
+STEP 5 -- THE TEN MACHINES: closed forms asserted, every branch forbidden
+--------------------------------------------------------------------------
+  machine           name  S_v (derived)       pat  branches forbidden, v <= 200
+  (1, 1, 2, 0, 1)   T1    0                   iv   all 201 forbidden
+  (2, -1, 2, 1, 1)  T2    2v + 3              i    all 201 forbidden
+  (2, -1, 2, 2, 1)  T4    4v + 3              i    all 201 forbidden
+  (2, -1, 3, 0, 0)  T5    2^(v+1) + 1         i    all 201 forbidden
+  (2, -1, 3, 1, 0)  T6    2^(v+1) + 2v + 1    i    all 201 forbidden
+  (2, 1, 1, 2, -1)  T7    2^(v+1) + 4v - 2    ii   all 201 forbidden
+  (3, 3, 2, 0, 1)   T8    0 mod d_v           iii  all 201 forbidden
+  (2, -1, 2, 0, 1)  T9    3                   i    all 201 forbidden
+  (2, -1, 1, 2, -1) T10   2^(v+1) + 4v - 2    ii   all 201 forbidden
+  (3, 3, 3, 0, 0)   T11   -3                  iii  all 201 forbidden
+
+STEP 6 -- BRUTE FORCE: no orbit reaches a power of two after >= 1 step
+--------------------------------------------------------------------------
+  (starts that ARE powers of two halt at step 0 and are excluded)
+  T1    (1, 1, 2, 0, 1)   starts 2..19999, 400 steps: halts = 0
+  T2    (2, -1, 2, 1, 1)  starts 2..19999, 400 steps: halts = 0
+  T4    (2, -1, 2, 2, 1)  starts 2..19999, 400 steps: halts = 0
+  T5    (2, -1, 3, 0, 0)  starts 2..19999, 400 steps: halts = 0
+  T6    (2, -1, 3, 1, 0)  starts 2..19999, 400 steps: halts = 0
+  T7    (2, 1, 1, 2, -1)  starts 2..19999, 400 steps: halts = 0
+  T8    (3, 3, 2, 0, 1)   starts 2..19999, 400 steps: halts = 0
+  T9    (2, -1, 2, 0, 1)  starts 2..19999, 400 steps: halts = 0
+  T10   (2, -1, 1, 2, -1) starts 2..19999, 400 steps: halts = 0
+  T11   (3, 3, 3, 0, 0)   starts 2..19999, 400 steps: halts = 0
+  total counterexamples: 0
+
+STEP 7 -- THE FRONTIER MAP (odd beta, not decided by congruence)
+--------------------------------------------------------------------------
+  odd-beta machines not decided by congruence: 636
+    tier 1 mechanical (proved)                            8
+    tier 2 S-unit (thin, sieve bites)                   399
+    tier 3a sieve-closed (listable, branch survives)    164
+    tier 3b sieve-void (thin, mass 0)                    24
+    tier 3c sieve-silent                                 41
+  the Space Needle (1, 3, 1, 1, 0) is in tier: 2 S-unit (thin, sieve bites)
+  tier-2 members sharing the Needle's group <2,-3>: 120
+
+STEP 8 -- THE NEEDLE'S CONDITION, AND WHY IT DOES NOT CLOSE
+--------------------------------------------------------------------------
+  closed form S_v = 2v - 3 (mod 2^(v+1)+3), v <= 200: 0 mismatches
+  forbidden branches v <= 40: 23;  surviving: 18
+  surviving branches: [0, 2, 3, 5, 6, 8, 11, 14, 15, 16, 17, 20, 27, 29, 30, 34, 37, 38]
+  weighted forbidden mass: 0.2868   (WS3 measured 0.287 independently)
+  forbidden among the first 35 valuations: 19   (WS3 reported 19)
+  -> the surviving set does NOT thin out: no asymptotic theorem here.
+
+==========================================================================
+RESULT: the lemma is universal; T7-T11 join T1-T6; and the sweep
+returns an explicit surviving branch for every other machine in
+the box: the sieve-to-theorem pipeline is COMPLETE at ten machines.

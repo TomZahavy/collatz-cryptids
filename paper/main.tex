@@ -1,0 +1,1442 @@
+% =========================================================================
+%  Congruence certificates for Collatz-like machines: a census, a sieve
+%  completeness theorem, and the impossibility of separating two flagships
+%
+%  DRAFT v2 -- restructured July 31, 2026.
+%  Design commitments of this draft:
+%    * research goals stated in Section 1, progress assessed against them
+%      in Section 1 (summary) and Section 9 (in full);
+%    * every result carries an explicit epistemic label (Section 1.5) and
+%      appears in the status ledger of Section 8;
+%    * the distinction between Turing machines, counter machines and
+%      Collatz-like functions is made precise in Section 1.1 and respected
+%      throughout;
+%    * claims are stated at the strength actually established, and the
+%      limitations section (1.4) and threats to validity (8.2) are not
+%      optional reading.
+%
+%  Compile: tectonic main.tex   (bibliography is inlined; see README)
+% =========================================================================
+\documentclass[11pt]{article}
+
+\usepackage[margin=1.1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\definecolor{linkblue}{RGB}{26,60,110}
+\usepackage[colorlinks=true,linkcolor=linkblue,citecolor=linkblue,urlcolor=linkblue]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{question}[theorem]{Question}
+\newtheorem{observation}[theorem]{Observation}
+
+\newenvironment{evidence}
+  {\par\smallskip\noindent\footnotesize\textbf{Evidence.}}
+  {\par\smallskip}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\oddpart}{\operatorname{oddPart}}
+\newcommand{\vp}[1]{v_{#1}}
+\newcommand{\Proved}{\textsc{[proved]}}
+\newcommand{\CAP}{\textsc{[proved, computer-assisted]}}
+\newcommand{\MV}{\textsc{[machine-verified]}}
+\newcommand{\Meas}{\textsc{[measured]}}
+\newcommand{\Interp}{\textsc{[interpretation]}}
+
+\title{Congruence certificates for Collatz-like machines:\\
+a census, a sieve completeness theorem, and the\\
+impossibility of separating two flagship orbits}
+\author{Tom Zahavy\thanks{This research program was carried out with an AI
+assistant (Claude, Anthropic).  All proofs were additionally machine-checked
+as described in Section~\ref{sec:conventions}; the form of credit and the
+description of the workflow are to be settled before submission.}}
+\date{July 2026 --- working draft (v2)}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We study \emph{one-schema valuation machines}: Collatz-like functions on the
+positive integers determined by five integers
+$(\alpha,\beta,\gamma,\delta,\varepsilon)$, where for $x=2^{v}u$ with $u$ odd
+the function halts if $u=1$ and otherwise, writing $u=2k+1$, returns
+$A_v k+B_v$ with $A_v=\alpha 2^{v+1}+\beta$ and
+$B_v=\gamma 2^{v}+\delta v+\varepsilon$.  The class is of interest because the
+published halting-equivalent reduction of the \emph{Space Needle}---a $6$-state
+Turing machine and a well-known open problem in the busy-beaver
+community---is the member $(1,3,1,1,0)$.
+
+We report four things.  (i) A census of the $1{,}077$ well-defined members of
+a parameter box, of which $318$ are decided by an exact congruence procedure
+that is complete for its certificate class, with every certificate
+independently re-audited; and closed-form criteria for separation at moduli
+$3,4,6,8$, each verified exhaustively on $(\Z_m)^5$.  (ii) A closed form for
+the last-step sieve of the family, from which ten members are proved never to
+halt after their first step, together with a \emph{completeness theorem}:
+within the box those ten are all, every other applicable member carrying an
+explicit positive witness that the method fails on it.  (iii) A chain of
+saturation theorems ending in: if $\beta$ is odd, $A_v>0$ and
+$\gcd(\delta,M')=1$ ($M'$ the odd part of $M$), then the congruence closure of
+every residue is all of $\Z_M$, at every modulus.  Consequently \emph{no
+congruence certificate at any modulus separates the Space Needle's reduction};
+the same argument transfers to base $3$ and closes the corresponding question
+for a second machine studied here.  (iv) A test of the theory outside its design set: a
+second cryptid found independently by the busy-beaver community (the ``sheep''
+machine, April 2026) lies inside the interface, its last-step sieve closes
+completely---confirming a prediction made beforehand about which machines it
+should close for---and its halting set is obtained in closed form.  (v)
+Expressiveness barriers for the class, and a refutation of counting-style
+arguments against its universality.
+
+We are explicit about what is \emph{not} achieved.  No Turing machine's
+halting problem is decided here; neither flagship orbit question is resolved;
+and every machine we do decide is, by the fact of admitting a certificate, not
+one of the hard ones.  The principal results are impossibility theorems about
+a certificate class, and their value is explanatory.  Each result in the paper
+carries an explicit epistemic label---proved, proved by exhaustive finite
+computation, machine-verified over a stated domain, or measured---and
+Section~\ref{sec:ledger} tabulates all of them together with the threats to
+validity.
+\end{abstract}
+
+\tableofcontents
+
+\section{Introduction}
+
+The $3x+1$ problem asks whether a two-branch affine map sends every positive
+integer to $1$; it has been open for close to a century
+\cite{lagarias-monthly,lagarias-overview}.  Its modern relatives are
+\emph{Collatz-like halting problems}: small, fully explicit piecewise-affine
+maps whose halting is equivalent to an orbit-avoidance question that resists
+every known technique.  Conway showed that sufficiently general Collatz-like
+maps simulate arbitrary computation \cite{conway72}, and Kurtz and Simon placed
+the general halting problem for the class at $\Pi^0_2$-complete
+\cite{kurtz-simon}.  Those reductions, however, require arbitrarily many
+independently chosen affine branches; they say nothing about an individual
+small map, nor about a parametrised family whose infinitely many branches are
+generated by a fixed formula from finitely many integers.  This paper studies
+one such family, chosen because the published halting-equivalent reduction of a
+well-known open Turing machine is a member of it.
+
+\subsection{Three kinds of object, and how they are related}
+\label{sec:objects}
+
+Confusion between the following is easy and consequential, so we fix
+terminology first.
+
+\paragraph{Turing machines.}
+The busy-beaver community studies halting of concrete small Turing machines
+\cite{bbchallenge-cryptids}.  The \textbf{Space Needle} is one: the $6$-state
+machine
+\[
+\texttt{1RB1LA\_1LC0RE\_1LF1LD\_0RB0LA\_1RC1RE\_---0LD},
+\]
+found by mxdys in January 2025 \cite{bbchallenge-needle}.  Whether it halts is
+open.
+
+\paragraph{Collatz-like functions.}
+Certain Turing machines admit a \emph{halting-equivalent reduction} to the
+orbit of an arithmetic map.  For the Space Needle, Doucette's one-variable
+reduction \cite{bbchallenge-needle} states: with $v(b)$ the $2$-adic valuation
+of $b$ and $m$ its odd part, the machine halts if and only if the orbit of
+$b_0=6$ under
+\begin{equation}\label{eq:doucette}
+b \;\longmapsto\; b + v(b) + \tfrac{3}{2}\bigl(m-1\bigr)
+\qquad\text{(halting when $b$ is an exact power of two)}
+\end{equation}
+reaches an exact power of two.  A short computation identifies
+\eqref{eq:doucette} as the member $(1,3,1,1,0)$ of
+Definition~\ref{def:family}: writing $b=2^{v}(2k+1)$ gives
+$b+v+3k=(2^{v+1}+3)k+(2^{v}+v)$.
+
+\paragraph{Counter and rewrite systems.}
+A third genre---machines given by a handful of rewrite rules on tuples of
+counters---sits between the two.  The second machine studied here, which we
+call \textbf{M3}, is of this kind: six rules on states $A(a,b)$, given in
+Section~\ref{sec:baseq}, whose halting reduces to a base-$3$ orbit question.
+
+\medskip
+\noindent
+\textbf{The consequence for reading this paper.}  Our census enumerates
+\emph{Collatz-like functions}, not Turing machines: its members are five-tuples
+of integers and were never presented as machines in the busy-beaver sense.
+When we say a census member is ``decided'', we mean a proof that the orbit of
+$x_0=3$ under that arithmetic map never reaches a power of two.  No Turing
+machine's halting problem is decided anywhere in this paper.  The two
+directions in which our results do touch genuine machines are both negative:
+Corollary~\ref{cor:needle} and Theorem~\ref{thm:m3n1} say that a certain
+proof technique can never settle the Space Needle's reduction, or M3.
+
+\subsection{The research goals}
+\label{sec:goals}
+
+This paper reports part of a longer program.  The program's stated goals, in
+the order in which they compound, are:
+
+\begin{description}
+\item[\textbf{G1} (observe).] Establish new structural facts about
+  Collatz-like functions: normal forms, invariants, closed-form criteria.
+\item[\textbf{G2} (decide).] Decide halting for specific machines wherever
+  instance structure permits.
+\item[\textbf{G3} (explain).] Sharpen the account of \emph{what makes the hard
+  instances hard}---ideally by proving that named techniques cannot work,
+  rather than by reporting that they have not worked.
+\item[\textbf{G4} (transfer).] Grow a toolkit that moves between machines
+  rather than being rebuilt per instance.
+\end{description}
+
+\subsection{Progress against the goals: summary}
+\label{sec:summary}
+
+Section~\ref{sec:goals-revisited} gives the assessment in full, with what did
+not move.  In brief:
+
+\begin{center}
+\small
+\begin{tabular}{@{}llp{8.1cm}@{}}
+\toprule
+goal & verdict & what this paper contributes \\
+\midrule
+G1 & substantial &
+  the sieve lemma (Lemma~\ref{lem:universal}) and its linear corollary; the
+  completeness theorem (Thm~\ref{thm:complete}); closed-form separation
+  criteria at $m=3,4,6,8$ (Thm~\ref{thm:criteria}); the sieve-group rank
+  dichotomy (Remark~\ref{rem:rank}), now tested on a machine we did not
+  construct (Remark~\ref{rem:sheep-dichotomy}) \\
+G2 & \textbf{moved, but not on the target class} &
+  $318$ census members decided by certificate, $10$ more by the sieve---all
+  of them Collatz-like \emph{functions}, none of them Turing machines, and
+  none of them hard: a member with a certificate is by definition not a hard
+  instance.  Neither flagship orbit question is resolved.  What is new here is
+  a \emph{theorem about a wild cryptid} rather than a decision:
+  Theorem~\ref{thm:sheep-sieve} and Corollary~\ref{cor:sheep-H} settle the
+  arithmetic of the sheep machine completely, leaving only its orbit question
+  \\
+G3 & the paper's main yield &
+  Theorem~\ref{thm:t15} and Corollary~\ref{cor:needle} replace a bounded
+  search (``no certificate at $m\le 20{,}000$'') with an unconditional
+  impossibility, \emph{and} identify the mechanism ($\delta$ sweeps every
+  modulus; $\beta$'s parity governs the one $2$-adic escape hatch); plus the
+  barriers of Section~\ref{sec:barriers} \\
+G4 & demonstrated twice &
+  the entire chain transfers to base $3$ (Section~\ref{sec:baseq}) and to a
+  second \emph{wild} cryptid, the sheep machine (Section~\ref{sec:sheep});
+  Lemma~\ref{lem:t16} shows the saturation argument needs neither the family
+  nor a base; the toolkit's boundary is also mapped---two further machine
+  families provably fall outside it \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{What this paper does not claim}
+\label{sec:notclaimed}
+
+We list these prominently because several are easy to over-read.
+
+\begin{enumerate}
+\item \textbf{No Turing machine is decided.}  The $328$ decided objects are
+  arithmetic maps from a manufactured parameter box.  Nothing here reduces
+  the number of open busy-beaver holdouts.
+\item \textbf{Neither flagship is resolved.}  Whether the Space Needle's
+  reduction, or M3, halts remains open.
+\item \textbf{Decided $\Rightarrow$ not hard.}  A member admitting a
+  separating congruence is, by that fact, outside the hard class.  Our G2
+  contribution is a \emph{partition} of a family, not progress on its hard
+  members.  Theorem~\ref{thm:t15} makes this sharper and less comfortable: the
+  technique that decides $29.5\%$ of the census is provably unavailable for
+  the flagships, forever.
+\item \textbf{The impossibility theorems are about one certificate class.}
+  They say nothing about non-halting proofs of other kinds; the natural next
+  class (automatic invariants) is discussed in Section~\ref{sec:barriers} and
+  is open.
+\item \textbf{Completeness is relative to a box.}  Theorem~\ref{thm:complete}
+  is a statement about the enumerated parameter box, not about all
+  odd-$\beta$ members of the family.
+\item \textbf{Universality of the family is open}, and
+  Remark~\ref{rem:counting} shows one tempting route to settling it cannot
+  work.
+\end{enumerate}
+
+\subsection{Epistemic conventions}
+\label{sec:conventions}
+
+Every numbered statement carries one of the following labels; the ledger in
+Section~\ref{sec:ledger} lists all of them in one table.
+
+\begin{description}
+\item[\Proved] A mathematical proof is given here or is routine and
+  indicated.  Where the proof contains a finite case analysis performed by
+  computer, this is stated in the proof.
+\item[\CAP] The statement is equivalent to a finite computation, and a
+  computer performed it exhaustively.  This is a proof modulo correctness of
+  the implementation; it is not a hand proof and we do not present it as one.
+\item[\MV] Checked over an explicitly stated finite domain.  \emph{The general
+  statement is not established.}  Such a claim is evidence, not a theorem.
+\item[\Meas] An empirical quantity (a count, a frequency, a growth rate).
+\item[\Interp] A judgment, comparison or placement---for instance a claim that
+  our equations lie outside a known decidable fragment.  Not a formal result.
+\end{description}
+
+Each result is also accompanied by an \textbf{Evidence} note stating the exact
+domain over which computations were run.  Threats to the validity of the
+computational component are discussed in Section~\ref{sec:threats} and are not
+negligible.
+
+\section{The family}
+\label{sec:family}
+
+\begin{definition}[one-schema valuation machines]
+\label{def:family}
+A machine is a tuple $(\alpha,\beta,\gamma,\delta,\varepsilon)\in\Z^5$.  For
+$x\in\N$ write $x=2^{v}u$ with $u$ odd, $v=\vp{2}(x)$.  If $u=1$ the machine
+\textbf{halts}.  Otherwise $u=2k+1$ with $k\ge 1$, so $x=2^{v+1}k+2^{v}$, and
+\[
+F(x)=A_v\,k+B_v,\qquad
+A_v=\alpha 2^{v+1}+\beta,\qquad
+B_v=\gamma 2^{v}+\delta v+\varepsilon .
+\]
+The machine is \emph{well defined} if $F$ maps non-halting positive integers to
+positive integers.
+\end{definition}
+
+The map reads the $2$-adic valuation of its argument, chooses affine
+coefficients accordingly, and iterates; halting is landing exactly on a power
+of two.  As a function of $x$ the branch has slope $A_v/2^{v+1}\to\alpha$, so
+$\alpha$ is the asymptotic multiplier.
+
+\begin{proposition}[identification of the Space Needle's reduction]
+\label{prop:needle-id}
+\Proved{}\; The member $(1,3,1,1,0)$ of Definition~\ref{def:family} coincides
+with Doucette's reduction~\eqref{eq:doucette}.
+\end{proposition}
+
+\begin{proof}
+With $b=2^{v}(2k+1)$ we have $m-1=2k$, so
+$b+v+\frac32(m-1)=2^{v+1}k+2^{v}+v+3k=(2^{v+1}+3)k+(2^{v}+v)$, which is
+$A_vk+B_v$ for $(\alpha,\beta,\gamma,\delta,\varepsilon)=(1,3,1,1,0)$.  The
+halting conditions agree by definition.
+\end{proof}
+
+\begin{evidence}
+Independently checked against an implementation of \eqref{eq:doucette}: zero
+mismatches for $2\le x<300{,}000$; the orbit from $x_0=3$ is
+$3,6,10,17,41,101,251,\dots$, which joins the published sequence at $6$.
+\end{evidence}
+
+\section{The census and exact congruence decision}
+\label{sec:census}
+
+\subsection{The decision procedure}
+
+Fix a machine and a modulus $M\ge2$.  On branch $v$ both the source
+$x=2^{v+1}k+2^{v}$ and the target $F(x)=A_vk+B_v$ are affine in $k$, so as $k$
+ranges over $\Z_M$ the pair traces the graph of one affine correspondence
+$\varphi_v$ on $\Z_M$.  Both $A_v$ and $B_v$ mod $M$ depend on $v$ only
+through $(2^{v}\bmod M,\;v\bmod M)$, a state space of size at most $M^2$; so
+iterating $v$ until that state repeats enumerates \emph{every} branch, and
+$R_M=\bigcup_v\operatorname{graph}(\varphi_v)$ is exactly computable.  The
+orbit of $x_0$ lies in the $R_M$-closure of $x_0\bmod M$, and the halting
+values have residues forming a computable eventually-periodic set $H_M$.
+
+\begin{definition}
+$M$ \emph{separates} a machine from $x_0$ if the $R_M$-closure of $x_0\bmod M$
+is disjoint from $H_M$.  Such an $M$ is a \emph{congruence certificate} and
+proves non-halting from $x_0$.
+\end{definition}
+
+\begin{proposition}\label{prop:exact}
+\Proved{}\; The procedure decides, for each $M$, whether $M$ separates; hence
+it finds a separating modulus $\le M_{\max}$ iff one exists.  It is complete
+for its class: unlike a test on a finite orbit prefix, the closure is exact.
+\end{proposition}
+
+\begin{proof}
+Finiteness of the branch enumeration is the state-space argument above.  The
+closure is taken over all $k$ including $k=0$, which only adds edges and hence
+only enlarges the closure, so a disjointness verdict remains sound.
+\end{proof}
+
+\subsection{Census results}
+
+\begin{theorem}[census]\label{thm:census}
+\CAP{}\; In the box $\alpha\in\{1,2,3\}$, $\beta\in\{-1,\dots,7\}$,
+$\gamma\in\{1,2,3\}$, $\delta\in\{0,1,2\}$, $\varepsilon\in\{-2,\dots,2\}$:
+of $1{,}080$ tuples, $3$ are not well defined and $1{,}077$ are analysed.
+Exactly $318$ ($29.5\%$) admit a separating congruence at some $M\le 64$ and
+hence provably never halt from $x_0=3$.
+\end{theorem}
+
+\begin{evidence}
+Every one of the $318$ certificates was re-audited by an independent
+brute-force check over the integers ($x<200{,}000$, powers of two enumerated
+completely, not reusing the branch enumeration that produced the certificate):
+\textbf{zero failures}.  Smallest deciding moduli:
+$3\,(41)$, $4\,(105)$, $6\,(68)$, $7\,(3)$, $8\,(18)$, $10\,(34)$, $12\,(17)$,
+$14\,(2)$, $16\,(14)$, $20\,(6)$, $22\,(1)$, $24\,(2)$, $32\,(1)$, $36\,(1)$,
+$40\,(2)$, $56\,(3)$.  \Meas{}: decidability concentrates at even $\beta$
+($64$--$79\%$ decided) against odd $\beta$ ($3.7$--$8.1\%$);
+Section~\ref{sec:saturation} proves the mechanism behind this.
+\end{evidence}
+
+\begin{theorem}[separation criteria at small moduli]\label{thm:criteria}
+\CAP{}\; Separation at $M$ depends on the parameters only through their
+residues mod $M$, so each criterion is a finite object on $(\Z_M)^5$.  Write
+$A_0=2\alpha+\beta$, $B_0=\gamma+\varepsilon$, $T=A_0+B_0$.
+\begin{enumerate}
+\item[(T3)] Separation at $3$ $\iff$
+  $\delta\equiv0,\ \gamma\equiv\alpha,\ \beta+\varepsilon\equiv0 \pmod 3$.
+\item[(C4)] Separation at $4$ $\iff$ $\beta$ even and
+  $2\alpha+\beta+\gamma+\varepsilon\equiv3\pmod4$.
+\item[(C6)] Separation at $6$ $\iff$ one of: (a) $A_0$ even and
+  $T\equiv3\pmod6$; (b) $A_0\equiv0,4\pmod6$ and $T\equiv5\pmod6$;
+  (c) (T3) holds; (d) $A_0\equiv B_0\equiv0\pmod6$, $\delta\equiv0\pmod3$,
+  $\gamma+\delta\equiv\beta+5\pmod6$.
+\item[(C8)] At $8$ only branches $v\in\{0,1\}$ occur and $A_0$ must be even;
+  separation is then determined by the forward orbit of $3$ under an explicit
+  four-node map.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}[Proof of (T3) and (C4), and status of (C6), (C8)]
+Mod $3$ the powers of two are $\{1,2\}$, so a separating class is $\subseteq
+\{0\}$ and contains $x_0=3$, hence equals $\{0\}$; then $3\mid x$ forces
+$k\equiv1$ and
+$F(x)\equiv(-1)^{v}(\gamma-\alpha)+\beta+\delta v+\varepsilon$, whose vanishing
+at $v=0,1,2$ gives the three congruences and conversely.  Mod $4$ the powers of
+two occupy $\{1,2,0\}$, so the only admissible class is $\{3\}\ni x_0$; only
+$v=0$ has odd sources and $x\equiv3\pmod4$ iff $k$ is odd, giving targets
+$A_0+B_0$ and $3A_0+B_0$, both $\equiv3$ iff $2A_0\equiv0$ and $T\equiv3$.
+For (C6) and (C8) we give the case decomposition in the repository; the
+statements as displayed are established by exhaustive verification on
+$(\Z_M)^5$, which is a complete finite check, and we therefore label them
+\CAP{} rather than \Proved{}.
+\end{proof}
+
+\begin{evidence}
+Exhaustive on $(\Z_M)^5$: $9/243$ tuples separate at $3$; $128/1{,}024$ at $4$;
+$1{,}308/7{,}776$ at $6$; $5{,}600/32{,}768$ at $8$; zero mismatches against
+the decision procedure in every case.  Against the census: the criteria predict
+the decided sets exactly ($41$, $105$, $68$, $18$ machines; zero discrepancies
+in either direction).
+\end{evidence}
+
+\begin{remark}
+The Space Needle's reduction has $\delta=1$ and so fails (T3) immediately.
+Section~\ref{sec:saturation} upgrades this one-line observation into a theorem
+covering every modulus.
+\end{remark}
+
+\section{The last-step sieve, ten machines, and completeness}
+\label{sec:sieve}
+
+Since halting is landing on a power of two, one may ask which branches can be
+the \emph{last} step.  When branch $v$ is expanding, its affine fixed point
+$P_0/Q_0$ gives the classical constraint: a halt can follow a $v$-step only if
+$Q_0 2^{e}\equiv P_0 \pmod{A_v}$ is solvable, where
+$P_0=(2B_v-A_v)2^{v}$ and $Q_0=2^{v+1}-A_v$.
+
+\begin{lemma}[sieve lemma]\label{lem:universal}
+\Proved{}\; Let $\beta$ be odd, so $A_v$ is odd.  For every member of the
+family and every expanding branch $v$,
+\[
+\text{branch $v$ can immediately precede a halt}
+\iff B_v\in\langle2\rangle \pmod{A_v},
+\]
+where $\langle2\rangle$ is the multiplicative group generated by $2$.
+\end{lemma}
+
+\begin{proof}
+Reduce mod $A_v$: the $A_v$-terms vanish, leaving $Q_0\equiv2^{v+1}$, a unit,
+and $P_0\equiv 2B_v2^{v}=B_v2^{v+1}$.  Hence $P_0Q_0^{-1}\equiv B_v$, and
+solvability of $2^{e}\equiv P_0Q_0^{-1}$ is exactly the stated membership.
+\end{proof}
+
+\begin{evidence}
+All $672$ well-defined odd-$\beta$ members of the box, every branch $v\le80$:
+$51{,}030$ branches, zero mismatches against an independent implementation via
+the fixed point.
+\end{evidence}
+
+\begin{corollary}\label{cor:linear}
+\Proved{}\; Since $\alpha2^{v+1}\equiv-\beta\pmod{A_v}$,
+$\alpha\cdot 2B_v\equiv 2\alpha\delta v+2\alpha\varepsilon-\beta\gamma
+\pmod{A_v}$: the sieve target is affine in $v$.  The exponential appears only
+in the modulus, never in the target.
+\end{corollary}
+
+Tractability of the membership question is governed by the size of
+$\langle2\rangle \bmod A_v$.  Four $(\alpha,\beta)$ classes are
+\emph{listable}---$\ord_{A_v}(2)$ grows linearly in $v$, so the powers of two
+form a short explicit list---and the remainder are \emph{thin}, with $\ord$
+growing exponentially on average and no elementary handle. \Meas{}
+
+\begin{theorem}[ten machines]\label{thm:ten}
+\Proved{}\; The following ten members never halt after their first step;
+equivalently their halting starts are exactly the powers of two, which halt at
+step $0$.  (Labels follow the program's numbering, in which T3 is the criterion
+of Theorem~\ref{thm:criteria} and not a machine.)
+\begin{center}
+\small
+\begin{tabular}{@{}llll@{}}
+\toprule
+machine & $2B_v \bmod A_v$ & why every branch is forbidden & label\\
+\midrule
+$(1,1,2,0,1)$ & $0$ & $B_v=A_v$; $0$ is not a unit & T1\\
+$(2,-1,2,0,1)$ & $3$ & odd, $1<3<A_v$ for $v\ge1$ & T9\\
+$(2,-1,2,1,1)$ & $2v+3$ & odd, in range for $v\ge1$ & T2\\
+$(2,-1,2,2,1)$ & $4v+3$ & odd, in range for $v\ge2$ & T4\\
+$(2,-1,3,0,0)$ & $2^{v+1}+1$ & odd, in range for $v\ge1$ & T5\\
+$(2,-1,3,1,0)$ & $2^{v+1}+2v+1$ & odd, in range for $v\ge2$ & T6\\
+$(2,-1,1,2,-1)$ & $2^{v+1}+4v-2$ & $=2\cdot\text{odd}<A_v$, so
+  $2^{v}=2-2v$: impossible & T10\\
+$(2,1,1,2,-1)$ & $2^{v+1}+4v-2$ & signed list; $4v-2=2^{v+1}$: impossible
+  & T7\\
+$(3,3,2,0,1)$ & $\equiv0 \bmod d_v$ & $B_v=d_v=2^{v+1}+1\mid A_v$; powers of
+  $2$ are units mod $d_v$ & T8\\
+$(3,3,3,0,0)$ & $-3$ & $3\mid A_v$, $2B_v=A_v-3$; powers of $2$ mod $3$ are
+  $\{1,2\}$ & T11\\
+\bottomrule
+\end{tabular}
+\end{center}
+In each row the second column is an exact integer identity (e.g.\
+$2B_v=A_v+3$ for T9), the powers of two mod $A_v$ form the explicit listable
+set of that machine's class, and the stated parity, size or divisor argument
+excludes membership for all $v$ beyond finitely many boundary branches, which
+land on $0$.
+\end{theorem}
+
+\begin{evidence}
+Closed forms asserted as integer identities to $v\le4{,}000$ on a second,
+independently written implementation; every branch $v\le200$ confirmed
+forbidden; brute force on all ten (every non-power-of-two start below
+$20{,}000$, $400$ steps): zero halts.  Two of the ten upgrade earlier
+certificates from ``never halts from $x_0=3$'' to ``from any start''; T10 has a
+genuine cycle ($F(3)=3$) and still never halts from any non-power-of-two start.
+\end{evidence}
+
+\begin{theorem}[completeness of the sieve method within the box]
+\label{thm:complete}
+\CAP{}\; Within the enumerated box, the ten machines of
+Theorem~\ref{thm:ten} are the only ones all of whose branches are forbidden.
+For every other well-defined odd-$\beta$ member there is an explicit
+\emph{surviving-branch certificate}: a branch $v\le22$ and an exponent $e$
+with $2^{e}\equiv 2B_v\pmod{A_v}$.
+\end{theorem}
+
+\begin{evidence}
+Of $672$ machines: $10$ all-forbidden, $620$ with a surviving-branch
+certificate (each verified by modular exponentiation), $42$ sieve-silent (the
+$(1,-1)$ class, which has no expanding branch).
+\end{evidence}
+
+A surviving branch is a positive witness, not a failure to find one; the
+method is therefore closed by a finite proof rather than by an exhausted
+budget.  We stress two limits: the statement is relative to the box, and a
+surviving branch does not make a machine halt---it certifies only that this
+method cannot decide it.
+
+For the Space Needle's reduction the lemma specialises to a clean open
+condition.  With $A_v=2^{v+1}+3$ we get $2^{v+1}\equiv-3$, so
+$\langle2\rangle=\{\pm3^{a}2^{i}\}$, and branch $v$ can precede a halt iff
+\begin{equation}\label{eq:needle}
+2v-3 \;\in\; \{\pm 3^{a}2^{i}\} \pmod{2^{v+1}+3}.
+\end{equation}
+
+\begin{observation}\label{obs:nothinning}
+\Meas{}\; The set of branches satisfying \eqref{eq:needle} does not appear to
+thin out: $18$ of the branches $v\le40$ survive, including $v=34,37,38$.  The
+weighted forbidden mass is $0.2868$ and $19$ of the first $35$ valuations are
+forbidden, independently reproducing an earlier measurement.  \emph{We draw no
+asymptotic conclusion}; this is stated to record that no all-branches theorem
+is available for the Needle by this route.
+\end{observation}
+
+\section{No congruence certificate: the saturation theorems}
+\label{sec:saturation}
+
+We now show the certificate class of Section~\ref{sec:census} is empty for the
+flagships---not below a bound, but outright.  Write $M=2^{s}M'$ with $M'$ odd.
+For odd modulus the branch correspondence is a single affine map
+$\varphi_v(c)=\mu_vc+a_v$, and a short computation gives
+$\mu_v=\alpha+\beta 2^{-(v+1)}$ and $a_v=B_v-A_v/2=(\gamma-\alpha)2^{v}+\delta
+v+(\varepsilon-\beta/2)$.
+
+\begin{theorem}[$\delta$-saturation]\label{thm:t12}
+\Proved{}\; Let $M$ be odd, $\gcd(\delta,M)=1$ and $\gcd(\ord_M(2),M)=1$.  Then
+for every residue $c$ the one-step image $\{\varphi_v(c):v\ge0\}$ is all of
+$\Z_M$.
+\end{theorem}
+
+\begin{proof}
+On a class $v\equiv v_0 \pmod{\ord_M(2)}$ the quantity $2^{v}$ is constant, so
+$\mu_v$ and $(\gamma-\alpha)2^{v}$ are constant and the only surviving
+$v$-dependence is $\delta v$: thus $a_v-a_{v_0}\equiv\delta(v-v_0)$.  As $v$
+runs over the infinite progression $v_0+\ord_M(2)\Z$, the difference sweeps the
+subgroup generated by $\gcd(\ord_M(2),M)=1$, i.e.\ all of $\Z_M$, and
+$\gcd(\delta,M)=1$ preserves this.
+\end{proof}
+
+Since $\ord_p(2)\mid p-1$, the order hypothesis holds automatically at every
+odd prime; already this shows no odd prime separates the Needle's reduction.
+The hypothesis is scaffolding and is removed next.
+
+\begin{lemma}[descent]\label{lem:descent}
+\Proved{}\; Let $M$ be odd with $\gcd(\delta,M)=1$.  Then the conclusion of
+Theorem~\ref{thm:t12} holds with no hypothesis on $\ord_M(2)$.
+\end{lemma}
+
+\begin{proof}
+Set $g_0=M$, $g_{j+1}=\gcd(\ord_{g_j}(2),g_j)$, and let $I_j$ be the image of
+$\{\varphi_v(c)\}$ in $\Z_{g_j}$.  For odd $g\ge3$, $\ord_g(2)\le\lambda(g)<g$,
+so the chain strictly decreases to $1$.  Mod $g_j$ with $h=\ord_{g_j}(2)$: on
+each class $v\equiv w\pmod h$ everything but $\delta v$ is constant, and
+$\delta v$ sweeps the \emph{full} subgroup $\langle g_{j+1}\rangle$---here the
+infinitude of the progression is essential, one period being insufficient.  So
+$I_j$ is a union of $h$ cosets of $\langle g_{j+1}\rangle$, and reducing mod
+$g_{j+1}$ annihilates the sweep and leaves exactly the base points, whence
+$I_j=\Z_{g_j}\iff I_{j+1}=\Z_{g_{j+1}}$.  The chain bottoms out at $g=1$, where
+fullness is trivial; walking back up gives $I_0=\Z_M$.
+\end{proof}
+
+\begin{evidence}
+$2{,}500$ (machine, odd $M$, $c$) instances with $\gcd(\delta,M)=1$, of which
+$708$ have $\gcd(\ord_M(2),M)>1$---exactly the cases the scaffold hypothesis
+excluded---the one-step image fell short of $\Z_M$ in none.  The chain
+strictly decreases for every odd $g<6{,}000$, longest chain length $7$.
+\end{evidence}
+
+\subsection{Even moduli: the parity escape hatch}
+\label{sec:even}
+
+A residue $c\bmod 2^{s}$ with $\vp{2}(c)=v<s$ \emph{pins the branch index}: the
+low bits of the value are the valuation.  That is precisely the information an
+odd modulus cannot carry, and it is the entirety of what an even modulus buys.
+On a source $\equiv0\pmod{2^{s}}$ every branch $v\ge s$ is available, $k$ is
+free mod $2^{s}$, and since $v+1>s$,
+\[
+F(x)\equiv \beta k+\delta v+\varepsilon \pmod{2^{s}} .
+\]
+If $\beta$ is odd, $\beta k$ sweeps all of $\Z_{2^{s}}$ and the $2$-adic
+information is destroyed in one step; if $\beta$ is even only
+$\langle\gcd(\beta,2^{s})\rangle$ is reached---the escape hatch.
+
+\begin{theorem}[even-modulus saturation]\label{thm:t14}
+\Proved{}\; Let $M=2^{s}M'$, $\beta$ odd, $\gcd(\delta,M')=1$, and suppose the
+$R_M$-closure of $x_0$ contains some $c_0\equiv0\pmod{2^{s}}$.  Then that
+closure is all of $\Z_M$.
+\end{theorem}
+
+\begin{proof}
+From $c_0$ every branch $v\ge s$ is available (choose an odd representative mod
+$M'$, possible since $M'$ is odd and $2^{v}$ is invertible there).  Splitting
+the source congruence by CRT: mod $2^{s}$ it holds identically, so $k$ is
+unconstrained; mod $M'$ it determines $k$.  The target's $2$-part sweeps
+$\Z_{2^{s}}$ by the display above; its $M'$-part, over $v\ge s$, is the
+$\delta$-sweep of Lemma~\ref{lem:descent} restricted to $v\ge s$, which costs
+nothing since each order class contains infinitely many such $v$.  The product
+is $\Z_{2^{s}}\times\Z_{M'}=\Z_M$.
+\end{proof}
+
+\begin{evidence}
+Proof steps checked on $3{,}000$ instances; the conclusion on $7{,}840$
+(odd-$\beta$ machine, even modulus) pairs: zero failures.  \emph{Falsifier}:
+each of the census's $274$ even-modulus certificates must violate a
+hypothesis---$267$ have $\beta$ even (they spend exactly the hatch) and $7$
+have $\delta=0$; none would refute.  The $44$ odd-modulus certificates all
+violate $\gcd(\delta,M)=1$.
+\end{evidence}
+
+\subsection{The reach lemma}
+
+It remains to supply the $c_0$ of Theorem~\ref{thm:t14}.
+
+\begin{lemma}[reach]\label{lem:reach}
+\Proved{}\; Let $\beta$ be odd and $A_v>0$ for all $v$.  For every residue $c$
+mod $M=2^{s}M'$ there is a lift $x\equiv c\pmod M$ whose $F$-orbit reaches a
+value $\equiv0\pmod{2^{s}}$ within $s+1$ steps.
+\end{lemma}
+
+\begin{proof}[Proof (exponent ledger)]
+If $c\equiv0$ there is nothing to prove; else let
+$v_0=\vp{2}(c\bmod 2^{s})<s$ and take $x=c+2^{s}M'T$ with $T$ free.  Iterating
+$F$ \emph{exactly} keeps the $T$-dependence affine, $y_n=p_n+q_nT$, with
+$q_n=A_{v_{n-1}}\cdots A_{v_0}M'2^{e_n}$ and the ledger $e_1=s-(v_0+1)$,
+$e_{n+1}=e_n-(v_n+1)$: forming $k=(y_n-2^{v_n})/2^{v_n+1}$ divides the
+$T$-coefficient by $2^{v_n+1}$, and multiplying by the odd $A_{v_n}$ changes
+nothing $2$-adically.  Two events are exhaustive.  \emph{Done-event}: some
+$p_n$ is divisible by $2^{e_n}$, and then $y_n\equiv0\pmod{2^{s}}$ has a
+solution $T\equiv-(p_n/2^{e_n})(q_n/2^{e_n})^{-1}\pmod{2^{s-e_n}}$, which may
+be taken arbitrarily large.  \emph{Ledger-event}: $e$ reaches $0$, so $k$ is a
+unit times $T$ mod $2^{s}$ and, $A_v$ being odd, $y_{n+1}=A_vk+B_v$ takes every
+residue mod $2^{s}$ including $0$.  While neither has fired,
+$\vp{2}(p_n)<e_n$ makes $v_n$ independent of $T$, so the branch sequence is
+well defined, and the ledger strictly decreases from at most $s-1$; the process
+ends within $s+1$ steps.  For $T$ large every $y_n$ is positive with odd part
+exceeding $1$, so no step halts en route.
+\end{proof}
+
+\begin{evidence}
+Constructive: the recipe was used to \emph{build} the witness lift and its
+orbit was \emph{run}, on $4{,}000$ (machine, modulus, residue) instances---a
+hit on $0\bmod 2^{s}$ every time, deepest at $9$ steps against the bound $10$.
+The ledger bookkeeping was checked in isolation on $3{,}000$ chains and the
+$T$-independence of the branch sequence confirmed.  \emph{Falsifier}:
+$\beta$-even machines with even-modulus certificates are $2$-adically confined,
+so reach must fail for them---it does, in $40$ of $40$ tested.
+\end{evidence}
+
+\begin{theorem}[no congruence certificate]\label{thm:t15}
+\Proved{}\; Let a member have $\beta$ odd, $A_v>0$, and $\gcd(\delta,M')=1$
+where $M'$ is the odd part of $M$.  Then the $R_M$-closure of every residue is
+all of $\Z_M$: no modulus $M$ separates, and no branch can be excluded.
+\end{theorem}
+
+\begin{proof}
+Odd $M$ is Lemma~\ref{lem:descent}.  For even $M$, Lemma~\ref{lem:reach} places
+a residue $\equiv0\pmod{2^{s}}$ in the closure and Theorem~\ref{thm:t14}, with
+Lemma~\ref{lem:descent} supplying its $M'$-part, finishes.
+\end{proof}
+
+\begin{corollary}\label{cor:needle}
+\Proved{}\; \textbf{No congruence certificate at any modulus separates the
+Space Needle's reduction.}  ($\beta=3$ odd, $\delta=1$, $A_v=2^{v+1}+3>0$, so
+every hypothesis holds at every $M$.)  Equivalently: the technique that decides
+$29.5\%$ of the census can never decide this instance.
+\end{corollary}
+
+\begin{evidence}
+$7{,}616$ (odd-$\beta$ machine, modulus) pairs meeting the hypotheses: closure
+short of $\Z_M$ in none.  The Needle's reduction directly at every modulus
+$2\le M\le400$: saturated in all cases.
+\end{evidence}
+
+What began as ``$\delta$ blocks the cheapest certificate'' (the one-line
+failure of (T3)) is now: $\delta$ blocks \emph{every} certificate at
+\emph{every} modulus, and the escape hatch that accounts for $267$ of the
+$274$ even-modulus certificates is closed exactly by $\beta$ odd.
+
+\section{Transfer to base $q$: machine M3}
+\label{sec:baseq}
+
+None of the proofs above uses base $2$ essentially.  We demonstrate the
+transfer on a second machine.  \textbf{M3} is the six-rule system
+\[
+\begin{aligned}
+&A(1,3k)\to\text{HALT},\quad A(1,3k{+}1)\to A(3k{+}4,1),\quad
+A(1,3k{+}2)\to A(3k{+}3,2),\\
+&A(3k,b)\to A(k,b{+}2k{+}1),\quad A(3k{+}1,b)\to A(4k{+}b{+}3,1),\quad
+A(3k{+}2,b)\to A(4k{+}b{+}5,1),
+\end{aligned}
+\]
+started at $A(1,1)$; its halting is equivalent to the orbit of the return map
+to the $b=1$ section reaching a power of $27$, which is open.
+
+\begin{proposition}[M3's branch table]\label{prop:m3table}
+\MV{}\; Writing a non-spine value as $a=3^{j+1}m+r3^{j}$ with $j=\vp{3}(a)$ and
+leading digit $r\in\{1,2\}$ (the spine being the pure powers $3^{j}$, which
+halt iff $3\mid j$), the return map is
+\[
+G(a)=A_j m+B_{j,r},\qquad A_j=3^{j+1}+1,\qquad
+B_{j,r}=r3^{j}+j+c_r,\ \ c_1=3,\ c_2=4,
+\]
+reached in $j+1$ raw steps.  In the coordinates of
+Definition~\ref{def:family} read base $3$: $\alpha=1$, $\beta=1$,
+$\gamma=r$, $\delta=1$, $\varepsilon_r=r+2$.
+\end{proposition}
+
+\begin{evidence}
+Checked against the raw six rules on $59{,}988$ non-spine values $a<60{,}000$:
+zero mismatches, including the step count $j+1$; spine behaviour exact for
+$j=1,\dots,11$.  \emph{We label this \MV{} deliberately}: the induction over
+the $j$ divide-steps is routine but is not written out here, and
+Theorems~\ref{thm:m3n2} and~\ref{thm:m3n1} below inherit that dependency.
+\end{evidence}
+
+\begin{lemma}[base-$q$ sieve lemma]\label{lem:baseq}
+\Proved{}\; For a branch sending $x=q^{w}m+s$ to $Am+B$ with $\gcd(q,A)=1$ and
+halting set $H=\{c\rho^{t}\}$, $\gcd(\rho,A)=1$: the branch can immediately
+precede a halt iff $B\in c\langle\rho\rangle\pmod A$.  For M3 the fixed point
+gives $Q_0=3^{j+1}-A_j=-1$ exactly, so the condition reads
+$27^{t}\equiv B_{j,r}\pmod{A_j}$.
+\end{lemma}
+
+The base-$2$ form of Lemma~\ref{lem:universal} (with its factor $2$) was a
+normalisation artifact; the invariant content in every base is
+\emph{target}~$\equiv B$.
+
+\begin{theorem}[M3: last two steps pinned]\label{thm:m3n2}
+\CAP{}\; For every branch index $j$: a halt of M3 can only follow a branch with
+$\vp{3}=1$, and the same holds one step earlier.  The excluded-pair frequency
+$1-(2/9)^2=77/81$ is exact.  Both surviving depth-one branches are realised:
+$21\to27$ and $478293\to27^{4}$.
+\end{theorem}
+
+\begin{evidence}
+Depth-one verdicts agree with an independent solver on $50$ branches, survivors
+exactly $(1,1)$ and $(1,2)$.  The depth-two argument (a parity lemma removing
+even $j$; for odd $j\ge5$ the targets lie strictly inside the gaps of
+$\{\pm3^{i}\}$; small $j$ checked exactly) was machine-checked to $j=2{,}000$
+and cross-checked against an exact finite test for $2\le j\le500$.
+\emph{Caveat}: the present author's independent re-check of this theorem
+covered only its brute-force consequence (among all non-spine $a<10^{6}$,
+exactly three starts halt within two return steps---$15$, $21$,
+$478293$---with every branch value en route having $\vp{3}=1$), not the
+depth-two closed forms.  This is the least independently corroborated result in
+the paper.
+\end{evidence}
+
+\begin{theorem}[M3: no congruence certificate]\label{thm:m3n1}
+\Proved{} (modulo Proposition~\ref{prop:m3table})\; For every modulus $M\ge2$
+the closure of every residue under M3's branch relation is all of $\Z_M$; no
+congruence certificate at any modulus separates M3's orbit from the residues of
+$\{27^{k}\}$.
+\end{theorem}
+
+\begin{proof}
+The chain of Section~\ref{sec:saturation} with $2\to3$: ``odd $M$'' becomes
+``$M$ coprime to $3$''; ``$\beta$ odd'' becomes ``$\beta$ coprime to $3$''
+(here $\beta=1$); the exponent ledger spends trits.  M3 has $\delta=1$, so all
+hypotheses hold at every modulus.  Spine transitions only enlarge closures.
+\end{proof}
+
+\begin{evidence}
+Independent implementation: every modulus $2\le M\le250$, three start residues
+each ($747$ closures), all equal to $\Z_M$.
+\end{evidence}
+
+\begin{remark}[the flagship dichotomy]\label{rem:rank}
+\Proved{}\; Both flagships satisfy Theorem~\ref{thm:t15}'s hypotheses for the
+same reason ($\delta=1$, $\beta$ coprime to the base) and so resist every
+congruence certificate.  What separates their fates under the \emph{sieve} is
+one class parameter, the rank of $\langle q\rangle\bmod A_v$: M3's class forces
+$q^{j+1}\equiv-1$, making $\langle3\rangle=\{\pm3^{i}\}$ listable (rank one), so
+the gap argument closes every branch question; the Needle's class gives
+$\langle2\rangle=\{\pm3^{a}2^{i}\}$ (rank two, thin), which is the open
+condition~\eqref{eq:needle}.  In the census, $120$ members share the Needle's
+group.
+\end{remark}
+
+\begin{remark}[interface boundary]\label{rem:boundary}
+\Interp{}\; The toolkit requires a valuation-indexed branch family together
+with a halting set defined by a condition on the \emph{value}.  Two further
+machine families studied in the program---the Hydra/Antihydra maps and the
+FRACTRAN cryptid Fenrir---fall outside it: their branch modulus is constant and
+halting is a condition on a path counter rather than on the value, so the sieve
+has no object to apply to.  We record this as a mapped boundary, not a failure.
+\end{remark}
+
+\section{Two tests outside the design set}
+\label{sec:wild}
+
+Everything above was developed against the Space Needle's reduction.  That is
+a real threat to validity, and this section reports the two tests we can run
+against it: a second \emph{wild} cryptid that lies inside the interface, and
+an old case-file machine that lies outside the family but inside the
+saturation argument.
+
+\subsection{The sheep machine: a second wild instance}
+\label{sec:sheep}
+
+The Turing machine \verb|1RB1LA_0LC0RC_1LE1RD_1RE1RC_1LF0LA_---1LE| was found
+by \emph{sheep} on 7 April 2026 and is listed as a Cryptid on the bbchallenge
+wiki, which states the halting-equivalent reduction
+\[
+f(n)=\begin{cases}
+\text{HALT} & \oddpart(n)=1,\\
+n+\vp{2}(n)+3 & \oddpart(n)=3,\\
+n+\vp{2}(n)+\tfrac{\oddpart(n)-1}{2} & \oddpart(n)>3,
+\end{cases}
+\qquad\text{started at } n=5,
+\]
+together with two lemmas: that $m2^a+a+\frac{m-1}{2}$ is never a power of two
+for $a\ge2$, $m\ge5$; and that $3\cdot2^a+a+3$ is never a power of two.
+
+\begin{proposition}[identification]\label{prop:sheep-id}
+\Proved\; On the generic branch ($\oddpart(n)>3$), writing $n=2^v m$ with
+$m=2k+1$,
+\[
+f(n)=A_vk+B_v,\qquad A_v=2^{v+1}+1,\quad B_v=2^v+v,
+\]
+so the generic branch is the census member $(\alpha,\beta,\gamma,\delta,
+\varepsilon)=(1,1,1,1,0)$.  The Needle's reduction is $(1,3,1,1,0)$: the two
+machines differ in $\beta$ alone.
+\end{proposition}
+
+\emph{Evidence.}  $15{,}920$ systematic and $200{,}000$ random $(v,k)$ pairs
+with $v<200$, $k<10^{30}$: no mismatch.  For $n<60{,}000$, $f$ differs from
+the census member exactly on the values with $\oddpart(n)=3$.
+
+The exceptional branch is not decoration.  The census records member
+$(1,1,1,1,0)$ as \emph{halting}: $3\mapsto4=2^2$.  The sheep machine's third
+branch intercepts precisely that value, sending $3\mapsto6$.  One extra branch
+on one odd part converts a halting census member into an open problem---the
+sharpest statement we can make about what a manufactured box misses.
+
+\begin{theorem}[the sieve closes]\label{thm:sheep-sieve}
+\Proved\; For the sheep machine, branch $v$ can immediately precede a halt if
+and only if $v\in\{0,1\}$.
+\end{theorem}
+
+\begin{proof}
+A generic step lands on a power of two iff $2^t\equiv B_v \pmod{A_v}$ for some
+$t$, i.e.\ iff $B_v\in\langle2\rangle$.  Since $A_v=2^{v+1}+1$ we have
+$2^{v+1}\equiv-1$ and $2^{-1}\equiv2^v+1$, so $B_v=2^{-1}-1+v$ and the
+condition is
+\[
+2^{t+1}\equiv 2v-1 \pmod{2^{v+1}+1}.
+\]
+Also $2^{v+1}\equiv-1$ forces
+$\langle2\rangle\subseteq\{2^i\}_{i\le v}\cup\{A_v-2^i\}_{i\le v}$.  If
+$2v-1=2^i$ then $2v-1$ odd gives $i=0$, hence $v=1$.  If $2v-1=A_v-2^i$ then
+$2^i=2^{v+1}-2v+2$, which for $v\ge3$ lies strictly between $2^v$ and
+$2^{v+1}$ (as $2^v>2v-2$ and $2v>2$) and so is not a power of two; $v=2$ gives
+$6$.  Finally $v=0$: $A_0=3$ and $2v-1\equiv2=2^1\in\langle2\rangle$.
+\end{proof}
+
+The wiki's first lemma is the $v\ge2$ half of Theorem~\ref{thm:sheep-sieve}
+with the threshold $a\ge2$ assumed; here the threshold is a conclusion, and
+the two surviving branches are located at the same time.  The second lemma is
+recovered the same way: for $a\ge3$, $3\cdot2^a+a+3$ lies strictly between
+$3\cdot2^a$ and $2^{a+2}$, and $a\le2$ gives $6,10,17$.
+
+\begin{corollary}[the halting set in closed form]\label{cor:sheep-H}
+\Proved\; A value halts in one step iff it is a power of two, and reaches a
+power of two in exactly one step iff it lies in
+\[
+H_0=\Bigl\{\tfrac{2^{2j+1}+1}{3}\Bigr\}_{j\ge2}=11,43,171,683,\dots
+\quad\text{or}\quad
+H_1=\Bigl\{\tfrac{2(2^{4j}-1)}{5}\Bigr\}_{j\ge2}=102,1638,26214,\dots
+\]
+so $H=\{2^i\}\cup H_0\cup H_1$.
+\end{corollary}
+
+\emph{Evidence.}  Brute force over $n<300{,}000$ returns exactly the $11$
+predicted members.  The excluded first member of each family is $m=3$ in both
+cases---the exceptional branch again.
+
+Finally $\beta=1$ is odd and $\delta=1$, so Theorem~\ref{thm:t15} applies
+verbatim: no congruence certificate at any modulus separates the sheep
+machine.  \emph{Evidence.}  Direct closure computation gives all of $\Z_M$
+for every $M\le200$.
+
+\begin{remark}[the dichotomy, tested]\label{rem:sheep-dichotomy}
+\Interp\; Remark~\ref{rem:rank} predicts that the last-step sieve closes when
+$\langle2\rangle$ modulo $A_v$ is a rank-one listable group and stalls when it
+is rank two and thin.  The sheep machine has $A_v=2^{v+1}+1$, hence
+$\langle2\rangle=\{\pm2^i\}$, rank one; the Needle has $A_v=2^{v+1}+3$, hence
+$\{\pm3^a2^i\}$, rank two.  The sieve closes for the former and not the
+latter.  This is the first test of that prediction on a machine we did not
+construct, and it was on record before the sheep machine was examined.
+\end{remark}
+
+The result is a cryptid whose \emph{arithmetic} is settled completely---we
+know exactly which values can halt, in closed form---and whose orbit question
+is untouched.  The Needle is one where neither is settled.  We regard this as
+the paper's clearest evidence that the sieve-group rank, and not the machine,
+is what governs the last-step analysis.
+
+\subsubsection*{Depth two, and why depth does not help}
+
+The same reduction runs one step further.  Since $3N=2^{2j+1}+1$ and
+$5N=2^{4j+1}-2$ identically, ``$N\equiv B_v \pmod{A_v}$'' clears denominators
+into $2^{2j+1}\equiv 3B_v-1 \pmod{3A_v}$ and $2^{4j+1}\equiv 5B_v+2
+\pmod{5A_v}$; the larger modulus is required because $3\mid A_v$ whenever $v$
+is even.
+
+\begin{theorem}[depth two]\label{thm:sheep-d2}
+\Proved\; No branch $v\ge6$ can be the second-to-last step before a halt; the
+depth-two survivor set is exactly $\{0,1,2,3,5\}$.
+\end{theorem}
+
+\begin{proof}
+Reduce each condition modulo $A_v$ (a necessary condition).  Because
+$2^{v+1}\equiv-1$, $\ord_{A_v}(2)$ is even, so the exponent parity of each
+element of $\langle2\rangle=\{2^i\}_{i\le v}\cup\{A_v-2^i\}_{i\le v}$ is well
+defined, and the two targets reduce to $2^v+3v-2$ and $2^v+5v$.  Each must be
+$\pm2^i$.  For $H_0$: $2^v<2^v+3v-2<2^{v+1}$ kills the first case for
+$v\ge4$, and the second gives $2^i=2^v-3v+3\in(2^{v-1},2^v)$, impossible for
+$v\ge5$.  For $H_1$: $2^v<2^v+5v<2^{v+1}$ for $v\ge5$, and $2^i=2^v-5v+1$ lies
+in $(2^{v-1},2^v)$ for $v\ge6$---while $v=5$ gives $32-25+1=8=2^3$, a genuine
+solution.  Branches $v\le5$ are then checked directly.
+\end{proof}
+
+Iterating is possible in closed form.  Call $N(i)=(2^{\alpha+ei}+b)/c$ with
+$c$ odd a \emph{geometric family}; the halting set is one such family, and the
+shape is closed under preimages, since $f(x)=N(i)$ for $x=2^v(2k+1)$ reduces
+to $2^{\alpha+ei}\equiv cB_v-b \pmod{cA_v}$, whose solutions form a class
+$i\equiv i_0 \pmod P$, and substituting back yields a family with $e'=eP$,
+$c'=cA_v$.  So each depth is computed exactly, with no search over $x$.
+
+\begin{center}
+\small
+\begin{tabular}{@{}clrrr@{}}
+\toprule
+depth & survivor set & families & forbidden branch mass & admissible word mass\\
+\midrule
+1 & $\{0,1\}$ & 2 & $0.250000$ & $0.750000$\\
+2 & $\{0,1,2,3,5\}$ & 7 & $0.046875$ & $0.714844$\\
+3 & $\{0,\dots,6\}$ & 23 & $0.007812$ & $0.709259$\\
+4 & $\{0,\dots,6,9\}$ & 90 & $0.006836$ & $0.704411$\\
+5 & $\{0,\dots,10,13\}$ & 346 & $0.000427$ & $0.704110$\\
+6 & $\{0,\dots,13\}$ & 1421 & $0.000061$ & $0.704067$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{remark}[the sieve saturates]\label{rem:sheep-ladder}
+\Meas\; The forbidden mass per depth collapses geometrically while the family
+count grows by a factor $\approx3.8$ per depth, so the admissible word mass is
+a \emph{convergent} product, measured at $0.704067$ by depth six and
+extrapolating to $\approx0.70406$.  The last-step sieve, at any depth, can
+therefore never forbid more than about $29.6\%$ of branch words.  We note that
+the depth-five data alone extrapolated to $0.704045$, and depth six then
+measured $0.704067$; the extrapolation was accurate to five decimals before
+the check existed.  Depth seven was not attempted: cost grows by a factor
+$\approx15$ per depth ($1$\,s, $80$\,s, $6.4$\,h for depths four to six).
+\end{remark}
+
+The mechanism is legible: the depth-$d$ target is a union of $F_d$ families,
+so branch $v$ survives if \emph{any} is reachable; each is reachable with
+probability $\approx\ord(2)/A_v=O(v)/2^v$, so $v$ survives up to
+$v\approx\log_2 F_d$, which grows linearly in $d$.  Survivor sets grow, the
+forbidden mass decays geometrically, and the product converges.  \emph{Depth
+is not a resource that buys arbitrarily much}---which, with
+Theorem~\ref{thm:t15}, closes both congruence-flavoured lanes on this machine
+with numbers attached, and leaves automatic invariants as the only one
+untried.  Evidence: ground truth by brute force to $3\times10^6$ agrees at
+depths one to four; the recursion is verified against $f$ itself on two
+members of every family generated.
+
+\subsection{A machine-independent saturation lemma}
+\label{sec:t16}
+
+The descent of Lemma~\ref{lem:descent} does not need the family at all.
+
+\begin{lemma}[linear-exponential saturation]\label{lem:t16}
+\Proved\; Let $M\ge1$ and let $A,\delta,\varepsilon,\kappa,\rho$ be integers
+with $\gcd(\delta,M)=\gcd(\rho,M)=1$.  Put $f(n)=\delta n+\varepsilon+
+\kappa\rho^n$ and $R=\{(c,\,Ac+f(n))\bmod M: n\ge n_0\}$.  Then from every
+$c\in\Z_M$, the residues reachable in at least one $R$-step are all of $\Z_M$.
+There is no hypothesis on $A$, none on $\kappa$, and $n_0$ is irrelevant.
+\end{lemma}
+
+\begin{proof}
+Strong induction on $M$; $M=1$ is trivial.  Let $T=\ord_M(\rho)$ and
+$g=\gcd(T,M)$; as $T\le\varphi(M)<M$ we have $g<M$.  For any $c$ and $n_1$,
+the successors $\{Ac+f(n_1+jT)\}_{j\ge0}=Ac+f(n_1)+\delta T\Z=
+Ac+f(n_1)+\langle g\rangle$, using $\gcd(\delta,M)=1$; so every residue
+reached in $\ge1$ step lies in a full coset of $\langle g\rangle$ that is also
+reached.  If $g=1$ we are done.  Otherwise $\pi:\Z_M\to\Z_M/\langle g\rangle
+\cong\Z_g$ carries $R$ to a relation of the same shape with
+$\gcd(\delta,g)=\gcd(\rho,g)=1$; by induction $\pi$ of the reachable set is
+all of $\Z_g$, so the reachable set meets every coset and hence, by the
+previous sentence, contains each of them.
+\end{proof}
+
+\emph{Evidence.}  $1{,}705$ random parameter tuples with $M<400$ all saturate;
+dropping $\gcd(\delta,M)=1$ makes $437$ of $671$ instances fail, so the
+hypothesis is load-bearing.
+
+Applying it to a machine outside the family: the counter system \textbf{M1}
+studied earlier in this project reduces to a return map $F$ whose dominant
+branch word satisfies, for $n\ge1$ and exactly the $D$ with
+$16\cdot2^n-2n-10\le D\le 20\cdot2^n-2n-13$,
+\[
+F(D)=16D-240\cdot2^n+32n+169 \tag{\Proved}
+\]
+(both interval endpoints derived: the lower from the exit guard, the upper
+from $n$ being the cascade length).  That interval has length $4\cdot2^n-2$,
+so once $2^n\ge(M+2)/4$ it contains a complete residue system modulo $M$, and
+therefore the true edge relation of $F$ modulo $M$ contains the relation of
+Lemma~\ref{lem:t16} with $A=16$, $\delta=32$, $\varepsilon=169$,
+$\kappa=-240$, $\rho=2$.
+
+\begin{theorem}[M1]\label{thm:m1n1}
+\Proved\; No congruence certificate at any odd modulus proves M1 non-halting;
+this already follows from its single dominant branch word.
+\end{theorem}
+
+\emph{Evidence.}  Verified exhaustively for every odd $M\le401$ and for $25$
+random odd $M<1200$.  On the even side the orbit is confined to one class
+modulo $16$ and no $2^e$ with $e\ge5$ says more, so the complete congruence
+content of M1 is a single residue class---which does not separate it from its
+halting set.  M1 is thus the first machine we place on the $\beta$-even side
+of the parity dichotomy of Section~\ref{sec:even}.
+
+\section{Expressiveness barriers}
+\label{sec:barriers}
+
+Whether the family is Turing-complete is open.  This section bounds what such
+a proof must overcome and refutes one tempting genre of impossibility argument.
+
+\begin{theorem}[branch rigidity]\label{thm:rigid}
+\Proved{}\; Branch $v$ sends every non-halting input to the same valuation iff
+$\vp{2}(B_v)<\vp{2}(A_v)$, and then $\vp{2}(F(x))=\vp{2}(B_v)$ throughout.  If
+this holds at every $v$, the branch sequence of every orbit is a fixed
+eventually-periodic sequence independent of the state; the orbit is a periodic
+composition of affine maps with closed form $x_n=c\lambda^{n}+d$, and the
+machine performs no state-dependent branching.
+\end{theorem}
+
+\begin{evidence}
+$6{,}462$ (machine, branch) pairs, zero disagreements.  \Meas{}: in the box
+$\alpha\in[0,3]$, $\beta\in[-4,8]$, $\gamma,\delta,\varepsilon\in[-3,4]$
+($19{,}092$ well-defined members), exactly $2{,}351$ ($12.31\%$) are globally
+rigid, all with $\beta$ even.  A closed-form criterion is exact for $\beta$
+even and nonzero; the case $\beta=0$ is genuinely different
+($\vp{2}(A_v)=v+1$ unbounded makes rigidity generic) and supplies $758$ of the
+$2{,}351$.
+\end{evidence}
+
+\begin{remark}[the counting genre cannot work]\label{rem:counting}
+$(A_v,B_v)\bmod M$ is eventually periodic in $v$ \Proved{}, and the achievable
+branch tables form a rank-$5$ subgroup among tables of length $V$ \Proved{}.
+It is tempting to conclude the family is too poor to host a Conway-style
+reduction, which needs $M$ independent branches at modulus $M$.  That
+conclusion is unsupported: measured branch \emph{bandwidth}---distinct
+$(A_v,B_v)\bmod M$ actually achieved---is at least $M$ for every modulus we
+tested ($100$ at $M=23$, $412$ at $M=101$, $1{,}036$ at $M=257$) \Meas{}.
+Moreover the genre cannot be repaired \Interp{}: universality is a property of
+a \emph{single point}, not of a family---a five-parameter family may contain a
+universal member because a universal machine is a zero-parameter object---so no
+dimension, rank, density or bandwidth argument can exclude it.  What survives
+is a compression bound \Proved{}: at most $\lfloor\log_2(|\beta|/\rho)\rfloor$
+branches are pairwise $\rho$-separated in slope, so $k$ separated branches cost
+$|\beta|\ge\rho2^{k-1}$.
+\end{remark}
+
+\begin{remark}[automatic invariants]\label{rem:automatic}
+\CAP{} for each stated size.  Bounded-size searches for $2$-automatic
+invariants separating the orbit from the halting set return none for the
+Needle's reduction at $\le11$ states (least-significant-bit-first,
+minimal-word), $\le13$ (LSB, zero-invariant) and $\le13$
+(most-significant-bit-first), and none for M3 in base $3$ at $\le7$ states;
+encodings were shown non-vacuous by planting certificates at matched sizes.
+Unbounded size is open, and after Theorem~\ref{thm:t15} this is the sharpest
+open certificate question for the family.  Known non-definability results
+\cite{dhiman-pandey} constrain the reachability \emph{relation} of
+$3x{+}1$-type maps in B\"uchi arithmetic but do not obstruct invariants.
+\end{remark}
+
+\section{Status of every result, and threats to validity}
+\label{sec:ledger}
+
+\subsection{The ledger}
+
+\begin{center}
+\small
+\begin{tabular}{@{}llp{6.4cm}@{}}
+\toprule
+result & status & note \\
+\midrule
+Prop.~\ref{prop:needle-id} identification & \Proved & one line of algebra \\
+Prop.~\ref{prop:exact} exactness & \Proved & \\
+Thm~\ref{thm:census} census & \CAP & each of $318$ decisions is an exact finite
+  closure computation; all re-audited \\
+Thm~\ref{thm:criteria} (T3), (C4) & \Proved & hand proofs given \\
+Thm~\ref{thm:criteria} (C6), (C8) & \CAP & exhaustive on $(\Z_M)^5$; hand case
+  analysis in repository only \\
+Lem.~\ref{lem:universal} sieve lemma & \Proved & three-line reduction \\
+Cor.~\ref{cor:linear} linear form & \Proved & \\
+Thm~\ref{thm:ten} ten machines & \Proved & closed forms are exact identities;
+  finitely many boundary branches checked \\
+Thm~\ref{thm:complete} completeness & \CAP & finite: ten proofs plus $620$
+  witnesses; \textbf{relative to the box} \\
+Obs.~\ref{obs:nothinning} no thinning & \Meas & no asymptotic claim made \\
+Thm~\ref{thm:t12} $\delta$-saturation & \Proved & \\
+Lem.~\ref{lem:descent} descent & \Proved & \\
+Thm~\ref{thm:t14} even saturation & \Proved & \\
+Lem.~\ref{lem:reach} reach & \Proved & construction also executed \\
+Thm~\ref{thm:t15}, Cor.~\ref{cor:needle} & \Proved & the paper's main result \\
+Prop.~\ref{prop:m3table} M3 branch table & \MV & induction not written out;
+  Thms~\ref{thm:m3n2},~\ref{thm:m3n1} depend on it \\
+Lem.~\ref{lem:baseq} base-$q$ lemma & \Proved & \\
+Thm~\ref{thm:m3n2} M3 two-step pinning & \CAP & least independently
+  corroborated result here \\
+Thm~\ref{thm:m3n1} M3 no-certificate & \Proved$^{*}$ & modulo
+  Prop.~\ref{prop:m3table} \\
+Rem.~\ref{rem:rank} dichotomy & \Proved & \\
+Rem.~\ref{rem:boundary} boundary & \Interp & \\
+Prop.~\ref{prop:sheep-id} sheep identification & \Proved & one line of algebra;
+  broadly machine-checked \\
+Thm~\ref{thm:sheep-sieve} sheep sieve closes & \Proved & recovers and sharpens
+  a community lemma \\
+Cor.~\ref{cor:sheep-H} sheep halting set & \Proved & matched to brute force
+  below $3\times10^5$ \\
+Thm~\ref{thm:sheep-d2} sheep depth two & \Proved & survivor set exactly
+  $\{0,1,2,3,5\}$ \\
+Rem.~\ref{rem:sheep-ladder} sieve saturates & \Meas & five depths; the
+  convergence is extrapolated, not proved \\
+Rem.~\ref{rem:sheep-dichotomy} dichotomy tested & \Interp & the prediction was
+  on record first; one instance \\
+Lem.~\ref{lem:t16} linear-exponential saturation & \Proved & no hypothesis on
+  the multiplier \\
+Thm~\ref{thm:m1n1} M1 no odd certificate & \Proved & the even-side statement
+  accompanying it is \MV \\
+Thm~\ref{thm:rigid} rigidity & \Proved & the $12.31\%$ figure is \Meas \\
+Rem.~\ref{rem:counting} counting genre & mixed & periodicity \Proved{};
+  bandwidth \Meas{}; the single-point argument \Interp \\
+Rem.~\ref{rem:automatic} automatic invariants & \CAP & per stated size only \\
+\S\ref{sec:discussion} placement & \Interp & a syntactic comparison, not a
+  theorem \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Threats to validity}
+\label{sec:threats}
+
+\begin{enumerate}
+\item \textbf{All verification is by our own implementations.}  Several
+  headline results were checked on two independently written code paths, and
+  where possible against pre-existing implementations written for other
+  purposes; but there is no third-party or formally verified check.  A
+  systematic misunderstanding of the semantics would not be caught.  A Lean
+  formalisation of Lemma~\ref{lem:universal}, Lemma~\ref{lem:descent} and
+  Lemma~\ref{lem:reach} is the natural remedy and is not yet done.
+\item \textbf{\CAP{} results depend on implementation correctness}, including
+  correctness of the SAT encodings in Remark~\ref{rem:automatic}.  Encoding
+  adequacy was established by planting certificates, which addresses vacuity
+  but not all forms of error.
+\item \textbf{Proposition~\ref{prop:m3table} is machine-verified, not proved},
+  and two theorems depend on it.
+\item \textbf{Theorem~\ref{thm:m3n2}'s depth-two argument received the weakest
+  independent scrutiny} of any result claimed here; see its Evidence note.
+\item \textbf{Selection effects in the census.}  The box was chosen for
+  computational convenience.  Frequencies such as ``$29.5\%$ decided'' are
+  properties of that box, not of the family.
+\item \textbf{Developed against one machine---now partly mitigated.}  Every
+  theorem in Sections~\ref{sec:sieve}--\ref{sec:baseq} was developed with the
+  Space Needle in view, and a theory fitted to one instance can encode that
+  instance's accidents.  Section~\ref{sec:wild} is the corrective: one wild
+  cryptid found independently (sheep) falls inside the interface and confirms
+  a prediction made beforehand, and one machine outside the family
+  (M1) is nonetheless covered by the saturation argument.  Two instances is
+  better than one; it is not a demonstration of generality.
+\item \textbf{Asymmetry of search evidence.}  Refuting a certificate at a
+  given size is cheap; finding one is expensive.  Our machinery therefore
+  produces negative results far more readily than positive ones---a property
+  of the evidence, not of the machines.
+\end{enumerate}
+
+\section{Progress against the goals, revisited}
+\label{sec:goals-revisited}
+
+\paragraph{G1 (observe): substantial.}
+Lemma~\ref{lem:universal} and Corollary~\ref{cor:linear} give the family's
+last-step sieve in closed form and isolate why it is hard---the exponential is
+in the modulus, not the target.  Theorem~\ref{thm:complete} is, to our
+knowledge, unusual in kind: a method closed by a completeness statement rather
+than an exhausted budget.  Theorem~\ref{thm:criteria} supplies closed-form
+separation criteria where only $m=3$ was previously characterised, and
+Remark~\ref{rem:rank} explains a difference between two machines that had
+previously only been observed.
+
+\paragraph{G2 (decide): moved, and not on the target class.}
+We decide $318+10$ members.  Every one of them is a Collatz-like function from
+a manufactured box; none is a Turing machine; and each is decided precisely
+because it admits a certificate, which is what it means not to be hard.  The
+flagships remain open.  We regard the honest statement of this contribution as:
+\emph{the census partitions a family into an easy part, a characterised hard
+part, and---via Theorem~\ref{thm:t15}---a proof that the boundary between them
+is not an artifact of effort}.  It should also be said plainly that
+Theorem~\ref{thm:t15} makes G2 harder, not easier: it removes the cheapest
+technique from consideration for the hard members permanently.
+
+\paragraph{G3 (explain): the paper's main yield.}
+Before this work the statement was ``no separating congruence was found for the
+Needle's reduction at $m\le20{,}000$''---a bounded search, silent beyond its
+budget.  Corollary~\ref{cor:needle} replaces it with an unconditional
+impossibility, and Sections~\ref{sec:saturation}--\ref{sec:barriers} supply
+mechanisms rather than only outcomes: $\delta$ sweeps every modulus; $\beta$'s
+parity governs the sole $2$-adic escape hatch; rigidity marks off a slice that
+cannot compute; and one genre of universality barrier is refuted with a reason
+that applies to all its members.
+
+\paragraph{G4 (transfer): demonstrated three times, with its boundary.}
+Section~\ref{sec:baseq} moves the whole chain to base $3$ and obtains
+Theorem~\ref{thm:m3n1} for a second machine.  Section~\ref{sec:sheep} applies
+it unchanged to a cryptid found by someone else, and
+Section~\ref{sec:t16} strips the saturation argument of the family schema
+entirely, then applies it to a machine of a different kind
+(Theorem~\ref{thm:m1n1}).  Equally informative is Remark~\ref{rem:boundary}:
+two further families provably lie outside the toolkit's interface.  Three
+transfers is evidence of generality, not proof of it.
+
+\paragraph{What did not move.}
+No progress was made on either flagship's actual halting question; the sheep
+machine's orbit question is equally untouched, and the fact that its
+\emph{arithmetic} closes completely while its orbit question does not is
+itself a reminder of how little the last-step analysis reaches; no positive
+non-halting theorem was obtained for any hard instance by any method; and the
+universality question for the family remains open, with one route now closed.
+
+\section{Discussion: where the difficulty now sits}
+\label{sec:discussion}
+
+Combining Lemma~\ref{lem:universal} with Theorem~\ref{thm:t15}: every
+congruence-flavoured route to the Needle's reduction is closed, and the halting
+condition itself is the two-generator membership~\eqref{eq:needle}.  Lifting to
+the integers, a halt out of branch $v$ at value $2^{E}$ requires
+$A_vk=2^{E}-B_v$ with $k\ge1$: a linear-exponential Diophantine condition in
+which the unknown multiplier $k$ appears \emph{linearly} against the
+exponentials $2^{v+1}$ and $2^{E}$.
+
+\begin{observation}\label{obs:address}
+\Interp{}\; Systems of linear-exponential equations over $\{2,3\}$ without such
+mixed products are decidable
+\cite{dong-shafrir,chistikov-mansutti-starchak}.  The system above differs from
+those fragments in two syntactic respects: one product of a free variable with
+an exponential, and a modulus $2^{v+1}+3$ that is not a prime power.  We offer
+this as the most precise available \emph{placement} of the difficulty; it is
+not a hardness theorem, and we make no claim that the difference is essential.
+\end{observation}
+
+It is natural to read the impossibility results against Skolem's conjecture
+(an unsolvable purely exponential equation is unsolvable modulo some witness
+\cite{bertok-hajdu}): the ten machine theorems are explicit local witnesses,
+and Theorem~\ref{thm:t15} says the flagships admit no witness in the congruence
+class.  We stress that this is an orientation and not an application: the
+linear occurrences of $k$ and of $\delta v$ place our equations outside the
+purely exponential class the conjecture concerns. \Interp{}
+
+\subsection{Open problems}
+
+\begin{question}
+Does the Space Needle halt---equivalently, does the orbit of $6$ under
+\eqref{eq:doucette} reach a power of two?  The per-branch obstruction is
+exactly~\eqref{eq:needle}, and $120$ census members share its sieve group,
+giving a graded family of test cases.
+\end{question}
+
+\begin{question}
+Is there a $2$-automatic invariant separating the Needle's orbit from the
+powers of two, at any number of states?  After Theorem~\ref{thm:t15} this is
+the minimal certificate class not proved empty.
+\end{question}
+
+\begin{question}
+Is the one-schema family Turing-complete---some single member with undecidable
+halting set, or the parametrised problem?  Remark~\ref{rem:counting} rules out
+the counting genre; the rigid slice of Theorem~\ref{thm:rigid} is provably not
+where universality lives; universal generalised Collatz maps with a fixed
+modulus exist \cite{kascak}, and integer piecewise-affine reachability is
+delicate already in low dimension \cite{ben-amram}, but all known reductions
+spend arbitrarily many independent branch coefficients where this family has
+five.
+\end{question}
+
+\begin{question}
+Prove that almost no start halts, with unbounded depth: for the Needle's
+reduction, $\#\{x\le N \text{ halting}\}=O(N^{c})$ with $c<1$.  Depth-graded
+polylogarithmic counts are known exactly for each fixed depth, and measured
+branching along the backward tree peaks at $0.79<1$ \Meas{}, so a uniform
+subcriticality argument is plausible.  This is the expanding-map mirror of
+backward-tree counting \cite{krasikov-lagarias,kontorovich-lagarias}; note that
+almost-everywhere results in the contracting regime \cite{tao} are not
+transportable, the drift having the wrong sign.
+\end{question}
+
+\section*{Acknowledgments}
+[To be completed.  Produced within an AI-assisted research program; see the
+title-page note and Section~\ref{sec:conventions}.]
+
+\begin{thebibliography}{CMS24}
+
+\bibitem[BA13]{ben-amram}
+A.~M. Ben-Amram.
+\newblock Mortality of iterated piecewise affine functions over the integers:
+  decidability and complexity.
+\newblock In \emph{STACS 2013}, LIPIcs vol.~20, pages 514--525, 2013.
+
+\bibitem[BH15]{bertok-hajdu}
+C.~Bert\'ok and L.~Hajdu.
+\newblock A Hasse-type principle for exponential Diophantine equations and its
+  applications.
+\newblock \emph{Mathematics of Computation}; arXiv:1407.6499, 2015.
+
+\bibitem[bbcC]{bbchallenge-cryptids}
+The bbchallenge collaboration.
+\newblock Cryptids.
+\newblock \url{https://wiki.bbchallenge.org/wiki/Cryptids}, accessed July 2026.
+
+\bibitem[bbcS]{bbchallenge-needle}
+The bbchallenge collaboration.
+\newblock Space Needle.
+\newblock \url{https://wiki.bbchallenge.org/wiki/Space_Needle}, accessed July
+  2026.  (Turing machine due to mxdys, January 2025; one-variable reduction due
+  to K.~Doucette.)
+
+\bibitem[CMS24]{chistikov-mansutti-starchak}
+D.~Chistikov, A.~Mansutti, and M.~Starchak.
+\newblock Integer linear-exponential programming in NP by quantifier
+  elimination.
+\newblock In \emph{ICALP 2024}; arXiv:2407.07083, 2024.
+
+\bibitem[Con72]{conway72}
+J.~H. Conway.
+\newblock Unpredictable iterations.
+\newblock In \emph{Proceedings of the 1972 Number Theory Conference, Boulder},
+  pages 49--52, 1972.
+
+\bibitem[DP26]{dhiman-pandey}
+Dhiman and Pandey.
+\newblock Non-definability results for $3x{+}1$-type transition and
+  reachability relations in B\"uchi arithmetic.
+\newblock arXiv:2601.12772 and arXiv:2602.06066, 2026.
+\newblock (Author names to be completed before submission.)
+
+\bibitem[DS25]{dong-shafrir}
+R.~Dong and D.~Shafrir.
+\newblock $S$-unit equations in modules and linear-exponential Diophantine
+  equations.
+\newblock arXiv:2505.19141; STOC 2026, 2025.
+
+\bibitem[Ka\v{s}92]{kascak}
+F.~Ka\v{s}\v{c}\'ak.
+\newblock Small universal one-state linear operator algorithm.
+\newblock In \emph{MFCS 1992}, LNCS vol.~629, pages 327--335, 1992.
+
+\bibitem[KL03]{krasikov-lagarias}
+I.~Krasikov and J.~C. Lagarias.
+\newblock Bounds for the $3x+1$ problem using difference inequalities.
+\newblock \emph{Acta Arithmetica}, 109:237--258, 2003.
+
+\bibitem[KL10]{kontorovich-lagarias}
+A.~V. Kontorovich and J.~C. Lagarias.
+\newblock Stochastic models for the $3x+1$ and $5x+1$ problems.
+\newblock In \emph{The Ultimate Challenge: The $3x+1$ Problem}, AMS;
+  arXiv:0910.1944, 2010.
+
+\bibitem[KS07]{kurtz-simon}
+S.~A. Kurtz and J.~Simon.
+\newblock The undecidability of the generalized Collatz problem.
+\newblock In \emph{TAMC 2007}, LNCS vol.~4484, pages 542--553, 2007.
+
+\bibitem[Lag85]{lagarias-monthly}
+J.~C. Lagarias.
+\newblock The $3x+1$ problem and its generalizations.
+\newblock \emph{American Mathematical Monthly}, 92:3--23, 1985.
+
+\bibitem[Lag21]{lagarias-overview}
+J.~C. Lagarias.
+\newblock The $3x+1$ problem: an overview.
+\newblock arXiv:2111.02635, 2021.
+
+\bibitem[Tao22]{tao}
+T.~Tao.
+\newblock Almost all orbits of the Collatz map attain almost bounded values.
+\newblock \emph{Forum of Mathematics, Pi}, 10:e12, 2022.
+
+\end{thebibliography}
+
+\end{document}

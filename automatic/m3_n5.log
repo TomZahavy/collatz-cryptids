@@ -1,0 +1,6 @@
+machine 3 reset orbit: [4, 8, 14, 22, 32, 46, 64, 88] ... (40 values, largest 2.39e+05)
+machine 3: base 3, 10 branch conditions, 40 orbit units, 11 halting units
+  n= 1  structures=           1  transitions=  3  REFUTED (no certificate)       0.0s
+  n= 2  structures=          56  transitions=  6  REFUTED (no certificate)       0.0s
+  n= 3  structures=       7,965  transitions=  9  REFUTED (no certificate)       0.1s
+  n= 4  structures=   2,128,064  transitions= 12  REFUTED (no certificate)      10.9s

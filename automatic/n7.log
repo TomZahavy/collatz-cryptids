@@ -1,0 +1,3 @@
+machine=needle  start=6  orbit prefix: [6, 10, 17, 41, 101, 251] ...  (60 elements, 56 bits at the end)
+branch conditions imposed: v = 0..6   (a_v, b_v) = [(5, 1), (7, 3), (11, 6), (19, 11), (35, 20)] ...
+n= 7  structures=256,182,290  REFUTED (no certificate)   2776.3s

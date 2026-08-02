@@ -1,0 +1,30 @@
+==========================================================================
+MACHINE 4: not a thin-H machine; the heuristic predicts a halt
+==========================================================================
+
+T12 orbit from A(1,1), 60,000,000 base steps: no halt
+      section visits: 19
+      values: [1, 25, 267, 555, 875, 4057, 4117, 7347, 8193, 287025, 1115307, 1543835, 1548537, 1997361, 10429809, 13919403, 20473817, 26958565, 126761163]
+      at steps: [0, 8, 105, 222, 356, 1722, 1757, 3127, 3491, 122610, 477258, 661107, 663109, 855564, 4469796, 5965440, 8774394, 11555885, 54331591]
+      step-count ratios between consecutive visits (from the 5th): min 1.00, median 1.47, max 35.12
+      -> visits are exponentially spaced: about 0.73 per doubling of the step budget
+
+T11 P(excursion from (a,1) halts) for random odd a, by octave
+      a in [2^ 6, 2^ 7): halt  11/300 = 0.0367   (excursions over the 4M-step cap: 0)   [   15s]
+      a in [2^ 8, 2^ 9): halt  22/300 = 0.0733   (excursions over the 4M-step cap: 0)   [   15s]
+      a in [2^10, 2^11): halt  23/300 = 0.0767   (excursions over the 4M-step cap: 0)   [   15s]
+      a in [2^12, 2^13): halt  55/300 = 0.1833   (excursions over the 4M-step cap: 0)   [   16s]
+      a in [2^14, 2^15): halt  20/300 = 0.0667   (excursions over the 4M-step cap: 0)   [   19s]
+      a in [2^16, 2^17): halt  51/300 = 0.1700   (excursions over the 4M-step cap: 0)   [   25s]
+      a in [2^18, 2^19): halt  60/250 = 0.2400   (excursions over the 4M-step cap: 11)   [   57s]
+      a in [2^20, 2^21): halt   7/200 = 0.0350   (excursions over the 4M-step cap: 3)   [  136s]
+      a in [2^22, 2^23): halt   8/100 = 0.0800   (excursions over the 4M-step cap: 54)   [  256s]
+      band over nine octaves: 0.0350 .. 0.2400; no decay
+
+    pooled p = 0.1094 over 2350 sampled excursions
+    P(no halt in the 19 observed section visits) = (1-p)^19 = 0.1107  -- unremarkable
+    expected halts over N visits = 0.109*N, which DIVERGES:
+      the pseudorandom heuristic predicts machine 4 HALTS.
+    (every other machine in the collection has a CONVERGENT expected hit count, totalling < 10^-huge)
+
+[ 256.5s] done

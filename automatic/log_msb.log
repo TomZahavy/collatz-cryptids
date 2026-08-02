@@ -1,0 +1,15 @@
+MSB-first automatic invariant search: needle, branches v=0..1
+  n= 2  vars=    1,518  clauses=      5,600  UNSAT (no certificate)          0.0s
+  n= 3  vars=    2,433  clauses=     16,555  UNSAT (no certificate)          0.0s
+  n= 4  vars=    3,452  clauses=     40,109  UNSAT (no certificate)          0.0s
+  n= 5  vars=    4,575  clauses=     84,350  UNSAT (no certificate)          0.1s
+  n= 6  vars=    5,802  clauses=    159,670  UNSAT (no certificate)          0.1s
+  n= 7  vars=    7,133  clauses=    278,765  UNSAT (no certificate)          0.3s
+  n= 8  vars=    8,568  clauses=    456,635  UNSAT (no certificate)          1.3s
+  n= 9  vars=   10,107  clauses=    710,584  UNSAT (no certificate)          4.5s
+  n=10  vars=   11,750  clauses=  1,060,220  UNSAT (no certificate)         24.6s
+  n=11  vars=   13,497  clauses=  1,527,455  UNSAT (no certificate)        164.9s
+  n=12  vars=   15,348  clauses=  2,136,505  UNSAT (no certificate)       1678.6s
+  n=13  vars=   17,303  clauses=  2,913,890  UNSAT (no certificate)       9174.1s
+  n=14  vars=   19,362  clauses=  3,888,434  UNSAT (no certificate)     351033.9s
+  no certificate at any size tested.

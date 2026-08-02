@@ -1,0 +1,12 @@
+Fenrir simulated 100,000 steps in 2.5s (no halt)
+  n has 132,192 bits at the end (log2(5/2) = 1.3219 bits/step, predicted 132,193)
+  odd fraction of n_j: 0.49902   (equidistribution model: 0.5)
+  x_k = 3*O_k - k = 49,706;  x_k/k = 0.49706  (model drift: 0.5)
+  min x over the run: 0   returns to x = 0: 2 at steps [0, 3]
+  of those, with n even (i.e. actual halting opportunities): 0
+
+P8 accounting (Borel-Cantelli):
+  per-opportunity probability p_k = C(k,k/3)/2^k / 2, decaying like exp(-0.0566 k)
+  sum over all k: 0.6708  -- CONVERGENT => probviously non-halting
+  residual risk beyond the 100,000 verified steps: < exp(-5,663) ~ 10^-2,460
+  (Antihydra's walk has the same +2/-1 structure and the same exponent; only the multiplier differs, 5/2 here vs 3/2 there)

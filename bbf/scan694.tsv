@@ -1,0 +1,694 @@
+0	NONRIGID	3	66	4.446e+04	[1/105, 10/3, 81/22, 7/2, 99/7]	L:irr v2:irr v3:const0 v5:irr v7:const0 v11:const0
+1	NONRIGID	3	67	6.048e+04	[1/105, 2/3, 45/22, 7/2, 11979/7]	L:irr v2:irr v3:const0 v5:irr v7:const0 v11:const0
+2	NONRIGID	3	71	4.496e+14	[1/105, 242/3, 9/143, 5/121, 273/2]	L:irr v2:irr v3:const0 v5:irr v7:irr v11:irr v13:const0
+3	NONRIGID	4	44	2.334e+04	[1/105, 4/15, 77/3, 9/2, 5/11, 2/7]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:irr
+4	NONRIGID	3	51	3.178e+04	[1/105, 4/15, 9/2, 77/3, 5/11, 2/7]	L:irr v2:const0 v3:irr v5:const0 v7:const0 v11:const0
+5	NONRIGID	3	65	6.831e+13	[1/105, 9/143, 242/3, 5/121, 273/2]	L:irr v2:irr v3:const0 v5:irr v7:irr v11:irr v13:const0
+6	NONRIGID	3	55	3.523e+04	[1/105, 9/2, 4/15, 77/3, 5/11, 2/7]	L:irr v2:const0 v3:irr v5:const0 v7:const0 v11:const0
+7	NONRIGID	3	39	2.100e+04	[1/12, 25/2, 4/35, 33/5, 7/11, 2/3]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:const0
+8	NONRIGID	3	37	1.959e+04	[1/12, 4/35, 25/2, 33/5, 7/11, 2/3]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:const0
+9	NONRIGID	3	47	1.338e+21	[1/12, 9/10, 14/3, 121/2, 5/7, 3/11]	L:irr v2:irr v3:const0 v5:const0 v7:irr v11:irr
+10	NONRIGID	3	53	5.122e+22	[1/135, 25/21, 33/5, 2/3, 7/11, 5/2]	L:irr v2:irr v3:irr v5:const0 v7:const0 v11:irr
+11	NONRIGID	4	47	2.014e+17	[1/135, 686/15, 3/49, 25/2, 3/5]	L:irr v2:const0 v3:const0 v5:irr v7:irr
+12	POLY	0	112	1.187e+05	[1/15, 14/3, 9/55, 5/7, 121/2, 25/11]	L:const10 v2:arith2 v3:const2 v5:const1 v7:const0 v11:const1
+13	NONRIGID	3	67	8.041e+04	[1/15, 16/3, 3/154, 35/2, 99/5]	L:irr v2:irr v3:const0 v5:const0 v7:irr v11:const0
+14	NONRIGID	3	57	5.931e+36	[1/15, 18/77, 98/3, 25/49, 33/2]	L:irr v2:irr v3:const0 v5:const0 v7:irr v11:const0
+15	NONRIGID	3	66	4.446e+04	[1/15, 2/3, 81/154, 35/2, 99/5]	L:irr v2:irr v3:const0 v5:const0 v7:irr v11:const0
+16	NONRIGID	3	54	2.960e+29	[1/15, 27/77, 49/3, 10/49, 33/2]	L:irr v2:irr v3:const0 v5:const0 v7:irr v11:const0
+17	NONRIGID	3	60	1.577e+12	[1/15, 343/3, 6/77, 5/343, 363/2]	L:irr v2:irr v3:const0 v5:const0 v7:irr v11:const0
+18	NONRIGID	3	54	2.331e+04	[1/15, 4/3, 9/14, 11/2, 175/11, 2/5]	L:irr v2:irr v3:const0 v5:const0 v7:const0 v11:const0
+19	NONRIGID	3	67	2.476e+28	[1/15, 4/3, 9/14, 275/2, 63/55]	L:irr v2:irr v3:const0 v5:const0 v7:const0 v11:irr
+20	NONRIGID	3	54	2.331e+04	[1/15, 4/3, 9/14, 275/2, 7/11, 2/5]	L:irr v2:irr v3:const0 v5:const0 v7:const0 v11:const0
+21	NONRIGID	3	58	8.563e+24	[1/15, 4/3, 9/14, 275/2, 98/55]	L:irr v2:irr v3:const0 v5:const0 v7:const0 v11:irr
+22	NONRIGID	3	54	2.331e+04	[1/15, 4/3, 9/14, 55/2, 35/11, 2/5]	L:irr v2:irr v3:const0 v5:const0 v7:const0 v11:const0
+23	NONRIGID	3	67	2.476e+28	[1/15, 4/3, 9/154, 175/2, 99/5]	L:irr v2:irr v3:const0 v5:const0 v7:irr v11:const0
+24	NONRIGID	3	59	1.100e+32	[1/15, 49/3, 27/77, 10/49, 33/2]	L:irr v2:irr v3:const0 v5:const0 v7:irr v11:const0
+25	NONRIGID	3	53	1.120e+40	[1/15, 49/3, 81/77, 10/49, 33/2]	L:irr v2:irr v3:const0 v5:const0 v7:irr v11:const0
+26	NONRIGID	3	54	2.382e+04	[1/15, 49/3, 9/77, 10/7, 55/2, 7/5]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:const0
+27	NONRIGID	4	54	2.342e+04	[1/15, 49/3, 9/77, 2/7, 275/2, 7/5]	L:irr v2:irr v3:const0 v5:const0 v7:const0 v11:const0
+28	NONRIGID	3	60	1.577e+12	[1/15, 686/3, 3/77, 5/343, 363/2]	L:irr v2:irr v3:const0 v5:const0 v7:irr v11:const0
+29	NONRIGID	3	53	1.120e+40	[1/15, 81/77, 49/3, 10/49, 33/2]	L:irr v2:irr v3:const0 v5:const0 v7:irr v11:const0
+30	NONRIGID	4	41	1.376e+04	[1/15, 9/14, 11/2, 4/3, 175/11, 2/5]	L:irr v2:const0 v3:const0 v5:const0 v7:const0 v11:irr
+31	NONRIGID	3	49	1.932e+04	[1/15, 9/14, 4/3, 11/2, 175/11, 2/5]	L:irr v2:irr v3:const0 v5:const0 v7:const0 v11:const0
+32	NONRIGID	3	62	3.869e+26	[1/15, 9/14, 4/3, 275/2, 63/55]	L:irr v2:irr v3:const0 v5:const0 v7:const0 v11:irr
+33	NONRIGID	3	49	1.932e+04	[1/15, 9/14, 4/3, 275/2, 7/11, 2/5]	L:irr v2:irr v3:const0 v5:const0 v7:const0 v11:const0
+34	NONRIGID	3	52	1.968e+22	[1/15, 9/14, 4/3, 275/2, 98/55]	L:irr v2:irr v3:const0 v5:const0 v7:const0 v11:irr
+35	NONRIGID	3	49	1.932e+04	[1/15, 9/14, 4/3, 55/2, 35/11, 2/5]	L:irr v2:irr v3:const0 v5:const0 v7:const0 v11:const0
+36	NONRIGID	3	62	3.869e+26	[1/15, 9/154, 4/3, 175/2, 99/5]	L:irr v2:irr v3:const0 v5:const0 v7:irr v11:const0
+37	POLY	0	112	1.187e+05	[1/15, 9/35, 22/3, 5/11, 49/2, 25/7]	L:const10 v2:arith2 v3:const2 v5:const1 v7:const1 v11:const0
+38	NONRIGID	4	41	1.376e+04	[1/15, 9/77, 2/7, 49/3, 275/2, 7/5]	L:irr v2:irr v3:const0 v5:const0 v7:const0 v11:const0
+39	NONRIGID	3	48	1.958e+04	[1/15, 9/77, 49/3, 10/7, 55/2, 7/5]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:const0
+40	NONRIGID	3	49	1.932e+04	[1/15, 9/77, 49/3, 2/7, 275/2, 7/5]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:const0
+41	NONRIGID	3	60	1.219e+39	[1/15, 98/3, 18/77, 25/49, 33/2]	L:irr v2:irr v3:const0 v5:const0 v7:irr v11:const0
+42	NONRIGID	4	41	2.141e+30	[1/1575, 20/21, 15/2, 49/5, 3/7]	L:irr v2:const0 v3:const0 v5:const0 v7:irr
+43	NONRIGID	4	40	1.545e+40	[1/1575, 4/21, 75/2, 49/5, 3/7]	L:irr v2:const0 v3:const0 v5:const0 v7:irr
+44	NONRIGID	3	39	2.100e+04	[1/18, 25/3, 9/35, 22/5, 7/11, 3/2]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:const0
+45	NONRIGID	3	58	6.566e+19	[1/18, 35/2, 4/55, 3/25, 11/7, 2/11]	L:irr v2:const0 v3:irr v5:irr v7:irr v11:const0
+46	NONRIGID	3	47	1.486e+21	[1/18, 4/15, 21/2, 121/3, 5/7, 2/11]	L:irr v2:const0 v3:irr v5:const0 v7:irr v11:irr
+47	NONRIGID	3	38	6.739e+19	[1/18, 4/15, 21/2, 121/3, 5/7, 3/11]	L:irr v2:const0 v3:irr v5:const0 v7:irr v11:irr
+48	NONRIGID	3	58	6.566e+19	[1/18, 4/35, 55/2, 3/25, 7/11, 2/7]	L:irr v2:const0 v3:irr v5:irr v7:const0 v11:irr
+49	NONRIGID	3	37	1.951e+04	[1/18, 9/35, 25/3, 22/5, 7/11, 3/2]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:const0
+50	NONRIGID	4	40	1.545e+40	[1/180, 49/15, 12/7, 25/2, 3/5]	L:irr v2:const0 v3:const0 v5:irr v7:const0
+51	NONRIGID	3	53	5.122e+22	[1/24, 9/10, 14/3, 11/2, 5/7, 3/11]	L:irr v2:irr v3:const0 v5:const0 v7:irr v11:irr
+52	NONRIGID	4	35	1.915e+11	[1/270, 14/15, 9/7, 125/2, 3/5]	L:irr v2:const0 v3:const0 v5:irr v7:const0
+53	NONRIGID	4	35	1.915e+11	[1/270, 7/15, 18/7, 125/2, 3/5]	L:irr v2:const0 v3:const0 v5:irr v7:const0
+54	NONRIGID	4	36	6.700e+11	[1/270, 98/15, 3/7, 125/2, 3/5]	L:irr v2:const0 v3:const0 v5:irr v7:const0
+55	NONRIGID	4	38	1.861e+12	[1/270, 98/15, 3/7, 125/2, 7/5]	L:irr v2:const0 v3:const0 v5:irr v7:const0
+56	NONRIGID	3	10	2.223e+03	[1/30, 14/3, 3/77, 6655/2, 343/5]	L:irr v2:irr v3:const0 v5:const0 v7:irr v11:irr
+57	NONRIGID	3	67	4.446e+04	[1/30, 21/2, 16/77, 5/7, 44/5]	L:irr v2:const0 v3:irr v5:const0 v7:irr v11:const0
+58	NONRIGID	3	12	2.973e+03	[1/30, 3/77, 14/3, 6655/2, 343/5]	L:irr v2:irr v3:const0 v5:const0 v7:irr v11:irr
+59	NONRIGID	3	66	4.446e+04	[1/30, 35/3, 81/77, 2/7, 99/2]	L:irr v2:const0 v3:const0 v5:irr v7:irr v11:const0
+60	NONRIGID	4	44	2.334e+04	[1/30, 49/15, 22/3, 9/7, 5/11, 7/2]	L:irr v2:irr v3:const0 v5:const0 v7:const0 v11:irr
+61	NONRIGID	3	51	3.178e+04	[1/30, 49/15, 9/7, 22/3, 5/11, 7/2]	L:irr v2:const0 v3:irr v5:const0 v7:const0 v11:const0
+62	NONRIGID	3	67	6.048e+04	[1/30, 7/2, 12/77, 5/7, 5324/5]	L:irr v2:const0 v3:irr v5:const0 v7:irr v11:const0
+63	NONRIGID	3	67	6.048e+04	[1/30, 7/3, 45/77, 2/7, 11979/2]	L:irr v2:const0 v3:const0 v5:irr v7:irr v11:const0
+64	NONRIGID	3	55	3.523e+04	[1/30, 9/7, 49/15, 22/3, 5/11, 7/2]	L:irr v2:const0 v3:irr v5:const0 v7:const0 v11:const0
+65	NONRIGID	3	50	2.072e+13	[1/315, 15/22, 4/5, 7/2, 6655/7]	L:irr v2:irr v3:irr v5:const0 v7:const0 v11:const0
+66	NONRIGID	4	51	8.523e+17	[1/45, 1372/15, 3/49, 55/2, 3/11]	L:irr v2:const0 v3:const0 v5:irr v7:irr v11:irr
+67	NONRIGID	3	115	3.853e+07	[1/45, 14/5, 5/847, 43923/2, 7/11]	L:irr v2:irr v3:irr v5:const0 v7:irr v11:irr
+68	NONRIGID	4	10	8.711e+40	[1/45, 196/15, 3/7, 125/2, 21/5]	L:irr v2:const0 v3:const0 v5:irr v7:const0
+69	NONRIGID	4	10	8.711e+40	[1/45, 196/15, 3/7, 125/2, 49/5]	L:irr v2:const0 v3:const0 v5:irr v7:const0
+70	NONRIGID	1	85	3.005e+11	[1/45, 25/14, 4/55, 99/2, 35/3]	L:irr v2:const2 v3:const1 v5:irr v7:irr v11:irr
+71	NONRIGID	3	47	1.338e+21	[1/45, 25/21, 33/5, 4/3, 7/11, 5/2]	L:irr v2:irr v3:irr v5:const0 v7:const0 v11:irr
+72	NONRIGID	4	117	3.957e+10	[1/45, 4/35, 25/22, 63/2, 55/3]	L:irr v2:const0 v3:irr v5:const0 v7:irr v11:irr
+73	NONRIGID	3	115	3.853e+07	[1/45, 5/539, 22/5, 7203/2, 11/7]	L:irr v2:irr v3:irr v5:const0 v7:irr v11:irr
+74	NONRIGID	4	44	7.119e+26	[1/45, 686/15, 3/49, 125/2, 3/5]	L:irr v2:const0 v3:const0 v5:irr v7:irr
+75	NONRIGID	3	53	5.122e+22	[1/54, 4/15, 21/2, 11/3, 5/7, 2/11]	L:irr v2:const0 v3:irr v5:const0 v7:irr v11:irr
+76	NONRIGID	3	50	1.225e+21	[1/54, 4/15, 21/2, 11/3, 5/7, 3/11]	L:irr v2:const0 v3:irr v5:const0 v7:irr v11:irr
+77	NONRIGID	3	61	1.397e+40	[1/6, 16/35, 55/2, 3/5, 98/33]	L:georec(3, 16) v2:const0 v3:const0 v5:georec(3, 4) v7:const0 v11:irr
+78	NONRIGID	5	26	1.276e+33	[1/6, 175/2, 4/33, 3/7, 121/5, 3/11]	L:irr v2:const0 v3:const0 v5:const0 v7:const0 v11:irr
+79	NONRIGID	5	29	4.877e+35	[1/6, 175/2, 4/33, 3/7, 121/5, 7/11]	L:irr v2:const0 v3:const0 v5:const0 v7:const0 v11:irr
+80	NONRIGID	2	65	1.083e+27	[1/6, 2/35, 1/5, 715/2, 147/11, 2/39]	L:georec(2, 4) v2:const0 v3:const0 v5:const1 v7:const0 v11:georec(2, 1) v13:irr
+81	NONRIGID	3	65	1.083e+27	[1/6, 2/35, 715/2, 1/5, 147/11, 2/39]	L:georec(2, 4) v2:const0 v3:const0 v5:const1 v7:const0 v11:georec(2, 1) v13:irr
+82	NONRIGID	3	55	2.353e+04	[1/6, 25/2, 4/35, 11/5, 63/11, 5/3]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:const0
+83	NONRIGID	3	55	2.353e+04	[1/6, 25/2, 4/35, 33/5, 21/11, 5/3]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:const0
+84	NONRIGID	3	58	9.873e+24	[1/6, 25/2, 4/35, 99/5, 245/33]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:irr
+85	NONRIGID	3	67	2.600e+28	[1/6, 25/2, 4/35, 99/5, 28/33]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:irr
+86	NONRIGID	3	55	2.353e+04	[1/6, 25/2, 4/35, 99/5, 7/11, 5/3]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:const0
+87	NONRIGID	3	67	2.600e+28	[1/6, 25/2, 4/385, 63/5, 44/3]	L:irr v2:const0 v3:const0 v5:irr v7:irr v11:const0
+88	NONRIGID	3	54	2.331e+04	[1/6, 25/3, 9/35, 11/5, 28/11, 5/2]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:const0
+89	NONRIGID	3	54	2.331e+04	[1/6, 25/3, 9/35, 22/5, 14/11, 5/2]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:const0
+90	NONRIGID	3	54	2.331e+04	[1/6, 25/3, 9/35, 44/5, 7/11, 5/2]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:const0
+91	NONRIGID	3	66	2.166e+28	[1/6, 25/3, 9/385, 28/5, 99/2]	L:irr v2:const0 v3:const0 v5:irr v7:irr v11:const0
+92	NONRIGID	4	94	9.081e+08	[1/6, 275/21, 9/11, 4/5, 1617/2]	L:irr v2:irr v3:const0 v5:const0 v7:irr v11:const0
+93	NONRIGID	3	61	1.397e+40	[1/6, 35/2, 16/55, 3/5, 242/21]	L:georec(3, 16) v2:const0 v3:const0 v5:georec(3, 4) v7:irr v11:const0
+94	NONRIGID	3	67	4.446e+04	[1/6, 35/2, 16/55, 3/5, 44/21]	L:irr v2:const0 v3:const0 v5:irr v7:irr v11:const0
+95	POLY	0	113	1.187e+05	[1/6, 35/2, 4/33, 3/5, 121/7, 9/11]	L:const10 v2:const2 v3:const1 v5:const0 v7:arith2 v11:const1
+96	NONRIGID	3	69	1.981e+29	[1/6, 35/2, 4/55, 3/5, 29282/21]	L:georec(2, 17) v2:const0 v3:const0 v5:georec(2, 3) v7:irr v11:const0
+97	NONRIGID	3	67	6.048e+04	[1/6, 35/2, 4/55, 3/5, 5324/21]	L:irr v2:const0 v3:const0 v5:irr v7:irr v11:const0
+98	NONRIGID	3	58	4.918e+04	[1/6, 35/2, 4/55, 3/5, 73205/21]	L:irr v2:const0 v3:const0 v5:irr v7:irr v11:const0
+99	NONRIGID	3	65	1.083e+27	[1/6, 385/2, 2/65, 1/5, 507/7, 2/33]	L:georec(2, 4) v2:const0 v3:const0 v5:const1 v7:georec(2, 1) v11:irr v13:const0
+100	NONRIGID	3	52	7.196e+17	[1/6, 385/2, 4/65, 3/25, 13/7, 5/11]	L:irr v2:const0 v3:const0 v5:irr v7:irr v11:irr v13:const0
+101	NONRIGID	5	29	4.877e+35	[1/6, 4/15, 539/2, 3/11, 25/7, 11/5]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:const0
+102	NONRIGID	5	26	1.276e+33	[1/6, 4/15, 539/2, 3/11, 25/7, 3/5]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:const0
+103	POLY	0	113	1.187e+05	[1/6, 4/15, 77/2, 3/7, 25/11, 9/5]	L:const10 v2:const2 v3:const1 v5:const1 v7:const0 v11:arith2
+104	NONRIGID	4	41	1.379e+04	[1/6, 4/35, 11/5, 25/2, 63/11, 5/3]	L:irr v2:const0 v3:const0 v5:const0 v7:const0 v11:irr
+105	NONRIGID	3	49	1.958e+04	[1/6, 4/35, 25/2, 11/5, 63/11, 5/3]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:const0
+106	NONRIGID	3	49	1.958e+04	[1/6, 4/35, 25/2, 33/5, 21/11, 5/3]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:const0
+107	NONRIGID	3	51	2.135e+22	[1/6, 4/35, 25/2, 99/5, 245/33]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:irr
+108	NONRIGID	3	62	4.062e+26	[1/6, 4/35, 25/2, 99/5, 28/33]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:irr
+109	NONRIGID	3	49	1.958e+04	[1/6, 4/35, 25/2, 99/5, 7/11, 5/3]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:const0
+110	NONRIGID	3	55	4.333e+04	[1/6, 4/35, 55/2, 3/5, 12005/33]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:irr
+111	NONRIGID	3	69	1.981e+29	[1/6, 4/35, 55/2, 3/5, 4802/33]	L:georec(2, 17) v2:const0 v3:const0 v5:georec(2, 3) v7:const0 v11:irr
+112	NONRIGID	3	62	4.062e+26	[1/6, 4/385, 25/2, 63/5, 44/3]	L:irr v2:const0 v3:const0 v5:irr v7:irr v11:const0
+113	NONRIGID	3	67	4.446e+04	[1/6, 5/2, 16/385, 21/5, 44/3]	L:irr v2:const0 v3:const0 v5:irr v7:irr v11:const0
+114	NONRIGID	3	67	8.046e+04	[1/6, 625/2, 2/385, 21/5, 44/3]	L:irr v2:const0 v3:const0 v5:irr v7:irr v11:const0
+115	NONRIGID	4	41	1.376e+04	[1/6, 9/35, 11/5, 25/3, 28/11, 5/2]	L:irr v2:const0 v3:const0 v5:const0 v7:const0 v11:irr
+116	NONRIGID	3	49	1.932e+04	[1/6, 9/35, 25/3, 11/5, 28/11, 5/2]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:const0
+117	NONRIGID	3	49	1.932e+04	[1/6, 9/35, 25/3, 22/5, 14/11, 5/2]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:const0
+118	NONRIGID	3	49	1.932e+04	[1/6, 9/35, 25/3, 44/5, 7/11, 5/2]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:const0
+119	NONRIGID	3	62	3.046e+26	[1/6, 9/385, 25/3, 28/5, 99/2]	L:irr v2:const0 v3:const0 v5:irr v7:irr v11:const0
+120	NONRIGID	3	56	7.299e+36	[1/6, 99/35, 275/3, 2/55, 147/2]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:irr
+121	NONRIGID	3	52	8.087e+23	[1/60, 9/14, 22/3, 5/2, 7/11, 3/5]	L:irr v2:irr v3:const0 v5:irr v7:const0 v11:irr
+122	NONRIGID	3	50	2.072e+13	[1/90, 15/77, 49/5, 2/7, 6655/2]	L:irr v2:const0 v3:irr v5:const0 v7:irr v11:const0
+123	NONRIGID	3	43	1.299e+04	[1/90, 21/2, 8/77, 15/7, 22/3]	L:irr v2:const0 v3:irr v5:const0 v7:irr v11:const0
+124	NONRIGID	3	51	1.062e+24	[1/90, 25/21, 33/5, 2/3, 7/11, 5/2]	L:irr v2:irr v3:irr v5:const0 v7:const0 v11:irr
+125	NONRIGID	3	51	1.062e+24	[1/90, 4/21, 33/2, 5/3, 7/11, 2/5]	L:irr v2:const0 v3:irr v5:irr v7:const0 v11:irr
+126	NONRIGID	3	50	1.507e+13	[1/90, 6/77, 49/2, 5/7, 2662/5]	L:irr v2:const0 v3:irr v5:const0 v7:irr v11:const0
+127	NONRIGID	3	44	1.345e+04	[1/90, 8/77, 21/2, 15/7, 22/3]	L:irr v2:const0 v3:irr v5:const0 v7:irr v11:const0
+128	NONRIGID	4	35	2.767e+11	[1/945, 2/15, 63/2, 125/7, 3/5]	L:irr v2:const0 v3:const0 v5:irr v7:const0
+129	NONRIGID	3	43	8.455e+18	[100/63, 7/22, 27/2, 11/5, 7/3]	L:georec(2, 4) v2:const0 v3:irr v5:georec(2, 2) v7:const0 v11:const0
+130	NONRIGID	4	6	2.283e+04	[11/105, 10/3, 27/22, 49/2, 6/7]	L:irr v2:const0 v3:const0 v5:irr v7:irr v11:irr
+131	NONRIGID	3	38	1.054e+08	[11/105, 10/3, 9/22, 343/2, 6/7]	L:irr v2:irr v3:const0 v5:irr v7:const0 v11:const0
+132	NONRIGID	3	39	6.808e+10	[11/105, 2/3, 45/22, 49/2, 66/7]	L:irr v2:irr v3:const0 v5:irr v7:const0 v11:const0
+133	NONRIGID	3	66	4.820e+04	[11/105, 20/3, 3/22, 7/2, 495/7]	L:irr v2:irr v3:const0 v5:irr v7:const0 v11:const0
+134	NONRIGID	3	66	4.820e+04	[11/105, 20/3, 3/22, 7/2, 99/7]	L:irr v2:irr v3:const0 v5:irr v7:const0 v11:const0
+135	NONRIGID	3	60	1.774e+39	[11/105, 225/22, 4/3, 7/2, 33/7]	L:georec(3, 8) v2:georec(3, 2) v3:const0 v5:irr v7:const0 v11:const0
+136	NONRIGID	3	44	2.293e+04	[11/105, 3/22, 20/3, 7/2, 726/7]	L:irr v2:irr v3:const0 v5:irr v7:const0 v11:const0
+137	NONRIGID	3	62	3.578e+26	[11/105, 3/22, 625/11, 14/5, 121/2]	L:irr v2:const0 v3:const0 v5:irr v7:irr v11:const0
+138	NONRIGID	3	66	4.820e+04	[11/105, 36/5, 5/22, 7/2, 275/7]	L:irr v2:irr v3:irr v5:const0 v7:const0 v11:const0
+139	NONRIGID	3	67	6.114e+04	[11/105, 4/3, 15/22, 7/2, 297/7]	L:irr v2:irr v3:const0 v5:quad1 v7:const0 v11:const0
+140	NONRIGID	3	61	1.197e+40	[11/105, 4/3, 225/22, 7/2, 33/7]	L:georec(3, 8) v2:georec(3, 2) v3:const0 v5:irr v7:const0 v11:const0
+141	NONRIGID	3	67	4.820e+04	[11/105, 4/3, 75/22, 7/2, 99/7]	L:irr v2:irr v3:const0 v5:irr v7:const0 v11:const0
+142	NONRIGID	3	39	5.935e+10	[11/105, 45/22, 2/3, 49/2, 66/7]	L:irr v2:irr v3:const0 v5:irr v7:const0 v11:const0
+143	NONRIGID	3	35	4.950e+07	[11/105, 9/22, 10/3, 343/2, 6/7]	L:irr v2:irr v3:const0 v5:irr v7:const0 v11:const0
+144	NONRIGID	3	50	1.773e+13	[11/315, 15/22, 4/5, 7/2, 605/7]	L:irr v2:irr v3:irr v5:const0 v7:const0 v11:const0
+145	NONRIGID	3	41	1.841e+04	[11/315, 20/3, 9/22, 7/2, 33/7]	L:irr v2:irr v3:const0 v5:irr v7:const0 v11:const0
+146	NONRIGID	3	36	1.464e+04	[11/315, 9/22, 20/3, 7/2, 33/7]	L:irr v2:irr v3:const0 v5:irr v7:const0 v11:const0
+147	NONRIGID	4	32	1.600e+40	[112/15, 3/22, 35/2, 121/7, 3/11]	L:georec(8, 4) v2:const0 v3:const0 v5:irr v7:const0 v11:georec(8, 2)
+148	NONRIGID	1	70	1.086e+40	[126/5, 125/539, 1/28, 11/3, 5/2]	L:irr v2:irr v3:irr v5:const0 v7:irr v11:irr
+149	NONRIGID	3	53	5.085e+13	[14/15, 1/1078, 9/2, 11/3, 250/11]	L:irr v2:const0 v3:irr v5:const0 v7:irr v11:const0
+150	NONRIGID	4	52	2.832e+15	[14/15, 1/12, 11/3, 63/2, 5/7, 2/11]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:irr
+151	NONRIGID	4	48	3.559e+14	[14/15, 1/12, 11/3, 63/2, 5/7, 3/11]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:irr
+152	NONRIGID	3	40	5.731e+15	[14/15, 1/12, 63/2, 11/3, 5/7, 2/11]	L:irr v2:const0 v3:irr v5:const0 v7:irr v11:irr
+153	NONRIGID	3	38	8.745e+14	[14/15, 1/12, 63/2, 11/3, 5/7, 3/11]	L:irr v2:const0 v3:irr v5:const0 v7:irr v11:irr
+154	NONRIGID	4	60	7.183e+20	[14/15, 1/18, 11/3, 63/2, 5/7, 2/11]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:irr
+155	NONRIGID	4	57	3.366e+19	[14/15, 1/18, 11/3, 63/2, 5/7, 3/11]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:irr
+156	NONRIGID	3	51	2.200e+21	[14/15, 1/18, 63/2, 11/3, 5/7, 2/11]	L:irr v2:const0 v3:irr v5:const0 v7:irr v11:irr
+157	NONRIGID	3	47	7.658e+19	[14/15, 1/18, 63/2, 11/3, 5/7, 3/11]	L:irr v2:const0 v3:irr v5:const0 v7:irr v11:irr
+158	NONRIGID	2	36	1.132e+19	[14/15, 1/6, 121/3, 63/2, 5/7, 2/11]	L:irr v2:const0 v3:irr v5:const0 v7:irr v11:irr
+159	NONRIGID	2	34	6.917e+17	[14/15, 1/6, 121/3, 63/2, 5/7, 3/11]	L:irr v2:const0 v3:irr v5:const0 v7:irr v11:irr
+160	NONRIGID	3	36	1.132e+19	[14/15, 1/6, 63/2, 121/3, 5/7, 2/11]	L:irr v2:const0 v3:irr v5:const0 v7:irr v11:irr
+161	NONRIGID	3	34	6.917e+17	[14/15, 1/6, 63/2, 121/3, 5/7, 3/11]	L:irr v2:const0 v3:irr v5:const0 v7:irr v11:irr
+162	NONRIGID	3	47	1.542e+19	[14/15, 1/66, 63/2, 11/3, 5/7, 3/11]	L:irr v2:const0 v3:irr v5:const0 v7:irr v11:irr
+163	NONRIGID	3	52	1.417e+22	[14/15, 117/22, 1625/2, 11/7, 3/13]	L:georec(2, 2) v2:const0 v3:const0 v5:irr v7:georec(2, 1) v11:const0 v13:irr
+164	NONRIGID	3	54	2.365e+35	[14/15, 27/22, 125/2, 11/7, 14/5]	L:georec(3, 3) v2:const0 v3:const0 v5:irr v7:georec(3, 1) v11:const0
+165	NONRIGID	3	54	3.041e+35	[14/15, 27/22, 125/2, 11/7, 22/5]	L:georec(3, 5) v2:const0 v3:const0 v5:irr v7:georec(3, 3) v11:const0
+166	NONRIGID	3	51	2.920e+33	[14/15, 27/22, 125/2, 11/7, 6/5]	L:georec(3, -1) v2:const0 v3:const0 v5:irr v7:georec(3, 1) v11:const0
+167	NONRIGID	3	51	2.920e+33	[14/15, 27/22, 1625/2, 11/7, 3/13]	L:georec(3, 1) v2:const0 v3:const0 v5:irr v7:georec(3, 1) v11:const0 v13:irr
+168	NONRIGID	3	51	1.877e+33	[14/15, 27/22, 625/2, 11/7, 3/5]	L:georec(3, 1) v2:const0 v3:const0 v5:irr v7:georec(3, 1) v11:const0
+169	NONRIGID	3	52	4.162e+13	[14/15, 3/1078, 25/2, 11/5, 18/11]	L:irr v2:const0 v3:const0 v5:irr v7:irr v11:const0
+170	NONRIGID	3	56	6.159e+36	[14/15, 63/22, 625/2, 11/7, 3/5]	L:georec(3, -1) v2:const0 v3:const0 v5:irr v7:georec(3, 1) v11:const0
+171	NONRIGID	3	49	1.104e+40	[14/15, 81/22, 125/2, 11/7, 3/5]	L:georec(4, 0) v2:const0 v3:const0 v5:irr v7:georec(4, 1) v11:const0
+172	NONRIGID	3	52	4.901e+13	[14/15, 9/1078, 25/2, 11/5, 6/11]	L:irr v2:const0 v3:const0 v5:irr v7:irr v11:const0
+173	NONRIGID	4	56	1.813e+24	[14/15, 9/22, 125/2, 11/7, 12/5]	L:georec(2, 0) v2:const0 v3:const0 v5:irr v7:const0 v11:georec(2, 1)
+174	NONRIGID	3	52	3.542e+22	[14/15, 9/22, 125/2, 11/7, 28/5]	L:georec(2, 2) v2:const0 v3:const0 v5:irr v7:georec(2, 1) v11:const0
+175	NONRIGID	3	53	5.667e+22	[14/15, 9/22, 125/2, 11/7, 6/5]	L:georec(2, 1) v2:const0 v3:const0 v5:irr v7:georec(2, 1) v11:const0
+176	NONRIGID	3	58	1.128e+25	[14/15, 9/22, 1625/2, 11/7, 14/13]	L:georec(2, 3) v2:const0 v3:const0 v5:irr v7:georec(2, 1) v11:const0 v13:irr
+177	NONRIGID	3	55	3.526e+23	[14/15, 9/22, 1625/2, 11/7, 15/13]	L:georec(2, 2) v2:const0 v3:const0 v5:irr v7:georec(2, 1) v11:const0 v13:irr
+178	NONRIGID	3	52	1.889e+22	[14/15, 9/22, 1625/2, 11/7, 22/13]	L:georec(2, 4) v2:const0 v3:const0 v5:irr v7:georec(2, 2) v11:const0 v13:irr
+179	NONRIGID	3	52	1.417e+22	[14/15, 9/22, 1625/2, 11/7, 3/13]	L:georec(2, 2) v2:const0 v3:const0 v5:irr v7:georec(2, 1) v11:const0 v13:irr
+180	NONRIGID	3	55	4.533e+23	[14/15, 9/22, 1625/2, 11/7, 9/13]	L:georec(2, 5) v2:const0 v3:const0 v5:irr v7:georec(2, 2) v11:const0 v13:irr
+181	NONRIGID	3	52	1.417e+22	[14/15, 9/22, 1625/2, 143/7, 3/13]	L:georec(2, 2) v2:const0 v3:const0 v5:irr v7:georec(2, 1) v11:const0 v13:irr
+182	NONRIGID	3	52	1.417e+22	[14/15, 9/22, 21125/2, 11/7, 3/13]	L:georec(2, 2) v2:const0 v3:const0 v5:irr v7:georec(2, 1) v11:const0 v13:irr
+183	NONRIGID	3	56	9.580e+36	[14/15, 9/22, 4375/2, 11/7, 2/5]	L:georec(3, 1) v2:const0 v3:const0 v5:irr v7:georec(3, 1) v11:const0
+184	NONRIGID	3	53	6.195e+34	[14/15, 9/22, 4375/2, 11/7, 3/11]	L:georec(3, -3) v2:const0 v3:const0 v5:irr v7:georec(3, -1) v11:const0
+185	NONRIGID	3	51	2.125e+22	[14/15, 9/22, 625/2, 11/7, 3/25]	L:georec(2, 2) v2:const0 v3:const0 v5:irr v7:georec(2, 1) v11:const0
+186	NONRIGID	3	62	8.062e+30	[14/15, 9/22, 875/2, 11/7, 4/11]	L:irr v2:const0 v3:irr v5:irr v7:irr v11:irr
+187	NONRIGID	3	28	1.649e+13	[14/15, 9/242, 1375/2, 11/7, 3/5]	L:georec(2, 8) v2:const0 v3:const0 v5:irr v7:georec(2, 3) v11:const2
+188	NONRIGID	3	56	1.209e+24	[14/15, 9/77, 125/7, 11/2, 63/11]	L:georec(2, -2) v2:georec(2, 0) v3:const0 v5:irr v7:const0 v11:const0
+189	NONRIGID	3	68	1.058e+40	[14/15, 9/77, 125/7, 121/2, 49/11]	L:irr v2:irr v3:irr v5:irr v7:const0 v11:irr
+190	NONRIGID	3	65	1.003e+24	[14/15, 9/77, 25/7, 11/2, 189/11]	L:irr v2:irr v3:irr v5:irr v7:const0 v11:irr
+191	NONRIGID	3	62	7.967e+30	[14/15, 9/77, 250/7, 11/2, 49/11]	L:irr v2:irr v3:irr v5:irr v7:const0 v11:irr
+192	NONRIGID	3	52	1.417e+22	[154/15, 9/26, 875/2, 13/11, 3/7]	L:georec(2, 2) v2:const0 v3:const0 v5:irr v7:irr v11:georec(2, 1) v13:const0
+193	NONRIGID	3	61	1.397e+40	[16/15, 1/14, 33/2, 7/3, 50/77]	L:georec(3, 16) v2:const0 v3:georec(3, 4) v5:const0 v7:const0 v11:irr
+194	NONRIGID	3	43	4.420e+18	[16/15, 3/14, 55/2, 7/5, 10/77]	L:irr v2:const0 v3:const0 v5:georec(2, 0) v7:const0 v11:irr
+195	NONRIGID	3	67	9.078e+27	[16/15, 3/14, 55/2, 7/5, 4/77]	L:irr v2:const0 v3:const0 v5:georec(2, 0) v7:const0 v11:irr
+196	NONRIGID	3	57	6.635e+36	[16/15, 3/154, 35/2, 11/5, 15/7]	L:georec(3, 18) v2:const0 v3:const0 v5:georec(3, 4) v7:irr v11:const0
+197	NONRIGID	4	32	1.400e+40	[16/15, 33/14, 55/2, 49/11, 3/7]	L:georec(8, -7) v2:const0 v3:const0 v5:irr v7:georec(8, 0) v11:const0
+198	NONRIGID	3	58	8.622e+37	[18/35, 1/33, 50/3, 121/25, 21/2]	L:irr v2:irr v3:const0 v5:irr v7:const0 v11:const0
+199	NONRIGID	3	49	1.694e+40	[18/35, 25/33, 49/3, 121/2, 9/11]	L:georec(4, -17) v2:georec(4, -2) v3:const0 v5:const0 v7:irr v11:const0
+200	POLY	4	60	1.378e+04	[18/35, 5/33, 7/3, 11/2, 5/7, 15/11]	L:arith4 v2:const0 v3:const0 v5:const0 v7:const64 v11:arith1
+201	NONRIGID	3	61	1.147e+40	[18/35, 5/33, 7/3, 121/49, 75/2]	L:irr v2:georec(3, -1) v3:const0 v5:const0 v7:irr v11:const0
+202	NONRIGID	3	56	4.790e+36	[198/35, 275/39, 7/3, 13/11, 15/2]	L:georec(3, -3) v2:irr v3:const0 v5:const0 v7:irr v11:georec(3, 1) v13:const0
+203	NONRIGID	3	62	3.772e+26	[2/105, 3/22, 625/2, 77/5, 4/11]	L:irr v2:const0 v3:const0 v5:irr v7:irr v11:const0
+204	NONRIGID	3	33	3.276e+09	[2/105, 55/3, 81/2, 7/605, 3/5]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:irr
+205	NONRIGID	3	48	1.147e+13	[2/105, 81/2, 55/3, 7/605, 3/5]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:irr
+206	NONRIGID	3	47	1.151e+09	[2/15, 1/12, 441/2, 11/3, 5/7, 2/11]	L:irr v2:const0 v3:irr v5:const0 v7:irr v11:irr
+207	NONRIGID	3	47	9.416e+08	[2/15, 1/12, 63/2, 11/3, 25/7, 2/11]	L:irr v2:const0 v3:irr v5:const0 v7:irr v11:irr
+208	NONRIGID	4	61	6.781e+08	[2/15, 1/12, 7/3, 1089/2, 5/11, 2/7]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:irr
+209	NONRIGID	4	61	5.570e+08	[2/15, 1/12, 7/3, 99/2, 25/11, 2/7]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:irr
+210	NONRIGID	2	65	1.083e+27	[2/15, 1/14, 1/3, 429/2, 175/11, 2/91]	L:georec(2, 4) v2:const0 v3:const1 v5:const0 v7:const0 v11:georec(2, 1) v13:irr
+211	NONRIGID	3	65	1.083e+27	[2/15, 1/14, 429/2, 1/3, 175/11, 2/91]	L:georec(2, 4) v2:const0 v3:const1 v5:const0 v7:const0 v11:georec(2, 1) v13:irr
+212	NONRIGID	1	65	1.083e+27	[2/15, 1/3, 1/14, 429/2, 175/11, 2/91]	L:georec(2, 4) v2:const0 v3:const1 v5:const0 v7:const0 v11:georec(2, 1) v13:irr
+213	NONRIGID	3	54	9.790e+18	[2/15, 1/42, 1089/2, 7/3, 5/11, 2/7]	L:irr v2:const0 v3:irr v5:const0 v7:irr v11:irr
+214	NONRIGID	3	54	8.202e+18	[2/15, 1/42, 99/2, 7/3, 25/11, 2/7]	L:irr v2:const0 v3:irr v5:const0 v7:irr v11:irr
+215	NONRIGID	3	50	2.707e+04	[2/15, 1/42, 99/2, 77/3, 5/11, 2/7]	L:irr v2:const0 v3:irr v5:const0 v7:irr v11:irr
+216	NONRIGID	5	32	2.110e+12	[2/15, 1/6, 231/2, 3/49, 25/11, 2/7]	L:irr v2:const0 v3:const0 v5:irr v7:const1 v11:const0
+217	NONRIGID	3	47	4.922e+12	[2/15, 1/6, 441/2, 121/3, 5/7, 2/11]	L:irr v2:const0 v3:irr v5:const0 v7:irr v11:irr
+218	NONRIGID	2	47	4.922e+12	[2/15, 1/6, 49/3, 1089/2, 5/11, 2/7]	L:irr v2:const0 v3:irr v5:const0 v7:irr v11:irr
+219	NONRIGID	2	47	4.102e+12	[2/15, 1/6, 49/3, 99/2, 25/11, 2/7]	L:irr v2:const0 v3:irr v5:const0 v7:irr v11:irr
+220	NONRIGID	3	47	4.102e+12	[2/15, 1/6, 63/2, 121/3, 25/7, 2/11]	L:irr v2:const0 v3:irr v5:const0 v7:irr v11:irr
+221	NONRIGID	3	56	9.067e+23	[2/15, 27/14, 275/2, 7/5, 4/77]	L:georec(2, 7) v2:const0 v3:const0 v5:georec(2, 1) v7:const0 v11:irr
+222	NONRIGID	3	54	3.041e+35	[2/15, 297/14, 1375/2, 7/11, 2/5]	L:georec(3, 3) v2:const0 v3:const0 v5:irr v7:const0 v11:georec(3, 1)
+223	NONRIGID	3	50	1.325e+13	[2/15, 3/14, 275/2, 49/55, 8/7]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:irr
+224	NONRIGID	1	374	2.520e+03	[2/15, 3/77, 343/2, 65/7, 11/13, 7/5]	L:irr v2:irr v3:irr v5:irr v7:irr v11:irr v13:const0
+225	NONRIGID	1	369	2.308e+03	[2/15, 3/77, 65/7, 343/2, 11/13, 7/5]	L:irr v2:irr v3:const0 v5:arith-1 v7:irr v11:arith-1 v13:const0
+226	NONRIGID	3	56	1.133e+24	[2/15, 99/14, 1375/2, 7/11, 9/7]	L:georec(2, -1) v2:const0 v3:const0 v5:irr v7:const0 v11:georec(2, 0)
+227	NONRIGID	3	52	1.417e+22	[2/15, 99/14, 1375/2, 91/11, 3/13]	L:georec(2, 2) v2:const0 v3:const0 v5:irr v7:const0 v11:georec(2, 1) v13:irr
+228	NONRIGID	3	52	1.889e+22	[2/15, 99/14, 17875/2, 7/11, 2/13]	L:georec(2, 3) v2:const0 v3:const0 v5:irr v7:const0 v11:georec(2, 1) v13:irr
+229	NONRIGID	3	52	1.417e+22	[2/15, 99/14, 17875/2, 7/11, 3/13]	L:georec(2, 2) v2:const0 v3:const0 v5:irr v7:const0 v11:georec(2, 1) v13:irr
+230	NONRIGID	3	60	1.774e+39	[225/14, 7/165, 4/3, 11/2, 21/11]	L:georec(3, 8) v2:georec(3, 2) v3:const0 v5:irr v7:const0 v11:const0
+231	NONRIGID	3	60	1.774e+39	[225/77, 7/30, 121/3, 2/11, 21/2]	L:georec(3, 8) v2:const0 v3:const0 v5:irr v7:const0 v11:georec(3, 2)
+232	NONRIGID	3	50	1.452e+13	[25/126, 21/55, 121/7, 2/11, 35/2]	L:irr v2:const0 v3:irr v5:const0 v7:const0 v11:irr
+233	NONRIGID	3	50	1.223e+13	[25/126, 6/55, 121/2, 7/11, 10/7]	L:irr v2:const0 v3:irr v5:const0 v7:const0 v11:irr
+234	NONRIGID	3	29	6.597e+13	[25/18, 22/35, 1029/2, 3/11, 5/7]	L:georec(2, 8) v2:const0 v3:const2 v5:const0 v7:irr v11:georec(2, 3)
+235	NONRIGID	3	62	1.240e+34	[25/63, 22/7, 539/10, 3/11, 35/2]	L:irr v2:irr v3:irr v5:const0 v7:const0 v11:irr
+236	NONRIGID	3	44	3.319e+06	[25/63, 27/55, 14/5, 11/7, 35/2]	L:irr v2:irr v3:irr v5:const0 v7:irr v11:const0
+237	NONRIGID	3	50	1.452e+13	[25/693, 21/10, 4/7, 11/2, 35/11]	L:irr v2:irr v3:irr v5:const0 v7:const0 v11:const0
+238	NONRIGID	3	56	9.067e+23	[27/10, 2/21, 539/2, 5/7, 4/55]	L:georec(2, 7) v2:const0 v3:const0 v5:const0 v7:georec(2, 1) v11:irr
+239	NONRIGID	3	55	1.763e+23	[27/10, 4/21, 77/2, 5/7, 21/55]	L:irr v2:const0 v3:const0 v5:const0 v7:georec(2, 0) v11:irr
+240	NONRIGID	3	67	1.114e+28	[27/10, 4/21, 77/2, 5/7, 4/55]	L:irr v2:const0 v3:const0 v5:const0 v7:georec(2, 0) v11:irr
+241	NONRIGID	3	47	7.493e+06	[27/10, 4/63, 77/2, 5/7, 14/11]	L:irr v2:const0 v3:irr v5:const0 v7:irr v11:irr
+242	NONRIGID	3	65	1.625e+27	[27/10, 539/2, 2/21, 5/7, 4/55]	L:georec(2, 7) v2:const0 v3:const0 v5:const0 v7:georec(2, 1) v11:irr
+243	NONRIGID	3	58	3.224e+24	[27/10, 77/2, 4/21, 5/7, 21/55]	L:irr v2:const0 v3:const0 v5:const0 v7:georec(2, 0) v11:irr
+244	NONRIGID	3	67	1.114e+28	[27/10, 77/2, 4/21, 5/7, 4/55]	L:irr v2:const0 v3:const0 v5:const0 v7:georec(2, 0) v11:irr
+245	NONRIGID	2	103	1.086e+40	[27/175, 1210/3, 1/20, 7/11, 3/2]	L:irr v2:irr v3:const0 v5:irr v7:irr v11:irr
+246	NONRIGID	3	56	4.624e+30	[27/35, 1/33, 25/3, 22/25, 21/2]	L:irr v2:irr v3:const0 v5:irr v7:const0 v11:const0
+247	NONRIGID	3	48	7.178e+06	[27/35, 25/99, 22/5, 7/11, 55/2]	L:irr v2:irr v3:irr v5:const0 v7:const0 v11:irr
+248	NONRIGID	3	37	1.048e+40	[27/35, 325/33, 182/3, 11/13, 3/2]	L:georec(6, -1) v2:irr v3:const0 v5:const0 v7:irr v11:const0 v13:georec(6, 1)
+249	NONRIGID	3	36	2.149e+09	[27/35, 5/33, 14/3, 11/7, 1029/2]	L:irr v2:irr v3:const0 v5:const0 v7:irr v11:const0
+250	NONRIGID	3	56	1.473e+24	[27/35, 5/66, 14/3, 11/7, 105/2]	L:georec(2, 20) v2:irr v3:const0 v5:const0 v7:georec(2, 4) v11:const0
+251	NONRIGID	3	41	1.242e+14	[27/35, 5/66, 14/3, 11/7, 245/2]	L:irr v2:irr v3:const0 v5:const0 v7:irr v11:const0
+252	NONRIGID	3	42	3.446e+11	[28/15, 3/154, 5/2, 121/5, 30/11]	L:irr v2:const0 v3:const0 v5:irr v7:irr v11:const0
+253	NONRIGID	3	55	4.562e+36	[28/15, 3/22, 6125/2, 11/7, 3/5]	L:georec(3, 12) v2:const0 v3:const0 v5:irr v7:georec(3, 5) v11:const0
+254	NONRIGID	4	56	1.232e+37	[28/15, 63/22, 25/2, 11/7, 14/5]	L:georec(3, 3) v2:const0 v3:const0 v5:irr v7:const0 v11:georec(3, 1)
+255	NONRIGID	3	56	4.790e+36	[28/15, 63/22, 35/2, 11/49, 3/7]	L:georec(3, -1) v2:const0 v3:const0 v5:irr v7:georec(3, 0) v11:const0
+256	NONRIGID	3	56	5.474e+36	[28/15, 63/242, 35/2, 11/7, 3/11]	L:georec(3, -2) v2:const0 v3:const0 v5:irr v7:georec(3, 0) v11:const0
+257	NONRIGID	3	32	1.244e+40	[28/15, 9/22, 1225/2, 11/7, 2/5]	L:georec(8, 0) v2:const0 v3:const0 v5:irr v7:georec(8, 2) v11:const0
+258	NONRIGID	4	32	1.711e+40	[28/15, 9/22, 1225/2, 11/7, 3/11]	L:georec(8, -7) v2:const0 v3:const0 v5:irr v7:const0 v11:georec(8, -3)
+259	NONRIGID	3	49	1.694e+40	[28/15, 9/22, 25/2, 121/7, 6/5]	L:georec(4, -2) v2:const0 v3:const0 v5:irr v7:georec(4, 1) v11:const0
+260	NONRIGID	3	49	1.694e+40	[28/15, 9/22, 325/2, 121/7, 3/13]	L:georec(4, 1) v2:const0 v3:const0 v5:irr v7:georec(4, 1) v11:const0 v13:irr
+261	NONRIGID	3	56	8.609e+30	[28/15, 9/242, 35/2, 11/7, 6/5]	L:irr v2:const0 v3:const0 v5:irr v7:irr v11:irr
+262	NONRIGID	2	72	2.147e+04	[28/15, 99/8, 1/33, 5/7, 21/2]	L:irr v2:irr v3:irr v5:const0 v7:irr v11:irr
+263	NONRIGID	3	44	1.499e+19	[28/45, 35/22, 27/2, 11/7, 5/3]	L:georec(2, 0) v2:const0 v3:irr v5:const0 v7:georec(2, 1) v11:const0
+264	NONRIGID	3	46	5.995e+19	[28/45, 5/22, 189/2, 11/7, 2/3]	L:georec(2, 2) v2:const0 v3:irr v5:const0 v7:georec(2, 1) v11:const0
+265	NONRIGID	3	44	1.691e+19	[28/45, 5/22, 189/2, 11/7, 5/11]	L:georec(2, 3) v2:const0 v3:irr v5:const0 v7:georec(2, 1) v11:const0
+266	NONRIGID	3	64	1.001e+40	[297/35, 5/6, 77/3, 4/11, 9/2]	L:irr v2:irr v3:const0 v5:irr v7:irr v11:irr
+267	NONRIGID	3	56	1.058e+24	[308/15, 9/26, 35/2, 13/11, 33/7]	L:georec(2, 10) v2:const0 v3:const0 v5:irr v7:irr v11:georec(2, 2) v13:const0
+268	NONRIGID	3	56	1.133e+24	[308/15, 9/26, 35/2, 13/11, 39/7]	L:georec(2, 11) v2:const0 v3:const0 v5:irr v7:irr v11:georec(2, 3) v13:const0
+269	NONRIGID	1	70	1.086e+40	[315/2, 8/275, 1/245, 11/3, 2/7]	L:irr v2:const0 v3:irr v5:irr v7:irr v11:irr
+270	NONRIGID	3	61	1.372e+40	[35/18, 55/2, 8/77, 9/5, 7/3]	L:irr v2:const0 v3:irr v5:irr v7:const0 v11:irr
+271	NONRIGID	3	60	1.524e+39	[35/18, 8/55, 77/2, 9/7, 5/3]	L:irr v2:const0 v3:irr v5:const0 v7:irr v11:irr
+272	NONRIGID	2	36	8.896e+18	[35/6, 1/10, 121/2, 28/5, 3/7, 5/11]	L:irr v2:irr v3:const0 v5:const0 v7:irr v11:irr
+273	NONRIGID	3	36	8.896e+18	[35/6, 1/10, 28/5, 121/2, 3/7, 5/11]	L:irr v2:irr v3:const0 v5:const0 v7:irr v11:irr
+274	NONRIGID	3	53	6.992e+13	[35/6, 1/1925, 4/7, 11/2, 189/11]	L:irr v2:irr v3:const0 v5:irr v7:const0 v11:const0
+275	NONRIGID	4	60	7.183e+20	[35/6, 1/20, 11/2, 28/5, 3/7, 5/11]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:irr
+276	NONRIGID	3	51	1.692e+21	[35/6, 1/20, 28/5, 11/2, 3/7, 5/11]	L:irr v2:irr v3:const0 v5:const0 v7:irr v11:irr
+277	NONRIGID	4	51	2.333e+15	[35/6, 1/50, 11/2, 28/5, 3/7, 5/11]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:irr
+278	NONRIGID	3	40	5.731e+15	[35/6, 1/50, 28/5, 11/2, 3/7, 5/11]	L:irr v2:irr v3:const0 v5:const0 v7:irr v11:irr
+279	NONRIGID	3	49	1.155e+13	[35/6, 121/15, 9/77, 2/11, 165/2]	L:irr v2:const0 v3:const0 v5:const0 v7:const0 v11:irr
+280	NONRIGID	3	67	4.820e+04	[35/6, 121/2, 2/385, 15/11, 28/3]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:irr
+281	NONRIGID	4	32	1.400e+40	[35/6, 16/55, 77/2, 9/7, 5/3]	L:georec(8, -7) v2:const0 v3:georec(8, 0) v5:const0 v7:const0 v11:irr
+282	NONRIGID	3	51	2.712e+33	[35/6, 27/55, 8/5, 11/7, 15/2]	L:georec(3, -1) v2:irr v3:const0 v5:const0 v7:georec(3, 1) v11:const0
+283	NONRIGID	3	54	2.365e+35	[35/6, 27/55, 8/5, 11/7, 35/2]	L:georec(3, 3) v2:irr v3:const0 v5:const0 v7:georec(3, 1) v11:const0
+284	NONRIGID	3	56	7.984e+36	[35/6, 28/55, 847/2, 3/7, 5/11]	L:georec(3, 4) v2:const0 v3:const0 v5:const0 v7:georec(3, 3) v11:irr
+285	NONRIGID	3	42	2.114e+18	[35/6, 28/605, 1331/2, 3/7, 5/11]	L:georec(2, 0) v2:const0 v3:const0 v5:const0 v7:georec(2, 1) v11:irr
+286	NONRIGID	3	52	7.107e+13	[35/6, 3/1925, 4/7, 11/2, 63/11]	L:irr v2:irr v3:const0 v5:irr v7:const0 v11:const0
+287	NONRIGID	3	62	1.497e+40	[35/6, 3025/2, 4/77, 3/5, 7/33]	L:georec(3, 2) v2:const0 v3:const0 v5:georec(3, 1) v7:const0 v11:irr
+288	NONRIGID	3	43	7.494e+18	[35/6, 4/605, 9317/2, 3/7, 2/11]	L:georec(2, 2) v2:const0 v3:const0 v5:const0 v7:georec(2, 1) v11:irr
+289	NONRIGID	3	46	6.918e+19	[35/6, 4/605, 9317/2, 3/7, 5/11]	L:georec(2, 4) v2:const0 v3:const0 v5:const0 v7:georec(2, 2) v11:irr
+290	NONRIGID	3	41	9.367e+17	[35/6, 4/605, 9317/2, 3/7, 5/3]	L:georec(2, -1) v2:const0 v3:const0 v5:const0 v7:georec(2, 0) v11:irr
+291	NONRIGID	3	60	1.219e+39	[35/6, 55/2, 8/77, 9/25, 7/5]	L:georec(3, -1) v2:const0 v3:const0 v5:georec(3, 0) v7:const0 v11:irr
+292	NONRIGID	3	49	1.210e+40	[35/6, 56/55, 77/2, 3/7, 4/11]	L:georec(4, 1) v2:const0 v3:const0 v5:const0 v7:georec(4, 2) v11:irr
+293	NONRIGID	3	62	1.497e+40	[35/6, 605/2, 20/77, 3/5, 7/11]	L:georec(3, 4) v2:const0 v3:const0 v5:georec(3, 3) v7:const0 v11:irr
+294	NONRIGID	3	75	1.901e+31	[35/6, 6655/2, 4/847, 3/5, 7/11]	L:georec(2, 4) v2:const0 v3:const0 v5:georec(2, 2) v7:const0 v11:irr
+295	NONRIGID	3	60	1.552e+39	[35/6, 715/2, 8/1001, 3/5, 7/3]	L:georec(3, -2) v2:const0 v3:const0 v5:georec(3, 0) v7:const0 v11:irr v13:irr
+296	NONRIGID	3	56	7.451e+36	[35/6, 8/55, 77/2, 9/49, 5/7]	L:georec(3, -1) v2:const0 v3:const0 v5:const0 v7:georec(3, 0) v11:irr
+297	NONRIGID	3	53	5.675e+13	[35/6, 9/1925, 4/7, 11/2, 21/11]	L:irr v2:irr v3:const0 v5:irr v7:const0 v11:const0
+298	NONRIGID	3	35	1.020e+40	[36/35, 25/22, 147/2, 11/3, 5/7]	L:georec(7, 4) v2:const0 v3:georec(7, 4) v5:const0 v7:irr v11:const0
+299	NONRIGID	3	33	1.600e+40	[36/35, 25/22, 49/2, 121/3, 5/7]	L:georec(8, -2) v2:const0 v3:georec(8, 2) v5:const0 v7:irr v11:const0
+300	NONRIGID	3	48	1.028e+40	[36/35, 25/33, 49/3, 11/2, 15/11]	L:georec(4, -11) v2:georec(4, -2) v3:const0 v5:const0 v7:irr v11:const0
+301	NONRIGID	3	62	4.062e+26	[4/105, 1/22, 9/2, 605/3, 28/11]	L:irr v2:const0 v3:irr v5:irr v7:const0 v11:const0
+302	NONRIGID	3	15	1.011e+11	[4/105, 55/3, 27/2, 7/605, 3/5]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:irr
+303	NONRIGID	3	49	8.021e+12	[4/15, 1/12, 21/2, 121/3, 5/7, 2/11]	L:irr v2:const0 v3:irr v5:const0 v7:irr v11:irr
+304	NONRIGID	4	63	2.422e+12	[4/15, 1/12, 49/3, 33/2, 5/11, 2/7]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:irr
+305	NONRIGID	3	51	1.062e+24	[4/15, 1/126, 33/2, 7/3, 5/11, 2/7]	L:irr v2:const0 v3:irr v5:const0 v7:irr v11:irr
+306	NONRIGID	4	41	1.379e+04	[4/15, 1/14, 11/3, 9/2, 245/11, 3/7]	L:irr v2:const0 v3:const0 v5:const0 v7:const0 v11:irr
+307	NONRIGID	3	69	1.981e+29	[4/15, 1/14, 33/2, 7/3, 1250/77]	L:georec(2, 17) v2:const0 v3:georec(2, 3) v5:const0 v7:const0 v11:irr
+308	NONRIGID	3	55	4.333e+04	[4/15, 1/14, 33/2, 7/3, 1875/77]	L:irr v2:const0 v3:irr v5:const0 v7:const0 v11:irr
+309	NONRIGID	3	49	1.958e+04	[4/15, 1/14, 9/2, 11/3, 245/11, 3/7]	L:irr v2:const0 v3:irr v5:const0 v7:const0 v11:const0
+310	NONRIGID	3	62	4.062e+26	[4/15, 1/14, 9/2, 539/3, 20/77]	L:irr v2:const0 v3:irr v5:const0 v7:const0 v11:irr
+311	NONRIGID	3	49	1.958e+04	[4/15, 1/14, 9/2, 539/3, 5/11, 3/7]	L:irr v2:const0 v3:irr v5:const0 v7:const0 v11:const0
+312	NONRIGID	3	51	2.135e+22	[4/15, 1/14, 9/2, 539/3, 75/77]	L:irr v2:const0 v3:irr v5:const0 v7:const0 v11:irr
+313	NONRIGID	3	49	1.958e+04	[4/15, 1/14, 9/2, 77/3, 35/11, 3/7]	L:irr v2:const0 v3:irr v5:const0 v7:const0 v11:const0
+314	NONRIGID	3	47	1.486e+21	[4/15, 1/18, 21/2, 121/3, 5/7, 2/11]	L:irr v2:const0 v3:irr v5:const0 v7:irr v11:irr
+315	NONRIGID	3	38	6.739e+19	[4/15, 1/18, 21/2, 121/3, 5/7, 3/11]	L:irr v2:const0 v3:irr v5:const0 v7:irr v11:irr
+316	NONRIGID	3	47	1.677e+10	[4/15, 1/18, 63/2, 11/3, 5/7, 2/11]	L:irr v2:const0 v3:irr v5:const0 v7:irr v11:irr
+317	NONRIGID	2	58	1.342e+10	[4/15, 1/18, 7/3, 99/2, 5/11, 2/7]	L:irr v2:irr v3:irr v5:const0 v7:irr v11:irr
+318	NONRIGID	3	49	1.679e+10	[4/15, 1/24, 21/2, 11/3, 5/7, 3/11]	L:irr v2:const0 v3:irr v5:const0 v7:irr v11:irr
+319	NONRIGID	4	62	6.879e+09	[4/15, 1/24, 7/3, 33/2, 5/11, 3/7]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:irr
+320	NONRIGID	3	53	5.122e+22	[4/15, 1/54, 21/2, 11/3, 5/7, 2/11]	L:irr v2:const0 v3:irr v5:const0 v7:irr v11:irr
+321	NONRIGID	3	50	1.225e+21	[4/15, 1/54, 21/2, 11/3, 5/7, 3/11]	L:irr v2:const0 v3:irr v5:const0 v7:irr v11:irr
+322	NONRIGID	3	35	5.211e+17	[4/15, 1/6, 21/2, 1331/3, 5/7, 2/11]	L:irr v2:const0 v3:const1 v5:const0 v7:irr v11:irr
+323	NONRIGID	2	35	5.211e+17	[4/15, 1/6, 343/3, 33/2, 5/11, 2/7]	L:irr v2:const0 v3:const1 v5:const0 v7:irr v11:irr
+324	NONRIGID	3	55	1.199e+19	[4/15, 1/84, 33/2, 7/3, 5/11, 2/7]	L:irr v2:const0 v3:irr v5:const0 v7:irr v11:irr
+325	NONRIGID	3	46	3.653e+12	[4/15, 11/14, 39/2, 77/3, 5/11, 3/13]	L:irr v2:const0 v3:irr v5:const0 v7:const0 v11:irr v13:irr
+326	NONRIGID	3	55	1.763e+23	[4/15, 27/14, 55/2, 7/5, 15/77]	L:irr v2:const0 v3:const0 v5:georec(2, 0) v7:const0 v11:irr
+327	NONRIGID	3	67	1.114e+28	[4/15, 27/14, 55/2, 7/5, 4/77]	L:irr v2:const0 v3:const0 v5:georec(2, 0) v7:const0 v11:irr
+328	NONRIGID	3	38	1.164e+40	[4/15, 297/14, 275/2, 7/11, 3/7]	L:georec(6, -15) v2:const0 v3:const0 v5:irr v7:const0 v11:georec(6, -4)
+329	NONRIGID	3	49	1.258e+40	[4/15, 3/14, 25/2, 539/5, 15/77]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:irr
+330	NONRIGID	3	49	1.180e+40	[4/15, 3/14, 25/2, 539/5, 4/77]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:irr
+331	NONRIGID	3	37	4.655e+10	[4/15, 3/14, 275/2, 7/5, 50/77]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:irr
+332	NONRIGID	3	33	2.165e+07	[4/15, 3/154, 35/2, 1331/5, 10/11]	L:irr v2:const0 v3:const0 v5:irr v7:irr v11:const0
+333	NONRIGID	4	30	2.735e+20	[4/15, 3/77, 49/2, 65/7, 11/13, 7/5]	L:georec(3, 4) v2:const0 v3:const0 v5:irr v7:const0 v11:const0 v13:georec(3, 1)
+334	NONRIGID	4	23	1.158e+16	[4/15, 3/77, 65/7, 49/2, 11/13, 7/5]	L:georec(3, 4) v2:const0 v3:const0 v5:irr v7:const0 v11:const0 v13:georec(3, 1)
+335	NONRIGID	3	42	1.084e+40	[4/15, 441/22, 175/2, 11/7, 3/11]	L:georec(5, -13) v2:const0 v3:const0 v5:irr v7:georec(5, -3) v11:const0
+336	NONRIGID	4	41	1.379e+04	[4/15, 7/3, 1/22, 9/2, 605/7, 3/11]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:const0
+337	NONRIGID	3	69	1.386e+29	[4/15, 9/14, 55/2, 7/5, 18/77]	L:georec(2, 7) v2:const0 v3:const0 v5:georec(2, 1) v7:const0 v11:irr
+338	NONRIGID	3	54	4.353e+14	[4/15, 9/14, 55/2, 7/5, 30/77]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:irr
+339	NONRIGID	3	43	2.778e+09	[4/15, 9/14, 55/2, 7/5, 50/77]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:irr
+340	NONRIGID	3	67	3.203e+17	[4/15, 9/14, 55/2, 7/5, 8/77]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:irr
+341	NONRIGID	3	32	1.156e+40	[4/15, 99/14, 275/2, 49/11, 2/5]	L:georec(8, -1) v2:const0 v3:const0 v5:irr v7:const0 v11:georec(8, 1)
+342	NONRIGID	4	32	1.111e+40	[4/15, 99/14, 275/2, 49/11, 3/7]	L:georec(8, -12) v2:const0 v3:const0 v5:irr v7:georec(8, -4) v11:const0
+343	NONRIGID	3	48	1.028e+40	[4/15, 99/14, 275/2, 7/11, 3/7]	L:georec(4, -8) v2:const0 v3:const0 v5:irr v7:const0 v11:georec(4, -2)
+344	NONRIGID	3	49	1.210e+40	[4/15, 99/14, 275/2, 7/11, 4/5]	L:georec(4, 5) v2:const0 v3:const0 v5:irr v7:const0 v11:georec(4, 2)
+345	NONRIGID	3	49	1.210e+40	[4/15, 99/14, 275/2, 91/11, 3/13]	L:georec(4, 2) v2:const0 v3:const0 v5:irr v7:const0 v11:georec(4, 2) v13:irr
+346	NONRIGID	3	34	1.020e+40	[4/15, 99/14, 3025/2, 7/11, 2/5]	L:georec(7, 2) v2:const0 v3:const0 v5:irr v7:const0 v11:georec(7, 2)
+347	NONRIGID	3	49	1.210e+40	[4/15, 99/14, 3575/2, 7/11, 3/13]	L:georec(4, 2) v2:const0 v3:const0 v5:irr v7:const0 v11:georec(4, 2) v13:irr
+348	NONRIGID	3	53	6.195e+34	[4/15, 99/28, 275/2, 7/11, 3/7]	L:georec(3, -4) v2:const0 v3:const0 v5:irr v7:const0 v11:georec(3, -1)
+349	NONRIGID	3	43	2.512e+28	[4/45, 25/14, 297/2, 7/11, 5/3]	L:georec(3, 6) v2:const0 v3:irr v5:const0 v7:const0 v11:georec(3, 2)
+350	NONRIGID	3	43	3.669e+06	[4/45, 27/14, 55/2, 7/5, 10/11]	L:irr v2:const0 v3:irr v5:irr v7:const0 v11:irr
+351	NONRIGID	3	46	5.995e+19	[4/45, 55/14, 297/2, 7/11, 2/3]	L:georec(2, 2) v2:const0 v3:irr v5:const0 v7:const0 v11:georec(2, 1)
+352	NONRIGID	3	44	8.647e+18	[4/45, 55/14, 297/2, 7/11, 5/3]	L:georec(2, 4) v2:const0 v3:irr v5:const0 v7:const0 v11:georec(2, 2)
+353	NONRIGID	3	43	6.918e+18	[4/45, 55/14, 297/2, 7/11, 5/7]	L:georec(2, -1) v2:const0 v3:irr v5:const0 v7:const0 v11:georec(2, 0)
+354	NONRIGID	3	39	1.710e+04	[5/12, 4/385, 49/2, 33/7, 10/3]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:const0
+355	NONRIGID	3	41	1.841e+04	[5/12, 49/2, 4/385, 33/7, 10/3]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:const0
+356	NONRIGID	3	47	1.774e+07	[5/18, 16/35, 77/2, 3/7, 14/11]	L:irr v2:const0 v3:const1 v5:const0 v7:irr v11:irr
+357	NONRIGID	3	48	2.554e+07	[5/18, 77/2, 16/35, 3/7, 14/11]	L:irr v2:const0 v3:const1 v5:const0 v7:irr v11:irr
+358	NONRIGID	3	47	4.922e+12	[5/6, 1/10, 196/5, 121/2, 3/7, 5/11]	L:irr v2:irr v3:const0 v5:const0 v7:irr v11:irr
+359	NONRIGID	3	47	4.102e+12	[5/6, 1/10, 28/5, 121/2, 9/7, 5/11]	L:irr v2:irr v3:const0 v5:const0 v7:irr v11:irr
+360	NONRIGID	2	47	4.102e+12	[5/6, 1/10, 49/2, 44/5, 9/11, 5/7]	L:irr v2:irr v3:const0 v5:const0 v7:irr v11:irr
+361	NONRIGID	2	47	4.922e+12	[5/6, 1/10, 49/2, 484/5, 3/11, 5/7]	L:irr v2:irr v3:const0 v5:const0 v7:irr v11:irr
+362	NONRIGID	3	47	1.151e+09	[5/6, 1/50, 196/5, 11/2, 3/7, 5/11]	L:irr v2:irr v3:const0 v5:const0 v7:irr v11:irr
+363	NONRIGID	3	47	9.416e+08	[5/6, 1/50, 28/5, 11/2, 9/7, 5/11]	L:irr v2:irr v3:const0 v5:const0 v7:irr v11:irr
+364	NONRIGID	4	61	5.449e+08	[5/6, 1/50, 7/2, 44/5, 9/11, 5/7]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:irr
+365	NONRIGID	4	61	6.660e+08	[5/6, 1/50, 7/2, 484/5, 3/11, 5/7]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:irr
+366	NONRIGID	3	54	8.202e+18	[5/6, 1/70, 44/5, 7/2, 9/11, 5/7]	L:irr v2:irr v3:const0 v5:const0 v7:irr v11:irr
+367	NONRIGID	3	54	9.790e+18	[5/6, 1/70, 484/5, 7/2, 3/11, 5/7]	L:irr v2:irr v3:const0 v5:const0 v7:irr v11:irr
+368	NONRIGID	3	46	8.301e+19	[5/6, 16/35, 77/2, 3/7, 14/33]	L:irr v2:const0 v3:const0 v5:const0 v7:georec(2, 0) v11:irr
+369	NONRIGID	3	67	9.078e+27	[5/6, 16/35, 77/2, 3/7, 4/33]	L:irr v2:const0 v3:const0 v5:const0 v7:georec(2, 0) v11:irr
+370	NONRIGID	4	32	1.600e+40	[5/6, 176/35, 77/2, 9/11, 5/3]	L:georec(8, 4) v2:const0 v3:georec(8, 2) v5:const0 v7:irr v11:const0
+371	NONRIGID	3	45	2.478e+04	[5/6, 2/35, 3773/2, 3/7, 28/33]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:quad1
+372	NONRIGID	3	49	2.805e+04	[5/6, 2/35, 539/2, 3/7, 350/33]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:quad2
+373	NONRIGID	3	45	1.163e+12	[5/6, 2/35, 539/2, 9/77, 8/3]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:irr
+374	NONRIGID	3	46	1.843e+04	[5/6, 2/385, 2401/2, 33/7, 14/3]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:quad1
+375	NONRIGID	3	62	3.772e+26	[5/6, 2/385, 2401/2, 33/7, 4/3]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:irr
+376	NONRIGID	3	67	2.414e+28	[5/6, 2401/2, 2/385, 33/7, 4/3]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:irr
+377	NONRIGID	3	66	1.981e+28	[5/6, 2401/3, 3/385, 22/7, 9/2]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:irr
+378	NONRIGID	3	64	1.001e+40	[5/6, 297/35, 77/3, 4/11, 9/2]	L:irr v2:irr v3:const0 v5:irr v7:irr v11:irr
+379	NONRIGID	3	54	2.365e+35	[5/6, 297/35, 88/5, 7/11, 5/2]	L:georec(3, 3) v2:irr v3:const0 v5:const0 v7:const0 v11:georec(3, 1)
+380	NONRIGID	3	44	1.693e+04	[5/6, 3/35, 2401/33, 2/7, 231/2]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:const0
+381	NONRIGID	3	45	1.163e+12	[5/6, 3/35, 539/3, 4/77, 27/2]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:irr
+382	NONRIGID	3	44	1.693e+04	[5/6, 3/385, 2401/3, 22/7, 21/2]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:quad1
+383	NONRIGID	3	62	3.578e+26	[5/6, 3/385, 2401/3, 22/7, 9/2]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:irr
+384	NONRIGID	1	123	7.566e+17	[5/6, 3773/2, 4/105, 3/7, 14/11]	L:irr v2:irr v3:const0 v5:irr v7:irr v11:irr
+385	NONRIGID	3	49	1.452e+40	[5/6, 392/55, 1001/2, 3/7, 5/13]	L:georec(4, 10) v2:const0 v3:const0 v5:const0 v7:georec(4, 5) v11:irr v13:irr
+386	NONRIGID	3	49	1.210e+40	[5/6, 392/55, 77/2, 3/7, 4/11]	L:georec(4, 1) v2:const0 v3:const0 v5:const0 v7:georec(4, 2) v11:irr
+387	NONRIGID	3	49	1.452e+40	[5/6, 392/55, 77/2, 39/7, 5/13]	L:georec(4, 10) v2:const0 v3:const0 v5:const0 v7:georec(4, 5) v11:irr v13:irr
+388	NONRIGID	3	49	1.452e+40	[5/6, 392/55, 847/2, 3/7, 5/11]	L:georec(4, 10) v2:const0 v3:const0 v5:const0 v7:georec(4, 5) v11:irr
+389	NONRIGID	2	123	7.566e+17	[5/6, 4/105, 3773/2, 3/7, 14/11]	L:irr v2:irr v3:const0 v5:irr v7:irr v11:irr
+390	NONRIGID	3	49	1.258e+40	[5/6, 4/35, 49/2, 99/7, 35/33]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:irr
+391	NONRIGID	3	49	1.180e+40	[5/6, 4/35, 49/2, 99/7, 4/33]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:irr
+392	NONRIGID	3	35	1.379e+10	[5/6, 4/35, 539/2, 3/7, 98/33]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:irr
+393	NONRIGID	3	46	3.653e+12	[5/6, 4/77, 91/2, 15/7, 11/5, 7/13]	L:irr v2:const0 v3:const0 v5:irr v7:irr v11:const0 v13:irr
+394	NONRIGID	3	43	7.494e+18	[5/6, 44/245, 3773/2, 3/11, 2/7]	L:georec(2, 2) v2:const0 v3:const0 v5:const0 v7:irr v11:georec(2, 1)
+395	NONRIGID	3	46	1.353e+20	[5/6, 44/245, 3773/2, 3/11, 5/3]	L:georec(2, 3) v2:const0 v3:const0 v5:const0 v7:irr v11:georec(2, 1)
+396	NONRIGID	3	55	4.562e+36	[5/6, 44/35, 41503/2, 3/11, 5/7]	L:georec(3, 12) v2:const0 v3:const0 v5:const0 v7:irr v11:georec(3, 5)
+397	NONRIGID	3	52	7.228e+34	[5/6, 44/35, 5929/2, 3/11, 10/7]	L:georec(3, 18) v2:const0 v3:const0 v5:const0 v7:irr v11:georec(3, 7)
+398	NONRIGID	3	45	6.764e+19	[5/6, 484/245, 343/2, 3/11, 5/7]	L:georec(2, 4) v2:const0 v3:const0 v5:const0 v7:irr v11:georec(2, 2)
+399	NONRIGID	3	67	4.820e+04	[5/6, 49/2, 2/385, 33/7, 20/3]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:const0
+400	NONRIGID	3	67	4.820e+04	[5/6, 49/2, 2/385, 33/7, 220/3]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:quad1
+401	NONRIGID	3	67	4.820e+04	[5/6, 49/2, 2/385, 363/7, 20/3]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:irr
+402	NONRIGID	3	49	1.258e+40	[5/6, 49/2, 4/35, 99/7, 35/33]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:irr
+403	NONRIGID	3	49	1.180e+40	[5/6, 49/2, 4/35, 99/7, 4/33]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:irr
+404	NONRIGID	3	66	4.820e+04	[5/6, 49/3, 3/385, 22/7, 495/2]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:quad1
+405	NONRIGID	3	49	1.155e+13	[5/6, 49/33, 9/35, 22/7, 231/2]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:irr
+406	NONRIGID	3	67	4.820e+04	[5/6, 539/2, 2/35, 3/7, 20/33]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:quad2
+407	NONRIGID	3	67	4.820e+04	[5/6, 539/2, 22/35, 3/7, 20/33]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:irr
+408	NONRIGID	3	37	4.655e+10	[5/6, 539/2, 4/35, 3/7, 98/33]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:irr
+409	NONRIGID	4	54	2.296e+30	[5/6, 539/2, 8/165, 3/7, 5/3]	L:irr v2:const0 v3:irr v5:const0 v7:const0 v11:irr
+410	NONRIGID	4	54	2.296e+30	[5/6, 539/2, 8/165, 3/7, 55/3]	L:irr v2:const0 v3:irr v5:const0 v7:const0 v11:irr
+411	NONRIGID	3	49	9.271e+31	[5/6, 539/2, 8/35, 3/7, 14/33]	L:irr v2:const0 v3:const0 v5:const0 v7:georec(3, 0) v11:irr
+412	NONRIGID	3	67	4.820e+04	[5/6, 5929/2, 2/35, 3/7, 20/33]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:quad5
+413	NONRIGID	4	54	2.296e+30	[5/6, 5929/2, 8/105, 3/11, 5/3]	L:irr v2:const0 v3:irr v5:const0 v7:irr v11:const0
+414	POLY	4	65	1.596e+04	[5/6, 7/3, 99/35, 2/11, 5/7, 15/2]	L:arith4 v2:arith1 v3:const0 v5:const0 v7:const64 v11:const0
+415	NONRIGID	3	49	9.592e+20	[5/6, 77/2, 16/35, 3/7, 14/33]	L:irr v2:const0 v3:const0 v5:const0 v7:georec(2, 0) v11:irr
+416	NONRIGID	3	67	9.078e+27	[5/6, 77/2, 16/35, 3/7, 4/33]	L:irr v2:const0 v3:const0 v5:const0 v7:georec(2, 0) v11:irr
+417	NONRIGID	3	69	1.783e+29	[5/6, 77/2, 8/35, 3/7, 20/33]	L:georec(2, 10) v2:const0 v3:const0 v5:const0 v7:georec(2, 2) v11:irr
+418	NONRIGID	4	110	7.356e+03	[5/6, 77/2, 8/35, 3/7, 686/11]	L:irr v2:const0 v3:irr v5:irr v7:const0 v11:irr
+419	NONRIGID	3	38	1.471e+07	[5/6, 77/2, 8/35, 3/7, 98/33]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:irr
+420	NONRIGID	3	65	1.212e+40	[5/6, 77/2, 88/35, 9/11, 4/3]	L:irr v2:const0 v3:irr v5:irr v7:irr v11:irr
+421	NONRIGID	3	64	1.001e+40	[5/6, 77/3, 297/35, 4/11, 9/2]	L:irr v2:irr v3:const0 v5:irr v7:irr v11:irr
+422	NONRIGID	4	54	2.296e+30	[5/6, 8/105, 5929/2, 3/11, 5/3]	L:irr v2:const0 v3:irr v5:const0 v7:irr v11:const0
+423	NONRIGID	4	54	2.296e+30	[5/6, 8/105, 847/2, 3/11, 35/3]	L:irr v2:const0 v3:irr v5:const0 v7:irr v11:const0
+424	NONRIGID	4	54	2.296e+30	[5/6, 8/105, 847/2, 3/11, 5/3]	L:irr v2:const0 v3:irr v5:const0 v7:irr v11:const0
+425	NONRIGID	3	47	7.554e+30	[5/6, 8/35, 539/2, 3/7, 14/33]	L:irr v2:const0 v3:const0 v5:const0 v7:georec(3, 0) v11:irr
+426	NONRIGID	3	69	1.783e+29	[5/6, 8/35, 77/2, 3/7, 20/33]	L:georec(2, 10) v2:const0 v3:const0 v5:const0 v7:georec(2, 2) v11:irr
+427	NONRIGID	4	109	7.338e+03	[5/6, 8/35, 77/2, 3/7, 686/11]	L:irr v2:const0 v3:irr v5:irr v7:const0 v11:irr
+428	NONRIGID	3	36	9.413e+06	[5/6, 8/35, 77/2, 3/7, 98/33]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:irr
+429	NONRIGID	3	65	1.212e+40	[5/6, 88/35, 77/2, 9/11, 4/3]	L:irr v2:const0 v3:irr v5:irr v7:irr v11:irr
+430	NONRIGID	3	42	5.567e+11	[5/6, 9/35, 49/33, 22/7, 231/2]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:irr
+431	GEO	3	65	1.547e+27	[5/6, 9/35, 8/55, 7/2, 605/7]	L:georec(2, 5) v2:georec(2, 1) v3:const0 v5:const0 v7:const0 v11:arith1
+432	POLY	4	60	1.378e+04	[5/6, 99/35, 7/3, 2/11, 5/7, 15/2]	L:arith4 v2:arith1 v3:const0 v5:const0 v7:const64 v11:const0
+433	NONRIGID	3	60	1.109e+39	[5/6, 99/35, 7/3, 8/77, 15/2]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:georec(3, 0)
+434	NONRIGID	3	65	1.185e+40	[54/35, 5/33, 14/3, 121/2, 9/11]	L:irr v2:irr v3:const0 v5:irr v7:irr v11:irr
+435	NONRIGID	3	65	1.212e+40	[56/15, 3/22, 35/2, 121/7, 4/11]	L:irr v2:const0 v3:irr v5:irr v7:irr v11:irr
+436	NONRIGID	3	56	5.018e+36	[56/15, 63/22, 5/2, 11/7, 6/5]	L:georec(3, -3) v2:const0 v3:const0 v5:irr v7:georec(3, 1) v11:const0
+437	NONRIGID	3	56	7.071e+36	[56/15, 63/22, 65/2, 11/7, 3/13]	L:georec(3, -1) v2:const0 v3:const0 v5:irr v7:georec(3, 1) v11:const0 v13:irr
+438	NONRIGID	3	60	1.774e+39	[63/10, 143/2, 28/33, 5/7, 15/13]	L:georec(3, 8) v2:const0 v3:const0 v5:const0 v7:georec(3, 4) v11:georec(3, 0) v13:irr
+439	NONRIGID	3	61	1.397e+40	[63/10, 143/2, 28/33, 5/7, 21/13]	L:georec(3, 6) v2:const0 v3:const0 v5:const0 v7:georec(3, 2) v11:georec(3, -1) v13:irr
+440	NONRIGID	3	32	1.244e+40	[63/10, 25/33, 196/3, 11/7, 3/2]	L:georec(8, 0) v2:irr v3:const0 v5:const0 v7:georec(8, 2) v11:const0
+441	NONRIGID	3	56	2.070e+31	[63/10, 25/363, 14/3, 11/7, 15/2]	L:irr v2:irr v3:const0 v5:const0 v7:irr v11:irr
+442	NONRIGID	3	60	1.774e+39	[63/10, 28/33, 143/2, 5/7, 15/13]	L:georec(3, 8) v2:const0 v3:const0 v5:const0 v7:georec(3, 4) v11:georec(3, 0) v13:irr
+443	NONRIGID	3	61	1.197e+40	[63/10, 28/33, 143/2, 5/7, 21/13]	L:georec(3, 6) v2:const0 v3:const0 v5:const0 v7:georec(3, 2) v11:georec(3, -1) v13:irr
+444	NONRIGID	3	60	9.977e+38	[63/10, 28/33, 77/2, 5/49, 3/7]	L:georec(3, -1) v2:const0 v3:const0 v5:const0 v7:georec(3, 0) v11:irr
+445	NONRIGID	3	67	7.428e+27	[63/10, 33/2, 8/77, 5/9, 7/3]	L:georec(2, 0) v2:const0 v3:georec(2, 1) v5:const0 v7:const0 v11:irr
+446	NONRIGID	3	62	1.497e+40	[63/10, 363/2, 4/77, 5/3, 21/11]	L:georec(3, 4) v2:const0 v3:georec(3, 3) v5:const0 v7:const0 v11:irr
+447	NONRIGID	3	34	1.020e+40	[63/10, 4/33, 5929/2, 5/7, 2/11]	L:georec(7, 2) v2:const0 v3:const0 v5:const0 v7:georec(7, 2) v11:irr
+448	NONRIGID	3	32	1.156e+40	[63/10, 4/33, 847/2, 25/7, 2/11]	L:georec(8, -1) v2:const0 v3:const0 v5:const0 v7:georec(8, 1) v11:irr
+449	NONRIGID	4	32	1.111e+40	[63/10, 4/33, 847/2, 25/7, 3/5]	L:georec(8, -12) v2:const0 v3:const0 v5:georec(8, -4) v7:const0 v11:irr
+450	NONRIGID	3	56	7.984e+36	[63/10, 4/77, 363/2, 5/3, 21/11]	L:georec(3, 4) v2:const0 v3:georec(3, 3) v5:const0 v7:const0 v11:irr
+451	NONRIGID	3	42	3.446e+11	[63/10, 5/231, 2/3, 121/2, 30/11]	L:irr v2:irr v3:const0 v5:const0 v7:irr v11:const0
+452	NONRIGID	3	35	1.427e+40	[63/10, 5929/2, 4/33, 5/7, 2/11]	L:georec(7, 2) v2:const0 v3:const0 v5:const0 v7:georec(7, 2) v11:irr
+453	NONRIGID	3	62	1.197e+40	[63/10, 77/2, 28/33, 5/49, 3/7]	L:georec(3, -1) v2:const0 v3:const0 v5:const0 v7:georec(3, 0) v11:irr
+454	NONRIGID	3	49	1.210e+40	[63/10, 8/77, 33/2, 5/3, 4/11]	L:georec(4, 1) v2:const0 v3:georec(4, 2) v5:const0 v7:const0 v11:irr
+455	GEO	2	90	1.595e+37	[63/10, 8/77, 33/2, 5/9, 7/3]	L:georec(2, 0) v2:georec(2, -1) v3:georec(2, 2) v5:const0 v7:const0 v11:arith1
+456	NONRIGID	3	32	1.156e+40	[63/10, 847/2, 4/33, 25/7, 2/11]	L:georec(8, -1) v2:const0 v3:const0 v5:const0 v7:georec(8, 1) v11:irr
+457	NONRIGID	4	32	1.111e+40	[63/10, 847/2, 4/33, 25/7, 3/5]	L:georec(8, -12) v2:const0 v3:const0 v5:georec(8, -4) v7:const0 v11:irr
+458	NONRIGID	3	46	5.995e+19	[63/20, 5/33, 56/3, 11/7, 3/2]	L:georec(2, 2) v2:irr v3:const0 v5:const0 v7:georec(2, 1) v11:const0
+459	NONRIGID	3	47	1.151e+09	[7/15, 1/147, 1089/7, 2/3, 5/11, 7/2]	L:irr v2:irr v3:irr v5:const0 v7:const0 v11:irr
+460	NONRIGID	4	61	6.781e+08	[7/15, 1/147, 2/3, 1089/7, 5/11, 7/2]	L:irr v2:irr v3:const0 v5:const0 v7:const0 v11:irr
+461	NONRIGID	4	61	5.570e+08	[7/15, 1/147, 2/3, 99/7, 25/11, 7/2]	L:irr v2:irr v3:const0 v5:const0 v7:const0 v11:irr
+462	NONRIGID	3	47	9.416e+08	[7/15, 1/147, 99/7, 2/3, 25/11, 7/2]	L:irr v2:irr v3:irr v5:const0 v7:const0 v11:irr
+463	NONRIGID	3	12	2.975e+03	[7/15, 1/154, 6/7, 1375/2, 27/11]	L:irr v2:irr v3:irr v5:irr v7:const0 v11:const0
+464	NONRIGID	3	47	4.922e+12	[7/15, 1/21, 1089/7, 4/3, 5/11, 7/2]	L:irr v2:irr v3:irr v5:const0 v7:const0 v11:irr
+465	NONRIGID	2	47	4.922e+12	[7/15, 1/21, 4/3, 1089/7, 5/11, 7/2]	L:irr v2:irr v3:irr v5:const0 v7:const0 v11:irr
+466	NONRIGID	2	47	4.102e+12	[7/15, 1/21, 4/3, 99/7, 25/11, 7/2]	L:irr v2:irr v3:irr v5:const0 v7:const0 v11:irr
+467	NONRIGID	5	32	2.110e+12	[7/15, 1/21, 66/7, 3/4, 25/11, 7/2]	L:irr v2:const1 v3:const0 v5:irr v7:const0 v11:const0
+468	NONRIGID	3	47	4.102e+12	[7/15, 1/21, 99/7, 4/3, 25/11, 7/2]	L:irr v2:irr v3:irr v5:const0 v7:const0 v11:irr
+469	NONRIGID	3	54	9.790e+18	[7/15, 1/42, 1089/7, 2/3, 5/11, 7/2]	L:irr v2:irr v3:irr v5:const0 v7:const0 v11:irr
+470	NONRIGID	3	54	8.202e+18	[7/15, 1/42, 99/7, 2/3, 25/11, 7/2]	L:irr v2:irr v3:irr v5:const0 v7:const0 v11:irr
+471	NONRIGID	3	49	2.692e+04	[7/15, 1/42, 99/7, 22/3, 5/11, 7/2]	L:irr v2:irr v3:irr v5:const0 v7:const0 v11:irr
+472	NONRIGID	3	60	1.275e+39	[7/15, 11/3, 18/77, 25/121, 147/2]	L:irr v2:georec(3, -1) v3:const0 v5:const0 v7:const0 v11:irr
+473	POLY	4	65	1.583e+04	[7/15, 11/3, 18/77, 5/2, 7/11, 21/5]	L:arith4 v2:const0 v3:const0 v5:arith1 v7:const0 v11:const64
+474	NONRIGID	3	52	1.889e+22	[7/15, 117/77, 3250/7, 11/13, 7/2]	L:georec(2, 3) v2:irr v3:const0 v5:irr v7:const0 v11:const0 v13:georec(2, 1)
+475	NONRIGID	4	27	3.848e+12	[7/15, 143/3, 2/77, 27/2, 5/13, 3/11]	L:georec(2, 4) v2:const0 v3:const0 v5:const0 v7:const0 v11:irr v13:georec(2, 1)
+476	NONRIGID	4	30	2.280e+20	[7/15, 143/3, 4/77, 9/2, 5/13, 3/11]	L:georec(3, 4) v2:const0 v3:const0 v5:const0 v7:const0 v11:irr v13:georec(3, 1)
+477	NONRIGID	3	60	1.053e+39	[7/15, 18/77, 11/3, 25/121, 147/2]	L:irr v2:georec(3, -1) v3:const0 v5:const0 v7:const0 v11:irr
+478	POLY	4	60	1.366e+04	[7/15, 18/77, 11/3, 5/2, 7/11, 21/5]	L:arith4 v2:const0 v3:const0 v5:arith1 v7:const0 v11:const64
+479	NONRIGID	4	14	3.132e+08	[7/15, 2/77, 143/3, 27/2, 5/13, 3/11]	L:georec(2, 4) v2:const0 v3:const0 v5:const0 v7:const0 v11:irr v13:georec(2, 1)
+480	NONRIGID	4	32	4.926e+14	[7/15, 2/77, 27/2, 143/3, 5/13, 3/11]	L:georec(2, 4) v2:const0 v3:const0 v5:const0 v7:const0 v11:irr v13:georec(2, 1)
+481	NONRIGID	4	111	7.303e+03	[7/15, 22/3, 27/77, 5/11, 3993/2]	L:irr v2:irr v3:const0 v5:irr v7:irr v11:const0
+482	NONRIGID	3	65	1.185e+40	[7/15, 22/3, 54/77, 25/2, 9/5]	L:irr v2:irr v3:const0 v5:irr v7:irr v11:irr
+483	NONRIGID	3	130	2.691e+09	[7/15, 22/3, 81/385, 5/11, 33/2]	L:irr v2:irr v3:const0 v5:const0 v7:irr v11:irr
+484	NONRIGID	4	110	7.292e+03	[7/15, 27/77, 22/3, 5/11, 3993/2]	L:irr v2:irr v3:const0 v5:irr v7:irr v11:const0
+485	NONRIGID	3	44	1.693e+04	[7/15, 3/14, 16/33, 5/2, 66/5]	L:irr v2:irr v3:const0 v5:const0 v7:const0 v11:const0
+486	NONRIGID	3	44	1.693e+04	[7/15, 3/14, 16/33, 55/2, 6/5]	L:irr v2:irr v3:const0 v5:const0 v7:const0 v11:irr
+487	NONRIGID	3	50	1.325e+13	[7/15, 3/14, 275/7, 4/55, 343/2]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:irr
+488	NONRIGID	3	44	1.693e+04	[7/15, 3/154, 16/3, 55/2, 6/5]	L:irr v2:irr v3:const0 v5:const0 v7:const0 v11:quad1
+489	NONRIGID	3	49	1.452e+40	[7/15, 3267/14, 22/3, 5/11, 9/2]	L:georec(4, 1) v2:irr v3:const0 v5:const0 v7:const0 v11:georec(4, 2)
+490	NONRIGID	3	66	4.820e+04	[7/15, 4/3, 3/154, 55/2, 693/5]	L:irr v2:irr v3:const0 v5:const0 v7:const0 v11:quad1
+491	NONRIGID	3	66	4.820e+04	[7/15, 4/3, 3/154, 605/2, 63/5]	L:irr v2:irr v3:const0 v5:const0 v7:const0 v11:irr
+492	NONRIGID	3	49	1.186e+40	[7/15, 4/3, 9/14, 275/2, 14/55]	L:irr v2:irr v3:const0 v5:const0 v7:const0 v11:irr
+493	NONRIGID	3	49	1.016e+40	[7/15, 4/3, 9/14, 275/2, 9/55]	L:irr v2:irr v3:const0 v5:const0 v7:const0 v11:irr
+494	NONRIGID	3	49	1.155e+13	[7/15, 4/33, 9/14, 55/2, 6/5]	L:irr v2:irr v3:const0 v5:const0 v7:const0 v11:const0
+495	NONRIGID	3	49	1.155e+13	[7/15, 4/33, 9/14, 55/2, 66/5]	L:irr v2:irr v3:const0 v5:const0 v7:const0 v11:irr
+496	NONRIGID	3	49	1.155e+13	[7/15, 4/33, 9/14, 605/2, 6/5]	L:irr v2:irr v3:const0 v5:const0 v7:const0 v11:irr
+497	NONRIGID	4	26	9.381e+17	[7/15, 4/77, 143/3, 9/2, 5/13, 3/11]	L:georec(3, 4) v2:const0 v3:const0 v5:const0 v7:const0 v11:irr v13:georec(3, 1)
+498	NONRIGID	4	34	1.994e+23	[7/15, 4/77, 9/2, 143/3, 5/13, 3/11]	L:georec(3, 4) v2:const0 v3:const0 v5:const0 v7:const0 v11:irr v13:georec(3, 1)
+499	NONRIGID	3	65	1.185e+40	[7/15, 54/77, 22/3, 25/2, 9/5]	L:irr v2:irr v3:const0 v5:irr v7:irr v11:irr
+500	NONRIGID	3	67	2.228e+28	[7/15, 8/3, 3/154, 55/2, 63/5]	L:irr v2:irr v3:const0 v5:const0 v7:const0 v11:const0
+501	NONRIGID	3	130	2.691e+09	[7/15, 81/385, 22/3, 5/11, 33/2]	L:irr v2:irr v3:const0 v5:const0 v7:irr v11:irr
+502	GEO	3	65	1.547e+27	[7/15, 9/14, 125/77, 2/5, 847/2]	L:georec(2, 5) v2:const0 v3:const0 v5:georec(2, 1) v7:const0 v11:arith1
+503	NONRIGID	3	49	1.186e+40	[7/15, 9/14, 4/3, 275/2, 14/55]	L:irr v2:irr v3:const0 v5:const0 v7:const0 v11:irr
+504	NONRIGID	3	49	1.016e+40	[7/15, 9/14, 4/3, 275/2, 9/55]	L:irr v2:irr v3:const0 v5:const0 v7:const0 v11:irr
+505	NONRIGID	3	42	5.567e+11	[7/15, 9/14, 4/33, 55/2, 6/5]	L:irr v2:irr v3:const0 v5:const0 v7:const0 v11:const0
+506	NONRIGID	3	42	5.567e+11	[7/15, 9/14, 4/33, 55/2, 66/5]	L:irr v2:irr v3:const0 v5:const0 v7:const0 v11:irr
+507	NONRIGID	3	42	5.567e+11	[7/15, 9/14, 4/33, 605/2, 6/5]	L:irr v2:irr v3:const0 v5:const0 v7:const0 v11:irr
+508	NONRIGID	3	53	1.183e+35	[7/15, 99/14, 484/3, 5/11, 21/2]	L:georec(3, 18) v2:irr v3:const0 v5:const0 v7:const0 v11:georec(3, 7)
+509	NONRIGID	3	43	7.494e+18	[7/15, 99/28, 88/3, 5/11, 3/2]	L:georec(2, 2) v2:irr v3:const0 v5:const0 v7:const0 v11:georec(2, 1)
+510	NONRIGID	3	67	4.820e+04	[7/30, 1089/2, 2/77, 5/11, 28/5]	L:irr v2:const0 v3:irr v5:const0 v7:const0 v11:irr
+511	NONRIGID	3	66	4.820e+04	[7/30, 1089/5, 5/77, 2/11, 175/2]	L:irr v2:const0 v3:irr v5:const0 v7:const0 v11:irr
+512	NONRIGID	3	39	6.808e+10	[7/30, 11/2, 12/77, 25/11, 154/5]	L:irr v2:const0 v3:irr v5:const0 v7:const0 v11:irr
+513	NONRIGID	3	39	6.808e+10	[7/30, 11/3, 45/77, 4/11, 231/2]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:irr
+514	NONRIGID	4	60	9.011e+16	[7/30, 11979/2, 4/35, 5/11, 2/3]	L:irr v2:const0 v3:irr v5:irr v7:irr v11:const0
+515	NONRIGID	3	39	5.935e+10	[7/30, 12/77, 11/2, 25/11, 154/5]	L:irr v2:const0 v3:irr v5:const0 v7:const0 v11:irr
+516	NONRIGID	3	67	4.820e+04	[7/30, 121/2, 18/77, 5/11, 28/5]	L:irr v2:const0 v3:irr v5:const0 v7:const0 v11:irr
+517	NONRIGID	3	67	6.114e+04	[7/30, 121/3, 15/77, 2/11, 189/2]	L:irr v2:const0 v3:const0 v5:quad1 v7:const0 v11:irr
+518	NONRIGID	3	61	1.197e+40	[7/30, 121/3, 225/77, 2/11, 21/2]	L:georec(3, 8) v2:const0 v3:const0 v5:irr v7:const0 v11:georec(3, 2)
+519	NONRIGID	3	66	4.820e+04	[7/30, 121/3, 75/77, 2/11, 63/2]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:irr
+520	NONRIGID	4	60	1.281e+19	[7/30, 16/21, 55/2, 3/11, 4/5]	L:irr v2:const0 v3:irr v5:irr v7:irr v11:const0
+521	NONRIGID	3	57	6.635e+36	[7/30, 16/77, 33/2, 5/11, 77/3]	L:georec(3, 18) v2:const0 v3:irr v5:const0 v7:const0 v11:georec(3, 4)
+522	NONRIGID	3	60	1.774e+39	[7/30, 225/77, 121/3, 2/11, 21/2]	L:georec(3, 8) v2:const0 v3:const0 v5:irr v7:const0 v11:georec(3, 2)
+523	NONRIGID	3	44	2.316e+04	[7/30, 3/77, 605/3, 2/11, 1617/2]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:irr
+524	NONRIGID	4	60	1.281e+19	[7/30, 33/2, 16/35, 5/11, 4/3]	L:irr v2:const0 v3:irr v5:irr v7:irr v11:const0
+525	NONRIGID	3	61	1.146e+40	[7/30, 33/2, 16/77, 5/11, 77/3]	L:georec(3, 18) v2:const0 v3:irr v5:const0 v7:const0 v11:georec(3, 4)
+526	NONRIGID	3	37	1.054e+08	[7/30, 33/2, 4/77, 125/11, 22/5]	L:irr v2:const0 v3:irr v5:const0 v7:const0 v11:irr
+527	NONRIGID	4	9	2.755e+04	[7/30, 33/2, 8/77, 25/11, 22/5]	L:irr v2:const0 v3:irr v5:irr v7:irr v11:const0
+528	NONRIGID	4	40	4.883e+08	[7/30, 363/2, 4/175, 25/11, 7/5]	L:irr v2:const0 v3:arith2 v5:irr v7:const0 v11:const0
+529	NONRIGID	4	69	9.788e+16	[7/30, 4/21, 33275/2, 3/11, 2/5]	L:irr v2:const0 v3:irr v5:irr v7:irr v11:const0
+530	NONRIGID	3	36	5.316e+07	[7/30, 4/77, 33/2, 125/11, 22/5]	L:irr v2:const0 v3:irr v5:const0 v7:const0 v11:irr
+531	NONRIGID	3	39	6.808e+10	[7/30, 45/77, 11/3, 4/11, 231/2]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:irr
+532	NONRIGID	4	60	9.011e+16	[7/30, 5324/3, 9/35, 5/11, 3/2]	L:irr v2:irr v3:const0 v5:irr v7:irr v11:const0
+533	NONRIGID	4	6	1.942e+04	[7/30, 55/3, 27/77, 4/11, 33/2]	L:irr v2:irr v3:const0 v5:irr v7:irr v11:const0
+534	NONRIGID	3	38	1.054e+08	[7/30, 55/3, 9/77, 8/11, 33/2]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:irr
+535	NONRIGID	3	66	4.820e+04	[7/30, 605/3, 3/77, 2/11, 315/2]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:irr
+536	NONRIGID	3	66	4.820e+04	[7/30, 605/3, 3/77, 2/11, 63/2]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:irr
+537	NONRIGID	3	60	4.433e+25	[7/30, 8/21, 99/2, 5/11, 77/3]	L:georec(2, 15) v2:const0 v3:irr v5:const0 v7:const0 v11:georec(2, 4)
+538	NONRIGID	3	33	1.038e+18	[7/30, 8/77, 33/2, 25/11, 22/5]	L:irr v2:const0 v3:irr v5:const0 v7:const0 v11:irr
+539	NONRIGID	4	69	9.788e+16	[7/30, 9/35, 5324/3, 5/11, 3/2]	L:irr v2:irr v3:const0 v5:irr v7:irr v11:const0
+540	NONRIGID	3	35	5.133e+07	[7/30, 9/77, 55/3, 8/11, 33/2]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:irr
+541	NONRIGID	3	115	3.853e+07	[7/45, 1/847, 10/7, 891/2, 5/3]	L:irr v2:irr v3:irr v5:irr v7:const0 v11:irr
+542	NONRIGID	3	41	1.841e+04	[7/60, 363/2, 4/77, 5/11, 14/5]	L:irr v2:const0 v3:irr v5:const0 v7:const0 v11:irr
+543	NONRIGID	3	39	1.710e+04	[7/60, 4/77, 363/2, 5/11, 14/5]	L:irr v2:const0 v3:irr v5:const0 v7:const0 v11:irr
+544	NONRIGID	3	50	2.106e+13	[7/90, 15/77, 121/5, 2/11, 245/2]	L:irr v2:const0 v3:irr v5:const0 v7:const0 v11:irr
+545	NONRIGID	3	50	1.130e+13	[7/90, 6/77, 121/2, 5/11, 98/5]	L:irr v2:const0 v3:irr v5:const0 v7:const0 v11:irr
+546	NONRIGID	3	41	1.841e+04	[7/90, 605/3, 9/77, 2/11, 21/2]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:irr
+547	NONRIGID	3	36	1.464e+04	[7/90, 9/77, 605/3, 2/11, 21/2]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:irr
+548	NONRIGID	4	30	1.272e+40	[72/35, 25/22, 21/2, 11/3, 5/11]	L:georec(9, -12) v2:const0 v3:const0 v5:const0 v7:irr v11:georec(9, -4)
+549	NONRIGID	3	49	1.694e+40	[72/35, 5/22, 147/2, 11/3, 5/7]	L:georec(4, 10) v2:const0 v3:georec(4, 5) v5:const0 v7:irr v11:const0
+550	NONRIGID	3	53	7.628e+13	[77/15, 1/1078, 9/11, 2/3, 1375/2]	L:irr v2:const0 v3:irr v5:const0 v7:irr v11:const0
+551	NONRIGID	5	51	2.832e+15	[77/15, 1/147, 2/3, 99/7, 5/11, 7/2]	L:irr v2:irr v3:const0 v5:irr v7:const0 v11:const0
+552	NONRIGID	3	40	5.731e+15	[77/15, 1/147, 99/7, 2/3, 5/11, 7/2]	L:irr v2:irr v3:irr v5:const0 v7:const0 v11:irr
+553	NONRIGID	2	36	8.896e+18	[77/15, 1/21, 4/3, 99/7, 5/11, 7/2]	L:irr v2:irr v3:irr v5:const0 v7:const0 v11:irr
+554	NONRIGID	3	36	8.896e+18	[77/15, 1/21, 99/7, 4/3, 5/11, 7/2]	L:irr v2:irr v3:irr v5:const0 v7:const0 v11:irr
+555	NONRIGID	4	60	7.183e+20	[77/15, 1/63, 2/3, 99/7, 5/11, 7/2]	L:irr v2:irr v3:const0 v5:const0 v7:const0 v11:irr
+556	NONRIGID	3	51	2.200e+21	[77/15, 1/63, 99/7, 2/3, 5/11, 7/2]	L:irr v2:irr v3:irr v5:const0 v7:const0 v11:irr
+557	NONRIGID	3	49	1.210e+40	[77/15, 182/3, 189/143, 5/7, 3/2]	L:georec(4, -1) v2:irr v3:const0 v5:const0 v7:georec(4, 1) v11:const0 v13:irr
+558	NONRIGID	3	48	1.210e+40	[77/15, 297/14, 22/3, 5/11, 21/2]	L:georec(4, 7) v2:irr v3:const0 v5:const0 v7:const0 v11:georec(4, 5)
+559	NONRIGID	3	49	1.452e+40	[77/15, 297/14, 22/3, 5/11, 9/2]	L:georec(4, 1) v2:irr v3:const0 v5:const0 v7:const0 v11:georec(4, 2)
+560	NONRIGID	3	52	7.481e+13	[77/15, 3/1078, 25/11, 2/5, 99/2]	L:irr v2:const0 v3:const0 v5:irr v7:irr v11:const0
+561	NONRIGID	3	49	1.155e+13	[77/15, 4/21, 9/22, 35/2, 6/5]	L:irr v2:irr v3:const0 v5:const0 v7:irr v11:const0
+562	NONRIGID	3	49	1.155e+13	[77/15, 4/21, 9/22, 5/2, 42/5]	L:irr v2:irr v3:const0 v5:const0 v7:const0 v11:const0
+563	NONRIGID	3	66	4.820e+04	[77/15, 4/3, 3/154, 35/2, 99/5]	L:irr v2:irr v3:const0 v5:const0 v7:irr v11:const0
+564	NONRIGID	3	53	5.675e+13	[77/15, 9/1078, 25/11, 2/5, 33/2]	L:irr v2:const0 v3:const0 v5:irr v7:irr v11:const0
+565	NONRIGID	3	62	7.967e+30	[77/15, 9/14, 1375/7, 2/11, 49/2]	L:irr v2:irr v3:irr v5:irr v7:const0 v11:irr
+566	NONRIGID	3	66	1.208e+24	[77/15, 9/14, 25/7, 2/11, 189/2]	L:irr v2:irr v3:irr v5:irr v7:const0 v11:irr
+567	NONRIGID	3	43	7.494e+18	[77/15, 9/28, 88/3, 5/11, 3/2]	L:georec(2, 2) v2:irr v3:const0 v5:const0 v7:const0 v11:georec(2, 1)
+568	NONRIGID	3	49	1.377e+21	[77/15, 9/91, 250/7, 13/11, 15/2]	L:georec(2, 2) v2:irr v3:const0 v5:irr v7:const0 v11:georec(2, 1) v13:const0
+569	NONRIGID	3	52	1.889e+22	[77/15, 9/91, 250/7, 13/11, 77/2]	L:georec(2, 3) v2:irr v3:const0 v5:irr v7:const0 v11:georec(2, 1) v13:const0
+570	GEO	2	90	1.595e+37	[77/30, 88/21, 9/2, 5/11, 7/3]	L:georec(2, 0) v2:georec(2, -1) v3:arith2 v5:const0 v7:const0 v11:georec(2, 1)
+571	NONRIGID	3	60	1.552e+39	[77/30, 91/2, 8/143, 15/7, 11/3]	L:georec(3, -2) v2:const0 v3:const0 v5:arith1 v7:georec(3, 0) v11:const0 v13:irr
+572	NONRIGID	0	113	1.040e+11	[8/105, 1/66, 55/2, 3/5, 28/11]	L:irr v2:irr v3:const1 v5:irr v7:irr v11:irr
+573	NONRIGID	3	44	1.345e+04	[8/15, 1/1078, 21/2, 77/3, 10/7]	L:irr v2:const0 v3:irr v5:const0 v7:irr v11:const0
+574	GEO	2	97	1.089e+40	[8/15, 147/22, 35/2, 11/49, 3/7]	L:georec(2, 0) v2:georec(2, -1) v3:const0 v5:arith1 v7:georec(2, 2) v11:const0
+575	NONRIGID	3	44	9.326e+28	[8/15, 3/14, 275/2, 7/5, 10/77]	L:irr v2:const0 v3:const0 v5:georec(3, 0) v7:const0 v11:irr
+576	NONRIGID	3	69	1.783e+29	[8/15, 3/14, 55/2, 7/5, 12/77]	L:georec(2, 10) v2:const0 v3:const0 v5:georec(2, 2) v7:const0 v11:irr
+577	NONRIGID	3	36	1.814e+09	[8/15, 3/14, 55/2, 7/5, 250/11]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:irr
+578	NONRIGID	3	39	2.442e+07	[8/15, 3/14, 55/2, 7/5, 50/77]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:irr
+579	NONRIGID	3	43	3.125e+13	[8/15, 3/154, 35/2, 11/5, 20/7]	L:irr v2:const0 v3:const0 v5:irr v7:irr v11:const0
+580	NONRIGID	3	41	7.449e+13	[8/15, 3/154, 35/2, 11/5, 75/7]	L:irr v2:const0 v3:const0 v5:irr v7:irr v11:const0
+581	NONRIGID	3	60	1.219e+39	[8/15, 33/14, 55/2, 49/121, 3/11]	L:georec(3, -1) v2:const0 v3:const0 v5:irr v7:const0 v11:georec(3, 0)
+582	NONRIGID	3	60	1.219e+39	[8/15, 33/98, 55/2, 49/11, 3/7]	L:irr v2:const0 v3:const0 v5:irr v7:irr v11:irr
+583	NONRIGID	3	37	1.009e+40	[8/15, 99/14, 275/2, 7/11, 3/7]	L:georec(6, -12) v2:const0 v3:const0 v5:irr v7:const0 v11:georec(6, -3)
+584	NONRIGID	2	103	1.086e+40	[8/45, 1617/2, 1/363, 5/7, 2/11]	L:irr v2:const0 v3:irr v5:irr v7:irr v11:irr
+585	NONRIGID	3	53	1.120e+40	[81/35, 1/33, 25/3, 22/25, 21/2]	L:irr v2:irr v3:const0 v5:irr v7:const0 v11:const0
+586	NONRIGID	3	47	1.338e+21	[9/10, 1/12, 14/3, 121/2, 5/7, 3/11]	L:irr v2:irr v3:const0 v5:const0 v7:irr v11:irr
+587	NONRIGID	3	47	1.541e+10	[9/10, 1/12, 28/3, 11/2, 5/7, 3/11]	L:irr v2:irr v3:const0 v5:const0 v7:irr v11:irr
+588	NONRIGID	2	58	1.233e+10	[9/10, 1/12, 7/2, 44/3, 5/11, 3/7]	L:irr v2:irr v3:irr v5:const0 v7:irr v11:irr
+589	NONRIGID	3	55	1.199e+19	[9/10, 1/126, 22/3, 7/2, 5/11, 3/7]	L:irr v2:irr v3:const0 v5:const0 v7:irr v11:irr
+590	NONRIGID	0	85	3.005e+11	[9/10, 1/147, 4/33, 539/2, 15/7]	L:irr v2:const2 v3:irr v5:irr v7:const1 v11:irr
+591	NONRIGID	3	48	8.021e+12	[9/10, 1/18, 14/3, 121/2, 5/7, 3/11]	L:irr v2:irr v3:const0 v5:const0 v7:irr v11:irr
+592	NONRIGID	4	64	2.076e+12	[9/10, 1/18, 49/2, 22/3, 5/11, 3/7]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:irr
+593	NONRIGID	4	41	1.376e+04	[9/10, 1/21, 11/2, 4/3, 245/11, 2/7]	L:irr v2:const0 v3:const0 v5:const0 v7:const0 v11:irr
+594	NONRIGID	3	49	1.932e+04	[9/10, 1/21, 4/3, 11/2, 245/11, 2/7]	L:irr v2:irr v3:const0 v5:const0 v7:const0 v11:const0
+595	NONRIGID	3	62	3.869e+26	[9/10, 1/21, 4/3, 539/2, 45/77]	L:irr v2:irr v3:const0 v5:const0 v7:const0 v11:irr
+596	NONRIGID	3	49	1.932e+04	[9/10, 1/21, 4/3, 539/2, 5/11, 2/7]	L:irr v2:irr v3:const0 v5:const0 v7:const0 v11:const0
+597	NONRIGID	3	52	1.968e+22	[9/10, 1/21, 4/3, 539/2, 50/77]	L:irr v2:irr v3:const0 v5:const0 v7:const0 v11:irr
+598	NONRIGID	3	49	1.932e+04	[9/10, 1/21, 4/3, 77/2, 35/11, 2/7]	L:irr v2:irr v3:const0 v5:const0 v7:const0 v11:const0
+599	NONRIGID	3	53	5.122e+22	[9/10, 1/24, 14/3, 11/2, 5/7, 3/11]	L:irr v2:irr v3:const0 v5:const0 v7:irr v11:irr
+600	NONRIGID	3	53	5.522e+20	[9/10, 1/42, 22/3, 49/2, 5/11, 3/7]	L:irr v2:irr v3:const0 v5:const0 v7:irr v11:irr
+601	NONRIGID	3	34	4.632e+17	[9/10, 1/6, 14/3, 1331/2, 5/7, 3/11]	L:irr v2:const1 v3:const0 v5:const0 v7:irr v11:irr
+602	NONRIGID	2	34	4.632e+17	[9/10, 1/6, 343/2, 22/3, 5/11, 3/7]	L:irr v2:const1 v3:const0 v5:const0 v7:irr v11:irr
+603	NONRIGID	3	52	8.087e+23	[9/10, 1/84, 22/3, 7/2, 5/11, 3/7]	L:irr v2:irr v3:const0 v5:const0 v7:irr v11:irr
+604	NONRIGID	3	33	1.600e+40	[9/10, 196/33, 121/2, 25/7, 3/11]	L:georec(8, -2) v2:const0 v3:const0 v5:const0 v7:georec(8, 2) v11:irr
+605	NONRIGID	3	58	9.671e+24	[9/10, 22/21, 2401/2, 5/11, 3/49]	L:georec(2, 2) v2:const0 v3:const0 v5:const0 v7:irr v11:georec(2, 1)
+606	NONRIGID	3	65	1.021e+33	[9/10, 22/21, 3773/2, 5/11, 4/5]	L:irr v2:const0 v3:irr v5:irr v7:irr v11:irr
+607	NONRIGID	3	64	1.857e+27	[9/10, 22/21, 4459/2, 5/11, 15/13]	L:georec(2, 8) v2:const0 v3:const0 v5:const0 v7:georec(2, 0) v11:georec(2, 3) v13:irr
+608	NONRIGID	3	60	1.934e+25	[9/10, 22/21, 4459/2, 5/11, 3/91]	L:georec(2, 2) v2:const0 v3:const0 v5:const0 v7:georec(2, -2) v11:georec(2, 1) v13:irr
+609	NONRIGID	3	64	1.444e+27	[9/10, 22/21, 4459/2, 5/11, 33/13]	L:georec(2, 7) v2:const0 v3:const0 v5:const0 v7:georec(2, -1) v11:georec(2, 2) v13:irr
+610	NONRIGID	3	32	1.156e+40	[9/10, 275/21, 44/3, 49/11, 3/2]	L:georec(8, -1) v2:irr v3:const0 v5:const0 v7:const0 v11:georec(8, 1)
+611	NONRIGID	3	35	1.020e+40	[9/10, 275/21, 484/3, 7/11, 3/2]	L:georec(7, 2) v2:irr v3:const0 v5:const0 v7:const0 v11:georec(7, 2)
+612	NONRIGID	3	77	9.787e+37	[9/10, 3773/2, 22/21, 5/11, 4/5]	L:irr v2:const0 v3:irr v5:irr v7:irr v11:irr
+613	NONRIGID	3	77	9.672e+37	[9/10, 3773/5, 55/21, 2/11, 25/2]	L:irr v2:irr v3:irr v5:const0 v7:irr v11:irr
+614	NONRIGID	3	41	1.570e+27	[9/10, 4/147, 3773/2, 5/11, 3/7]	L:georec(3, 6) v2:const0 v3:const0 v5:const0 v7:irr v11:georec(3, 2)
+615	NONRIGID	3	69	1.386e+29	[9/10, 4/21, 77/2, 5/7, 18/55]	L:georec(2, 7) v2:const0 v3:const0 v5:const0 v7:georec(2, 1) v11:irr
+616	NONRIGID	3	47	8.757e+12	[9/10, 4/21, 77/2, 5/7, 42/55]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:irr
+617	NONRIGID	3	67	3.203e+17	[9/10, 4/21, 77/2, 5/7, 8/55]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:irr
+618	NONRIGID	3	37	1.955e+08	[9/10, 4/21, 77/2, 5/7, 98/55]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:irr
+619	NONRIGID	3	32	1.244e+40	[9/10, 44/21, 5929/2, 5/11, 2/7]	L:georec(8, 0) v2:const0 v3:const0 v5:const0 v7:irr v11:georec(8, 2)
+620	NONRIGID	4	32	1.711e+40	[9/10, 44/21, 5929/2, 5/11, 3/5]	L:georec(8, -7) v2:const0 v3:const0 v5:georec(8, -3) v7:irr v11:const0
+621	NONRIGID	3	33	2.311e+40	[9/10, 49/2, 484/21, 25/11, 3/7]	L:georec(8, -2) v2:const0 v3:const0 v5:const0 v7:irr v11:georec(8, 2)
+622	NONRIGID	3	79	4.680e+28	[9/10, 49/5, 55/21, 2/11, 135/2]	L:irr v2:irr v3:irr v5:const0 v7:irr v11:irr
+623	GEO	3	65	1.547e+27	[9/10, 5/21, 343/55, 2/7, 605/2]	L:georec(2, 5) v2:const0 v3:const0 v5:const0 v7:georec(2, 1) v11:arith1
+624	NONRIGID	3	49	1.186e+40	[9/10, 5/21, 4/3, 539/2, 10/77]	L:irr v2:irr v3:const0 v5:const0 v7:const0 v11:irr
+625	NONRIGID	3	49	1.016e+40	[9/10, 5/21, 4/3, 539/2, 9/77]	L:irr v2:irr v3:const0 v5:const0 v7:const0 v11:irr
+626	NONRIGID	3	40	1.532e+11	[9/10, 5/21, 4/33, 77/2, 6/7]	L:irr v2:irr v3:const0 v5:const0 v7:const0 v11:const0
+627	NONRIGID	3	40	1.532e+11	[9/10, 5/21, 4/33, 77/2, 66/7]	L:irr v2:irr v3:const0 v5:const0 v7:const0 v11:irr
+628	NONRIGID	3	40	1.532e+11	[9/10, 5/21, 4/33, 847/2, 6/7]	L:irr v2:irr v3:const0 v5:const0 v7:const0 v11:irr
+629	NONRIGID	3	33	1.933e+07	[9/10, 5/231, 14/3, 1331/2, 6/11]	L:irr v2:irr v3:const0 v5:const0 v7:irr v11:const0
+630	NONRIGID	3	65	1.009e+33	[9/10, 55/21, 3773/5, 2/11, 25/2]	L:irr v2:irr v3:irr v5:const0 v7:irr v11:irr
+631	NONRIGID	3	71	6.190e+25	[9/10, 55/21, 49/5, 2/11, 135/2]	L:irr v2:irr v3:irr v5:const0 v7:irr v11:irr
+632	NONRIGID	3	32	1.244e+40	[9/10, 5929/2, 44/21, 5/11, 2/7]	L:georec(8, 0) v2:const0 v3:const0 v5:const0 v7:irr v11:georec(8, 2)
+633	NONRIGID	3	33	1.711e+40	[9/10, 5929/2, 44/21, 5/11, 3/5]	L:georec(8, -7) v2:const0 v3:const0 v5:const0 v7:irr v11:georec(8, -3)
+634	NONRIGID	4	41	1.376e+04	[9/10, 7/2, 1/33, 4/3, 605/7, 2/11]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:const0
+635	NONRIGID	3	69	9.904e+28	[9/10, 77/2, 4/21, 5/7, 18/55]	L:georec(2, 7) v2:const0 v3:const0 v5:const0 v7:georec(2, 1) v11:irr
+636	NONRIGID	3	48	1.427e+13	[9/10, 77/2, 4/21, 5/7, 42/55]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:irr
+637	NONRIGID	3	67	3.203e+17	[9/10, 77/2, 4/21, 5/7, 8/55]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:irr
+638	NONRIGID	3	38	2.781e+08	[9/10, 77/2, 4/21, 5/7, 98/55]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:irr
+639	NONRIGID	3	55	3.523e+04	[9/2, 1/105, 4/15, 77/3, 5/11, 2/7]	L:irr v2:const0 v3:irr v5:const0 v7:const0 v11:const0
+640	NONRIGID	3	46	5.995e+19	[9/20, 55/21, 88/3, 7/11, 3/2]	L:georec(2, 2) v2:irr v3:const0 v5:const0 v7:const0 v11:georec(2, 1)
+641	NONRIGID	3	35	4.632e+17	[9/35, 1/15, 55/3, 8/5, 7/11, 3/2]	L:irr v2:irr v3:const0 v5:const1 v7:const0 v11:irr
+642	NONRIGID	2	35	4.632e+17	[9/35, 1/15, 8/5, 55/3, 7/11, 3/2]	L:irr v2:irr v3:const0 v5:const1 v7:const0 v11:irr
+643	NONRIGID	3	51	1.062e+24	[9/35, 1/150, 55/3, 2/5, 7/11, 3/2]	L:irr v2:irr v3:const0 v5:irr v7:const0 v11:irr
+644	NONRIGID	4	41	1.376e+04	[9/35, 1/33, 2/5, 25/3, 847/2, 5/11]	L:irr v2:irr v3:const0 v5:const0 v7:const0 v11:const0
+645	NONRIGID	3	49	1.932e+04	[9/35, 1/33, 25/3, 2/5, 847/2, 5/11]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:const0
+646	NONRIGID	3	48	1.958e+04	[9/35, 1/33, 25/3, 22/5, 77/2, 5/11]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:const0
+647	NONRIGID	3	53	5.122e+22	[9/35, 1/375, 55/3, 2/5, 7/11, 3/2]	L:irr v2:irr v3:const0 v5:irr v7:const0 v11:irr
+648	NONRIGID	3	68	1.691e+14	[9/35, 1/429, 50/3, 11/25, 273/2]	L:irr v2:irr v3:const0 v5:irr v7:const0 v11:irr v13:irr
+649	NONRIGID	4	63	2.076e+12	[9/35, 1/45, 4/5, 55/3, 7/11, 3/2]	L:irr v2:irr v3:const0 v5:const0 v7:const0 v11:irr
+650	NONRIGID	3	48	8.021e+12	[9/35, 1/45, 55/3, 4/5, 7/11, 3/2]	L:irr v2:irr v3:const0 v5:irr v7:const0 v11:irr
+651	NONRIGID	4	41	1.376e+04	[9/35, 1/6, 11/5, 25/3, 28/11, 5/2]	L:irr v2:const0 v3:const0 v5:const0 v7:const0 v11:irr
+652	NONRIGID	3	49	1.932e+04	[9/35, 1/6, 25/3, 11/5, 28/11, 5/2]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:const0
+653	NONRIGID	3	49	1.932e+04	[9/35, 1/6, 25/3, 22/5, 14/11, 5/2]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:const0
+654	NONRIGID	3	49	1.932e+04	[9/35, 1/6, 25/3, 44/5, 7/11, 5/2]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:const0
+655	NONRIGID	2	58	1.233e+10	[9/35, 1/75, 2/5, 275/3, 7/11, 3/2]	L:irr v2:irr v3:irr v5:irr v7:const0 v11:irr
+656	NONRIGID	3	47	1.541e+10	[9/35, 1/75, 275/3, 2/5, 7/11, 3/2]	L:irr v2:irr v3:const0 v5:irr v7:const0 v11:irr
+657	NONRIGID	3	47	1.338e+21	[9/35, 1/75, 55/3, 4/5, 7/11, 3/2]	L:irr v2:irr v3:const0 v5:irr v7:const0 v11:irr
+658	NONRIGID	3	55	1.199e+19	[9/35, 1/90, 55/3, 2/5, 7/11, 3/2]	L:irr v2:irr v3:const0 v5:irr v7:const0 v11:irr
+659	NONRIGID	3	71	6.190e+25	[9/35, 10/33, 121/5, 7/2, 135/7]	L:irr v2:irr v3:irr v5:const0 v7:irr v11:irr
+660	NONRIGID	3	68	1.058e+40	[9/35, 10/33, 1331/5, 49/2, 25/7]	L:irr v2:irr v3:irr v5:const0 v7:irr v11:irr
+661	NONRIGID	3	66	7.335e+32	[9/35, 10/33, 2662/5, 7/2, 25/7]	L:irr v2:irr v3:irr v5:const0 v7:irr v11:irr
+662	NONRIGID	4	41	1.376e+04	[9/35, 11/5, 1/6, 25/3, 28/11, 5/2]	L:irr v2:const0 v3:const0 v5:const0 v7:const0 v11:irr
+663	NONRIGID	3	38	1.293e+40	[9/35, 11/5, 250/33, 343/2, 5/7]	L:georec(6, -20) v2:georec(6, -2) v3:const0 v5:const0 v7:const0 v11:irr
+664	NONRIGID	3	79	4.680e+28	[9/35, 121/5, 10/33, 7/2, 135/7]	L:irr v2:irr v3:irr v5:const0 v7:irr v11:irr
+665	NONRIGID	3	38	1.203e+40	[9/35, 121/5, 50/33, 343/2, 5/7]	L:georec(6, -18) v2:georec(6, -2) v3:const0 v5:const0 v7:const0 v11:irr
+666	NONRIGID	3	69	1.058e+40	[9/35, 1331/5, 10/33, 49/2, 25/7]	L:irr v2:irr v3:irr v5:const0 v7:irr v11:irr
+667	NONRIGID	4	41	1.376e+04	[9/35, 2/5, 1/33, 25/3, 847/2, 5/11]	L:irr v2:irr v3:const0 v5:const0 v7:const0 v11:const0
+668	NONRIGID	3	62	1.006e+34	[9/35, 22/5, 275/6, 7/121, 15/2]	L:irr v2:irr v3:const0 v5:const0 v7:const0 v11:irr
+669	NONRIGID	3	77	9.672e+37	[9/35, 2662/5, 10/33, 7/2, 25/7]	L:irr v2:irr v3:irr v5:const0 v7:irr v11:irr
+670	NONRIGID	3	60	3.385e+25	[9/35, 325/33, 14/3, 121/13, 39/2]	L:georec(2, 11) v2:irr v3:const0 v5:const0 v7:irr v11:const0 v13:georec(2, 1)
+671	NONRIGID	3	32	1.244e+40	[9/35, 484/5, 275/6, 7/11, 5/2]	L:georec(8, 0) v2:irr v3:const0 v5:const0 v7:const0 v11:georec(8, 2)
+672	NONRIGID	3	40	1.532e+11	[9/35, 5/6, 49/33, 22/7, 231/2]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:irr
+673	GEO	3	65	1.547e+27	[9/35, 5/6, 8/55, 7/2, 605/7]	L:georec(2, 5) v2:georec(2, 1) v3:const0 v5:const0 v7:const0 v11:arith1
+674	NONRIGID	3	33	1.933e+07	[9/35, 5/66, 77/3, 8/7, 21/2]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:irr
+675	NONRIGID	3	62	3.046e+26	[9/385, 1/6, 25/3, 28/5, 99/2]	L:irr v2:const0 v3:const0 v5:irr v7:irr v11:const0
+676	NONRIGID	3	55	3.523e+04	[9/5, 1/42, 25/21, 22/3, 7/11, 5/2]	L:irr v2:const0 v3:irr v5:const0 v7:const0 v11:const0
+677	NONRIGID	3	62	3.869e+26	[9/70, 1/33, 4/3, 605/2, 63/11]	L:irr v2:irr v3:const0 v5:irr v7:const0 v11:const0
+678	GEO	3	47	1.845e+20	[9/70, 25/2, 44/15, 7/55, 3/5]	L:georec(2, 3) v2:const0 v3:const0 v5:georec(2, 0) v7:const0 v11:georec(2, 1)
+679	NONRIGID	4	42	1.916e+14	[9/70, 4/165, 539/2, 5/7, 3/5]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:irr
+680	GEO	4	42	4.612e+18	[9/70, 44/15, 25/2, 7/55, 3/5]	L:georec(2, 3) v2:const0 v3:const0 v5:georec(2, -1) v7:georec(2, 1) v11:const0
+681	NONRIGID	4	91	2.987e+22	[9/70, 44/5, 25/21, 7/11, 35/2]	L:irr v2:irr v3:irr v5:const0 v7:irr v11:const0
+682	NONRIGID	3	58	1.150e+38	[99/35, 1/6, 275/3, 2/55, 147/2]	L:irr v2:const0 v3:const0 v5:irr v7:const0 v11:irr
+683	NONRIGID	3	49	1.452e+40	[99/35, 125/22, 6/5, 7/3, 25/2]	L:georec(4, 1) v2:irr v3:georec(4, 2) v5:const0 v7:const0 v11:const0
+684	NONRIGID	4	37	1.086e+40	[99/35, 22/5, 125/6, 7/11, 15/2]	L:georec(6, 6) v2:irr v3:const0 v5:const0 v7:georec(6, 4) v11:const0
+685	NONRIGID	3	60	3.869e+25	[99/35, 25/39, 14/3, 13/11, 363/2]	L:georec(2, 12) v2:irr v3:const0 v5:const0 v7:irr v11:georec(2, 2) v13:const0
+686	NONRIGID	3	56	4.790e+36	[99/35, 275/39, 14/3, 13/11, 15/2]	L:georec(3, -3) v2:irr v3:const0 v5:const0 v7:irr v11:georec(3, 1) v13:const0
+687	NONRIGID	3	60	1.330e+39	[99/35, 275/39, 14/3, 13/11, 33/2]	L:georec(3, 3) v2:irr v3:const0 v5:const0 v7:irr v11:georec(3, 1) v13:const0
+688	NONRIGID	3	32	1.156e+40	[99/35, 44/5, 25/6, 49/11, 5/2]	L:georec(8, -1) v2:irr v3:const0 v5:const0 v7:const0 v11:georec(8, 1)
+689	NONRIGID	3	35	1.427e+40	[99/35, 484/5, 25/6, 7/11, 5/2]	L:georec(7, 2) v2:irr v3:const0 v5:const0 v7:const0 v11:georec(7, 2)
+690	POLY	4	60	1.378e+04	[99/35, 5/6, 7/3, 2/11, 5/7, 15/2]	L:arith4 v2:arith1 v3:const0 v5:const0 v7:const64 v11:const0
+691	NONRIGID	3	62	1.397e+40	[99/35, 5/6, 7/3, 8/77, 15/2]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:georec(3, 0)
+692	NONRIGID	3	42	3.446e+11	[99/35, 5/66, 7/3, 4/7, 105/2]	L:irr v2:const0 v3:const0 v5:const0 v7:irr v11:irr
+693	NONRIGID	3	49	1.210e+40	[99/35, 78/5, 125/143, 7/3, 5/2]	L:georec(4, -1) v2:irr v3:georec(4, 1) v5:const0 v7:const0 v11:const0 v13:irr

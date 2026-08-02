@@ -1,0 +1,41 @@
+STEP 1 -- WHICH LEADS SHARE T2's MODULUS
+--------------------------------------------------------------------------
+machine          A_v              ord_{A_v}(2), v = 1..6   status
+(2, -1, 2, 1, 1) 2^(v+2) - 1      [3, 4, 5, 6, 7, 8]       T2, proved earlier
+(2, -1, 2, 2, 1) 2^(v+2) - 1      [3, 4, 5, 6, 7, 8]       T4, proved here
+(2, -1, 3, 0, 0) 2^(v+2) - 1      [3, 4, 5, 6, 7, 8]       T5, proved here
+(2, -1, 3, 1, 0) 2^(v+2) - 1      [3, 4, 5, 6, 7, 8]       T6, proved here
+(2, 1, 1, 2, -1) 2^(v+2) + 1      [6, 8, 10, 12, 14, 16]   still open
+(3, 3, 2, 0, 1)  3(2^(v+1) + 1)   [4, 18, 8, 30, 12, 42]   still open
+
+machines with T2's modulus: 4 of 6
+
+STEP 2 -- LEMMA:  S_v = 2 B_v  (mod A_v)  when alpha = 2, beta = -1
+--------------------------------------------------------------------------
+  45 machines, 18045 branches tested (v = 0..400)
+  mismatches: 0  ->  lemma holds
+
+STEP 3 -- THE DERIVED CLOSED FORMS, AND WHETHER EVERY BRANCH IS FORBIDDEN
+--------------------------------------------------------------------------
+machine          S_v (derived)        derivation   branches not forbidden
+(2, -1, 2, 1, 1) 2v + 3               OK           none (401 tested)
+(2, -1, 2, 2, 1) 4v + 3               OK           none (401 tested)
+(2, -1, 3, 0, 0) 2^(v+1) + 1          OK           none (401 tested)
+(2, -1, 3, 1, 0) 2^(v+1) + 2v + 1     OK           none (401 tested)
+
+STEP 4 -- BRUTE FORCE AGAINST THE THEOREMS
+--------------------------------------------------------------------------
+  claim: no orbit reaches a power of two after >= 1 step
+  (starts that ARE powers of two halt at step 0 and are excluded)
+  T1  (1, 1, 2, 0, 1)  starts 2..19999, 400 steps: halts = 0
+  T2  (2, -1, 2, 1, 1) starts 2..19999, 400 steps: halts = 0
+  T4  (2, -1, 2, 2, 1) starts 2..19999, 400 steps: halts = 0
+  T5  (2, -1, 3, 0, 0) starts 2..19999, 400 steps: halts = 0
+  T6  (2, -1, 3, 1, 0) starts 2..19999, 400 steps: halts = 0
+  total counterexamples: 0
+
+==========================================================================
+RESULT: lemma verified; T4, T5, T6 proved -- three of the five
+leads are now claimed, on a derivation and not on a range check.
+Still open: (2,1,1,2,-1) and (3,3,2,0,1) -- their modulus has no
+listable power-of-two set, so this argument has nothing to stand on.

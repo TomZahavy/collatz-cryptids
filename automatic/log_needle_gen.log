@@ -1,0 +1,8 @@
+machine=needle  branches v=0..1  convention=minimal words (general)
+  n= 6  vars=   10,356  clauses=   379,363  UNSAT (no certificate)         0.4s
+  n= 7  vars=   14,476  clauses=   770,707  UNSAT (no certificate)         2.8s
+  n= 8  vars=   19,664  clauses= 1,441,511  UNSAT (no certificate)        18.4s
+  n= 9  vars=   26,064  clauses= 2,522,209  UNSAT (no certificate)       101.7s
+  n=10  vars=   33,820  clauses= 4,178,899  UNSAT (no certificate)      1041.1s
+  n=11  vars=   43,076  clauses= 6,617,663  UNSAT (no certificate)     16538.3s
+  no certificate at any size tested.

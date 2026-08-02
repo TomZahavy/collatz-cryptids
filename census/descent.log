@@ -1,0 +1,39 @@
+STEP 1 -- THE CHAIN DESCENDS STRICTLY AND TERMINATES
+------------------------------------------------------------------------
+  odd g in 3..5999: ord_g(2) < g and gcd(ord_g(2), g) < g
+  violations: 0
+  longest descent chain: 7
+
+STEP 2 -- THE LEMMA: one-step image = Z_M, with NO ord condition
+------------------------------------------------------------------------
+  2500 (machine, odd M, c) instances with gcd(delta,M) = 1
+  of those, 708 have gcd(ord_M(2), M) > 1 -- the cases (iii) excluded
+  one-step image NOT all of Z_M: 0
+
+STEP 3 -- THE REMAINING HYPOTHESIS: 2-adic reach, at even M
+------------------------------------------------------------------------
+  beta-odd machines x even moduli: 8512 cases
+  2-adic reach FAILED: 0
+  (verified, not proved -- and it is the last hypothesis standing)
+
+STEP 4 -- THE HEADLINE: no modulus separates the Space Needle
+------------------------------------------------------------------------
+  every modulus 2..400: closure not all of Z_M in 0 cases
+  moduli that separate: 0
+  beta = 3 odd, delta = 1 => gcd(delta, M') = 1 at every M, so the
+  final forms of T12 and T14 apply at EVERY modulus, with no bound.
+
+STEP 5 -- FALSIFIER: no certificate may rely on (iii) alone
+------------------------------------------------------------------------
+  318 separating certificates
+    fail (i) beta even:              267
+    fail (ii) gcd(delta, M') > 1:    51
+    fail (iv) no 2-adic reach:       0
+    explained only by (iii) -- WOULD REFUTE: 0
+
+========================================================================
+RESULT: the descent closes and hypothesis (iii) is gone. T12 and
+T14 hold with gcd(delta, M') = 1 alone (plus beta odd and 2-adic
+reach at even M). COROLLARY: no modulus separates the Space
+Needle -- the arithmetic side is closed; one reachability
+hypothesis remains, and it is verified rather than proved.

@@ -1,0 +1,7 @@
+start-free search: nonempty 2-automatic I with F(I) subset I, I cap H = empty;  branches v = 0..4
+n= 1  structures=        1  NONE (impossibility proved)           0.0s
+n= 2  structures=       12  NONE (impossibility proved)           0.0s
+n= 3  structures=      216  NONE (impossibility proved)           0.0s
+n= 4  structures=    5,248  NONE (impossibility proved)           0.3s
+n= 5  structures=  160,675  NONE (impossibility proved)          15.1s
+n= 6  structures=5,931,540  NONE (impossibility proved)         837.8s

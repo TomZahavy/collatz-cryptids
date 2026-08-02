@@ -1,0 +1,256 @@
+======================================================================
+STEP 1  the congruence criterion  y = 2^v + v (mod 2^{v+1}+3)
+  disagreements with density.preimages for 3 <= y < 60000: 0
+  ceiling c = sum 1/A(v) = 0.545280
+
+======================================================================
+STEP 2  predicted branching off a POWER OF 2 (roots of the tree)
+      v    A(v)   c(v) mod A   ord_A(2)     density   vs 1/A(v)
+      0       5            1          4    0.250000   0.200000
+      1       7            3          3    0.000000   0.142857   IMPOSSIBLE
+      2      11            6         10    0.100000   0.090909
+      3      19           11         18    0.055556   0.052632
+      4      35           20         12    0.000000   0.028571   IMPOSSIBLE
+      5      67           37         66    0.015152   0.014925
+      6     131           70        130    0.007692   0.007634
+      7     259          135         36    0.000000   0.003861   IMPOSSIBLE
+      8     515          264        204    0.004902   0.001942
+      9    1027          521        156    0.000000   0.000974   IMPOSSIBLE
+     10    2051         1034        876    0.000000   0.000488   IMPOSSIBLE
+     11    4099         2059       4098    0.000244   0.000244
+  v < 20 subtotal: powers-of-2 density 0.4336   interval model 0.5453
+  measured E[d(2^M)], M <   400: 0.4350
+  measured E[d(2^M)], M <  1600: 0.4344
+  measured E[d(2^M)], M <  3200: 0.4344
+  interval ceiling (all v) = 0.5453
+
+======================================================================
+STEP 3  measured tree, by depth
+
+NEEDLE cap 10^240: 798 seeds, 1403 nodes, interval ceiling 0.5453
+  pooled 1 - seeds/nodes = 0.4312
+  depth   nodes   children   mean offspring
+      0     798        346           0.4336
+      1     346        128           0.3699
+      2     128         51           0.3984
+      3      51         29           0.5686
+      4      29         23           0.7931
+      5      23         13           0.5652
+      6      13          8           0.6154
+      7       8          5           0.6250
+      8       5          2           0.4000
+      9       2          0           0.0000
+  depth >= 1 pooled: 259/605 = 0.4281   (vs ceiling 0.5453)
+
+NEEDLE cap 10^480: 1595 seeds, 2811 nodes, interval ceiling 0.5453
+  pooled 1 - seeds/nodes = 0.4326
+  depth   nodes   children   mean offspring
+      0    1595        691           0.4332
+      1     691        256           0.3705
+      2     256        106           0.4141
+      3     106         60           0.5660
+      4      60         44           0.7333
+      5      44         24           0.5455
+      6      24         14           0.5833
+      7      14         13           0.9286
+      8      13          7           0.5385
+      9       7          1           0.1429
+     10       1          0           0.0000
+  depth >= 1 pooled: 525/1216 = 0.4317   (vs ceiling 0.5453)
+
+NEEDLE cap 10^960: 3190 seeds, 5633 nodes, interval ceiling 0.5453
+  pooled 1 - seeds/nodes = 0.4337
+  depth   nodes   children   mean offspring
+      0    3190       1384           0.4339
+      1    1384        512           0.3699
+      2     512        216           0.4219
+      3     216        123           0.5694
+      4     123         94           0.7642
+      5      94         51           0.5426
+      6      51         27           0.5294
+      7      27         17           0.6296
+      8      17         10           0.5882
+      9      10          6           0.6000
+     10       6          2           0.3333
+     11       2          1           0.5000
+     12       1          0           0.0000
+  depth >= 1 pooled: 1059/2443 = 0.4335   (vs ceiling 0.5453)
+
+MACHINE 3 cap 3^200: 66 seeds, 164 nodes, interval ceiling 0.8081
+  pooled 1 - seeds/nodes = 0.5976
+  depth   nodes   children   mean offspring
+      0      66         33           0.5000
+      1      33         13           0.3939
+      2      13          8           0.6154
+      3       8          8           1.0000
+      4       8          7           0.8750
+      5       7          5           0.7143
+      6       5          5           1.0000
+      7       5          3           0.6000
+      8       3          3           1.0000
+      9       3          3           1.0000
+     10       3          4           1.3333
+     11       4          2           0.5000
+     12       2          2           1.0000
+     13       2          2           1.0000
+     14       2          0           0.0000
+  depth >= 1 pooled: 65/98 = 0.6633   (vs ceiling 0.8081)
+
+MACHINE 3 cap 3^400: 133 seeds, 308 nodes, interval ceiling 0.8081
+  pooled 1 - seeds/nodes = 0.5682
+  depth   nodes   children   mean offspring
+      0     133         67           0.5038
+      1      67         26           0.3881
+      2      26         17           0.6538
+      3      17         16           0.9412
+      4      16         12           0.7500
+      5      12          8           0.6667
+      6       8          7           0.8750
+      7       7          4           0.5714
+      8       4          4           1.0000
+      9       4          4           1.0000
+     10       4          4           1.0000
+     11       4          2           0.5000
+     12       2          2           1.0000
+     13       2          2           1.0000
+     14       2          0           0.0000
+  depth >= 1 pooled: 108/175 = 0.6171   (vs ceiling 0.8081)
+
+MACHINE 3 cap 3^800: 266 seeds, 609 nodes, interval ceiling 0.8081
+  pooled 1 - seeds/nodes = 0.5632
+  depth   nodes   children   mean offspring
+      0     266        133           0.5000
+      1     133         53           0.3985
+      2      53         36           0.6792
+      3      36         29           0.8056
+      4      29         21           0.7241
+      5      21         12           0.5714
+      6      12         10           0.8333
+      7      10          7           0.7000
+      8       7          7           1.0000
+      9       7          6           0.8571
+     10       6          6           1.0000
+     11       6          4           0.6667
+     12       4          4           1.0000
+     13       4          3           0.7500
+     14       3          1           0.3333
+     15       1          1           1.0000
+     16       1          1           1.0000
+     17       1          2           2.0000
+     18       2          1           0.5000
+     19       1          1           1.0000
+     20       1          1           1.0000
+     21       1          1           1.0000
+     22       1          1           1.0000
+     23       1          1           1.0000
+     24       1          1           1.0000
+     25       1          0           0.0000
+  depth >= 1 pooled: 210/343 = 0.6122   (vs ceiling 0.8081)
+
+======================================================================
+STEP 4  CONTROL: identical trees rooted at GENERIC integers
+
+RANDOM roots, 800 bits: 1600 seeds, 3377 nodes, interval ceiling 0.5453
+  pooled 1 - seeds/nodes = 0.5262
+  depth   nodes   children   mean offspring
+      0    1600        852           0.5325
+      1     852        452           0.5305
+      2     452        249           0.5509
+      3     249        119           0.4779
+      4     119         54           0.4538
+      5      54         24           0.4444
+      6      24          9           0.3750
+      7       9          6           0.6667
+      8       6          5           0.8333
+      9       5          3           0.6000
+     10       3          2           0.6667
+     11       2          2           1.0000
+     12       2          0           0.0000
+  depth >= 1 pooled: 925/1777 = 0.5205   (vs ceiling 0.5453)
+
+RANDOM roots, 1600 bits: 1600 seeds, 3426 nodes, interval ceiling 0.5453
+  pooled 1 - seeds/nodes = 0.5330
+  depth   nodes   children   mean offspring
+      0    1600        845           0.5281
+      1     845        451           0.5337
+      2     451        249           0.5521
+      3     249        147           0.5904
+      4     147         77           0.5238
+      5      77         38           0.4935
+      6      38         10           0.2632
+      7      10          3           0.3000
+      8       3          1           0.3333
+      9       1          2           2.0000
+     10       2          1           0.5000
+     11       1          2           2.0000
+     12       2          0           0.0000
+  depth >= 1 pooled: 981/1826 = 0.5372   (vs ceiling 0.5453)
+
+RANDOM roots, 3200 bits: 1600 seeds, 3570 nodes, interval ceiling 0.5453
+  pooled 1 - seeds/nodes = 0.5518
+  depth   nodes   children   mean offspring
+      0    1600        890           0.5563
+      1     890        497           0.5584
+      2     497        264           0.5312
+      3     264        135           0.5114
+      4     135         67           0.4963
+      5      67         45           0.6716
+      6      45         22           0.4889
+      7      22         19           0.8636
+      8      19         12           0.6316
+      9      12          7           0.5833
+     10       7          7           1.0000
+     11       7          3           0.4286
+     12       3          2           0.6667
+     13       2          0           0.0000
+  depth >= 1 pooled: 1080/1970 = 0.5482   (vs ceiling 0.5453)
+
+======================================================================
+STEP 5  the mechanism, seen directly in the residues
+  A node admits branch v iff it lies in ONE class mod A(v).  Powers
+  of 2 do not visit those classes uniformly -- they visit the cyclic
+  subgroup <2>.  If that is the whole story, the skew must persist
+  at every depth for the halting tree and be absent for generic roots.
+
+  --- node residues mod A(0) = 5; branch 0 needs class 1; uniform would be 0.200 ---
+  halting tree (powers of 2):
+    depth 0  n= 3190   0.000  0.250  0.250  0.250  0.250
+    depth 1  n= 1384   0.324  0.134  0.233  0.191  0.117
+    depth 2  n=  512   0.221  0.258  0.201  0.152  0.168
+    depth 3  n=  216   0.440  0.181  0.120  0.134  0.125
+  control (generic roots):
+    depth 0  n= 3190   0.205  0.198  0.201  0.192  0.204
+    depth 1  n= 1740   0.209  0.195  0.202  0.203  0.191
+    depth 2  n=  924   0.208  0.207  0.185  0.198  0.202
+    depth 3  n=  509   0.198  0.230  0.181  0.200  0.191
+
+  --- node residues mod A(1) = 7; branch 1 needs class 3; uniform would be 0.143 ---
+  halting tree (powers of 2):
+    depth 0  n= 3190   0.000  0.334  0.333  0.000  0.333  0.000  0.000
+    depth 1  n= 1384   0.275  0.270  0.012  0.077  0.168  0.192  0.007
+    depth 2  n=  512   0.043  0.180  0.203  0.037  0.391  0.098  0.049
+    depth 3  n=  216   0.144  0.185  0.120  0.171  0.120  0.190  0.069
+  control (generic roots):
+    depth 0  n= 3190   0.151  0.142  0.139  0.140  0.145  0.146  0.136
+    depth 1  n= 1740   0.133  0.145  0.148  0.148  0.147  0.152  0.128
+    depth 2  n=  924   0.140  0.142  0.136  0.133  0.146  0.150  0.153
+    depth 3  n=  509   0.143  0.151  0.151  0.159  0.134  0.134  0.128
+
+======================================================================
+STEP 6  machine 3: the same order arithmetic at the root
+      j  r      A     B mod A   ord_A(27)    density     vs 1/A
+      0  1        4           0          2    0.00000    0.25000   IMPOSSIBLE
+      0  2        4           2          2    0.00000    0.25000   IMPOSSIBLE
+      1  1       10           7          4    0.25000    0.10000
+      1  2       10           1          4    0.25000    0.10000
+      2  1       28          14          2    0.00000    0.03571   IMPOSSIBLE
+      2  2       28          24          2    0.00000    0.03571   IMPOSSIBLE
+      3  1       82          33          8    0.00000    0.01220   IMPOSSIBLE
+      3  2       82          61          8    0.00000    0.01220   IMPOSSIBLE
+      4  1      244          88         10    0.00000    0.00410   IMPOSSIBLE
+      4  2      244         170         10    0.00000    0.00410   IMPOSSIBLE
+      5  1      730         251          4    0.00000    0.00137   IMPOSSIBLE
+      5  2      730         495          4    0.00000    0.00137   IMPOSSIBLE
+      6  1     2188         738         14    0.00000    0.00046   IMPOSSIBLE
+      6  2     2188        1468         14    0.00000    0.00046   IMPOSSIBLE
+  predicted root branching 0.5000 (j <= 13)   interval model 0.8081

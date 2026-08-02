@@ -1,0 +1,28 @@
+STEP 1 -- THE RECIPE, END TO END: build the witness, run the orbit
+------------------------------------------------------------------------
+  4000 (beta-odd machine, M = 2^s M', residue) instances
+  witness lift's orbit reached 0 (mod 2^s): all but 0
+  deepest hit used 9 steps (bound: s + 1 <= 10)
+
+STEP 2 -- THE PROOF'S BOOKKEEPING, CHECKED IN ISOLATION
+------------------------------------------------------------------------
+  3000 chains: ledger e_(n+1) = e_n - (v_n+1) violated 0 times;
+  branch valuations differed between T = 0 and T = 13: 0 times
+
+STEP 3 -- T15 END TO END: closure = Z_M for beta odd, gcd(delta,M')=1
+------------------------------------------------------------------------
+  7616 (beta-odd machine, modulus) pairs meeting T15's hypotheses
+  closure was NOT all of Z_M: 0
+  the Needle, every modulus 2..400: not-saturated count = 0
+
+STEP 4 -- FALSIFIER: beta EVEN machines must be able to FAIL reach
+------------------------------------------------------------------------
+  beta-even machines with an even-modulus certificate: 40 tested
+  closure avoids 0 (mod 2^s) -- reach FAILS -- in 40 of them
+  (so the lemma's beta-odd hypothesis is load-bearing, not decoration)
+
+========================================================================
+RESULT: the reach lemma is proved and its construction verified.
+T15 -- beta odd, A_v > 0, gcd(delta, M') = 1 => NO modulus
+separates, closure = Z_M always.  COROLLARY: no modulus separates
+the Space Needle, with no hypotheses left. The theorem is done.

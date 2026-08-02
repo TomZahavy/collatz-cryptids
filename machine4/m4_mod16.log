@@ -1,0 +1,45 @@
+==========================================================================
+MACHINE 4: the mod-16 image theorem
+==========================================================================
+
+T5  clean table == m4_base.step: exhaustive a<2000 x b<=a+11 plus 300k random to 10^12 -- 0 mismatches
+T6* rule level, 450k random transitions to 10^12: every interior successor is 3 (mod 4) -- 0 violations
+T7* rule level: 102568 transitions landed on a = 7 (mod 8); all had b odd -- 0 violations
+
+    a = 1..30001 odd: 13109 return, 1891 halt, 0 capped; 362327921 interior states seen
+T6  interior a (mod 4) over 362327921 states: [3]  -> confinement to 3 (mod 4) holds
+T7  interior states with a = 7 (mod 8): b parity seen [1] (1 = odd)  -> parity lock holds
+T8  R4 image (mod 16): [1, 3, 5, 7, 9, 11]   [13 and 15 absent]
+    counts: 1:4371, 3:915, 5:1682, 7:1996, 9:1533, 11:2612
+      exits from a = 3 (mod 8): b=a-1 x1996, b=a+1 x1682, b=a+2 x1274, b=a+4 x1533, b=a+5 x1338
+      exits from a = 7 (mod 8): b=a+2 x915, b=a+4 x4371
+    T8 case split re-checked on every a = 3 (mod 4) below 200000: 0 violations
+
+T9  primary family h_j = 16*2^j - j - 12 (j odd), one-step halt verified for j = 1..17: True
+      j, h_j, h_j mod 16, reachable-as-return:
+        j= 1  h=19          3  yes
+        j= 3  h=113         1  yes
+        j= 5  h=495        15  NO (T8)
+        j= 7  h=2029       13  NO (T8)
+        j= 9  h=8171       11  yes
+        j=11  h=32745       9  yes
+        j=13  h=131047      7  yes
+        j=15  h=524261      5  yes
+        j=17  h=2097123     3  yes
+      blocked j below 1000: 126 of 500 = 0.2520 of the family; all are j = 5 or 7 (mod 16)
+      first blocked j: [5, 7, 21, 23, 37, 39, 53, 55]
+
+T10 halting density of the section set H4, by dyadic block:
+      [2^ 6, 2^ 7) :      1 /     32 = 0.0312
+      [2^ 7, 2^ 8) :      6 /     64 = 0.0938
+      [2^ 8, 2^ 9) :     10 /    128 = 0.0781
+      [2^ 9, 2^10) :     34 /    256 = 0.1328
+      [2^10, 2^11) :     35 /    512 = 0.0684
+      [2^11, 2^12) :    204 /   1024 = 0.1992
+      [2^12, 2^13) :    313 /   2048 = 0.1528
+      [2^13, 2^14) :    585 /   4096 = 0.1428
+      [2^14, 2^15) :    701 /   6808 = 0.1030
+      total |H4 cap [1,30001)| = 1891; density 0.1261
+      -> NOT a thin halting set (contrast: every other machine in the collection has density -> 0)
+
+[ 149.6s] all checks passed

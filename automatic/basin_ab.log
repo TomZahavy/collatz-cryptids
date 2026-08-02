@@ -1,0 +1,11 @@
+Needle, minimal-word (general) convention, v<=1
+MODE           n=8                                  n=9
+--- baseline ---
+  n= 8  vars=   19,664  clauses= 1,441,511  UNSAT (no certificate)        15.7s
+  n= 9  vars=   26,064  clauses= 2,522,209  UNSAT (no certificate)       116.1s
+--- powers<2^40 ---
+  n= 8  vars=   19,968  clauses= 1,445,197  UNSAT (no certificate)        20.1s
+  n= 9  vars=   26,370  clauses= 2,526,374  UNSAT (no certificate)       157.2s
+--- full basin<2^40 ---
+  n= 8  vars=   24,488  clauses= 1,498,054  UNSAT (no certificate)        12.9s
+  n= 9  vars=   31,455  clauses= 2,593,395  UNSAT (no certificate)        92.1s

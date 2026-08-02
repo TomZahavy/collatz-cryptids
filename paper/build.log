@@ -1,0 +1,19 @@
+note: Running TeX ...
+note: downloading lmmono8-regular.otf
+note: downloading lmromancaps10-oblique.otf
+warning: main.tex:363: Overfull \hbox (12.11337pt too wide) in paragraph at lines 358--363
+note: downloading lmromancaps10-regular.otf
+warning: main.tex:876: Overfull \hbox (12.39436pt too wide) in paragraph at lines 866--876
+warning: main.tex:925: Overfull \hbox (23.21738pt too wide) in paragraph at lines 885--925
+note: Rerunning TeX because "main.out" changed ...
+warning: main.tex:363: Overfull \hbox (12.11337pt too wide) in paragraph at lines 358--363
+warning: main.tex:876: Overfull \hbox (12.39436pt too wide) in paragraph at lines 866--876
+warning: main.tex:925: Overfull \hbox (25.13737pt too wide) in paragraph at lines 885--925
+note: Rerunning TeX because "main.aux" changed ...
+warning: main.tex:363: Overfull \hbox (12.11337pt too wide) in paragraph at lines 358--363
+warning: main.tex:876: Overfull \hbox (12.39436pt too wide) in paragraph at lines 866--876
+warning: main.tex:925: Overfull \hbox (25.13737pt too wide) in paragraph at lines 885--925
+warning: warnings were issued by the TeX engine; use --print and/or --keep-logs for details.
+note: Running xdvipdfmx ...
+note: Writing `main.pdf` (192.509765625 KiB)
+note: Skipped writing 3 intermediate files (use --keep-intermediates to keep them)

@@ -1,0 +1,29 @@
+CENSUS THEOREMS -- non-halting proved, for every start
+
+T1  machine (1,1,2,0,1):  F(x) = A_v (k+1) with A_v = 2^(v+1)+1 odd
+    counterexamples to 'A_v divides F(x), and F(x) is not a power of 2' over x < 400,000: 0
+    => never halts after its first step.
+
+T2  machine (2,-1,2,1,1):  every branch forbidden by the WS3 sieve
+    counterexamples to 'Q0 = 2^-1 and 2v+3 is not a power of 2 mod 2^(v+2)-1' over v < 400: 0
+    => never halts after its first step.
+
+T3  closed form: decided at m = 3  iff  delta = 0, gamma = alpha and
+    beta + epsilon = 0, all mod 3.
+    checked against the census: 41 predicted and decided, 0 predicted but not decided, 0 decided but not predicted, over 1,077 machines.
+    Corollary: the v-linear term blocks the cheapest certificate there is.
+    The Space Needle has delta = 1 and fails it in one line.
+
+STATUS.  T1 is proved outright.  T2 is proved outright for the sieve's
+halt condition; it inherits the WS3 sieve theorem, which is itself
+proved.  Of the other five machines whose branches were all forbidden
+to v = 200, THREE were closed the next day as T4, T5, T6 -- see
+leads.py, which derives S_v = 2*B_v (mod A_v) for the alpha=2,
+beta=-1 corner.  TWO remain unclaimed, their modulus having no
+listable power-of-two set:
+    (2,1,1,2,-1)   ord_{A_v}(2) = 2(v+2)
+    (3,3,2,0,1)    ord_{A_v}(2) v-dependent: 4, 18, 8, 30, 12, 42
+
+WORDING.  'Never halts from any start' would be wrong: a start that
+IS a power of two halts at step 0.  The powers of two are exactly the
+halting starts of these machines.

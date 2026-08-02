@@ -1,0 +1,5 @@
+AUDIT of 318 decided machines (brute force to x < 200,000, powers of 2 enumerated completely)
+
+
+  machines audited: 318;  failures: 0
+  RESULT: clean -- every certificate holds

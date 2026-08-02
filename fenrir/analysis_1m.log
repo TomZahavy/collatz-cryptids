@@ -1,0 +1,14 @@
+Fenrir simulated 1,000,000 steps in 247.2s (no halt)
+  n has 1,321,927 bits at the end (log2(5/2) = 1.3219 bits/step, predicted 1,321,928)
+  odd fraction of n_j: 0.50022   (equidistribution model: 0.5)
+  x_k = 3*O_k - k = 500,669;  x_k/k = 0.50067  (model drift: 0.5)
+  min x over the run: 0   returns to x = 0: 2 at steps [0, 3]
+  of those, with n even (i.e. actual halting opportunities): 0
+
+P8 accounting (Borel-Cantelli), via T3:
+  opportunities = visits to x = 1, each halting with model probability 1/4 (namely 4 | n)
+  visits to x = 1 in the run: 1 (of which with 4 | n: 0)
+  the walk descends one level with probability q = (sqrt5 - 1)/2 = 0.618034 (golden ratio conjugate; the same constant the meta report records for Antihydra)
+  so from height x the chance of ever revisiting 1 is q^(x-1), and Sum p_n CONVERGES => probviously non-halting
+  residual risk beyond the verified prefix: ~ (1/4) q^(500,669 - 1) / (1 - q) = 10^-104,633
+  (Antihydra has the identical +2/-1 walk and the same q; Fenrir differs in the digit source -- 5/2 instead of 3/2 -- and in needing an exact hit of x = 0 rather than a first passage below it)
