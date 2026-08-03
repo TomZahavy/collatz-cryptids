@@ -1,0 +1,31 @@
+=== deeper runs, macro budget 40000000 ===
+line 106    b=2  inner x -> 2*x + 3   [87s, budget 40000000]
+    outer steps: 6   verdict PREDICTABLE-BRANCHES
+    R_n: [28, 57, 125, 255, 505, 1051]
+    k_n: [3, 4, 5, 6, 7, 8]  deltas [1, 1, 1, 1, 1]  period 1
+    growth per outer step: 2.0649
+    closed form R' = aR + b*x_k + c : no (multiple branches)
+line 336    b=2  inner x -> 2*x + 4   [116s, budget 40000000]
+    outer steps: 10   verdict CRYPTID-SHAPED
+    R_n: [49, 160, 300, 1243, 4954, 19177, 70408, 224311, 380662, 804790]
+    k_n: [3, 5, 5, 7, 9, 11, 13, 15, 16, 17]  deltas [2, 0, 2, 2, 2, 2, 2, 1, 1]  period None
+    growth per outer step: 2.9403
+    closed form R' = aR + b*x_k + c : no (multiple branches)
+line 555    b=2  inner x -> 2*x + 5   [135s, budget 40000000]
+    outer steps: 12   verdict CRYPTID-SHAPED
+    R_n: [31, 75, 163, 327, 535, 1770, 3309, 9489, 34404, 105063, 290455, 975958]
+    k_n: [3, 4, 5, 6, 6, 8, 9, 10, 12, 14, 15, 17]  deltas [1, 1, 1, 0, 2, 1, 1, 2, 2, 1, 2]  period None
+    growth per outer step: 2.5640
+    closed form R' = aR + b*x_k + c : no (multiple branches)
+line 990    b=2  inner x -> 2*x + 2   [108s, budget 40000000]
+    outer steps: 7   verdict PREDICTABLE-BRANCHES
+    R_n: [12, 52, 219, 1182, 3268, 8769, 96942]
+    k_n: [3, 4, 6, 9, 10, 12, 15]  deltas [1, 2, 3, 1, 2, 3]  period 3
+    growth per outer step: 4.4794
+    closed form R' = aR + b*x_k + c : no (multiple branches)
+line 1002   b=2  inner x -> 2*x + 4   [120s, budget 40000000]
+    outer steps: 10   verdict CRYPTID-SHAPED
+    R_n: [58, 241, 712, 1452, 3004, 6744, 19936, 77239, 285790, 933973]
+    k_n: [3, 5, 7, 8, 9, 10, 11, 13, 15, 17]  deltas [2, 2, 1, 1, 1, 1, 2, 2, 2]  period None
+    growth per outer step: 2.9338
+    closed form R' = aR + b*x_k + c : no (multiple branches)
