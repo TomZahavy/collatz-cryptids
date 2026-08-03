@@ -15,7 +15,7 @@ what "next" should mean.
 | Lean | 9 machines + decider soundness, sorry-free, mathlib-free; generic layers partly built |
 | the sheep | arithmetic closed (H in closed form, no separating modulus, sieve saturates at 29.6%); orbit open |
 | the Needle / census | no modulus separates, proved; frontier is a rank-2 S-unit condition |
-| machine 4 | halt hunt inconclusive; per-visit p ≈ 0.111 flat, but cost is Θ(a) so it is a T^−0.118 gamble |
+| machine 4 | halt hunt **stopped Aug 3, null result** (30 section visits, no halt) — `machine4/hunt/HUNT_RESULT.md` |
 | symmetry | negative: holdout list already canonical under the sound relabelling |
 
 **The dividing line the campaign found**, and the thing worth carrying
@@ -57,9 +57,12 @@ The one certificate class not proved empty for it. Two-sided: a positive
 decides a named cryptid; a negative is a publishable strengthening.
 
 ### Deprioritised, with reasons
-* **Machine 4 halt hunt** — measured as a T^−0.118 gamble; the k=34–38
-  sweeps are the only decision-relevant part and they are slow. Stop
-  unless the sweeps land.
+* **Machine 4 halt hunt** — STOPPED Aug 3 after ~20 CPU-hours produced no
+  further visit and no sweep line, exactly as the T^−0.118 law predicts.
+  Orbit record 30 visits, no halt. The one decision-relevant open number
+  is whether p dips genuinely at k ≥ 32 or merely oscillates; that needs
+  N ≈ 500 at k = 34–38, embarrassingly parallel, a few core-days on more
+  hardware. Full write-up: `machine4/hunt/HUNT_RESULT.md`.
 * **More census harvesting** — completeness proved; the box is exhausted.
 * **Hydra / Antihydra / Fenrir** — no technique exists for cumulative-count
   halting, by our own q-adic memory theorem.
