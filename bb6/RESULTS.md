@@ -237,9 +237,48 @@ the guards `c1 >= 1`, `c3 >= 1` propagate downward and the induction goes
 through. It is the same shape as `steps_blocks` in `bbf/lean/Fractran.lean`,
 with a quadratic rather than linear cost.
 
-Remaining for the full equivalence: compose prologue + n units + epilogue
-to get F (obligation 4), and characterise halting (obligation 5, the one
-with real content, still untouched).
+### Rule-based acceleration — obligation 4, and the cost wall broken
+
+`accel.py` applies the induction rule at run time. At each macro step it
+looks ahead for a return to the same skeleton, state and direction; if
+the counters move by the same fixed vector on two consecutive
+repetitions and the per-repetition cost is constant or grows by a
+constant, it computes how many repetitions fit before a guard would fail
+and jumps the whole way. `n` is chosen one short of any guard failing, so
+a jump never crosses a branch.
+
+The jump *is* the composition of prologue, n units and epilogue that
+obligation 4 asks for — the closed form, applied.
+
+**Verified against the unaccelerated simulator** at 5.0e7, 6.3e7 and
+5.1e7 base steps for the three machines: identical skeleton, identical
+counters, identical base-step count, with 63/90/79 jumps skipping
+12,409 / 15,215 / 14,956 units. Beyond that range the detector still
+self-checks — it observes two full repetitions with matching deltas
+before every jump — but that is a safeguard, not a proof.
+
+**Effect.** Reach goes from ~1e7 base steps to **~1e165 in 45 seconds**,
+about 158 orders of magnitude, and outer orbits go from 10-12 steps to
+**289-294**:
+
+| line | outer steps | growth/step | k range | delta period | halted |
+|---|---|---|---|---|---|
+| 336 | 289 | 2.4648 | 3 .. 378 | none | no |
+| 555 | 294 | 2.4166 | 3 .. 374 | none | no |
+| 1002 | 290 | 2.4936 | 3 .. 384 | none | no |
+
+At ~290 outer steps the aperiodicity of the branch sequence is on much
+firmer ground than it was at 10, and the growth rate is stable rather
+than a small-sample artefact. **No halt anywhere in ~1e165 steps.**
+
+This is the acceleration the Collatz playbook promises — the machine
+becomes simulable to astronomical horizons with polylog work — and it is
+what makes the halting question sharply askable rather than merely
+plausible.
+
+Remaining: characterise halting (obligation 5), the one with real
+content, still untouched. Everything above says what the machines DO;
+nothing yet says when the `---` transition could fire.
 
 **Honest status:** three two-level BB(6) holdouts whose outer maps are
 expanding, multi-branch, and have no periodic branch pattern over the

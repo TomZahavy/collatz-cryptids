@@ -1,0 +1,9 @@
+line 336   halted=False  section visits 55742  inner runs matching (Fraction(2, 1), Fraction(4, 1)): 289
+    outer steps 289   growth 2.4648   k range 3..378   delta period None
+    first k deltas [2, 0, 2, 2, 2, 2, 2, 1, 1, 1, 1, 2, 2, 1, 0, 0, 0, 2, 0, 2, 2, 1, 2, 2]
+line 555   halted=False  section visits 56023  inner runs matching (Fraction(2, 1), Fraction(5, 1)): 294
+    outer steps 294   growth 2.4166   k range 3..374   delta period None
+    first k deltas [1, 1, 1, 0, 2, 1, 1, 2, 2, 1, 2, 1, 2, 1, 2, 2, 2, 2, 1, 2, 0, 1, 1, 2]
+line 1002  halted=False  section visits 56185  inner runs matching (Fraction(2, 1), Fraction(4, 1)): 290
+    outer steps 290   growth 2.4936   k range 3..384   delta period None
+    first k deltas [2, 2, 1, 1, 1, 1, 2, 2, 2, 1, 1, 1, 1, 0, 1, 1, 0, 0, 1, 2, 0, 1, 2, 1]
