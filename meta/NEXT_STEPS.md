@@ -1,4 +1,70 @@
-# The current state and plan (July 31, 2026)
+# Next steps
+
+_Last revised Aug 3, 2026, after the BBf(23) campaign._
+
+## Where the program actually stands
+
+The program has **decided machines** — its first, and they are wild ones on
+a live competition list, not members of a manufactured census. That changes
+what "next" should mean.
+
+| | status |
+|---|---|
+| BBf(23) decisions | 25/694 refined (16 new); official-list sweep running, ~11% hit rate, ~1,100 decided so far |
+| the method | rigid phase certificates: miner + checker, end-to-end, soundness proved |
+| Lean | 9 machines + decider soundness, sorry-free, mathlib-free; generic layers partly built |
+| the sheep | arithmetic closed (H in closed form, no separating modulus, sieve saturates at 29.6%); orbit open |
+| the Needle / census | no modulus separates, proved; frontier is a rank-2 S-unit condition |
+| machine 4 | halt hunt inconclusive; per-visit p ≈ 0.111 flat, but cost is Θ(a) so it is a T^−0.118 gamble |
+| symmetry | negative: holdout list already canonical under the sound relabelling |
+
+**The dividing line the campaign found**, and the thing worth carrying
+everywhere: *rigid* (phases repeat a fixed word with formula counts) vs
+*digit-consuming*. Rigidity is the decidable margin. It is visible in a
+bounded simulation, it explains which machines have historically fallen,
+and it is empty-by-construction for the rest — 675 of 694.
+
+## Ranked next steps
+
+### 1. Port the method to Turing machines (BB(6)) — the high-impact bet
+BB(6) is where the community's attention is: 1,064 holdouts, and **nobody
+has swept them for rigidity**. Our certificate method is orthogonal to
+every decider they run (theirs work on tape languages; ours on the
+arithmetic of a reduction). The one previously decided machine of this
+genre was done by hand, in April 2026.
+
+The blocker is the reduction TM → guarded counter machine, which the
+community currently does by hand. That is the research content: a
+macro-machine / rule-extraction pass that produces guarded affine rules
+automatically, after which the existing miner and checker apply unchanged.
+Risk is real (the reduction may not automate cleanly), payoff is the
+largest available: it would turn a FRACTRAN result into a general
+technique, and it would put the method where the flagship problem is.
+
+### 2. Ship what exists (blocked only on a decision)
+The BBf decisions are worth nothing until they reach the people
+maintaining the list. Needs: attribution call, then an upstream PR to
+int-y1/BBFractran plus a wiki note; the sheep page likewise. Low risk,
+high value, currently idle.
+
+### 3. Finish the verified checker
+The stage-composition fold, then blocks, then `Cert` + `checkCert`. Until
+it lands, ~1,100 machines are checker-verified and only nine are
+Lean-verified. This is also the paper's strongest possible claim.
+
+### 4. Sheep: the weighted-automaton lane
+The one certificate class not proved empty for it. Two-sided: a positive
+decides a named cryptid; a negative is a publishable strengthening.
+
+### Deprioritised, with reasons
+* **Machine 4 halt hunt** — measured as a T^−0.118 gamble; the k=34–38
+  sweeps are the only decision-relevant part and they are slow. Stop
+  unless the sweeps land.
+* **More census harvesting** — completeness proved; the box is exhausted.
+* **Hydra / Antihydra / Fenrir** — no technique exists for cumulative-count
+  halting, by our own q-adic memory theorem.
+* **Needle certificate work** — every bounded lane is proved empty.
+
 
 > **This header is the program's single current-state statement.** Everything
 > below it — the July 25 plan, the July 28 status board and evening plan,

@@ -2334,6 +2334,84 @@ story.append(P(
     "by a <i>variable</i> amount, so f is not 2-automatic, which is exactly "
     "why the WS1 searches stall at small DFA sizes."))
 
+story.append(P("2.19&nbsp;&nbsp;Leaving the interface entirely: FRACTRAN, "
+               "and the program&rsquo;s first decided machines", H2))
+story.append(P(
+    "Everything through 2.18 was about machines nobody could decide. This "
+    "subsection records the moment the program started deciding them &mdash; "
+    "by changing target rather than by getting better at the same target."))
+story.append(P(
+    "<b>The move.</b> Tom&rsquo;s reprioritisation (an actual decision "
+    "outranks a structure theorem) sent us to the bbchallenge FRACTRAN "
+    "competition, BBf(23), whose holdout list is public and machine-readable. "
+    "A structural sweep split it in a way that turned out to be the whole "
+    "story: a machine is <b>rigid</b> if its phases repeat the same word with "
+    "counts given by a formula in the phase index, and <b>digit-consuming</b> "
+    "otherwise. Rigidity is visible in a bounded simulation, and it is exactly "
+    "the decidable margin: 675 of the 694 refined holdouts are "
+    "digit-consuming, and those are Collatz-hard for the reasons Sections 7 "
+    "and 8 give. The other 19 are not."))
+story.append(P(
+    "<b>Nine by hand, then a decision procedure.</b> The nine rigid survivors "
+    "were proved non-halting individually (boundary family, one-phase lemma "
+    "with its parity split, entry, induction), then <i>subsumed</i>: a "
+    "<b>rigid phase certificate</b> is a boundary family plus a staged phase "
+    "word over the expression class {a + bn + c&middot;2<super>n</super>}, and "
+    "checking one is a finite symbolic computation that settles ALL phase "
+    "indices at once &mdash; strictly stronger than the per-proof numeric "
+    "sweeps. Then a <b>miner</b> was built to FIND certificates from a raw "
+    "fraction list, with the checker kept as the sole authority, so the miner "
+    "needs no correctness argument. That pair is an end-to-end decision "
+    "procedure."))
+story.append(P(
+    "<b>What it decided.</b> The miner rediscovers all nine hand proofs from "
+    "the fraction lists alone. On the refined 694-machine list it decides 25 "
+    "(16 of them new), with zero anomalies; every acceptance was re-checked "
+    "and then independently simulated for 10<super>6</super> steps without "
+    "halting. A sweep of the full official 21,233-machine list is in progress "
+    "and decides about 11% of what it has scanned. <b>These are the "
+    "program&rsquo;s first decided machines, and they are wild ones &mdash; "
+    "entries on a live competition list, not members of a manufactured "
+    "census.</b>"))
+story.append(P(
+    "<b>Three things worth carrying back to the rest of the collection.</b> "
+    "(i) <i>The priority insight.</i> A FRACTRAN program is a guarded "
+    "vector-addition system with a priority order; without priority, "
+    "reachability is decidable, and with it the model is universal. So a "
+    "certificate is precisely a witness that priority never has to be "
+    "adjudicated by unbounded arithmetic &mdash; which is a way of saying what "
+    "our machines 1, 3 and 4 do that makes them hard. (ii) <i>An unsoundness "
+    "we walked into.</i> Verifying that a rival rule is disabled across a run "
+    "cannot be done by testing its guard&rsquo;s negation at the endpoints: "
+    "&ldquo;disabled&rdquo; is a disjunction, and disjunctions are not convex. "
+    "One conjunct must be pinned. We have a machine-checked counterexample; "
+    "the failure is invisible to more simulation, which is what makes it "
+    "dangerous. (iii) <i>A negative result on symmetry.</i> Under the only "
+    "prime relabelling that transfers the halting-from-2 question, the "
+    "official list is already canonical &mdash; 21,233 classes from 21,233 "
+    "machines, zero reduction. Under all relabellings 26.5% collapse, but "
+    "those move the start and so relate different questions."))
+story.append(P(
+    "<b>Formalisation.</b> All nine machine theorems are formalised in Lean 4 "
+    "without mathlib, sorry-free, on the three core axioms; so is the "
+    "decider&rsquo;s soundness argument (the certificate contract, the corner "
+    "principle, the unsoundness counterexample). The generic layers that would "
+    "collapse every machine into one theorem are partly built &mdash; a "
+    "priority-firing lemma, the symbolic expression layer with a decidable "
+    "&ldquo;stays positive forever&rdquo; test, and the affine run lemma. What "
+    "remains is the stage-composition fold. Until that lands, the nine are "
+    "Lean-verified and the rest are checker-verified, and the two labels are "
+    "kept distinct everywhere."))
+story.append(P(
+    "<b>The boundary, stated honestly.</b> Rigidity is necessary but not "
+    "sufficient: the one previously decided machine of this genre (a BB(6) "
+    "holdout, April 2026) is rigid too, but its margin is a near-coincidence "
+    "between powers of 2 and 3 and needs Baker&ndash;W&uuml;stholz. Ours have "
+    "room, which is why nothing beyond guard arithmetic and induction appears "
+    "in any of the proofs. And the method is empty by construction for the "
+    "digit-consuming majority &mdash; the same wall this document has been "
+    "describing since Section 7."))
+
 story.append(P("3. The domain in one page", H1))
 story.append(P(
     "A <b>Collatz-like problem</b> asks whether the orbit of an explicit "
