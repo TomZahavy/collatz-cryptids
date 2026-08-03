@@ -314,6 +314,45 @@ express "the scanned word contains `00`" in terms of the section
 counters, which turns it into an arithmetic condition on the outer orbit
 -- the halting set H of the orbit-avoidance problem.
 
+### The unit lemma, DERIVED
+
+`symbolic.py` stalls after five to seven macro steps, and I had recorded
+that as a wall. It is not: the stall happens when a single cell is taken
+from a symbolic block, but the lemma we want ASSUMES that block is
+non-empty. Carrying the guard forward instead of stopping lets the run
+continue -- provided the block being lifted is the one the unit actually
+sweeps. (Lifting the wrong block, a constant-1 one, fragments the tape
+into a configuration the machine never reaches; the first attempt did
+exactly that and produced nonsense. The symbolic variable has to be the
+growing counter.)
+
+With the right block lifted, one unit crosses symbolically, skeleton
+preserved:
+
+| line | lifted | one unit | cost |
+|---|---|---|---|
+| 336 | c2 | `(1, c1, x, c3) -> (1, c1-1, x+2, c3-1)` | `4x + 12` |
+| 555 | c0 | `(x, c1, 1, c3) -> (x+2, c1-1, 1, c3-1)` | `4x + 4` |
+| 1002 | c2 | `(1, c1, x, c3) -> (1, c1-1, x+2, c3-1)` | `4x + 12` |
+
+**The derivation reproduces the measured cost law exactly.** At unit j
+the swept block has `x = x0 + 2j`, so `4x + 12 = 8j + (4x0 + 12)`, which
+at `x0 = 1` is `8j + 16` -- the `16 + 8j` measured empirically over 151
+and 156 consecutive units, from an entirely independent route.
+Independently checked at x = 1, 2, 3, 7, 11, 20, 53, 100, 301, 1000:
+**10/10 exact** for all three machines.
+
+So the unit lemma is no longer an observation. It is:
+
+> For all x >= 1, from the configuration with skeleton S and counters
+> `(1, c1, x, c3)`, the machine reaches `(1, c1-1, x+2, c3-1)` in exactly
+> `4x + 12` base steps, provided `c1 >= 1` and `c3 >= 1`.
+
+with the guards recorded rather than assumed. That is precisely the
+statement a Lean proof needs, and its proof is a five-macro-step case
+analysis -- finite, and of the same shape as the firing lemmas already
+in `bbf/lean/LeanBbf/Runner.lean`.
+
 **Honest status:** three two-level BB(6) holdouts whose outer maps are
 expanding, multi-branch, and have no periodic branch pattern over the
 observed range. That is the cryptid signature, measured on 10–12 outer
