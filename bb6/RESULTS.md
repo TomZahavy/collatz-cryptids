@@ -191,9 +191,55 @@ Proof obligations for `TM halts iff the F-orbit meets H`:
 4. **outer step** -- compose prologue, k units, epilogue to get F;
 5. **halting** -- characterise when the `---` transition can fire.
 
-Steps 1-4 are mechanical given a symbolic macro simulator (block counts
-as expressions rather than integers), which does not exist yet. Step 5
-is the one with real content and is not yet analysed.
+### Towards Lean: the symbolic simulator, and the inner lemma
+
+`symbolic.py` runs the macro simulator with block counts as expressions
+`a + b*x`, cross-checked against the concrete simulator (36 runs, three
+machines, six values of x, identical configurations and step counts).
+
+Its important property is what it REFUSES to do. A chain step may cross a
+symbolic block, because it consumes the block entirely whatever its
+length. But consuming a symbolic block ONE CELL AT A TIME branches: for
+some x the block survives and is read again, for others it vanishes and
+the next block is read. The simulator stops there rather than picking a
+branch. That refusal is what makes its output sound — and it means plain
+symbolic simulation reaches only **5 to 7 macro steps** on these
+machines, far short of an inner unit.
+
+The classical fix (Marxen–Buntrock; sligocki's proof system) is an
+INDUCTION RULE: a fixed finite word that returns the machine to the same
+state, direction and skeleton with a bounded change to the counters, so
+that running it n times is one symbolic move. Measured, at block size 2,
+in the periodic region of an inner phase:
+
+| line | unit | counter delta | cost of the j-th unit | verified exactly for |
+|---|---|---|---|---|
+| 336 | 5 macro steps | `(0, -1, +2, -1)` | `16 + 8j` base steps | 151 consecutive units |
+| 555 | 5 macro steps | `(+2, -1, 0, -1)` | `8 + 8j` base steps | 16 consecutive units |
+| 1002 | 5 macro steps | `(0, -1, +2, -1)` | `16 + 8j` base steps | 156 consecutive units |
+
+"Verified exactly" means the predicted skeleton, every counter AND the
+cumulative step count all matched at every one of those units. Lines 336
+and 1002 have the *same* rule, which is evidence they are relatives.
+
+So after n units, from counters `c`:
+
+    counters = c + n * delta       cost = c0*n + 8*n*(n-1)/2
+
+The cost is quadratic in n because the head sweeps a block that is itself
+growing — which is why an earlier check, written assuming constant cost,
+reported the rule failing at the second iteration. The rule was right;
+the check was wrong.
+
+**This is the inner lemma in the form Lean needs**: a finite base case
+(five macro transitions) and a step whose effect is a fixed vector, so
+the guards `c1 >= 1`, `c3 >= 1` propagate downward and the induction goes
+through. It is the same shape as `steps_blocks` in `bbf/lean/Fractran.lean`,
+with a quadratic rather than linear cost.
+
+Remaining for the full equivalence: compose prologue + n units + epilogue
+to get F (obligation 4), and characterise halting (obligation 5, the one
+with real content, still untouched).
 
 **Honest status:** three two-level BB(6) holdouts whose outer maps are
 expanding, multi-branch, and have no periodic branch pattern over the
