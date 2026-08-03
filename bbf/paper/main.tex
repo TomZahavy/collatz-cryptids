@@ -18,433 +18,529 @@
 
 \newcommand{\Proved}{\textcolor{linkc}{\textsf{[proved]}}}
 \newcommand{\Lean}{\textcolor{linkc}{\textsf{[proved, Lean-verified]}}}
+\newcommand{\Chk}{\textcolor{linkc}{\textsf{[checker-verified]}}}
 \newcommand{\Meas}{\textcolor{linkc}{\textsf{[measured]}}}
 \newcommand{\vv}[1]{v_{#1}}
 
-\title{Rigid phase certificates:\\
-deciding nine FRACTRAN holdouts, and a decider that explains why}
-\author{%
-  \textit{(authorship placeholder --- see \S\ref{sec:data})}%
-}
+\title{Deciding FRACTRAN holdouts with rigid phase certificates:\\
+\large what makes a small machine tractable, and where the line falls}
+\author{\textit{(authorship placeholder --- see \S\ref{sec:repro})}}
 \date{August 2026}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
-We decide nine open machines of the FRACTRAN Busy Beaver competition
-$\mathrm{BBf}(23)$: each is proved never to halt from its start value
-$n=2$. All nine proofs are formalized in Lean~4 without \texttt{mathlib}
-and are \texttt{sorry}-free, depending only on Lean's three core axioms.
-The proofs are not ad hoc. We isolate a certificate class --- \emph{rigid
-phase certificates} --- whose checking is finite, exact and needs no
-simulation beyond a bounded entry, prove its soundness, and formalize
-that soundness argument in Lean. The nine machines are exactly the
-machines our structural detector flags as \emph{rigid} among the $694$
-refined $\mathrm{BBf}(23)$ holdouts; the remaining $675$ are
-digit-consuming, and we explain why no certificate of this class can
-reach them. A second, equivalence decider --- template isomorphism of
-certificates --- resolves the nine into six classes, correcting a
-plausible-looking but false grouping into three. Along the way the
-formalization contradicted our own informal proofs on a point of
-principle: checking that a rival rule is disabled at the endpoints of a
-run is unsound unless a single guard conjunct is pinned, and we exhibit
-a machine-checked counterexample.
+Small, fully explicit machines can encode open problems in number theory.
+This paper is about the boundary between those that do and those that
+merely look as though they do. We work in FRACTRAN, Conway's minimal
+universal language, on the live $\mathrm{BBf}(23)$ Busy Beaver holdout
+list. We isolate the property that separates tractable machines from the
+rest --- we call it \emph{rigidity} --- turn it into a certificate class
+with a decidable checking problem, prove the checker sound, formalize
+that soundness proof in Lean~4, and then \emph{search} for certificates
+automatically. The result is an end-to-end decision procedure that decides
+$25$ of the $694$ machines on the refined holdout list, sixteen of them
+not previously decided by anyone. Nine of the $25$ additionally carry
+individual, \texttt{sorry}-free Lean proofs.
+
+We have tried to write the paper we would have wanted before starting.
+The mathematics involved is elementary; what is not obvious is
+\emph{which} elementary facts matter, and why the method stops exactly
+where it does. Three lessons generalize beyond FRACTRAN. First, priority
+is what makes these machines universal, and closed-form orbits are what
+make individual ones tractable --- rigidity is the decidable margin of a
+holdout list, not an accident of which machines were studied. Second,
+guard checking over a parametric family reduces to two facts of
+independent interest: an extreme-point principle for jointly affine
+functions, and the decidability of eventual positivity in a small
+expression class that sits just inside the frontier of the Positivity
+problem. Third --- and this one cost us a wrong proof --- verifying that
+a competing rule is \emph{disabled} across a run cannot be done by
+testing its guard's negation at the endpoints; one conjunct must be
+pinned. We give a machine-checked counterexample.
+
+We also report a negative result that saves future effort: the holdout
+list is already canonical under the only prime-relabelling symmetry that
+transfers the halting question, so no machines can be removed by
+relabelling alone.
 \end{abstract}
+
+\tableofcontents
 
 \section{Introduction}
 
-FRACTRAN \cite{conway1987} is Conway's minimal Turing-complete language.
-A program is a finite ordered list of positive rationals; the state is a
-positive integer $n$; one step replaces $n$ by $n\cdot p/q$ for the first
-listed fraction $p/q$ with $q \mid n$, and the program halts when no
-fraction applies. The Busy Beaver variant $\mathrm{BBf}(k)$ asks for the
-longest finite run among programs of description size at most $k$
-\cite{bbfractran}. Sizes up to $22$ are settled; $\mathrm{BBf}(23)$ is
-the live frontier, with $21{,}233$ machines officially undecided as of 10
-July 2026 and a refined list of $694$ produced by a decider not yet
-independently reproduced.
+A FRACTRAN program is a finite ordered list of positive rationals. The
+state is a positive integer $n$; a step replaces $n$ by $n \cdot p/q$ for
+the \emph{first} listed fraction $p/q$ with $q \mid n$; the program halts
+when none applies. That is the entire language, and it is
+Turing-complete~\cite{conway1987}.
 
-Deciding a machine on such a list means proving that a specific, fully
-explicit program never halts. What makes this hard is that the interesting
-survivors read their own digits: the next rule to fire depends on
-arithmetic detail that no bounded-state invariant tracks. The exceptions
-are machines whose orbit has a \emph{closed form}, and it is a recurring
-observation that these fall to analysis while the rest do not.
+The Busy Beaver variant asks, among all programs of description size at
+most $k$, for the longest finite run. As with Turing machines, the
+difficulty is not finding long runners but \emph{certifying} the
+non-halters: a single program that runs forever must be proved to do so.
+$\mathrm{BBf}(23)$ is the current frontier, with $21{,}233$ machines
+officially undecided as of 10 July 2026 and a refined list of
+$694$~\cite{bbfractran}.
 
-\paragraph{Contributions.}
-\begin{enumerate}
-\item \textbf{Nine decisions} (\S\ref{sec:nine}): the FRACTRAN programs at
-  lines $13649$, $14793$, $16268$, $18226$, $18380$, $19205$, $20255$,
-  $20589$, $20660$ of the official $\mathrm{BBf}(23)$ holdout list never
-  halt. \Lean
-\item \textbf{A certificate class and a decider} (\S\ref{sec:cert}):
-  rigid phase certificates, with a soundness theorem; checking is
-  symbolic in $\{1,n,2^n\}$-arithmetic and decides guard positivity for
-  \emph{all} phase indices at once. \Proved
-\item \textbf{Formalized soundness} (\S\ref{sec:lean}): the soundness
-  argument itself is in Lean, and the nine machine theorems are derived
-  as instances of one abstract theorem.
-\item \textbf{An equivalence decider} (\S\ref{sec:equiv}): template
-  isomorphism of certificates, decidable by finite search, which resolves
-  the nine into six classes.
-\item \textbf{A negative result about endpoint checking}
-  (\S\ref{sec:corner}): pinning a single guard conjunct is necessary, not
-  merely convenient. \Lean
-\item \textbf{A structural census} (\S\ref{sec:scope}) locating the
-  boundary of the method: $675$ of the $694$ refined holdouts are outside
-  it, by their dynamics rather than by our budget. \Meas
-\end{enumerate}
+The reason a specific tiny program can resist proof is worth stating
+plainly, because it is the subject of this paper. Some machines have
+orbits with closed forms; you can write down the state after the $i$-th
+phase as a formula in $i$. Others choose their next move from arithmetic
+detail --- a digit, a residue, a valuation --- that changes
+unpredictably as the state grows. For the first kind, non-halting is a
+finite algebraic identity. For the second, it is a Collatz-type problem,
+and Collatz-type problems in this generality are
+undecidable~\cite{conway1972,kurtzsimon}.
 
-\paragraph{Epistemic conventions.} Every claim carries a label: \Proved{}
-for a hand proof, \Lean{} for one machine-checked in Lean~4, \Meas{} for
-a measurement over a stated finite domain. We use them because two of the
-statements below are measurements that could be mistaken for theorems.
+\paragraph{What a reader should take away.} We have organized the paper
+around ideas rather than around our machines.
 
-\section{Preliminaries}\label{sec:prelim}
-
-Fix the primes $(2,3,5,7,11)$; every fraction appearing in the machines we
-treat factors over them. A state is the exponent vector
-$s = (\vv2,\vv3,\vv5,\vv7,\vv{11}) \in \mathbb{N}^5$ of $n$, so that
-FRACTRAN's divisibility test becomes a conjunction of coordinate lower
-bounds and its update becomes vector addition. A \emph{rule} is a pair
-(guard, delta) with guard a conjunction $\bigwedge_i (s_i \ge \theta_i)$;
-a \emph{machine} is a priority-ordered list of rules; one step fires the
-first rule whose guard holds, and the machine halts when none does. We
-write $s \xrightarrow{m} t$ for ``the machine performs $m$ steps from $s$
-and is then at $t$'' (in particular it does not halt on the way), and
-$\mathrm{NeverHalts}(s)$ for ``every step count is completed from $s$''.
-
-\begin{lemma}[normalized halt criterion]\label{lem:halt}
-For each machine, the set of halting states is a conjunction of
-coordinate equalities and at most one disjunction, obtained by negating
-all five guards and absorbing implications between them. For instance
-machine $431$ halts exactly at $\vv2 = \vv7 = 0 \wedge (\vv5 = 0 \vee
-\vv{11} = 0)$. \Lean
-\end{lemma}
-
-The point of Lemma~\ref{lem:halt} is that non-halting becomes a statement
-about which coordinates stay positive, which is what certificates track.
-
-\section{Rigid phase certificates}\label{sec:cert}
-
-\begin{definition}[certificate]\label{def:cert}
-Let $\mathrm{EXP} = \{\,a + bn + c\,2^{n} : a,b,c \in \mathbb{Q}\,\}$. A
-\emph{rigid phase certificate} for a machine $M$ consists of
 \begin{itemize}
-\item an \emph{entry} $(E,i_0)$: from the start state, $M$ reaches
-  $B(i_0)$ in $E$ steps;
-\item a \emph{boundary family} $B(n)$, each coordinate in $\mathrm{EXP}$;
-\item \emph{branches}, one per residue class of $n$ modulo $2$ (or a
-  single branch), each a list of \emph{stages}:
-  a \emph{run} $(\text{rule}, \text{count})$ with count in $\mathrm{EXP}$,
-  or a \emph{block} $(K, w, \sigma)$ with $K \in \mathrm{EXP}$, $w$ a
-  fixed word of runs, and $\sigma(k)$ a block-start state affine in the
-  block index $k$ with $\mathrm{EXP}$ constant terms and integer slopes.
+\item \S\ref{sec:vas}: FRACTRAN \emph{is} a priority counter machine, and
+  reading it that way immediately explains where its power comes from ---
+  and locates it against a well-studied decidability boundary.
+\item \S\ref{sec:rigid}: what rigidity is, why it is the right dividing
+  line, and why it is a property of the \emph{dynamics} rather than of
+  our cleverness.
+\item \S\ref{sec:cert}: certificates as the natural proof object, and the
+  precise sense in which checking one is decidable.
+\item \S\ref{sec:three}: the three elementary principles that make the
+  checking finite --- including the one we first got wrong.
+\item \S\ref{sec:mine}: how to \emph{find} certificates, which is a
+  different and much less rigorous activity than checking them, and why
+  that asymmetry is the right architecture.
+\item \S\ref{sec:limits}: where the method stops, what a machine looks
+  like just past the boundary, and a measured negative result about
+  symmetry.
 \end{itemize}
-\end{definition}
 
-The checker verifies five conditions. \textbf{C1 (chain)}: the symbolic
-composition of the stages equals $B(n+1)$, and each block's word-delta
-equals its start function's $k$-slope. Because $\{1,n,2^n\}$ are linearly
-independent over $\mathbb{Q}$, state equality is a finite comparison of
-coefficients. \textbf{C2 (guards)}: the acting rule's guard holds at the
-corners of each block rectangle. \textbf{C3 (priority)}: for each
-higher-priority rule, one \emph{fixed} guard conjunct fails at all
-corners. \textbf{C4 (entry)}: by direct simulation. \textbf{C5
-(coverage)}: the branches cover every $n \ge i_0$.
+\paragraph{Epistemic labels.} Every claim is marked \Proved{} (hand
+proof), \Lean{} (machine-checked in Lean~4), \Chk{} (verified by our
+checker, whose soundness is proved and Lean-verified, but not
+individually formalized), or \Meas{} (a measurement over a stated finite
+domain). The distinction between \Lean{} and \Chk{} is real and we keep
+it visible.
 
-Two facts make this a decision procedure rather than a search.
+\section{FRACTRAN is a priority counter machine}\label{sec:vas}
 
-\begin{proposition}[decidable eventual positivity]\label{prop:evpos}
-For $g \in \mathrm{EXP}$, a threshold $t$, and an arithmetic progression
-of indices, ``$g(n) \ge t$ for all admissible $n \ge n_0$'' is decidable.
-\Proved
-\end{proposition}
-\begin{proof}
-If the $2^n$-coefficient is negative, or is zero and the linear
-coefficient is negative, $g$ is eventually below any threshold and the
-answer is no. Otherwise $g$ is eventually nondecreasing along the
-progression, with an explicitly computable index $N$ past which its
-increment is nonnegative; check $n_0 \le n \le N$ directly.
-\end{proof}
+Factor the state. Writing $n = \prod_j p_j^{\,v_j}$, the divisibility
+test $q \mid n$ becomes a conjunction of lower bounds on the exponents
+$v_j$, and multiplying by $p/q$ becomes adding a fixed integer vector.
+So a FRACTRAN program is exactly a finite set of guarded vector-addition
+rules over $\mathbb{N}^d$, with the guards being lower bounds and the
+rules tried in a fixed priority order.
 
-\begin{theorem}[soundness]\label{thm:sound}
-If the checker accepts a certificate for $M$, then $M$ never halts from
-its start state. \Lean
-\end{theorem}
+This is not a new observation --- it is how Conway's universality proof
+works, and the machine model is Minsky's~\cite{minsky1967} --- but it is
+worth dwelling on, because it places FRACTRAN precisely against a
+decidability boundary that is one of the most studied in computer
+science.
 
-The proof factors into a purely dynamical part, which is what we
-formalize, and the bookkeeping that C1--C5 discharge.
+Drop the priority. What remains --- guarded vector addition where any
+enabled rule may fire --- is a \emph{vector addition system}, equivalently
+a Petri net~\cite{karpmiller}. For those, reachability is
+\textbf{decidable}, a celebrated result~\cite{mayr,kosaraju} whose exact
+complexity was settled only recently as Ackermann-complete~\cite{ack}.
+Add priority --- ``fire the first enabled rule'' --- and the model
+becomes Turing-complete, so reachability is undecidable. FRACTRAN's
+entire computational power sits in the word \emph{first}.
 
-\begin{theorem}[phase induction; the certificate contract]\label{thm:A}
-Let $B : \mathbb{N} \to \mathbb{N}^5$, and suppose
-$s_0 \xrightarrow{E} B(i_0)$, and that for every $i \ge i_0$ there is
-$m \ge 1$ with $B(i) \xrightarrow{m} B(i+1)$. Then
-$\mathrm{NeverHalts}(s_0)$. \Lean
-\end{theorem}
-\begin{proof}
-By induction, for every $k$ there are $m \ge k$ and a state $t$ with
-$s_0 \xrightarrow{m} t$: the base case is the entry, and each phase adds
-at least one step. A machine that completes arbitrarily many steps
-completes every step count.
-\end{proof}
+That reframing pays off immediately. It tells us that any hope of a
+general decision procedure is misplaced, so the question becomes which
+\emph{fragment} is decidable; and it tells us where to look, because
+priority only matters when two rules are simultaneously enabled. A
+machine whose orbit keeps the competing guards separated is, in effect,
+running a plain vector addition system, and those we can reason about.
+The certificates of \S\ref{sec:cert} are, from this angle, exactly
+witnesses that the priority never has to be adjudicated in a way that
+depends on unbounded arithmetic detail.
 
-C4 supplies Theorem~\ref{thm:A}'s entry hypothesis; C1--C3 supply its
-phase hypothesis for the branch containing $i$; C5 ensures every
-$i \ge i_0$ has one. That the phase hypothesis really follows from
-C1--C3 is where the geometry enters, and it is the subject of the next
-section.
+\section{Rigidity: the decidable margin}\label{sec:rigid}
 
-\section{Corners, and why one conjunct must be pinned}\label{sec:corner}
+Consider the first steps of a typical holdout. A rule fires while some
+coordinate lasts, then another takes over; the pattern repeats at a
+larger scale; and the question is whether the pattern always repeats.
+Two things can happen.
 
-Within a run the state is affine in the run counter; across a block the
-start state is affine in the block index. Hence every guard value inside
-a block has the form $a + bk + ct$ with $(k,t)$ ranging over a rectangle.
+The pattern can be \emph{rigid}: the sequence of rules in each repetition
+is the same word, with the repetition counts given by a formula in the
+phase index. Then the state at the start of each phase is a formula too,
+and non-halting becomes: do these formulas keep the guards positive
+forever? That is an algebraic question about finitely many expressions.
 
-\begin{theorem}[corner principle]\label{thm:B}
-If $a + bk + ct \ge 0$ at the four corners of $[0,K]\times[0,L]$, then
-$a+bk+ct \ge 0$ on the whole rectangle; likewise for $\le \theta$.
-\Lean
-\end{theorem}
-\begin{proof}
-A linear integer function attains its extremes on an interval at an
-endpoint; apply this in $k$ along the two extreme rows, then in $t$ for
-each fixed $k$.
-\end{proof}
+Or the pattern can \emph{consume digits}: the rule chosen at some point
+depends on the residue of the current state modulo something that grows,
+or on the $2$-adic valuation of a quantity that changes at every phase.
+Then no formula in the phase index describes the word, and the orbit is
+the branching, pseudorandom object familiar from
+$3x+1$~\cite{lagarias}. For such maps, the ``expected'' behaviour is
+easy to compute and hard to prove --- the state of the art on Collatz
+itself is an almost-all theorem~\cite{tao}, and even that says nothing
+about any \emph{particular} orbit.
 
-Theorem~\ref{thm:B} licenses C2 immediately: finitely many corner tests
-replace infinitely many pointwise tests. C3 is subtler, and here our
-first informal treatment was wrong in a way worth recording.
-
-A rule is \emph{disabled} when \emph{some} conjunct of its guard fails.
-It is tempting to verify ``disabled'' at the endpoints of a run and
-conclude it holds throughout. That inference is invalid: the endpoints
-may be witnessed by \emph{different} conjuncts.
-
-\begin{proposition}[endpoint testing of a disjunction is unsound]\label{prop:unsound}
-There are affine conjunct-values $p+ut$ and $q+vt$ and a run length $n$
-such that at $t=0$ and at $t=n$ some conjunct fails, yet at an
-intermediate $t$ both hold --- so the rule fires in the middle of a run
-the check has accepted. \Lean
-\end{proposition}
-\begin{proof}
-Take $p+ut = t$ and $q+vt = 2-t$ with $n = 2$. At $t=0$ the first value
-is $0$; at $t=2$ the second is $0$; at $t=1$ both equal $1$.
-\end{proof}
-
-Accordingly C3 requires a \emph{single fixed} conjunct to fail at all
-corners, which is sound by Theorem~\ref{thm:B}. The same discipline
-appears in the Lean development as a design constraint: each firing lemma
-names the coordinate that disables each higher-priority rival, and a rule
-typically needs \emph{two} such lemmas because different coordinates do
-the work in different stages --- machine $680$'s rule $25/2$ is protected
-by $\vv5 = 0$ inside its blocks but by $\vv3 = \vv7 = 0$ during its
-opening run. This was the single most common source of error in the
-formalization, and it is exactly the content of C3.
-
-\section{The nine machines}\label{sec:nine}
-
-\begin{theorem}\label{thm:nine}
-Each program in Table~\ref{tab:nine}, started at $n=2$, never halts.
-\Lean
-\end{theorem}
-
-\begin{table}[t]
-\centering\small
-\begin{tabular}{llll}
-\toprule
-line & program & boundary family & phase length\\
-\midrule
-$13649$ & $[5/6,\,9/35,\,8/55,\,7/2,\,605/7]$ & $(2^{i+1}\!-\!1,0,0,0,i)$ & $2^{i+3}-5$\\
-$14793$ & $[63/10,\,8/77,\,33/2,\,5/9,\,7/3]$ & $(2^i\!+\!1,2^i\!-\!2,0,0,i\!-\!1)$ & $4\cdot 2^{i}$\\
-$16268$ & $[9/70,\,25/2,\,44/15,\,7/55,\,3/5]$ & $(0,0,2^{i+2},0,2^{i+1}\!-\!1)$ & $7(2^{i+1}\!-\!1)+4$\\
-$18226$ & $[9/35,\,5/6,\,8/55,\,7/2,\,605/7]$ & transport of line $13649$ & $2^{i+3}-5$\\
-$18380$ & $[7/15,\,9/14,\,125/77,\,2/5,\,847/2]$ & transport of line $13649$ & $2^{i+3}-5$\\
-$19205$ & $[9/10,\,5/21,\,343/55,\,2/7,\,605/2]$ & transport of line $13649$ & $2^{i+3}-5$\\
-$20255$ & $[8/15,\,147/22,\,35/2,\,11/49,\,3/7]$ & $(0,0,2^k\!+\!k,2^{k+1}\!-\!1,0)$ & $5\cdot 2^{k}$\\
-$20589$ & $[77/30,\,88/21,\,9/2,\,5/11,\,7/3]$ & $(0,2^{m+1}\!+\!2m,0,0,2^m\!-\!1)$ & $5\cdot 2^{m}$\\
-$20660$ & $[9/70,\,44/15,\,25/2,\,7/55,\,3/5]$ & $(2^m,0,0,0,2^m\!-\!1)$ & $6\cdot 2^{m}-3$\\
-\bottomrule
-\end{tabular}
-\caption{The nine decided machines, by line number in the official
-$21{,}233$-machine $\mathrm{BBf}(23)$ holdout list of 10 July 2026. All
-nine also appear in the refined $694$-machine list.}
-\label{tab:nine}
-\end{table}
-
-\paragraph{A worked phase.} For line $13649$, write $W = 2^{i+1}-1$ and
-$m = 2^i-1$. From $B_i = (W,0,0,0,i)$ the guards force
-\[
-  f_3^{\,W},\quad (f_4 f_1)^{m} f_4,\quad f_2,\quad
-  \begin{cases}
-  (f_0^3 f_2)^{q}\, f_2^{\,2q}, & i \text{ even},\ 2m = 3q,\\
-  (f_0^3 f_2)^{q}\, f_0^2\, f_2^{\,2q+2}, & i \text{ odd},\ 2m = 3q+2,
-  \end{cases}
-\]
-landing exactly on $B_{i+1}$ in $2^{i+3}-5$ steps. The case split is
-forced by $2^{i+1} \bmod 3$; the only nontrivial guard in the entire
-phase is $\vv{11} \ge 1$ at each $f_2$, and $\vv{11}$ has floor exactly
-$i$ over the phase. That floor is the machine's safety margin, and it
-grows linearly.
-
-\paragraph{Three mechanisms, not one.} Lines $13649$ and $14793$ survive
-by a \emph{linearly growing fuel} ($\vv{11} = i$, resp.\ $i-1$). Line
-$16268$ survives by an \emph{exactly preserved invariant}: its boundary
-satisfies $\vv5 = 2(\vv{11}+1)$ and the phase map sends
-$(\vv5,\vv{11}) \mapsto (2\vv5, 2\vv{11}+1)$, which preserves it. Line
-$20255$ is the only machine of the nine with \emph{no} parity split ---
-its blocks consume nothing three at a time, so no residue condition
-arises. Lines $20589$ and $20660$ have \emph{rotated} phase words: the
-same multiset of rules per block in a different cyclic order, with the
-rotation depending on the parity.
-
-\paragraph{Margins are not thin.} It is worth contrasting these with the
-one previously decided machine of comparable shape, a $\mathrm{BB}(6)$
-holdout settled in April 2026 whose halting condition reduces to a
-$2$-adic valuation of $2\cdot 3^i + i + 5$ staying above a linear bound.
-That margin is \emph{thin}: it can only be controlled by transcendence
-methods, and the published proof invokes Baker--W\"ustholz. None of our
-nine has a thin margin, and no result beyond guard arithmetic and
-induction is used anywhere below.
-
-\section{The equivalence decider}\label{sec:equiv}
-
-Certificates support a second decision problem. Say two certified
-machines are \emph{template-isomorphic} if some bijection of rule indices
-and permutation of the prime axes carries one certificate exactly onto
-the other. This is decidable by finite search over at most $5!\cdot 5!$
-maps, and an isomorphism yields an exact correspondence of orbits from
-the entry boundaries onward.
-
-\begin{theorem}\label{thm:equiv}
-Under template isomorphism the nine machines fall into six classes:
-$\{13649, 18226, 18380, 19205\}$ and five singletons. \Proved
-\end{theorem}
-
-This corrects a natural error. Inspection suggests three families, since
-$20255$, $20589$, $20660$ each share a fraction multiset with an earlier
-machine up to reordering. But reordering fractions changes rule
-\emph{priority}, and priority changes the firing word: those three have
-genuinely different phase templates, which is why each needed its own
-proof. The decider settles the question formally rather than by
-inspection --- and the Lean development independently reproduces the same
-boundary (\S\ref{sec:lean}).
-
-\section{The Lean development}\label{sec:lean}
-
-The formalization is in Lean~4 with \textbf{no} \texttt{mathlib}: only
-core arithmetic, \texttt{omega} and kernel \texttt{decide}. It comprises
-$3{,}262$ lines in $9$ files, builds from scratch in about four seconds,
-contains no \texttt{sorry}, no \texttt{admit}, no \texttt{native\_decide}
-and no \texttt{axiom} declarations, and each of the nine non-halting
-theorems depends on exactly Lean's three core axioms
-(\texttt{propext}, \texttt{Classical.choice}, \texttt{Quot.sound}); the
-entry lemmas depend on none.
-
-\texttt{Fractran.lean} defines the semantics and proves the reusable
-core: a block-iteration lemma and the affine endpoint lemmas.
-\texttt{Decider.lean} proves Theorem~\ref{thm:A}, Theorem~\ref{thm:B} and
-Proposition~\ref{prop:unsound}, and re-derives four of the nine machine
-theorems through Theorem~\ref{thm:A}, confirming that the certificate
-contract is exactly what the machine proofs establish.
-
-Two byproducts deserve mention.
-
-\paragraph{Transport as a proof principle.} Three of the nine are
-transports of line $13649$. Rather than copy its development, we prove a
-\emph{firing specification}: six transported firing obligations, stated on
-the source machine's role coordinates and embedded by an axis map, from
-which the entire phase development and induction follow generically.
-Instantiating it requires discharging only those six facts against the
-target machine's own rule list and priority order. The specification
-demands the top-priority rule fire only at states with $\vv7 = 0$, which
-is precisely what makes the priority swaps in two of the transports
-harmless --- and precisely what the rotated machines cannot satisfy. The
-formal development thus rediscovers the equivalence boundary of
-Theorem~\ref{thm:equiv} from the other side.
-
-\paragraph{Entries collapse.} Our informal case files entered the
-induction at boundary index $4$ after $36$, $76$ or $78$ steps, because
-their phase templates had been stated only for large indices. The Lean
-phase lemmas hold for \emph{all} parameter values, and the true entries
-are far shorter: one step for lines $20255$ and $20589$, sixteen for
-$16268$, and \emph{zero} for line $20660$, whose start state $(1,0,0,0,0)$
-already \emph{is} its index-$0$ boundary. The old counts survive as
-ground-truth cross-checks, which is how we confirmed the re-indexing was
-faithful rather than a slip.
-
-\section{Scope: what rigid certificates cannot do}\label{sec:scope}
-
-A detector for the certificate class costs little: accelerate the machine
-exactly, segment its run at occurrences of a marker rule, and classify the
-resulting per-phase series. We ran it over both holdout lists.
+The distinction is not about our ingenuity. It is a property of the
+machine, it is visible in a bounded simulation (\S\ref{sec:mine}), and it
+predicts which machines have already fallen to earlier work. Our census
+of the $\mathrm{BBf}(23)$ list bears this out: rigid machines are a
+sizeable minority of the official list and a \emph{tiny} minority of what
+survives after the community's deciders have run --- exactly what one
+expects if rigidity is the decidable margin being steadily consumed.
 
 \begin{table}[h]
 \centering\small
 \begin{tabular}{lrrr}
 \toprule
-list & rigid (GEO) & polynomial & non-rigid\\
+list & rigid & polynomial & digit-consuming\\
 \midrule
-refined, $694$ machines & $9$ & $10$ & $675$\\
 official, $21{,}233$ machines & $3{,}253$ & $6{,}797$ & $11{,}183$\\
+refined, $694$ machines & $9$ & $10$ & $675$\\
 \bottomrule
 \end{tabular}
-\caption{Structural census of the $\mathrm{BBf}(23)$ holdouts. \Meas}
+\caption{Structural census of the holdouts, by a bounded-simulation
+detector. \Meas}
 \label{tab:census}
 \end{table}
 
-The reading is that rigidity is the \emph{decidable margin} of the
-holdout set: about $15\%$ of the official list is rigid, and after the
-community's newest deciders have run, exactly $9$ rigid machines survive
---- the nine decided here. What remains is overwhelmingly non-rigid:
-$675$ of $694$. Those machines choose their next rule from arithmetic
-detail that grows with the state, so no boundary family in $\mathrm{EXP}$
---- indeed no family with a bounded description --- tracks them, and the
-certificate class is empty for them by construction rather than by
-budget. This is the same phenomenon that makes generalized Collatz
-problems hard, and we make no claim to address it.
+\section{Certificates: the proof object}\label{sec:cert}
 
-We also note what did \emph{not} appear: among the nine rigid survivors,
-none has a thin, Baker-type margin. If machines of that kind exist on
-these lists, they are not in the rigid class we can detect, and the
-natural place to look is the $\mathrm{BB}(6)$ Turing-machine list, where
-extracting an arithmetic reduction is itself the hard step.
+If a machine is rigid, what exactly should we write down?
 
-\section{Data and reproducibility}\label{sec:data}
+The instinct from program verification is to look for an \emph{inductive
+invariant}: a property preserved by every step, implying non-halting.
+That is not quite the right shape here, because the interesting property
+is not preserved step by step --- it is restored once per phase, after
+thousands of steps that violate it. The right object is therefore a
+\emph{boundary family} together with a proof that it reproduces itself.
 
-All code, certificates, logs and the Lean development accompany this
-paper. The checker runs the nine certificates in about a second; a
-falsifier that systematically perturbs boundaries, counts, rule indices
-and block coefficients produced $540$ corrupted certificates, all
-rejected, none accepted. Every machine proof is additionally cross-checked
-against direct big-integer FRACTRAN simulation.
+\begin{definition}[rigid phase certificate]\label{def:cert}
+Let $\mathrm{EXP} = \{\,a + bn + c\,2^{n} : a,b,c \in \mathbb{Q}\,\}$. A
+certificate consists of: an \emph{entry} $(E, i_0)$ --- the machine
+reaches the $i_0$-th boundary in $E$ steps from its start; a
+\emph{boundary family} $B(n)$ with each coordinate in $\mathrm{EXP}$; and,
+for each residue class of $n$ modulo $2$, a list of \emph{stages}
+describing the phase word: a \emph{run} of one rule repeated an
+$\mathrm{EXP}$ number of times, or a \emph{block} --- a fixed short word
+repeated an $\mathrm{EXP}$ number of times, whose start state is affine
+in the block index.
+\end{definition}
 
-\paragraph{One faithfulness boundary, stated plainly.} The Lean
-development formalizes the exponent-vector machine, and its agreement
-with divisibility FRACTRAN --- that dividing by $q$ is subtracting $q$'s
-exponent vector --- is checked computationally rather than proved, since
-a formal proof needs unique factorization. Closing that gap is
-straightforward with \texttt{mathlib} and is the obvious next step for
-anyone wishing to remove the last informal link.
+Why $\mathrm{EXP}$? Because it is the smallest class closed under what
+the phases actually do. A run consumes a coordinate that was built up by
+doubling, so counts like $2^{n}-1$ appear; step counts accumulate linear
+corrections, so $n$ appears; and the class must be closed under
+$n \mapsto n+1$ and under integer combinations, which it is. It is also
+small enough that $\{1, n, 2^{n}\}$ are linearly independent over
+$\mathbb{Q}$ --- so two states are equal as formulas exactly when their
+nine coefficients agree, and \emph{symbolic state equality is a finite
+check}. That single fact is what makes the whole scheme work.
 
-\paragraph{Provenance.} Holdout lists are those published by the
-$\mathrm{BBf}$ project: the official size-$23$ list of 10 July 2026
-($21{,}233$ machines) and the refined list of 25 July 2026 ($694$
-machines, produced by a decider not yet independently reproduced; we do
-not rely on it --- all nine machines are on the official list).
+\begin{theorem}[soundness]\label{thm:sound}
+If the checker accepts a certificate for $M$, then $M$ never halts from
+its start. \Lean
+\end{theorem}
 
-\begin{thebibliography}{9}
-\bibitem{conway1987} J.~H. Conway. Fractran: a simple universal
+The proof splits into a dynamical core and a geometric part. The core is
+short enough to state in full.
+
+\begin{theorem}[phase induction]\label{thm:A}
+Let $B : \mathbb{N} \to \mathbb{N}^d$. If the machine reaches $B(i_0)$
+from its start, and for every $i \ge i_0$ there is $m \ge 1$ with
+$B(i) \xrightarrow{m} B(i+1)$, then it never halts. \Lean
+\end{theorem}
+\begin{proof}
+By induction, for every $k$ the machine completes at least $k$ steps: the
+entry is the base case, and each phase contributes at least one more
+step. A machine that completes arbitrarily many steps never halts.
+\end{proof}
+
+Everything else in the checker exists to establish the hypothesis of
+Theorem~\ref{thm:A} for all $i$ at once.
+
+\paragraph{Relation to Busy Beaver deciders.} The community's deciders for
+Turing machines are broadly of two kinds: those that find a regular
+invariant of the tape language (closed tape languages, finite-automata
+reductions), and those that certify a repeating macro-structure
+(translated cyclers, bouncers). Certificates here are of the second kind,
+lifted to arithmetic: the ``macro-structure'' is a phase, and the
+repetition is witnessed by algebra rather than by tape matching. The
+precedent for taking such proofs seriously at scale is
+Coq-BB5~\cite{coqbb5}, which settled $\mathrm{BB}(5)$ with a verified
+decider plus per-machine certificates --- the architecture we follow.
+
+\section{Three principles that make checking finite}\label{sec:three}
+
+A certificate asserts something about infinitely many phase indices and,
+within each phase, about a number of steps that grows exponentially. The
+checker must reduce that to finitely much arithmetic. Three facts do it.
+
+\subsection{The extreme-point principle}
+
+Inside a block the state is affine in the block index $k$; within a run it
+is affine in the run counter $t$. So every guard value has the shape
+$a + bk + ct$ over a rectangle $[0,K] \times [0,L]$.
+
+\begin{theorem}[corner principle]\label{thm:B}
+If $a + bk + ct \ge 0$ at the four corners of the rectangle, it is
+$\ge 0$ throughout; likewise for $\le \theta$. \Lean
+\end{theorem}
+\begin{proof}
+A linear function on an interval attains its extremes at an endpoint.
+Apply this in $k$ along the two extreme rows, then in $t$ for fixed $k$.
+\end{proof}
+
+This is the polyhedral fact that linear programs attain optima at
+vertices, in its smallest useful instance. It converts ``check every one
+of $2^{n}$ steps'' into ``check four states''.
+
+\subsection{Eventual positivity, and a frontier we sit just inside}
+
+The corners are themselves formulas in $\mathrm{EXP}$, so the checker
+must decide statements like ``$g(n) \ge 1$ for every $n \ge n_0$ in an
+arithmetic progression'' for $g \in \mathrm{EXP}$.
+
+\begin{proposition}\label{prop:evpos}
+This is decidable. \Proved
+\end{proposition}
+\begin{proof}
+Write $g = a + bn + c2^{n}$. If $c < 0$, or $c = 0$ and $b < 0$, then $g$
+eventually falls below any bound: answer no. Otherwise the increment of
+$g$ along the progression is eventually nonnegative, at an explicitly
+computable index $N$; check $n_0 \le n \le N$ directly.
+\end{proof}
+
+It is worth knowing how narrow the ledge is. $\mathrm{EXP}$ consists of
+linear recurrence sequences of order at most three with the very tame
+characteristic roots $1, 1, 2$. Asking whether a general linear recurrence
+stays nonnegative is the \emph{Positivity problem}, and it is open in
+general; decidability is known only at low order, and even there the
+proofs are delicate and connected to hard Diophantine
+questions~\cite{ouaknineworrell}. We are not doing anything clever
+here --- we are working in a class chosen small enough that positivity is
+trivial. That is a design decision, and it is the honest reason the
+checker terminates.
+
+\subsection{Disabling a rival: pin one conjunct}
+
+The third principle is the one we got wrong first, and it is the most
+transferable.
+
+To justify that a certified rule really fires, one must show that every
+higher-priority rule is \emph{disabled} throughout the run. A rule is
+disabled when \emph{some} conjunct of its guard fails. The tempting check
+is: verify ``some conjunct fails'' at the two ends of the run, and appeal
+to the corner principle. This is invalid.
+
+\begin{proposition}\label{prop:unsound}
+There are affine conjunct values $p+ut$, $q+vt$ and a length $n$ such
+that at $t=0$ and at $t=n$ some conjunct fails, yet at an intermediate
+$t$ both hold --- so the rival rule fires in the middle of a run the
+check accepted. \Lean
+\end{proposition}
+\begin{proof}
+Take $p+ut = t$ and $q+vt = 2-t$ with $n=2$: at $t=0$ the first vanishes,
+at $t=2$ the second does, and at $t=1$ both equal $1$.
+\end{proof}
+
+The error is elementary once seen: the corner principle applies to a
+single affine function, and ``disabled'' is a \emph{disjunction} of
+affine conditions, whose truth set is not convex. The fix is to require
+one fixed conjunct to fail at all corners, which is again a single affine
+function and so is covered by Theorem~\ref{thm:B}.
+
+We flag this because the same trap is available to any verifier that
+reasons about guarded transitions by interval or corner testing, and
+because it has an audible signature: the failing certificate is not
+detected by more simulation --- the machine behaves exactly as expected
+at both ends of every run --- but only by asking which conjunct is doing
+the work. In the Lean development the discipline shows up as a rule
+typically needing \emph{two} firing lemmas, because different coordinates
+disable the same rival in different stages.
+
+\section{Finding certificates}\label{sec:mine}
+
+Checking a certificate is a proof; finding one is a search, and the two
+should not be confused. We keep them in separate programs, with the
+checker as the only authority. The miner may fail, and it may propose
+nonsense; nothing it proposes counts until the checker accepts it, and
+the checker's verdict is symbolic in the phase index rather than a range
+check. Consequently the miner needs no correctness argument at all --- a
+liberating architecture, and the same one used by SAT-based verification
+and by Coq-BB5.
+
+The search itself is short to describe. Simulate. For each rule, take the
+positions that begin a maximal run of it; these are boundary candidates,
+because a rigid machine's phases begin the same way every time. Fit each
+coordinate of the candidate boundary states to $\mathrm{EXP}$ exactly over
+$\mathbb{Q}$ --- three unknowns, solved on three phases and required to
+reproduce all the others. Segment each phase word into runs and blocks by
+looking for maximal repetitions of a short sub-word. Require the resulting
+\emph{stage signature} to be identical across phases of the same parity;
+this is precisely the rigidity test, and it is where digit-consuming
+machines fail. Fit the repetition counts. Finally --- an economy worth
+noting --- do \emph{not} fit the block start states: obtain them by
+symbolically composing the earlier stages, exactly as the checker will.
+
+\begin{table}[h]
+\centering\small
+\begin{tabular}{lrrr}
+\toprule
+& machines & decided & of these, new\\
+\midrule
+refined $\mathrm{BBf}(23)$ list & $694$ & $\mathbf{25}$ & $\mathbf{16}$\\
+\bottomrule
+\end{tabular}
+\caption{End-to-end sweep: fraction list in, certificate out, checker
+verdict. No anomalies: every accepted machine was re-checked and
+independently simulated for $200{,}000$ steps without halting. A sweep of
+the full official list was running at the time of writing. \Chk}
+\label{tab:sweep}
+\end{table}
+
+The nine machines we had previously proved non-halting by hand are all
+rediscovered by the miner from the fraction lists alone, several with
+shorter entries than we had found --- one of them entering at step zero,
+its start state already being a boundary. The other sixteen are new.
+
+\section{Where the method stops}\label{sec:limits}
+
+\subsection{Thin margins: one step past the boundary}
+
+Every machine we decide survives by a comfortable margin: a coordinate
+that grows linearly in the phase index, or an invariant preserved
+exactly. Contrast the one previously decided $\mathrm{BB}(6)$ machine of
+comparable shape, whose halting reduces to the $2$-adic valuation of
+$2\cdot 3^{i} + i + 5$ staying above a linear bound~\cite{bwmachine}.
+That orbit is rigid --- there is a closed form --- but its margin is
+\emph{thin}: it is a near-coincidence between powers of $2$ and powers of
+$3$, and controlling it needs Baker's theorem on linear forms in
+logarithms~\cite{bakerwustholz}. The published proof accordingly invokes
+Baker--W\"ustholz as an axiom.
+
+So rigidity is necessary but not sufficient: what also matters is whether
+the surviving quantity has room. Our nine, and the sixteen new ones, have
+room; that is why nothing beyond guard arithmetic and induction appears
+anywhere in this paper. It is a useful triage question for any new
+machine: is the orbit closed-form, and if so, is the margin thick or
+thin?
+
+\subsection{Symmetry is exhausted: a negative result}
+
+A natural hope for shrinking a holdout list is symmetry: if two programs
+differ only by renaming primes, deciding one decides the other. There is
+a catch that turns out to be decisive. Every program starts at $n = 2$,
+so a relabelling $\pi$ transports the \emph{start} to $e_{\pi(2)}$; the
+halting-from-$2$ question transfers only when $\pi$ fixes the prime $2$.
+
+\begin{proposition}\label{prop:symm}
+Under the relabellings that fix the prime $2$, the official $21{,}233$
+machine list has $21{,}233$ distinct classes: \textbf{no two machines on
+the list are related by a sound relabelling}. Under all prime
+relabellings --- which do \emph{not} transfer the start --- the list
+collapses to $15{,}600$ classes, so $5{,}633$ machines ($26.5\%$) are
+dynamically conjugate to another entry while remaining genuinely distinct
+questions. \Meas
+\end{proposition}
+
+The list is thus already canonical with respect to the only symmetry that
+helps, and the remaining $26.5\%$ is a mirage: those pairs relate
+``machine $A$ from $2$'' to ``machine $B$ from some other prime''. The
+practical residue is smaller but real --- conjugate machines have
+template-isomorphic certificates, so the expensive part, the phase
+analysis, transfers even though the decision does not. We record the
+negative result because it is the kind of thing worth knowing before
+spending a week on it.
+
+\subsection{The wall}
+
+What is left is digit-consuming, and it is most of everything:
+$675$ of the $694$ refined holdouts. For those, no boundary family in
+$\mathrm{EXP}$ --- indeed none with a bounded description --- tracks the
+orbit, so the certificate class is empty for them by construction rather
+than by budget. This is the same wall that stands in front of Collatz.
+We make no claim to address it, and we would be suspicious of a method
+that claimed to without saying which of the two behaviours above it had
+overcome.
+
+\section{The Lean development}\label{sec:lean}
+
+The formalization uses Lean~4 with \textbf{no} \texttt{mathlib}: core
+arithmetic, \texttt{omega}, and kernel \texttt{decide}. It contains no
+\texttt{sorry}, no \texttt{admit}, no \texttt{native\_decide} and no
+\texttt{axiom} declarations; every non-halting theorem depends on exactly
+Lean's three core axioms, and the entry lemmas on none.
+
+Two parts are worth distinguishing. \texttt{Decider.lean} formalizes the
+\emph{soundness argument} --- Theorems~\ref{thm:A} and~\ref{thm:B} and
+Proposition~\ref{prop:unsound} --- with four machines re-derived through
+the abstract theorem to confirm the contract is what the concrete proofs
+establish. The per-machine files formalize nine machines individually. We
+do \emph{not} claim the Python checker is verified: what is proved is
+that no certificate meeting the contract can exist for a halting machine.
+The sixteen new decisions are \Chk{}, not \Lean{}; transcribing them is
+mechanical and is the natural next step, most efficiently done by
+formalizing the checker itself so that each machine reduces to evaluating
+a decidable predicate on certificate data.
+
+\section{Reproducibility and provenance}\label{sec:repro}
+
+Code, certificates, logs and the Lean development accompany the paper.
+The checker runs the certificates in about a second; a falsifier that
+perturbs boundaries, counts, rule indices and block coefficients produced
+$540$ corrupted certificates, all rejected. Holdout lists are those
+published by the BBFractran project~\cite{bbfractran}; machine reductions
+quoted from the bbchallenge wiki~\cite{bbchallenge} appear verbatim beside
+the code that uses them.
+
+This work was carried out with substantial AI assistance.
+
+\begin{thebibliography}{99}
+\bibitem{conway1972} J.~H. Conway. Unpredictable iterations. In
+\textit{Proceedings of the 1972 Number Theory Conference}, University of
+Colorado, Boulder, 1972, 49--52.
+\bibitem{conway1987} J.~H. Conway. FRACTRAN: a simple universal
 programming language for arithmetic. In \textit{Open Problems in
 Communication and Computation}, Springer, 1987, 4--26.
+\bibitem{minsky1967} M.~L. Minsky. \textit{Computation: Finite and
+Infinite Machines}. Prentice-Hall, 1967.
+\bibitem{karpmiller} R.~M. Karp and R.~E. Miller. Parallel program
+schemata. \textit{Journal of Computer and System Sciences} 3(2), 1969,
+147--195.
+\bibitem{mayr} E.~W. Mayr. An algorithm for the general Petri net
+reachability problem. \textit{SIAM Journal on Computing} 13(3), 1984,
+441--460.
+\bibitem{kosaraju} S.~R. Kosaraju. Decidability of reachability in vector
+addition systems. In \textit{Proceedings of STOC}, 1982, 267--281.
+\bibitem{ack} W. Czerwi\'nski and \L. Orlikowski. Reachability in vector
+addition systems is Ackermann-complete; and J. Leroux, The reachability
+problem for Petri nets is not primitive recursive. Both in
+\textit{Proceedings of FOCS}, 2021.
+\bibitem{kurtzsimon} S.~A. Kurtz and J. Simon. The undecidability of the
+generalized Collatz problem. In \textit{Theory and Applications of Models
+of Computation (TAMC)}, LNCS 4484, Springer, 2007, 542--553.
+\bibitem{lagarias} J.~C. Lagarias. The $3x+1$ problem and its
+generalizations. \textit{American Mathematical Monthly} 92(1), 1985,
+3--23.
+\bibitem{tao} T. Tao. Almost all orbits of the Collatz map attain almost
+bounded values. \textit{Forum of Mathematics, Pi} 10, 2022, e12.
+\bibitem{ouaknineworrell} J. Ouaknine and J. Worrell. Positivity problems
+for low-order linear recurrence sequences. In \textit{Proceedings of
+SODA}, 2014, 366--379.
+\bibitem{bakerwustholz} A. Baker and G. W\"ustholz. Logarithmic forms and
+group varieties. \textit{Journal f\"ur die reine und angewandte
+Mathematik} 442, 1993, 19--62.
+\bibitem{coqbb5} The bbchallenge Collaboration. Coq-BB5: a formally
+verified determination of $\mathrm{BB}(5)$.
+\url{https://github.com/ccz181078/Coq-BB5}
 \bibitem{bbfractran} The BBFractran project. Holdout lists and
-enumeration conventions for $\mathrm{BBf}(k)$.
-\url{https://github.com/int-y1/BBFractran}
-\bibitem{bbchallenge} The bbchallenge Collaboration.
+enumeration conventions. \url{https://github.com/int-y1/BBFractran}
+\bibitem{bwmachine} bbchallenge wiki, machine
+\texttt{1RB1LA\_1RC1RE\_1LD0RB\_1LA0LC\_0RF0RD\_0RB---}.
 \url{https://wiki.bbchallenge.org}
 \bibitem{lean4} L. de Moura and S. Ullrich. The Lean 4 theorem prover and
-programming language. \textit{CADE-28}, 2021.
+programming language. In \textit{Proceedings of CADE-28}, LNCS 12699,
+Springer, 2021, 625--635.
 \end{thebibliography}
 
 \end{document}

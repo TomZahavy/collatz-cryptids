@@ -15,3 +15,10 @@ import LeanBbf
 #print axioms Fractran.Decider.disjunctive_endpoint_check_unsound
 #print axioms Fractran.Decider.m574_via_certificate
 #print axioms Fractran.Decider.m455_via_certificate
+#print axioms Fractran.step_of_first
+#print axioms Fractran.Exp.alwaysGE_sound
+#print axioms Fractran.Exp.eval_mono
+#print axioms Fractran.run_affine
+#print axioms Fractran.run_affine_of_rule
+#print axioms Fractran.coord_ge_of_endpoints
+#print axioms Fractran.coord_lt_of_endpoints

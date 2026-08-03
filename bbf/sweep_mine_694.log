@@ -1,0 +1,33 @@
+  line    97  DECIDED  n>=1  1 branch(es)  [1/6, 35/2, 4/55, 3/5, 29282/21]
+  line   112  DECIDED  n>=1  1 branch(es)  [1/6, 4/35, 55/2, 3/5, 4802/33]
+  line   222  DECIDED  n>=2  1 branch(es)  [2/15, 27/14, 275/2, 7/5, 4/77]
+  line   239  DECIDED  n>=2  1 branch(es)  [27/10, 2/21, 539/2, 5/7, 4/55]
+  line   243  DECIDED  n>=2  1 branch(es)  [27/10, 539/2, 2/21, 5/7, 4/55]
+  line   251  DECIDED  n>=1  1 branch(es)  [27/35, 5/66, 14/3, 11/7, 105/2]
+  line   295  DECIDED  n>=1  1 branch(es)  [35/6, 6655/2, 4/847, 3/5, 7/11]
+  line   308  DECIDED  n>=1  1 branch(es)  [4/15, 1/14, 33/2, 7/3, 1250/77]
+  line   338  DECIDED  n>=2  1 branch(es)  [4/15, 9/14, 55/2, 7/5, 18/77]
+  line   418  DECIDED  n>=2  1 branch(es)  [5/6, 77/2, 8/35, 3/7, 20/33]
+  line   427  DECIDED  n>=2  1 branch(es)  [5/6, 8/35, 77/2, 3/7, 20/33]
+  line   432  DECIDED  n>=2  2 branch(es)  [5/6, 9/35, 8/55, 7/2, 605/7]
+  line   446  DECIDED  n>=2  2 branch(es)  [63/10, 33/2, 8/77, 5/9, 7/3]
+  line   456  DECIDED  n>=3  2 branch(es)  [63/10, 8/77, 33/2, 5/9, 7/3]
+  line   503  DECIDED  n>=1  2 branch(es)  [7/15, 9/14, 125/77, 2/5, 847/2]
+  line   538  DECIDED  n>=2  2 branch(es)  [7/30, 8/21, 99/2, 5/11, 77/3]
+  line   571  DECIDED  n>=3  2 branch(es)  [77/30, 88/21, 9/2, 5/11, 7/3]
+  line   575  DECIDED  n>=2  1 branch(es)  [8/15, 147/22, 35/2, 11/49, 3/7]
+  line   577  DECIDED  n>=2  1 branch(es)  [8/15, 3/14, 55/2, 7/5, 12/77]
+  line   616  DECIDED  n>=2  1 branch(es)  [9/10, 4/21, 77/2, 5/7, 18/55]
+  line   624  DECIDED  n>=1  2 branch(es)  [9/10, 5/21, 343/55, 2/7, 605/2]
+  line   636  DECIDED  n>=2  1 branch(es)  [9/10, 77/2, 4/21, 5/7, 18/55]
+  line   674  DECIDED  n>=2  2 branch(es)  [9/35, 5/6, 8/55, 7/2, 605/7]
+  line   679  DECIDED  n>=2  2 branch(es)  [9/70, 25/2, 44/15, 7/55, 3/5]
+  line   681  DECIDED  n>=2  2 branch(es)  [9/70, 44/15, 25/2, 7/55, 3/5]
+
+==========================================================================
+list      : bbf_sz23_694_unofficial.txt  (694 machines)
+DECIDED   : 25
+no cert   : 669
+anomalies : 0
+time      : 518s
+decided machines written to mined_decided.txt

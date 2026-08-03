@@ -145,6 +145,152 @@ NOT formalized (stated in the paper): the Python implementation itself.
 What is proved is that no certificate satisfying the contract can exist
 for a halting machine.
 
+**THE MINER (Aug 3, `miner.py` + `sweep_mine.py`) — the decider is now
+END-TO-END, and it decided 16 machines we had not.**
+
+`miner.py` takes a raw fraction list and returns a certificate: simulate;
+take each rule's run-start positions as boundary candidates; fit the
+boundary family exactly over Q to EXP = {a + bn + c*2^n}; segment each
+phase into runs and blocks (maximal repetition of a period-2..4 sub-word);
+require the stage signature to be constant within a parity class; fit the
+run/block counts; compose block starts symbolically. Every proposal goes
+to `decider.check`, which stays the sole authority — the miner needs no
+correctness proof.
+
+* **9/9 of the hand-proved machines are rediscovered from the fraction
+  lists alone**, several with better entries than we found by hand.
+* **Full sweep of the refined 694 list: 25 DECIDED, 669 no certificate,
+  0 anomalies** (518 s). Of the 25, **16 are new** — machines nobody had
+  decided. Each was re-checked by the checker and independently
+  brute-force simulated for 200,000 steps without halting.
+* Example new decision: line 97 of the refined list = line 2880 of the
+  official 21,233 list, `[1/6, 35/2, 4/55, 3/5, 29282/21]`, certified for
+  all phases n >= 1 with a single branch (no parity split); boundary
+  B(n) = (0, 0, 4*2^n - 3, 14*2^n - 6n - 13, 0).
+* Results in `mined_decided.txt`, log in `sweep_mine_694.log`.
+
+**Status distinction that matters:** the original **nine are
+Lean-verified**; the **sixteen new ones are checker-verified only** (the
+checker's soundness is itself Lean-verified, but each machine's
+certificate has not been transcribed into Lean). Formalizing them is
+mechanical but not yet done.
+
+**A bug worth recording.** The miner first found *nothing*. Cause was
+mine: for a run stage `("run", rule, count)` the code read index 1 (the
+rule) instead of index 2 (the count); blocks were unaffected, so the
+failure looked structural rather than clerical. The checker's rejection
+message (a v7 coordinate going negative, `E(7,0,-2) >= 1`) localized it.
+This is exactly the value of keeping the checker as an independent
+authority over the search.
+
+**EQUIVALENCE SWEEP (`equiv_sweep.py`, `equiv_general.py`) — a NEGATIVE
+result worth keeping.** Can the holdout list be shrunk by proving
+machines equivalent? Two programs are conjugate if a permutation of the
+primes carries one onto the other in order. The catch: every program
+starts at n = 2, so a permutation pi moves the start to e_pi(2), and the
+halting-from-2 question transfers ONLY when pi fixes the prime 2.
+
+Measured over the full official 21,233-machine list (general prime
+basis, not just 2/3/5/7/11):
+* under permutations FIXING 2 (the sound symmetry): **21,233 classes from
+  21,233 machines — ZERO reduction.** The list is already canonical.
+* under ALL prime permutations (NOT sound for start n=2): 15,600 classes,
+  so 5,633 machines (26.5%) are dynamically conjugate to another entry
+  while remaining genuinely distinct questions.
+
+So pure relabelling is exhausted. The residue that IS real: conjugate
+machines have template-isomorphic certificates, so the expensive part —
+the phase analysis — transfers even though the decision does not.
+
+**SWEEP OF THE OFFICIAL 21,233 LIST — IN PROGRESS.**
+`sweep_mine_21233.log` is a PARTIAL run at the time of this commit: 744
+machines decided, scan reached roughly line 7,600 of 21,233. Treat the
+count as a lower bound in progress, not a final figure. The completed
+694-list sweep (25 decided, 16 new, 0 anomalies, all deep-verified to
+10^6 steps) is the finished result.
+
+**TOWARD A VERIFIED CHECKER (Aug 3, `lean/LeanBbf/Runner.lean`).** Step
+one of collapsing all machine proofs into a single theorem. The generic
+priority-firing lemma:
+
+    step_of_first : M = pre ++ r :: post -> (all of pre disabled at s)
+                    -> r enabled at s -> step M s = some (r.act s)
+
+plus `step_none_of_all_disabled`, `step_isSome_of_enabled`, `run_rule`,
+`block_of_steps`. All machine-independent, 0 sorries.
+
+Measured saving on M431 (`DemoRunner.lean` re-derives its firing lemmas
+from the generic one): **42 hand-written lines -> 10**, and each proof is
+now `step_of_first [..] f_i [..] (by simp [..]) (by simp [..] <;> omega)`
+-- the priority reasoning is discharged by `simp` alone rather than by a
+hand-written `rw [if_neg ...]` chain per rule.
+
+**SYMBOLIC LAYER BUILT (`lean/LeanBbf/Exp.lean`).** The design problem
+was rational coefficients: the Python certificates use denominators 2 and
+3 (e.g. 431's block count (2*2^n-2)/3), and building Q without mathlib
+plus deciding integrality needs the periodicity of n -> 2^n mod d.
+
+**That disappears with a change of generator.** A parity branch has
+n = 2m+r, so 2^n = 2^r * 4^m; re-index by m and add the generator
+geo q m = 1 + q + ... + q^(m-1), an integer BY CONSTRUCTION (defined by
+its recurrence). Then (2*2^n-2)/3 at n=2m IS 2*geo 4 m -- integral, no
+denominator. Verified that this covers every denominator in the nine.
+So the class is  a + b*m + c*q^m + g*geo q m,  integer coefficients only,
+closed under m -> m+1, addition and scaling.
+
+Proved (0 sorries, core axioms): `eval_mono` (monotonicity criterion),
+`le_eval_of_mono`, and the executable test `alwaysGE` with
+**`alwaysGE_sound` -- one Boolean evaluation yielding an INFINITE family
+of guard inequalities.** That is the property that lets a finite
+certificate cover all phase indices. The criterion is deliberately
+SUFFICIENT-not-complete: the checker may reject a certificate it cannot
+certify, which costs completeness and never soundness. Compile-time
+examples include one the test correctly REJECTS (5 - m is not eventually
+>= 1). Mathlib-free throughout: no `ring`, no `push_cast`, no
+`Monoid.npow` -- powers are an explicit recursion and the algebra is core
+Int lemmas plus omega, with the two comparisons omega cannot make
+(`k*x <= k*(q*x)`) supplied as lemmas.
+
+**MIDDLE LAYER, CORE BUILT (`lean/LeanBbf/Check.lean`).** The piece that
+turns certificate data into `Steps`:
+* `run_affine` / `run_affine_of_rule` — a rule fired k times along an
+  affine segment, proved ONCE for an arbitrary machine and an arbitrary
+  integer delta. Every machine file currently proves 3-4 instances of
+  this by hand (`run_f0`, `run_f2`, ...), each its own induction.
+* `coord_ge_of_endpoints` / `coord_lt_of_endpoints` — the endpoint
+  interface: a guard bound holding at the two ends of a run holds
+  throughout. This is precisely the shape `Exp.alwaysGE_sound` produces,
+  so the symbolic layer now plugs into the run layer.
+* `shiftN` + the five coordinate lemmas — the Int/Nat bridge, with
+  nonnegativity supplied exactly where the guards give it.
+0 sorries, core axioms. Note `coord_lt_of_endpoints` is deliberately
+about a SINGLE coordinate, never a disjunction — see
+`Decider.disjunctive_endpoint_check_unsound` for why that is not a
+stylistic choice.
+
+Current line split: **generic layers 865 lines (5 files) vs per-machine
+2,884 lines (7 files, 9 machines)**.
+
+**Still remaining for a fully verified decider:**
+certificates as DATA with coefficients in {a + b*n + c*2^n}, an
+executable `checkCert : Machine -> Cert -> Bool`, and
+`checkCert M c = true -> NeverHalts M start`. Then each machine is
+`cert_sound M <cert> (by decide)` -- about 20 lines, no mathematics.
+Known obstacles, recorded so the next session does not rediscover them:
+(i) EXP needs rational coefficients (e.g. (2*2^n-2)/3 occurs in 431), so
+without mathlib one must build Q as Int pairs, or carry a denominator and
+verify integrality along the progression -- decidable, since both n mod d
+and 2^n mod d are eventually periodic, but it is real work;
+(ii) **the stage-composition fold** — chaining a LIST of stages while
+threading the symbolic state and keeping it equal to the real machine
+state. The per-stage machinery is now done; this is the remaining
+structural induction, and it is the genuinely hard part because each
+stage's state function depends on the previous stages' outputs;
+(iii) block stages (structurally similar to runs, via `steps_blocks`);
+(iv) the `Cert` datatype and the executable `checkCert : Machine -> Cert
+-> Bool` with `checkCert M c = true -> NeverHalts M start`, after which a
+machine is ~20 lines of `by decide`.
+
 **PAPER (`paper/main.tex`, 7 pp, compiles clean, 0 unresolved refs).**
 "Rigid phase certificates: deciding nine FRACTRAN holdouts, and a
 decider that explains why". Every number in it was recomputed from the
