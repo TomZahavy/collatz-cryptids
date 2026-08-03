@@ -276,9 +276,43 @@ becomes simulable to astronomical horizons with polylog work — and it is
 what makes the halting question sharply askable rather than merely
 plausible.
 
-Remaining: characterise halting (obligation 5), the one with real
-content, still untouched. Everything above says what the machines DO;
-nothing yet says when the `---` transition could fire.
+### Obligation 5 — the halting criterion
+
+All three machines have exactly one undefined transition, **state F on
+symbol 0**, and in all three F is entered from exactly one place: state
+E reading 0. Read straight off the transition tables:
+
+| line | E | F | scan direction |
+|---|---|---|---|
+| 336 | `0 -> 1RF`, `1 -> 0LC` | `0 -> ---`, `1 -> 0RE` | right |
+| 555 | `0 -> 1LF`, `1 -> 0RD` | `0 -> ---`, `1 -> 0LE` | left |
+| 1002 | `0 -> 1RF`, `1 -> 0LA` | `0 -> ---`, `1 -> 0RE` | right |
+
+So E and F form a scanning pair. From E on a 0 the machine writes 1,
+steps one cell in the scan direction, and lands in F. F on a 1 writes 0,
+steps again, and returns to E. F on a 0 halts. E on a 1 leaves the scan
+entirely.
+
+    HALT  <=>  at some moment the machine is in state E reading 0 with
+               the next cell in the scan direction also 0
+
+Equivalently, the E/F pair consumes the word `01` (mirrored to `10` for
+line 555) over and over, and
+
+  * meeting `1` at an E position ends the scan normally,
+  * meeting `00` halts.
+
+**Verified:** over 6e6 base steps per machine there are 3,005 / 4,130 /
+4,904 E-on-0 scans and **zero** carrying a `00` -- every one of them
+reads `01` and continues. Combined with the accelerated runs, no halt
+occurs anywhere in ~1e165 steps.
+
+This is the reduction the whole exercise was for: halting is now a
+condition on the TAPE WORD at a specific, identifiable moment, rather
+than a statement about the machine's whole future. What remains is to
+express "the scanned word contains `00`" in terms of the section
+counters, which turns it into an arithmetic condition on the outer orbit
+-- the halting set H of the orbit-avoidance problem.
 
 **Honest status:** three two-level BB(6) holdouts whose outer maps are
 expanding, multi-branch, and have no periodic branch pattern over the
