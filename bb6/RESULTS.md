@@ -721,3 +721,57 @@ already been shipped from measurements that stopped one step too early.
 Standing: R1 and R2 (positive half) proved in Lean for lines 336 and
 1002; R3 and R4 need the epilogue; H proved for three machines. No
 machine yet has ALL its rules proved.
+
+## The epilogue, pinned (line 336)
+
+The segment between one loop and the next, which R3 and R4 both need.
+Measured against the real machine by subtracting the loop cost from the
+gap between consecutive loop starts:
+
+| loop start | turns | loop cost | gap | epilogue | X after loop |
+|---|---|---|---|---|---|
+| (1,2,1,302) | 2 | 40 | 62 | **22** | 5 |
+| (1,7,1,298) | 7 | 280 | 322 | **42** | 15 |
+| (1,17,1,289) | 17 | 1,360 | 1,442 | **82** | 35 |
+| (1,37,1,270) | 37 | 5,920 | 6,082 | **162** | 75 |
+| (1,77,1,91) | 77 | 24,640 | 24,962 | **322** | 155 |
+
+Cost is exactly `2X + 12` on all five, X the middle block after the loop.
+
+Stated at cell level and verified on 54 independent instances, 54/54:
+
+    [11] blank | (10)^X (11)^R Rr        state A, facing left
+      -- 2X + 12 steps -->
+    [11] (10)^(X+1) [1] | (10) (11)^(R-2) Rr
+
+Two things had to be got right, and both bit first:
+
+* **the left context must be blank, not arbitrary.** The epilogue reads
+  leftward past the [11] block, so with an arbitrary tail it does not
+  close. In the machine the left stack has exactly two blocks, so the
+  tail really is blank -- but that is a fact about the reachable
+  configurations, not a free choice.
+* **the result ends `(10)^(X+1) [1]`, not `(10)^(X+2)`.** The trailing 1
+  plus the blank tape beyond it forms the last block at block level, so
+  the block count is X+2 while the explicit cell list is one 0 shorter.
+  A pattern-matching detector reported X+1 and then X+2 depending on
+  where it stopped; only checking against the real machine settled it.
+
+### R3 now follows
+
+From (q, r) with x = 1 and q <= r: the loop runs q turns to
+(0, 1+2q, r-q), then the epilogue gives (1+2q+2, 1, r-q-2), i.e.
+
+    (q, r)  ->  (2q + 3,  r - (q + 2))
+
+which is R3 exactly. The reservoir arithmetic checks on every observed
+loop: 302-2-2 = 298, 298-7-2 = 289, 289-17-2 = 270, 270-37-2 = 231.
+
+### And R4 is the other branch
+
+The second row of the table above is the flip: q = 157 > r = 12, so the
+RESERVOIR exhausts rather than the counter, and the epilogue cost is
+142,454 rather than 2X+12. R4 is therefore not a separate mystery -- it
+is the same segment entered with the other counter empty. That is a much
+better-defined target than "the flip has no closed form", which is how it
+was described an hour ago.
