@@ -374,4 +374,71 @@ theorem m1002_loop (q r x : Nat) (Lr Rr : List Bool) :
 theorem loop_exhausts (q r : Nat) : q - min q r = 0 ∨ r - min q r = 0 := by
   omega
 
+/-! ## The epilogue
+
+The segment between one loop and the next: it converts the middle block
+the loop accumulated into the next loop's counter.  R3 needs it, and so
+does R4.
+
+Three steps of prologue, then `X+1` crossings of `10 -> 01` in state F,
+then seven steps of tail -- `3 + 2(X+1) + 7 = 2X + 12`.
+
+The left tape must be exactly `[11]` with BLANK beyond it, not an
+arbitrary tail: the prologue reads leftward past that block.  In the
+machine the left stack really does have only these two blocks, so the
+hypothesis is satisfied where it is used, but it is a fact about the
+reachable configurations rather than a free choice.  The reservoir must
+supply two `11` blocks, which is where the `b + 2` comes from. -/
+
+theorem m336_epilogue (X b : Nat) (Rr : List Bool) :
+    Steps m336 (2 * X + 12)
+      (Cfg.mk [true, true]
+              (rep [true, false] X ++ (rep [true, true] (b + 2) ++ Rr))
+              0 false)
+      (Cfg.mk ([true, true] ++ (rep [true, false] (X + 1) ++ [true]))
+              ([true, false] ++ (rep [true, true] b ++ Rr)) 0 false) := by
+  have p1 : Steps m336 3
+      (Cfg.mk [true, true]
+              (rep [true, false] X ++ (rep [true, true] (b + 2) ++ Rr))
+              0 false)
+      (Cfg.mk [true]
+              (rep [true, false] (X + 1) ++ (rep [true, true] (b + 2) ++ Rr))
+              5 true) := by
+    have e : rep [true, false] (X + 1) ++ (rep [true, true] (b + 2) ++ Rr)
+        = true :: false :: (rep [true, false] X
+            ++ (rep [true, true] (b + 2) ++ Rr)) := by
+      show ([true, false] ++ rep [true, false] X)
+          ++ (rep [true, true] (b + 2) ++ Rr) = _
+      rw [List.append_assoc]
+      rfl
+    rw [e]
+    exact steps_of_runFor 3 _ _ rfl
+  have p2 := crossR_rep m336_F_R (X + 1) [true]
+      (rep [true, true] (b + 2) ++ Rr)
+  rw [rev_rep_01 (X + 1)] at p2
+  have p3 : Steps m336 7
+      (Cfg.mk (rep [true, false] (X + 1) ++ [true])
+              (rep [true, true] (b + 2) ++ Rr) 5 true)
+      (Cfg.mk ([true, true] ++ (rep [true, false] (X + 1) ++ [true]))
+              ([true, false] ++ (rep [true, true] b ++ Rr)) 0 false) := by
+    have e : rep [true, true] (b + 2) ++ Rr
+        = true :: true :: true :: true :: (rep [true, true] b ++ Rr) := by
+      show ([true, true] ++ ([true, true] ++ rep [true, true] b)) ++ Rr = _
+      rw [List.append_assoc]
+      rfl
+    rw [e]
+    exact steps_of_runFor 7 _ _ rfl
+  have key := Steps.trans p1 (Steps.trans p2 p3)
+  have hcount : 3 + ((X + 1) * 2 + 7) = 2 * X + 12 := by omega
+  rw [hcount] at key
+  exact key
+
+#guard runFor m336 (2 * 5 + 12)
+    (Cfg.mk [true, true]
+            (rep [true, false] 5 ++ (rep [true, true] 6 ++ [false, false, true, true]))
+            0 false)
+  = some (Cfg.mk ([true, true] ++ (rep [true, false] 6 ++ [true]))
+            ([true, false] ++ (rep [true, true] 4 ++ [false, false, true, true]))
+            0 false)
+
 end Bb6

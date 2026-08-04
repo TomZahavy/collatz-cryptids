@@ -775,3 +775,38 @@ RESERVOIR exhausts rather than the counter, and the epilogue cost is
 is the same segment entered with the other counter empty. That is a much
 better-defined target than "the flip has no closed form", which is how it
 was described an hour ago.
+
+### The epilogue proved in Lean, and why R3 does not yet compose
+
+`m336_epilogue` is proved: three steps of prologue, `X+1` crossings of
+`10 -> 01` in state F, seven steps of tail, totalling `2X + 12`. Lean is
+now 1,035 lines, 0 sorries, 40 `#guard` checks, no added axioms.
+
+The pieces of R3 are therefore both proved -- `m336_loop` gives the loop
+and `m336_epilogue` gives the segment after it -- and yet R3 does not
+follow by composing them, for a reason worth recording.
+
+**The two lemmas disagree about the left tail.** `m336_loop` holds for an
+arbitrary tail `Lr`; `m336_epilogue` requires the tail to be exactly
+blank, because its prologue reads leftward past the `[11]` block. That is
+fine for one composition. But the epilogue's OUTPUT ends
+`(10)^(X+1) [1]` -- a trailing `1` against blank tape -- so the next
+loop runs with `Lr = [true]`, and when THAT loop exhausts the left tape
+is `[1,1,1]`, not `[1,1]`. The epilogue as stated does not apply again.
+
+At block level there is no discrepancy: a trailing `1` followed by blank
+tape IS a `10` block, which is exactly why the block count is `X+2` while
+the cell list shows `X+1` complete blocks. The two configurations behave
+identically because `hd [] = false`. But they are not equal as lists, so
+Lean will not rewrite one into the other, and making them interchangeable
+needs a small lemma -- that appending blanks to the left tail changes
+nothing -- which does not exist yet.
+
+So R3 is one structural lemma away rather than one composition away. The
+missing piece is stated precisely and is about the representation, not
+about the machine.
+
+Standing: R1, R2 (positive half) and the epilogue proved for line 336;
+R1 and R2 for line 1002; H for three machines. R3 blocked on the
+blank-tail lemma. R4 is the epilogue entered with the reservoir empty
+instead, and is not yet attempted.
