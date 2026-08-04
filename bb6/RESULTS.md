@@ -471,6 +471,43 @@ not retried.
 So the closed rule set covers the inner cascade and the branch condition;
 the outer step remains observed rather than derived.
 
+#### A fit that survived six cascades and then died
+
+Worth recording in full, because it is the third time the same trap has
+been walked into in this project. Taking the state at the end of a
+cascade, the quantity `r' - 4*x_end + q_end` came out as
+
+    31, 37, 43, 49, 55, 61
+
+-- arithmetic, difference 6, tracking the cascade length L exactly as
+`3L + 13`. That gives
+
+    r' = 4*x_end - q_end + 3L + 13
+
+and it is EXACT on six consecutive cascades, L = 6, 8, 10, 12, 14, 16.
+It then fails on the next two, and badly (predicted 149,435 against an
+actual 804,792).
+
+The reason is visible in the cascade lengths themselves. They run
+6, 8, 10, 12, 14, 16 -- an arithmetic progression -- and then 17, 18. The
+formula was not a law; it was a description of the regular regime, and
+the `3L + 13` term was the warning sign all along. A constant that
+depends on the cascade length means an untracked state variable, and it
+holds only while that variable moves regularly.
+
+**This is the same failure mode as `381 - 4n` (section on census 1) and
+as `W(n+1) = W(n)[:-6] + X + W(n)` (section on the four GEO machines):
+a formula exact over every instance available, describing a transient.
+The defence is the same each time -- extend the range and re-test, never
+fit and ship.**
+
+The break is also a positive datum. Cascade lengths ceasing to be an
+arithmetic progression is precisely the digit-consuming behaviour the
+cryptid criteria are about, seen from a new angle and at the inner level
+rather than the outer one. It is evidence FOR the classification, and it
+is why no closed form for the flip has been found: if one existed in this
+simple a class, the machine would not be a cryptid candidate.
+
 ### What happened to the other 1,061 machines: nothing was decided
 
 Worth stating plainly, because the censuses are easy to misread as
