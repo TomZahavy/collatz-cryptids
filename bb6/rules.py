@@ -19,6 +19,7 @@ from twolevel import report as tlr
 
 MACHINES = [
     (106, "1RB0LF_1LC0LD_1RD1LB_---1RE_0RA1RE_1LA0LE"),
+    (168, "1RB0LD_1LC1RA_1RA1LC_1LE1LA_0RF1LD_---1RE"),
     (336, "1RB0LD_1LC0RA_1RA1LB_1LA1LE_1RF0LC_---0RE"),
     (555, "1RB1RE_1LC0RA_1RD0LB_1LB1RC_1LF0RD_---0LE"),
     (990, "1RB0LF_1LC1RA_0RE0RD_---1LE_1LF1RC_1LC1LA"),
@@ -50,8 +51,14 @@ def observations(code, blk, skel, budget, skip=8):
 
 
 def find_shape(code, blk, budget=400000, skip=8):
-    """The shape that recurs most, among those with a small counter
-    vector -- that is where the inner loop turns."""
+    """The shape whose occurrences form the LONGEST runs under a fixed
+    counter delta -- that is where the inner loop turns.
+
+    Picking the shape that merely recurs most often does not work: the
+    most frequent shape is often one the machine passes through on every
+    macro step, whose "runs" are all of length one.  Lines 106 and 990
+    both failed that way.  Scoring by mean run length finds the loop
+    instead of the traffic."""
     g = tlr(code, (blk,), 1000000)[0]
     s = MacroSim(TM(code), blk)
     prev, hits = True, 0
@@ -73,7 +80,29 @@ def find_shape(code, blk, budget=400000, skip=8):
             break
     if not cnt:
         return None
-    return max(cnt, key=lambda k: cnt[k])
+    best, best_score = None, 0.0
+    for sk in sorted(cnt, key=lambda k: -cnt[k])[:12]:
+        if cnt[sk] < 20:
+            continue
+        obs = observations(code, blk, sk, budget, skip)
+        seq = [c for c, _ in obs]
+        if len(seq) < 20:
+            continue
+        delta = tuple(b - a for a, b in zip(seq[0], seq[1]))
+        if not any(delta):
+            continue
+        runs, i = 0, 0
+        while i < len(seq):
+            j = i
+            while j + 1 < len(seq) and \
+                    tuple(b - a for a, b in zip(seq[j], seq[j + 1])) == delta:
+                j += 1
+            runs += 1
+            i = j + 1
+        score = len(seq) / runs
+        if score > best_score:
+            best, best_score = sk, score
+    return best
 
 
 def analyse(line, code, blk, budget=3000000):

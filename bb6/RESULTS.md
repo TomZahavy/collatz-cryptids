@@ -617,3 +617,49 @@ at seven data points. This one was too strict, in a way that a
 thirty-second check against the canonical example would have caught at
 any point. Testing a criterion against the problem it is modelled on
 should be routine and was not.
+
+## Rule sets for all six candidates
+
+`rules.py`, with a corrected shape-finder. The first version picked the
+shape that recurs MOST OFTEN, which is usually one the machine passes
+through on every macro step and whose runs are all of length one; lines
+106 and 990 both failed that way. Scoring candidate shapes by mean run
+length finds the loop rather than the traffic.
+
+| line | loop shape | turn rule | first-turn cost | branch k = min |
+|---|---|---|---|---|
+| 106 | `((2,3),1,1,(1,))` | `+= (1, 0, -1)` | 4 | **34/34** |
+| 168 | `((3,1),1,1,(3,))` | `+= (2, -1, -1)` | 10 | **566/566** |
+| 336 | `((3,2),0,0,(1,3))` | `+= (0, -1, 2, -1)` | 16 | 66/67 |
+| 555 | `((2,3),1,1,(3,1))` | `+= (2, -1, 0, -1)` | 16 | **87/87** |
+| 990 | `((0,2),3,1,(3,))` | `+= (0, -1, 1)` | 4 | **5/5** |
+| 1002 | `((3,2),1,0,(1,3))` | `+= (0, -1, 2, -1)` | 16 | 79/80 |
+
+Every one of the six obeys `k = min over the shrinking coordinates`, the
+branch condition the turn rule predicts. Line 168 is the strongest case
+in the whole study at 566 consecutive runs.
+
+**A caveat about section choice.** A two-level machine has a HIERARCHY of
+sections, and different ones give different, all-valid rule sets. Scoring
+by mean run length picks a coarser section for 336, 555 and 1002 than the
+one the Lean proof uses (for 336 it returns shape `((2,),0,0,(1,3,1))`
+with turn `+= (2,0,-1,0)` and first-turn cost 582, branch 6/6). The table
+above reports the FINE shapes for those three, so that the rule set and
+the Lean theorem describe the same object. This is worth stating because
+"the rule set of a machine" is not well-defined without naming the
+section.
+
+### State of the Lean development against the rule sets
+
+| | 336 | 555 | 1002 | 106 | 168 | 990 |
+|---|---|---|---|---|---|---|
+| R1 turn | **Lean** | measured | measured | measured | measured | measured |
+| R2 branch | 66/67 | 87/87 | 79/80 | 34/34 | 566/566 | 5/5 |
+| R3 cascade | 60/60 | 78/78 | 72/72 | - | - | - |
+| R4 flip | open | open | open | - | - | - |
+| H halt | **Lean** | **Lean** | **Lean** | - | - | - |
+
+So: one machine has a machine-checked turn rule, three have halting
+lemmas, all six have measured turn rules and branch conditions, and no
+machine has a machine-checked R2, R3 or R4. That is the gap between what
+is claimed and what is proved, stated as a table so it cannot be blurred.
