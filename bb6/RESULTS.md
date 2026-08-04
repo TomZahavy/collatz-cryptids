@@ -689,3 +689,35 @@ over every run observed and look reachable with what is built -- R2 is an
 induction on the smaller counter, R3 is R1 composed with itself. R4 is
 not, and the failed fit above suggests that is the obstruction rather
 than unfinished work.
+
+### R2 proved (positive half), and a correction about R3
+
+`m336_loop` and `m1002_loop`: from counters (q, r) the machine performs
+`min q r` turns, at cost `unitCost x (min q r)`, leaving
+`(q - min q r, x + 2*min q r, r - min q r)`. Proved for both machines,
+directly from the iteration lemma by choosing `n = min q r`. Also
+`loop_exhausts`: at least one of the two counters ends empty, which is
+what makes `min` the right count rather than merely an upper bound.
+
+The other half of R2 -- that the loop runs no FURTHER -- is deliberately
+not claimed. It would say the next turn fails, and what the machine does
+instead of that turn is the flip, R4, which has no closed form. The two
+halves of R2 are not equally within reach.
+
+**Correction to an earlier claim.** This file previously said R3 "is R1
+composed with itself" and would follow from the machinery already built.
+That is wrong. R3 relates consecutive LOOP starts, and between one loop
+and the next the machine runs an epilogue -- the segment that converts
+the accumulated middle block into the next loop's counter. R3 therefore
+needs the epilogue, exactly as R4 does, and is not a corollary of R1.
+
+The epilogue does look tractable: measured on line 336 it costs
+`2X + 22` steps for a middle block of X, constant in the reservoir. But
+the resulting counter did not match what the run data implies on the
+first attempt -- the detection broke mid-epilogue -- and it is not
+recorded as a rule until that is resolved. Two rules in this project have
+already been shipped from measurements that stopped one step too early.
+
+Standing: R1 and R2 (positive half) proved in Lean for lines 336 and
+1002; R3 and R4 need the epilogue; H proved for three machines. No
+machine yet has ALL its rules proved.

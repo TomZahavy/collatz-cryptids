@@ -329,4 +329,49 @@ theorem m1002_units : ∀ (n x a b : Nat) (Lr Rr : List Bool),
             (rep [true, false] 7 ++ (rep [true, true] 2 ++ [false, true]))
             1 false)
 
+/-! ## R2: the loop runs until a counter is exhausted
+
+The turn rule takes one block from each of two counters, so the loop can
+run as many turns as the SMALLER of them allows and no more.  The
+"as many as" half is below; it follows from the iteration lemma by
+choosing n = min q r, and it is the half that says what the machine
+actually does.
+
+The "and no more" half is deliberately not claimed here.  It would say
+that the next turn fails, and what the machine does instead of that turn
+is the flip -- rule R4 in the report -- which has no closed form.  So the
+two halves of R2 are not equally within reach, and stating only the one
+that is proved is the honest split. -/
+
+theorem m336_loop (q r x : Nat) (Lr Rr : List Bool) :
+    Steps m336 (unitCost x (min q r))
+      (Cfg.mk ([true, true] ++ (rep [true, false] q ++ Lr))
+              (rep [true, false] x ++ (rep [true, true] r ++ Rr)) 0 false)
+      (Cfg.mk ([true, true] ++ (rep [true, false] (q - min q r) ++ Lr))
+              (rep [true, false] (x + 2 * min q r)
+                ++ (rep [true, true] (r - min q r) ++ Rr)) 0 false) := by
+  have h1 : q - min q r + min q r = q := by omega
+  have h2 : r - min q r + min q r = r := by omega
+  have h := m336_units (min q r) x (q - min q r) (r - min q r) Lr Rr
+  rw [h1, h2] at h
+  exact h
+
+theorem m1002_loop (q r x : Nat) (Lr Rr : List Bool) :
+    Steps m1002 (unitCost x (min q r))
+      (Cfg.mk ([true, true] ++ (rep [true, false] q ++ Lr))
+              (rep [true, false] x ++ (rep [true, true] r ++ Rr)) 1 false)
+      (Cfg.mk ([true, true] ++ (rep [true, false] (q - min q r) ++ Lr))
+              (rep [true, false] (x + 2 * min q r)
+                ++ (rep [true, true] (r - min q r) ++ Rr)) 1 false) := by
+  have h1 : q - min q r + min q r = q := by omega
+  have h2 : r - min q r + min q r = r := by omega
+  have h := m1002_units (min q r) x (q - min q r) (r - min q r) Lr Rr
+  rw [h1, h2] at h
+  exact h
+
+/-- The loop leaves at least one of the two counters empty -- which is
+    what makes `min` the right count and not merely an upper bound. -/
+theorem loop_exhausts (q r : Nat) : q - min q r = 0 ∨ r - min q r = 0 := by
+  omega
+
 end Bb6
