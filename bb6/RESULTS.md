@@ -402,3 +402,39 @@ Both chains are instances of crossings already proved in
 proof is: four `steps_of_runFor` fragments and two `crossR_rep` /
 `crossL_rep` applications, composed with `Steps.trans`. Nothing in it is
 open; it is assembly, and it is not yet done.
+
+### PROVED (Lean): the unit lemma and its iteration
+
+`lean/LeanBb6/Unit.lean`. 833 lines across the development, 0 sorries,
+38 `#guard` checks, no added axioms.
+
+    m336_unit (x a b : Nat) (Lr Rr : List Bool) :
+      Steps m336 (4 * x + 12)
+        [11] (10)^(a+1) Lr | (10)^x (11)^(b+1) Rr   state A, facing left
+        [11] (10)^a Lr     | (10)^(x+2) (11)^b Rr   state A, facing left
+
+Proved for ALL x, a, b and arbitrary surrounding tape -- the statement
+the Python side had verified on 54 instances. The proof is the four-piece
+decomposition above: two fragments computed by the kernel via
+`steps_of_runFor`, two applications of `crossR_rep`/`crossL_rep`, and the
+list algebra needed to expose each chain's pattern.
+
+That algebra is the whole difficulty and it reduces to one fact,
+`shift_10` / `shift_01`: a 0 in front of a run of 10s is a 0 behind a run
+of 01s. Everything else is `rep_snoc` and `rev_rep`.
+
+Also proved:
+
+* `m336_units` -- n turns: each side shrinks by n, the middle grows by 2n.
+* `unitCost_closed` -- the cost of n turns is `4nx + 4n^2 + 8n`. The
+  quadratic term is the price of the middle block growing under the head.
+
+Two mathlib reflexes to avoid, both hit here: `set` is not available, and
+`0 * x` is not definitionally `0` (Nat.mul recurses on its second
+argument), so the zero case of a cost induction needs `simp`, not `rfl`.
+
+**Remaining for the full equivalence:** the outer half -- composing
+prologue, n turns and epilogue into the return map, and expressing the
+E/F halting condition in terms of the section counters. Both are assembly
+on results already stated and verified, and both are done for only one of
+the three machines so far.
