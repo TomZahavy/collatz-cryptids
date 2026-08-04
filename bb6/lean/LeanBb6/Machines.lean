@@ -40,6 +40,29 @@ def runFor (M : Machine) : Nat → Cfg → Option Cfg
       | none => none
       | some c' => runFor M n c'
 
+/-- The bridge from computation to proof: if the executable runner gets
+    from `a` to `b` in `n` steps, then `Steps` holds.
+
+    This is what makes a concrete crossing a one-liner.  Proving one
+    directly with `Steps.succ` requires naming the intermediate
+    configuration, because it appears as a metavariable the tactic
+    cannot solve before elaborating the rest; going through `runFor`
+    lets the kernel compute it instead. -/
+theorem steps_of_runFor {M : Machine} :
+    ∀ (n : Nat) (a b : Cfg), runFor M n a = some b → Steps M n a b := by
+  intro n
+  induction n with
+  | zero =>
+      intro a b h
+      injection h with h
+      exact h ▸ Steps.zero a
+  | succ k ih =>
+      intro a b h
+      unfold runFor at h
+      cases hs : step M a with
+      | none => rw [hs] at h; exact absurd h (by simp)
+      | some c => rw [hs] at h; exact Steps.succ hs (ih c b h)
+
 /-- The number of steps before halting, if it halts within `fuel`. -/
 def haltAt (M : Machine) : Nat → Nat → Cfg → Option Nat
   | 0, _, _ => none
