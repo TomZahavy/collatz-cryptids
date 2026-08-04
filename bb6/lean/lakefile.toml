@@ -1,0 +1,5 @@
+name = "leanbb6"
+defaultTargets = ["LeanBb6"]
+
+[[lean_lib]]
+name = "LeanBb6"
