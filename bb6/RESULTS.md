@@ -438,3 +438,60 @@ prologue, n turns and epilogue into the return map, and expressing the
 E/F halting condition in terms of the section counters. Both are assembly
 on results already stated and verified, and both are done for only one of
 the three machines so far.
+
+### The branch condition, DERIVED (line 336)
+
+The unit lemma says one turn is `(p, q+1, x, r+1) -> (p, q, x+2, r)`, so
+the inner loop must run until one of the two shrinking counters is
+exhausted. That predicts the branch index, and the prediction holds:
+
+    k = min(q, r)                                  68 / 68 runs
+
+Between flips the machine follows an explicit two-counter rule:
+
+    q <= r :   (q, r)  ->  (2q + 3,  r - (q + 2))  61 / 61 transitions
+
+so `q` runs through 2, 7, 17, 37, 77, 157, 317, 637, ... doubling until
+it overtakes the reservoir. The cascade lengths between flips are 6, 8,
+10, 12, 14, 16 -- each cascade one longer than the last, which is the
+reservoir roughly doubling and buying one more doubling of `q`.
+
+    q > r  :   flip -- q resets to 2, a new reservoir is installed
+
+**The flip is the outer step, and it is NOT in closed form.** Its output
+reservoirs are 302, 1245, 4956, 19179, 70410, 224313, 380664, which are
+exactly the outer orbit values plus 2 -- so the flip branch is precisely
+the map whose orbit the halting question is about. Several fits were
+tried against the state at the flip (`4x + 25`, `4x + 4q + 1`, `2q - r`);
+each matches one or two instances and fails on the rest. The epilogue
+between the last turn and the next cascade has not been analysed, and
+without it there is no honest formula. Recorded so the failed fits are
+not retried.
+
+So the closed rule set covers the inner cascade and the branch condition;
+the outer step remains observed rather than derived.
+
+### What happened to the other 1,061 machines: nothing was decided
+
+Worth stating plainly, because the censuses are easy to misread as
+verdicts. Across both sweeps of all 1,064 machines there were **zero**
+HALTED and **zero** INFINITE classifications. Not one machine on the list
+was proved to halt, and not one was proved not to halt. The classes are
+statements about STRUCTURE, and about whether this method has any handle
+on a machine -- not about halting.
+
+| group | count | status |
+|---|---|---|
+| no two-level structure | 1,033 | method finds no handle; nothing learned about halting |
+| INSUFFICIENT | 22 | too few outer steps at the budget used |
+| cryptid-shaped | 3 | reduced to orbit avoidance; halting open |
+| PREDICTABLE-BRANCHES | 2 (lines 106, 990) | **possibly tractable, never attempted** |
+| NOT-EXPANDING | 3 | **possibly tractable, never attempted** |
+| GEO (rigid boundaries) | 4 | shown NOT decidable by this method |
+| UNCONFIRMED | 3 | fits failed confirmation |
+
+The five in bold are the interesting leftover: by our own criteria a
+predictable branch sequence or a non-expanding map is the case where a
+bounded invariant might track the orbit, which is what a decision would
+need. Nobody has tried. That is the most actionable unexplored item this
+work produced, and it is cheap compared with anything else here.
