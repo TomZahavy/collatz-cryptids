@@ -121,6 +121,66 @@ A(P("Nothing here decides whether any of the three machines halts. That is "
     "the open problem they exist to pose, and no claim is made against "
     "it.", body))
 
+# ------------------------------------------------- the machines, up front
+A(P("The three machines, and what they reduce to", h1))
+A(P("Lines 336, 555 and 1002 of the holdout list. In the standard "
+    "encoding &mdash; one group per state A to F, within a group the "
+    "transition on 0 then on 1, each written as write/direction/next, "
+    "and <font face='Courier'>---</font> for the undefined transition "
+    "that halts:", body))
+A(P("336&nbsp;&nbsp;&nbsp;1RB0LD_1LC0RA_1RA1LB_1LA1LE_1RF0LC_---0RE<br/>"
+    "555&nbsp;&nbsp;&nbsp;1RB1RE_1LC0RA_1RD0LB_1LB1RC_1LF0RD_---0LE<br/>"
+    "1002&nbsp;&nbsp;1RB1LC_1RC0LD_1LA0RB_1LB1LE_1RF0LA_---0RE", mono))
+A(P("Each is a two-level system. Run-length encode the tape and the block "
+    "lengths become counters; the machine then spends almost all of its "
+    "time in an inner loop that repeats a fixed unit, and the unit is an "
+    "affine rule on those counters. One turn takes one block from each of "
+    "two counters and gives two to a third:", body))
+A(tbl([["line", "one turn of the inner loop", "its cost",
+        "section-to-section map", "outer growth"],
+       ["336", "(p, q+1, x, r+1) &rarr; (p, q, x+2, r)", "4x + 12",
+        "x &rarr; 2x + 4", "2.4648"],
+       ["555", "(x, q+1, p, r+1) &rarr; (x+2, q, p, r)", "4x + 4",
+        "x &rarr; 2x + 5", "2.4166"],
+       ["1002", "(p, q+1, x, r+1) &rarr; (p, q, x+2, r)", "4x + 12",
+        "x &rarr; 2x + 4", "2.4936"]],
+      [1.4 * cm, 5.6 * cm, 1.9 * cm, 3.1 * cm, 2.4 * cm],
+      mono_cols=(1, 2, 3)))
+A(P("Figure A. The rules the machines reduce to. The turn rule for line "
+    "336 is proved in Lean (section 9); for the other two it is measured, "
+    "exactly, over 16 and 156 consecutive turns. Repeating the turn until "
+    "a counter runs out is what produces the doubling in the fourth "
+    "column: the middle counter grows by two per turn, and the number of "
+    "turns available is itself proportional to it.", cap))
+A(P("Above that sits the map the halting question actually reduces to. "
+    "Each pass of the inner loop consumes a reservoir; the outer map "
+    "carries one reservoir value to the next, and the number of inner "
+    "turns taken &mdash; the branch index &mdash; depends on the "
+    "reservoir. That is the Collatz-like shape: finitely many affine "
+    "branches, a branch chosen by an arithmetic condition on the "
+    "argument, and an argument that grows.", body))
+A(P("336&nbsp;&nbsp;&nbsp;49, 160, 300, 1243, 4954, 19177, 70408, 224311, "
+    "380662, 804790, ...<br/>"
+    "555&nbsp;&nbsp;&nbsp;31, 75, 163, 327, 535, 1770, 3309, 9489, 34404, "
+    "105063, 290455, ...<br/>"
+    "1002&nbsp;&nbsp;58, 241, 712, 1452, 3004, 6744, 19936, 77239, "
+    "285790, 933973, ...", mono))
+A(P("<b>What is not claimed.</b> These orbits are computed exactly, and "
+    "the outer map is definitely piecewise affine &mdash; it is built "
+    "from affine rules. But no closed form for it is given here. A single "
+    "affine branch does not reproduce the orbits (section 5), so the map "
+    "has several branches, and which branch fires at each step has not "
+    "been derived; it has only been observed, out to 289 to 294 steps. "
+    "So the reduction established here is: halting is equivalent to an "
+    "orbit-avoidance question for an explicit expanding multi-branch "
+    "system, with the inner dynamics pinned exactly and the branch "
+    "selection not yet in closed form.", body))
+A(P("Halting itself has a clean characterisation, the same for all three "
+    "(section 8). States E and F form a scanning pair that consumes the "
+    "word 01 over and over, and the machine halts exactly when that scan "
+    "meets 00 instead. Over six million steps per machine, the scan runs "
+    "3,005, 4,130 and 4,904 times and never once meets 00.", body))
+
 # ------------------------------------------------------------------ setup
 A(P("1. Setting", h1))
 A(P("The Busy Beaver challenge maintains lists of small Turing machines "
