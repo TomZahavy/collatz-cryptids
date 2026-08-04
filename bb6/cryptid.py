@@ -98,11 +98,22 @@ def classify_map(rows, q):
     out["affine2"] = solve_exact(
         [(Rs[i], 1, Rs[i + 1]) for i in range(len(Rs) - 1)], 2)
 
-    # (2) expansion: the growth factor per outer step
+    # (2) expansion: the orbit must grow ON AVERAGE, not at every step.
+    #     Requiring every ratio to exceed 1 is wrong, and demonstrably so:
+    #     it rejects Collatz, whose map halves on every even argument.
+    #     Line 168 was mis-classified by exactly this -- 98.9% of its
+    #     steps decrease, yet its orbit runs 28 -> 43,665 over 3,049
+    #     steps.  The right test is the geometric mean.
+    import math as _math
     ratios = [Fr(Rs[i + 1], Rs[i]) for i in range(len(Rs) - 1) if Rs[i]]
     out["ratios"] = [float(r) for r in ratios]
-    out["expanding"] = all(r > 1 for r in ratios) if ratios else False
     out["min_ratio"] = float(min(ratios)) if ratios else 0.0
+    if len(Rs) >= 2 and Rs[0] > 0 and Rs[-1] > 0:
+        out["growth"] = _math.exp(
+            (_math.log(Rs[-1]) - _math.log(Rs[0])) / (len(Rs) - 1))
+    else:
+        out["growth"] = 0.0
+    out["expanding"] = out["growth"] > 1.0
 
     # (3) digit consumption: the branch index must keep changing, and
     #     must not be an eventually-affine function of the phase index --

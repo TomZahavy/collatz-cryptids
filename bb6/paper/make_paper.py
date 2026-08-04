@@ -82,7 +82,7 @@ A = story.append
 
 A(P("Porting a rigid-certificate method to BB(6)", title))
 A(P("Two censuses of the 1,064-machine holdout list, a negative result "
-    "about what boundary rigidity buys, three cryptid candidates, and a "
+    "about what boundary rigidity buys, six cryptid candidates, and a "
     "Lean formalisation of the machinery", sub))
 
 # ---------------------------------------------------------------- summary
@@ -99,13 +99,15 @@ A(P("<b>1. A negative that transfers.</b> Rigid phase boundaries do not "
     "because the word between boundaries never compresses at any block "
     "size. A rigidity census therefore over-counts what a certificate "
     "method can decide.", body))
-A(P("<b>2. Five cryptid candidates.</b> Of 1,064 machines, five have a "
+A(P("<b>2. Six cryptid candidates.</b> Of 1,064 machines, six have a "
     "two-level structure whose outer map meets the cryptid criteria at "
     "the depth the accelerator reaches. Their halting questions reduce to "
     "orbit avoidance for explicit expanding integer maps with several "
-    "branches and no periodic branch pattern. Two of the five had been "
-    "eliminated on six and seven data points and were reinstated when the "
-    "orbits were extended; that correction is section 5.2.", body))
+    "branches and no periodic branch pattern. Three of the six were "
+    "reached only after correcting the criteria themselves, which is "
+    "section 5.2 and is the part of this report most worth reading: two "
+    "had been eliminated on six and seven data points, and one by an "
+    "expansion test that rejects Collatz.", body))
 A(P("<b>3. An acceleration of about 158 orders of magnitude.</b> "
     "Recognising the machines' induction rule at run time takes the "
     "reachable horizon from roughly 10<super>7</super> base steps to "
@@ -119,9 +121,12 @@ A(P("<b>4. The inner loop, proved in Lean.</b> For line 336, one turn of "
     "block-crossing table and the halting criterion are formalised "
     "alongside it in Lean 4, mathlib-free, with no "
     "<font face='Courier'>sorry</font> and no added axioms.", body))
-A(P("Nothing here decides whether any of the three machines halts. That is "
-    "the open problem they exist to pose, and no claim is made against "
-    "it.", body))
+A(P("Nothing here decides whether any machine on the list halts. Across "
+    "both censuses of all 1,064 machines there were no halting and no "
+    "provably-non-halting classifications: the classes describe "
+    "structure, and whether this method has any handle, not halting. That "
+    "is the open problem these machines exist to pose, and no claim is "
+    "made against it.", body))
 
 # ------------------------------------------------- the machines, up front
 A(P("The machines, and the rules they reduce to", h1))
@@ -407,6 +412,16 @@ A(tbl([["line", "outer steps", "growth", "branch range", "period",
        ["990", "202", "3.3192", "3 to 350", "none", "cryptid-shaped"],
        ["1002", "248", "2.4687", "3 to 325", "none", "cryptid-shaped"]],
       [1.4 * cm, 2.2 * cm, 1.9 * cm, 2.6 * cm, 1.7 * cm, 5.2 * cm]))
+A(P("A third machine, line 168, was excluded by the expansion test, "
+    "which required every step-to-step ratio to exceed 1. That is not "
+    "what expansion means for a Collatz-type map, and the test rejects "
+    "Collatz itself: the orbit of 27 begins 27, 82, 41, 124, 62, and "
+    "halves on every even argument. Line 168 is the same shape &mdash; "
+    "98.9% of its steps decrease, and over 3,049 outer steps, more data "
+    "than any other candidate, its orbit still runs 28 to 43,665 at a "
+    "geometric-mean growth of 1.00242. Measured by the geometric mean it "
+    "expands, its branch index takes twelve distinct values with no "
+    "period, and it joins the list.", body))
 A(P("Figure 5b. The periodicity test was right; the depth was not. A "
     "period-3 delta sequence really is produced by a three-state "
     "automaton and really would be predictable &mdash; but seven data "
@@ -665,8 +680,9 @@ A(P("<b>Established.</b> Both censuses, on the full list, with the "
     "simulator over the range where that is feasible. The halting "
     "criterion of section 8, read from the transition tables and "
     "confirmed over millions of steps. The Lean development of "
-    "section 9.", body))
-A(P("<b>Not established.</b> Whether any of the three machines halts. "
+    "section 9, whose contents are set out with their proofs in "
+    "section 9.1.", body))
+A(P("<b>Not established.</b> Whether any of the six candidates halts. "
     "That is the open problem, and these results sharpen its statement "
     "without touching it.", body))
 A(P("The full equivalence &mdash; a machine-checked proof that a given "

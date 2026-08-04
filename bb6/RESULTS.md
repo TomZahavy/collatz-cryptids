@@ -577,3 +577,43 @@ Not re-tested at depth: the three NOT-EXPANDING machines (lines 168, 259,
 396, with inner maps `2x+2`, `2x-6` and `8x/3 - 41/3`). They were
 classified at the shallow sweep budget, exactly like 106 and 990 were,
 so the same doubt applies to them and they are the obvious next check.
+
+## SECOND CORRECTION: the expansion test rejected Collatz
+
+The three NOT-EXPANDING machines were re-checked at accelerator depth.
+Unlike lines 106 and 990, the classification held -- but for line 168 it
+held for the wrong reason, and checking why exposed a flaw in the
+criterion itself.
+
+`expanding` was implemented as "every step-to-step ratio exceeds 1".
+That is not what expansion means for a Collatz-type map, and the test
+**rejects Collatz**: the orbit of 27 begins 27, 82, 41, 124, 62, ...,
+halving on every even argument. Run on the 3x+1 map, the criterion
+returns False.
+
+Line 168 is the same shape. Over **3,049 outer steps** -- by a wide
+margin the most data of any candidate -- 98.9% of its steps DECREASE, and
+the orbit nevertheless runs 28 -> 43,665, a factor of 1,560, at a
+geometric-mean growth of 1.00242 per step. It grows the way Collatz
+grows: rarely and in jumps, against a background of decrease.
+
+The test is now the geometric mean. Under it:
+
+| line | outer steps | growth | k range | period | verdict |
+|---|---|---|---|---|---|
+| 168 | 3,049 | 1.00242 | 3..14, 12 distinct | none | **CRYPTID-SHAPED** |
+| 259 | 8 | 1.0000 | 3 only | 1 | predictable |
+| 396 | 28 | 1.0780 | 3 only | 1 | predictable |
+
+So line 168 joins the list: **six candidates** -- 106, 168, 336, 555,
+990, 1002 -- and 168 has more supporting data than any of the others.
+Lines 259 and 396 stay out, now on the branch criterion rather than the
+expansion one.
+
+**Three criterion errors are now on record**, all of the same species: a
+test that was too strict, too weak, or applied too shallow, each giving a
+confident wrong answer. The periodicity test was too weak, then applied
+at seven data points. This one was too strict, in a way that a
+thirty-second check against the canonical example would have caught at
+any point. Testing a criterion against the problem it is modelled on
+should be routine and was not.

@@ -1,0 +1,7 @@
+NOT-EXPANDING machines re-checked at accelerator depth
+line 168   b=2 inner x->2 x+2  halted=False  runs=3046  steps=1.59e+13
+    outer=3045 growth=1.0024 expanding=False minratio=0.5897 period=None k=3..14
+line 259   b=1 inner x->2 x+-6  halted=False  runs=9  steps=2.06e+05
+    outer=8 growth=1.0000 expanding=False minratio=1.0000 period=1 k=3..3
+line 396   b=2 inner x->8/3 x+-41/3  halted=False  runs=29  steps=6.1e+08
+    outer=28 growth=1.0780 expanding=False minratio=0.3893 period=1 k=3..3
