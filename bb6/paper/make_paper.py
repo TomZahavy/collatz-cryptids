@@ -99,11 +99,13 @@ A(P("<b>1. A negative that transfers.</b> Rigid phase boundaries do not "
     "because the word between boundaries never compresses at any block "
     "size. A rigidity census therefore over-counts what a certificate "
     "method can decide.", body))
-A(P("<b>2. Three cryptid candidates.</b> Of 1,064 machines, five have a "
-    "two-level structure whose outer map meets the cryptid criteria; three "
-    "survive deeper runs. Their halting questions reduce to orbit "
-    "avoidance for explicit expanding integer maps with multiple branches "
-    "and no periodic branch pattern over the observed range.", body))
+A(P("<b>2. Five cryptid candidates.</b> Of 1,064 machines, five have a "
+    "two-level structure whose outer map meets the cryptid criteria at "
+    "the depth the accelerator reaches. Their halting questions reduce to "
+    "orbit avoidance for explicit expanding integer maps with several "
+    "branches and no periodic branch pattern. Two of the five had been "
+    "eliminated on six and seven data points and were reinstated when the "
+    "orbits were extended; that correction is section 5.2.", body))
 A(P("<b>3. An acceleration of about 158 orders of magnitude.</b> "
     "Recognising the machines' induction rule at run time takes the "
     "reachable horizon from roughly 10<super>7</super> base steps to "
@@ -122,8 +124,10 @@ A(P("Nothing here decides whether any of the three machines halts. That is "
     "it.", body))
 
 # ------------------------------------------------- the machines, up front
-A(P("The three machines, and what they reduce to", h1))
-A(P("Lines 336, 555 and 1002 of the holdout list. In the standard "
+A(P("The machines, and the rules they reduce to", h1))
+A(P("Lines 336, 555 and 1002 of the holdout list, which share a single "
+    "rule system and are the three worked out in detail here. In the "
+    "standard "
     "encoding &mdash; one group per state A to F, within a group the "
     "transition on 0 then on 1, each written as write/direction/next, "
     "and <font face='Courier'>---</font> for the undefined transition "
@@ -180,6 +184,42 @@ A(P("Halting itself has a clean characterisation, the same for all three "
     "word 01 over and over, and the machine halts exactly when that scan "
     "meets 00 instead. Over six million steps per machine, the scan runs "
     "3,005, 4,130 and 4,904 times and never once meets 00.", body))
+
+A(P("The rule system", h2))
+A(P("Written as a closed set of guarded rules on two counters &mdash; a "
+    "doubling counter d and a reservoir r &mdash; all three machines obey "
+    "the same system. Only the turn cost and which tape block plays which "
+    "role differ.", body))
+A(tbl([["", "rule", "evidence"],
+       ["R1 turn",
+        "(p, q+1, x, r+1) &rarr; (p, q, x+2, r), costing 4x + 12 steps "
+        "(4x + 4 for line 555)",
+        "PROVED in Lean for line 336; measured exactly over 151 and 156 "
+        "consecutive turns for the others"],
+       ["R2 branch",
+        "the loop runs k = min(q, r) turns, i.e. until a counter is "
+        "exhausted",
+        "66/67, 87/87 and 79/80 runs"],
+       ["R3 cascade",
+        "while d &le; r&nbsp;: (d, r) &rarr; (2d + 3, r &minus; (d + 2))",
+        "60/60, 78/78 and 72/72 transitions"],
+       ["R4 flip",
+        "when d &gt; r&nbsp;: d resets to 2 and a new reservoir is "
+        "installed",
+        "NOT in closed form &mdash; see below"],
+       ["H halt",
+        "the machine halts iff the E/F scan meets 00 rather than 01",
+        "read off the transition tables; 12,039 scans observed, none "
+        "meeting 00"]],
+      [2.2 * cm, 6.6 * cm, 6.4 * cm]))
+A(P("Figure B. The rule set. R1 to R3 and H are closed; R4 is not.", cap))
+A(P("Under R3 the doubling counter runs 2, 7, 17, 37, 77, 157, 317, 637, "
+    "&hellip; while the reservoir pays d + 2 at each step, until d "
+    "overtakes r and the flip fires. The flip <i>is</i> the outer step: "
+    "its output reservoirs are exactly the orbit values listed above. It "
+    "is the one rule not in closed form, and section 6.1 records a "
+    "candidate formula for it that was exact on six consecutive cascades "
+    "and then failed.", body))
 
 # ------------------------------------------------------------------ setup
 A(P("1. Setting", h1))
@@ -349,7 +389,32 @@ A(P("<b>A periodic branch pattern is as predictable as a constant one.</b> "
     "automaton, so a bounded invariant does track the branch sequence. "
     "Testing only for constant deltas let one machine through as "
     "cryptid-shaped.", body))
-A(P("Both corrections removed candidates. The surviving three:", body))
+A(P("5.2 A correction the accelerator forced", h2))
+A(P("Both corrections above removed candidates, and on the data then "
+    "available both looked right. The accelerator, built later, made the "
+    "orbits roughly twenty-five times longer, and at that depth neither "
+    "elimination survives. Line 990's delta sequence 1, 2, 3, 1, 2, 3 "
+    "continues 5, 3, 3, 0, 1, 2, 2, 0, 0, 0, &hellip; &mdash; the period "
+    "holds for exactly six terms. Line 106's run of 1s holds for exactly "
+    "five. Re-classified at accelerator depth, all five machines meet the "
+    "criteria:", body))
+A(tbl([["line", "outer steps", "growth", "branch range", "period",
+        "verdict"],
+       ["106", "7", "2.5979", "3 to 11", "none",
+        "cryptid-shaped (weak: 7 steps)"],
+       ["336", "247", "2.4775", "3 to 325", "none", "cryptid-shaped"],
+       ["555", "249", "2.4036", "3 to 316", "none", "cryptid-shaped"],
+       ["990", "202", "3.3192", "3 to 350", "none", "cryptid-shaped"],
+       ["1002", "248", "2.4687", "3 to 325", "none", "cryptid-shaped"]],
+      [1.4 * cm, 2.2 * cm, 1.9 * cm, 2.6 * cm, 1.7 * cm, 5.2 * cm]))
+A(P("Figure 5b. The periodicity test was right; the depth was not. A "
+    "period-3 delta sequence really is produced by a three-state "
+    "automaton and really would be predictable &mdash; but seven data "
+    "points cannot distinguish a real period from a coincidence, and "
+    "short orbits manufacture regularity. Line 106 remains weak, resting "
+    "on about as much data as the erroneous elimination did.", cap))
+A(P("For the record, the pre-correction reading, which is what the "
+    "shallow sweep alone supports:", body))
 A(tbl([["line", "inner", "outer steps", "branch deltas", "growth", "verdict"],
        ["336", "2x+4", "10", "2,0,2,2,2,2,2,1,1", "2.94", "CRYPTID-SHAPED"],
        ["555", "2x+5", "12", "1,1,1,0,2,1,1,2,2,1,2", "2.56",
@@ -537,6 +602,57 @@ A(P("One subtlety is load-bearing. The halt lemmas carry a hypothesis "
     "returns nothing for an out-of-range state; without it the statement "
     "is false. Reachable states are always in range, but that is a fact "
     "to be carried rather than assumed.", body))
+
+# ---------------------------------------------------------------- proofs
+A(P("9.1 The proofs, in full", h2))
+A(P("<b>The chain lemma.</b> Let a block crossing be a word u of length "
+    "p which, entered in state q from one side, is left in state q from "
+    "the other, rewritten as v, in k steps &mdash; quantified over the "
+    "tape on both sides, so it is a statement about the block alone. "
+    "Then n copies of u are crossed in n&middot;k steps and emerge as n "
+    "copies of v. The proof is induction on n: the base case is the empty "
+    "crossing, and the step is one crossing followed by the induction "
+    "hypothesis, with the two step counts adding. The only content is "
+    "that the surrounding tape is universally quantified, which is what "
+    "lets the hypothesis be re-applied to the shorter run.", body))
+A(P("<b>The unit lemma.</b> For line 336, for all x, a, b and arbitrary "
+    "Lr, Rr, the configuration", body))
+A(P("[11] (10)^(a+1) Lr | (10)^x (11)^(b+1) Rr&nbsp;&nbsp;state A, "
+    "facing left", mono))
+A(P("reaches, in exactly 4x + 12 steps,", body))
+A(P("[11] (10)^a Lr | (10)^(x+2) (11)^b Rr&nbsp;&nbsp;state A, facing "
+    "left", mono))
+A(P("The proof is the decomposition of Figure 7. The prologue and the "
+    "turnaround are finite: four and two steps, each verified by running "
+    "the machine, which the proof assistant's kernel does during "
+    "type-checking. Neither reads the symbolic part of the tape, so the "
+    "computation goes through with x, a, b free. The two chains are "
+    "instances of the chain lemma with n = x+2 and n = x+1, applied to "
+    "crossings 01 &rarr; 10 and 10 &rarr; 01, each a two-step check.", body))
+A(P("What remains is bookkeeping, and it is the whole difficulty: after "
+    "the prologue the tape does not literally read as a run of 01s, and "
+    "the chain lemma will not apply until it does. Rewriting it turns on "
+    "a single fact &mdash; a 0 in front of a run of 10s is a 0 behind a "
+    "run of 01s, and its mirror &mdash; proved by induction on the run "
+    "length. With that, each fragment's pattern is exposed to the next, "
+    "the four step counts add to 4x + 12, and the final tape is "
+    "reconciled by one application of the fact that a repeated block "
+    "commutes with one more copy of itself.", body))
+A(P("<b>The halting criterion.</b> Each machine has exactly one "
+    "undefined transition, state F on 0. Reading the transition tables, F "
+    "is entered from exactly one place, state E on 0, and E on 1 leaves "
+    "the pair. So every visit to F is preceded by E reading 0, and F "
+    "halts precisely when the next cell in the scan direction is 0. The "
+    "argument is a case analysis over the six states and two symbols; in "
+    "Lean it carries a hypothesis that the state index is below six, "
+    "because the table lookup also returns nothing past the end of the "
+    "table, and without that hypothesis the statement is false.", body))
+A(P("<b>What is not proved.</b> R2, R3 and R4 of Figure B. The branch "
+    "condition and the cascade rule are checked exhaustively over every "
+    "run observed &mdash; 66/67, 87/87, 79/80 and 60/60, 78/78, 72/72 "
+    "&mdash; but checking is not proving, and this report has three "
+    "recorded instances of a rule exact on every instance available and "
+    "false beyond it.", body))
 
 # ---------------------------------------------------------------- status
 A(P("10. What is and is not established", h1))
