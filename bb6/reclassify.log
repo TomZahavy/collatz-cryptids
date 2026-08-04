@@ -1,0 +1,6 @@
+re-classification at accelerator depth (60s each)
+line 106   outer=7     growth=2.5979  k=3..11  period=None  minratio=1.980  -> CRYPTID-SHAPED
+line 336   outer=247   growth=2.4775  k=3..325  period=None  minratio=1.007  -> CRYPTID-SHAPED
+line 555   outer=249   growth=2.4036  k=3..316  period=None  minratio=1.001  -> CRYPTID-SHAPED
+line 990   outer=202   growth=3.3192  k=3..350  period=None  minratio=1.001  -> CRYPTID-SHAPED
+line 1002  outer=248   growth=2.4687  k=3..325  period=None  minratio=1.027  -> CRYPTID-SHAPED

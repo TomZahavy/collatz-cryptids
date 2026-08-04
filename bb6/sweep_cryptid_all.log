@@ -1,0 +1,54 @@
+  ... 50/1064  19s  {'no-two-level': 50}
+  ... 100/1064  38s  {'no-two-level': 100}
+  ... 150/1064  58s  {'no-two-level': 147, 'INSUFFICIENT': 3}
+  line 168   NOT-EXPANDING          b=2  inner x -> 2*x + 2
+        R_n [28, 63, 39, 27, 19, 118, 92, 78]
+        k_n [3, 5, 4, 4, 3, 5, 5, 5]   affine=False expanding=False
+  ... 200/1064  78s  {'no-two-level': 196, 'INSUFFICIENT': 3, 'NOT-EXPANDING': 1}
+  ... 250/1064  99s  {'no-two-level': 244, 'INSUFFICIENT': 5, 'NOT-EXPANDING': 1}
+  line 259   NOT-EXPANDING          b=1  inner x -> 2*x + -6
+        R_n [2, 2, 2, 2, 2, 2]
+        k_n [3, 3, 3, 3, 3, 3]   affine=False expanding=False
+  ... 300/1064  119s  {'no-two-level': 292, 'INSUFFICIENT': 6, 'NOT-EXPANDING': 2}
+  ... 350/1064  141s  {'no-two-level': 341, 'INSUFFICIENT': 7, 'NOT-EXPANDING': 2}
+  line 396   NOT-EXPANDING          b=2  inner x -> 8/3*x + -41/3
+        R_n [97, 245, 201, 387, 343, 534]
+        k_n [3, 3, 3, 3, 3, 3]   affine=False expanding=False
+  ... 400/1064  161s  {'no-two-level': 390, 'INSUFFICIENT': 7, 'NOT-EXPANDING': 3}
+  ... 450/1064  180s  {'no-two-level': 440, 'INSUFFICIENT': 7, 'NOT-EXPANDING': 3}
+  ... 500/1064  200s  {'no-two-level': 489, 'INSUFFICIENT': 8, 'NOT-EXPANDING': 3}
+  ... 550/1064  219s  {'no-two-level': 539, 'INSUFFICIENT': 8, 'NOT-EXPANDING': 3}
+  line 555   CRYPTID-SHAPED         b=2  inner x -> 2*x + 5
+        R_n [31, 75, 163, 327, 535, 1770, 3309]
+        k_n [3, 4, 5, 6, 6, 8, 9]   affine=False expanding=True
+  line 570   PREDICTABLE-BRANCHES   b=2  inner x -> 4*x + 9
+        R_n [218, 246, 274, 302, 330, 358, 489, 572]
+        k_n [3, 3, 3, 3, 3, 3, 3, 3]   affine=False expanding=True
+  ... 600/1064  240s  {'no-two-level': 585, 'INSUFFICIENT': 10, 'NOT-EXPANDING': 3, 'CRYPTID-SHAPED': 1, 'PREDICTABLE-BRANCHES': 1}
+  ... 650/1064  260s  {'no-two-level': 635, 'INSUFFICIENT': 10, 'NOT-EXPANDING': 3, 'CRYPTID-SHAPED': 1, 'PREDICTABLE-BRANCHES': 1}
+  ... 700/1064  280s  {'no-two-level': 682, 'INSUFFICIENT': 13, 'NOT-EXPANDING': 3, 'CRYPTID-SHAPED': 1, 'PREDICTABLE-BRANCHES': 1}
+  ... 750/1064  300s  {'no-two-level': 731, 'INSUFFICIENT': 14, 'NOT-EXPANDING': 3, 'CRYPTID-SHAPED': 1, 'PREDICTABLE-BRANCHES': 1}
+  ... 800/1064  319s  {'no-two-level': 780, 'INSUFFICIENT': 15, 'NOT-EXPANDING': 3, 'CRYPTID-SHAPED': 1, 'PREDICTABLE-BRANCHES': 1}
+  ... 850/1064  338s  {'no-two-level': 827, 'INSUFFICIENT': 18, 'NOT-EXPANDING': 3, 'CRYPTID-SHAPED': 1, 'PREDICTABLE-BRANCHES': 1}
+  ... 900/1064  357s  {'no-two-level': 874, 'INSUFFICIENT': 21, 'NOT-EXPANDING': 3, 'CRYPTID-SHAPED': 1, 'PREDICTABLE-BRANCHES': 1}
+  ... 950/1064  376s  {'no-two-level': 924, 'INSUFFICIENT': 21, 'NOT-EXPANDING': 3, 'CRYPTID-SHAPED': 1, 'PREDICTABLE-BRANCHES': 1}
+  ... 1000/1064  395s  {'no-two-level': 971, 'INSUFFICIENT': 24, 'NOT-EXPANDING': 3, 'CRYPTID-SHAPED': 1, 'PREDICTABLE-BRANCHES': 1}
+  line 1002  CRYPTID-SHAPED         b=2  inner x -> 2*x + 4
+        R_n [58, 241, 712, 1452, 3004]
+        k_n [3, 5, 7, 8, 9]   affine=False expanding=True
+  ... 1050/1064  414s  {'no-two-level': 1019, 'INSUFFICIENT': 25, 'NOT-EXPANDING': 3, 'CRYPTID-SHAPED': 2, 'PREDICTABLE-BRANCHES': 1}
+
+census over 1064 machines (419s):
+  no-two-level             1033   97.1%
+  INSUFFICIENT               25    2.3%
+  NOT-EXPANDING               3    0.3%
+  CRYPTID-SHAPED              2    0.2%
+  PREDICTABLE-BRANCHES        1    0.1%
+
+6 cryptid-shaped or near-miss machines
+  line 168  1RB0LD_1LC1RA_1RA1LC_1LE1LA_0RF1LD_---1RE  NOT-EXPANDING
+  line 259  1RB1LB_1LC0LF_1LD0RC_1RE0LA_1RE1RC_---0LE  NOT-EXPANDING
+  line 396  1RB1LF_1RC1RB_1RD0RB_0LE0LF_---1LD_0LE1LA  NOT-EXPANDING
+  line 555  1RB1RE_1LC0RA_1RD0LB_1LB1RC_1LF0RD_---0LE  CRYPTID-SHAPED
+  line 570  1RB0LF_1RC1RA_0RD0RB_1LE---_0LA1LE_1RD1LA  PREDICTABLE-BRANCHES
+  line 1002  1RB1LC_1RC0LD_1LA0RB_1LB1LE_1RF0LA_---0RE  CRYPTID-SHAPED

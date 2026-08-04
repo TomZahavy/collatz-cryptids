@@ -40,7 +40,7 @@ def main():
             for r in rs:
                 v = r["verdict"]
                 census[v] = census.get(v, 0) + 1
-                if v in ("CRYPTID-SHAPED", "PREDICTABLE-BRANCHES"):
+                if v in ("CRYPTID-SHAPED", "PREDICTABLE-BRANCHES", "NOT-EXPANDING", "CLOSED-FORM"):
                     hits.append((i + 1, r))
                     m = r["meas"]
                     print("  line %-5d %-22s b=%d  inner x -> %s*x + %s"
