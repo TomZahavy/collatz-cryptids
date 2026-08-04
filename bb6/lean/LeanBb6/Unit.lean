@@ -239,4 +239,94 @@ theorem unitCost_closed : ∀ (n x : Nat),
       simp only [Nat.succ_mul, Nat.mul_succ, Nat.mul_add, Nat.add_mul]
       omega
 
+/-! ## The same lemma for line 1002
+
+Lines 336 and 1002 have identical block structure at the loop shape --
+the same block words in the same arrangement, the same turn delta and the
+same cost -- and differ only in which state the loop runs in: A for 336,
+B for 1002.  The proof is therefore the same proof with the state index
+changed and the two crossings taken from 1002's table instead of 336's.
+
+That the two machines share a proof is not a convenience of the write-up;
+it is the observation that made them siblings in the first place. -/
+
+theorem m1002_unit (x a b : Nat) (Lr Rr : List Bool) :
+    Steps m1002 (4 * x + 12)
+      (Cfg.mk ([true, true] ++ (rep [true, false] (a + 1) ++ Lr))
+              (rep [true, false] x ++ (rep [true, true] (b + 1) ++ Rr))
+              1 false)
+      (Cfg.mk ([true, true] ++ (rep [true, false] a ++ Lr))
+              (rep [true, false] (x + 2) ++ (rep [true, true] b ++ Rr))
+              1 false) := by
+  have p1 : Steps m1002 4
+      (Cfg.mk ([true, true] ++ (rep [true, false] (a + 1) ++ Lr))
+              (rep [true, false] x ++ (rep [true, true] (b + 1) ++ Rr))
+              1 false)
+      (Cfg.mk (true :: (rep [true, false] a ++ Lr))
+              (false :: true :: false ::
+                (rep [true, false] x ++ (rep [true, true] (b + 1) ++ Rr)))
+              1 true) := steps_of_runFor 4 _ _ rfl
+  rw [norm_right x b Rr] at p1
+  have p2 := crossR_rep m1002_B_R (x + 2)
+      (true :: (rep [true, false] a ++ Lr))
+      (true :: (rep [true, true] b ++ Rr))
+  rw [rev_rep_10 (x + 2)] at p2
+  have p3 : Steps m1002 2
+      (Cfg.mk (rep [false, true] (x + 2) ++ (true :: (rep [true, false] a ++ Lr)))
+              (true :: (rep [true, true] b ++ Rr)) 1 true)
+      (Cfg.mk (true :: (rep [false, true] (x + 1)
+                 ++ (true :: (rep [true, false] a ++ Lr))))
+              (true :: false :: (rep [true, true] b ++ Rr)) 1 false) :=
+    steps_of_runFor 2 _ _ rfl
+  rw [norm_left x (true :: (rep [true, false] a ++ Lr))] at p3
+  have p4 := crossL_rep m1002_B_L (x + 1)
+      (true :: false :: (rep [true, true] b ++ Rr))
+      (true :: (true :: (rep [true, false] a ++ Lr)))
+  rw [rev_rep_01 (x + 1)] at p4
+  have key := Steps.trans p1 (Steps.trans p2 (Steps.trans p3 p4))
+  have hcount : 4 + ((x + 2) * 2 + (2 + (x + 1) * 2)) = 4 * x + 12 := by omega
+  rw [hcount] at key
+  have hr : rep [true, false] (x + 1)
+        ++ (true :: false :: (rep [true, true] b ++ Rr))
+      = rep [true, false] (x + 2) ++ (rep [true, true] b ++ Rr) := by
+    show _ = ([true, false] ++ rep [true, false] (x + 1))
+        ++ (rep [true, true] b ++ Rr)
+    rw [← rep_snoc [true, false] (x + 1), List.append_assoc]
+    rfl
+  rw [hr] at key
+  exact key
+
+theorem m1002_units : ∀ (n x a b : Nat) (Lr Rr : List Bool),
+    Steps m1002 (unitCost x n)
+      (Cfg.mk ([true, true] ++ (rep [true, false] (a + n) ++ Lr))
+              (rep [true, false] x ++ (rep [true, true] (b + n) ++ Rr))
+              1 false)
+      (Cfg.mk ([true, true] ++ (rep [true, false] a ++ Lr))
+              (rep [true, false] (x + 2 * n) ++ (rep [true, true] b ++ Rr))
+              1 false) := by
+  intro n
+  induction n with
+  | zero =>
+      intro x a b Lr Rr
+      show Steps m1002 0 _ _
+      simp only [Nat.add_zero, Nat.mul_zero]
+      exact Steps.zero _
+  | succ k ih =>
+      intro x a b Lr Rr
+      have hstep := Steps.trans (m1002_unit x (a + k) (b + k) Lr Rr)
+        (ih (x + 2) a b Lr Rr)
+      have hx : x + 2 + 2 * k = x + 2 * (k + 1) := by omega
+      have ha : a + k + 1 = a + (k + 1) := by omega
+      have hb : b + k + 1 = b + (k + 1) := by omega
+      rw [hx, ha, hb] at hstep
+      exact hstep
+
+#guard runFor m1002 (4 * 5 + 12)
+    (Cfg.mk ([true, true] ++ (rep [true, false] 4 ++ [true, false]))
+            (rep [true, false] 5 ++ (rep [true, true] 3 ++ [false, true]))
+            1 false)
+  = some (Cfg.mk ([true, true] ++ (rep [true, false] 3 ++ [true, false]))
+            (rep [true, false] 7 ++ (rep [true, true] 2 ++ [false, true]))
+            1 false)
+
 end Bb6

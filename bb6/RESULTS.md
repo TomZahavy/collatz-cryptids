@@ -653,7 +653,7 @@ section.
 
 | | 336 | 555 | 1002 | 106 | 168 | 990 |
 |---|---|---|---|---|---|---|
-| R1 turn | **Lean** | measured | measured | measured | measured | measured |
+| R1 turn | **Lean** | measured | **Lean** | measured | measured | measured |
 | R2 branch | 66/67 | 87/87 | 79/80 | 34/34 | 566/566 | 5/5 |
 | R3 cascade | 60/60 | 78/78 | 72/72 | - | - | - |
 | R4 flip | open | open | open | - | - | - |
@@ -663,3 +663,29 @@ So: one machine has a machine-checked turn rule, three have halting
 lemmas, all six have measured turn rules and branch conditions, and no
 machine has a machine-checked R2, R3 or R4. That is the gap between what
 is claimed and what is proved, stated as a table so it cannot be blurred.
+
+### Lean: a second machine
+
+`m1002_unit` and `m1002_units` are proved. Lines 336 and 1002 have
+IDENTICAL block structure at the loop shape -- same block words, same
+arrangement, same turn delta `(0,-1,+2,-1)`, same cost `4x+12` -- and
+differ only in which state the loop runs in, A for 336 and B for 1002. So
+the proof is the same proof with the state index changed and the two
+crossings taken from 1002's table. That the two share a proof is not a
+convenience of the write-up; it is what made them siblings.
+
+Statement verified independently at cell level first, 54/54 exact, the
+same test 336's statement passed.
+
+Line 555 does NOT adapt. Its loop shape has five counters and three left
+blocks where 336 and 1002 have four and two, so it needs its own
+decomposition trace. The remaining three candidates (106, 168, 990) have
+measured rules and no formalisation.
+
+Lean now: 923 lines, 0 sorries, 39 `#guard` checks, no added axioms.
+
+**Unproved anywhere: R2, R3, R4.** R2 and R3 are checked exhaustively
+over every run observed and look reachable with what is built -- R2 is an
+induction on the smaller counter, R3 is R1 composed with itself. R4 is
+not, and the failed fit above suggests that is the obstruction rather
+than unfinished work.

@@ -570,11 +570,11 @@ A(P("This is the reduction the whole exercise was for. Halting is now a "
 
 # ------------------------------------------------------------------ lean
 A(P("9. Lean formalisation", h1))
-A(P("833 lines, Lean 4.32.2, mathlib-free, no "
+A(P("923 lines, Lean 4.32.2, mathlib-free, no "
     "<font face='Courier'>sorry</font>, no "
     "<font face='Courier'>native_decide</font>, no added axioms &mdash; "
     "results depend on <font face='Courier'>propext</font> and "
-    "<font face='Courier'>Quot.sound</font> only. Thirty-eight "
+    "<font face='Courier'>Quot.sound</font> only. Thirty-nine "
     "<font face='Courier'>#guard</font> checks are evaluated at compile "
     "time.", body))
 A(P("<b>The representation is the proof strategy.</b> The first version "
@@ -598,9 +598,9 @@ A(tbl([["result", "content"],
         "code the measurements used, each with an executable check"],
        ["m336/m555/m1002_halt_iff", "each machine halts iff state F reads "
         "0 &mdash; the E/F gadget, formal"],
-       ["m336_unit", "one turn of the inner loop, all counter values, "
-        "arbitrary surrounding tape, exactly 4x + 12 steps"],
-       ["m336_units", "n turns, with the recursive cost"],
+       ["m336_unit, m1002_unit", "one turn of the inner loop, all counter "
+        "values, arbitrary surrounding tape, exactly 4x + 12 steps"],
+       ["m336_units, m1002_units", "n turns, with the recursive cost"],
        ["unitCost_closed", "that cost in closed form, 4nx + 4n^2 + 8n"]],
       [4.6 * cm, 10.8 * cm], mono_cols=(0,)))
 A(P("Figure 9. What is proved.", cap))
@@ -688,14 +688,20 @@ A(P("<b>Not established.</b> Whether any of the six candidates halts. "
 A(P("The full equivalence &mdash; a machine-checked proof that a given "
     "machine follows a given map and halts if and only if that map's "
     "orbit meets an explicit set &mdash; is not finished. Its inner half "
-    "now is: the unit lemma and its iteration are proved, which is the "
-    "statement that the machine's inner loop performs exactly the affine "
-    "map claimed of it, at exactly the cost claimed. What remains is the "
-    "outer half: composing prologue, n turns and epilogue into the return "
-    "map, and expressing the section-8 halting condition in terms of the "
-    "section counters. Both are assembly on results already stated and "
-    "verified, and both are done for only one of the three machines so "
-    "far. Neither is open.", body))
+    "now is, for two of the six candidates: the unit lemma and its "
+    "iteration are proved for lines 336 and 1002, which is the statement "
+    "that the inner loop performs exactly the affine map claimed of it, "
+    "at exactly the cost claimed. The two share a proof, because they "
+    "share a block structure and differ only in which state the loop runs "
+    "in. Line 555 has a different shape -- five counters rather than four "
+    "-- and needs its own decomposition; the remaining three candidates "
+    "have measured rules and no formalisation at all.", body))
+A(P("What is unproved anywhere: the branch condition R2, the cascade rule "
+    "R3 and the flip R4 of Figure B. R2 and R3 are checked exhaustively "
+    "over every run observed and look reachable by the machinery already "
+    "built &mdash; R2 is an induction on the smaller counter, R3 is R1 "
+    "composed with itself. R4 is not, and the evidence of section 6.1 "
+    "suggests that is the obstruction rather than unfinished work.", body))
 A(P("Two limits are worth naming precisely. The absence of a periodic "
     "branch pattern is measured over 289 to 294 outer steps, not proved; "
     "a longer period could hide beyond that range. And the cost wall is "
