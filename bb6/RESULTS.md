@@ -372,3 +372,33 @@ the BW machine read NO-CLOSED-FORM instead of CRYPTID-SHAPED.
 Cryptid-shaped does not mean undecided: the BW machine is cryptid-shaped
 and was decided in April 2026, with Baker–Wüstholz. The label says where
 the difficulty lives.
+
+### The unit lemma as a Lean target: statement and decomposition
+
+The statement, verified at cell level on 54 independent instances
+(x in {1,2,3,5,9,14}, a in {2,4,7}, b in {2,5,8}, arbitrary trailing
+context), 54/54 exact, for line 336:
+
+    for all x, a, b and arbitrary Lr, Rr:
+
+      [11] ++ (10)^(a+1) ++ Lr  |  (10)^x ++ (11)^(b+1) ++ Rr   state A, facing left
+        -- 4x + 12 steps -->
+      [11] ++ (10)^a ++ Lr      |  (10)^(x+2) ++ (11)^b ++ Rr   state A, facing left
+
+(left is written nearest-head-first, so blocks appear right-to-left.)
+
+Traced at x = 3 and x = 5, the run decomposes as
+
+| piece | steps | x=3 | x=5 |
+|---|---|---|---|
+| prologue, fixed | 4 | 4 | 4 |
+| chain right: `x+2` crossings of `01 -> 10` | 2x+4 | 10 | 14 |
+| turnaround, fixed | 2 | 2 | 2 |
+| chain left: `x+1` crossings of `10 -> 01` | 2x+2 | 8 | 12 |
+| total | **4x+12** | 24 | 32 |
+
+Both chains are instances of crossings already proved in
+`lean/LeanBb6/Crossings.lean` (`m336_A_R` and `m336_A_L`), so the Lean
+proof is: four `steps_of_runFor` fragments and two `crossR_rep` /
+`crossL_rep` applications, composed with `Steps.trans`. Nothing in it is
+open; it is assembly, and it is not yet done.
