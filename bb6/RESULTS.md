@@ -810,3 +810,60 @@ Standing: R1, R2 (positive half) and the epilogue proved for line 336;
 R1 and R2 for line 1002; H for three machines. R3 blocked on the
 blank-tail lemma. R4 is the epilogue entered with the reservoir empty
 instead, and is not yet attempted.
+
+## R3 PROVED IN LEAN (line 336)
+
+The blank-tail obstruction had a better fix than a padding lemma, and
+finding it finished the chain.
+
+**The phantom turn.** The loop's LAST turn is not an ordinary turn. By
+then the left tape has run down to `[1,1,1]`, and the final `10` block is
+the trailing `1` together with the blank tape beyond it. Such a turn
+reads `1,1,1,blank` where an ordinary turn reads `1,1,1,0` -- and
+`hd [] = false`, so those are the same four symbols and the same
+four-fragment proof applies. Verified first at cell level, 54/54, then
+proved as `m336_phantom`.
+
+That is what makes the loop and the epilogue compose: `n` ordinary turns,
+then the phantom turn consuming the trailing `1`, leaving the left tape
+exactly `[1,1]` -- which is what the epilogue requires.
+
+The chain, all proved, no sorries, no added axioms:
+
+    m336_unit        one turn, all counters, arbitrary tape, 4x + 12
+    m336_units       n turns
+    m336_loop        n = min q r turns (R2, positive half)
+    m336_phantom     the last turn, against blank tape
+    m336_loop_full   n ordinary turns + the phantom turn
+    m336_epilogue    the segment between loops, 2X + 12
+    m336_cascade     loop_full + epilogue -- and its end configuration
+                     has the SAME SHAPE as its start, so it composes
+                     with itself
+    m336_cascade_counters
+                     the same rule stated on the block counts:
+
+        (q, r)  ->  (2q + 3,  r - (q + 2))       for 1 <= q, q + 2 <= r
+
+That last line is the accelerated Collatz-like rule the whole exercise
+was aimed at, and it is now machine-checked rather than measured. The
+block count `q` counts the trailing `1`-against-blank as a block, which
+is why `q = n + 1` in the cell-level statement.
+
+Lean: 1,165 lines, 0 sorries, 41 `#guard` checks, axioms `propext` and
+`Quot.sound` only.
+
+### Line 336: what is proved
+
+| rule | status |
+|---|---|
+| R1 turn | **Lean** |
+| R2 loop, positive half | **Lean** |
+| R3 cascade | **Lean** |
+| R4 flip | open |
+| H halt (F on 0) | **Lean** |
+
+R4 remains. It is the same segment entered with the RESERVOIR empty
+rather than the counter, and unlike the epilogue it is not a short fixed
+word: one measured instance cost 142,454 steps. It is the one rule still
+outside the formalisation, and it is what a full halting argument would
+need.

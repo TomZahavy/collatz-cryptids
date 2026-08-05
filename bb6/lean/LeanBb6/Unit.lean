@@ -441,4 +441,134 @@ theorem m336_epilogue (X b : Nat) (Rr : List Bool) :
             ([true, false] ++ (rep [true, true] 4 ++ [false, false, true, true]))
             0 false)
 
+/-! ## The phantom turn, and R3
+
+The blank-tail obstruction has a better fix than a padding lemma.  The
+loop's LAST turn is not an ordinary turn: the left tape has run down to
+`[1,1,1]`, and the final `10` block is the trailing `1` together with the
+blank tape beyond it.  A turn in that position reads `1,1,1,blank` where
+an ordinary turn reads `1,1,1,0` -- and `hd [] = false`, so those are the
+same four symbols and the same four-fragment proof applies.
+
+Proving that turn separately is what makes the loop and the epilogue
+compose: the loop takes its `n` ordinary turns, the phantom turn consumes
+the trailing `1`, and the left tape is then exactly `[1,1]`, which is what
+the epilogue requires. -/
+
+theorem m336_phantom (x b : Nat) (Rr : List Bool) :
+    Steps m336 (4 * x + 12)
+      (Cfg.mk [true, true, true]
+              (rep [true, false] x ++ (rep [true, true] (b + 1) ++ Rr))
+              0 false)
+      (Cfg.mk [true, true]
+              (rep [true, false] (x + 2) ++ (rep [true, true] b ++ Rr))
+              0 false) := by
+  have p1 : Steps m336 4
+      (Cfg.mk [true, true, true]
+              (rep [true, false] x ++ (rep [true, true] (b + 1) ++ Rr))
+              0 false)
+      (Cfg.mk [true]
+              (false :: true :: false ::
+                (rep [true, false] x ++ (rep [true, true] (b + 1) ++ Rr)))
+              0 true) := steps_of_runFor 4 _ _ rfl
+  rw [norm_right x b Rr] at p1
+  have p2 := crossR_rep m336_A_R (x + 2) [true]
+      (true :: (rep [true, true] b ++ Rr))
+  rw [rev_rep_10 (x + 2)] at p2
+  have p3 : Steps m336 2
+      (Cfg.mk (rep [false, true] (x + 2) ++ [true])
+              (true :: (rep [true, true] b ++ Rr)) 0 true)
+      (Cfg.mk (true :: (rep [false, true] (x + 1) ++ [true]))
+              (true :: false :: (rep [true, true] b ++ Rr)) 0 false) :=
+    steps_of_runFor 2 _ _ rfl
+  rw [norm_left x [true]] at p3
+  have p4 := crossL_rep m336_A_L (x + 1)
+      (true :: false :: (rep [true, true] b ++ Rr)) (true :: [true])
+  rw [rev_rep_01 (x + 1)] at p4
+  have key := Steps.trans p1 (Steps.trans p2 (Steps.trans p3 p4))
+  have hcount : 4 + ((x + 2) * 2 + (2 + (x + 1) * 2)) = 4 * x + 12 := by omega
+  rw [hcount] at key
+  have hr : rep [true, false] (x + 1)
+        ++ (true :: false :: (rep [true, true] b ++ Rr))
+      = rep [true, false] (x + 2) ++ (rep [true, true] b ++ Rr) := by
+    show _ = ([true, false] ++ rep [true, false] (x + 1))
+        ++ (rep [true, true] b ++ Rr)
+    rw [← rep_snoc [true, false] (x + 1), List.append_assoc]
+    rfl
+  rw [hr] at key
+  exact key
+
+#guard runFor m336 (4 * 3 + 12)
+    (Cfg.mk [true, true, true]
+            (rep [true, false] 3 ++ (rep [true, true] 6 ++ [false, false, true, true]))
+            0 false)
+  = some (Cfg.mk [true, true]
+            (rep [true, false] 5 ++ (rep [true, true] 5 ++ [false, false, true, true]))
+            0 false)
+
+/-! ## R3, the cascade rule
+
+The loop as the machine runs it: `n` ordinary turns, then the phantom
+turn, ending with the left tape exactly `[1,1]`. -/
+
+theorem m336_loop_full (n x b : Nat) (Rr : List Bool) :
+    Steps m336 (unitCost x n + (4 * (x + 2 * n) + 12))
+      (Cfg.mk ([true, true] ++ (rep [true, false] n ++ [true]))
+              (rep [true, false] x ++ (rep [true, true] (b + 1 + n) ++ Rr))
+              0 false)
+      (Cfg.mk [true, true]
+              (rep [true, false] (x + 2 * n + 2)
+                ++ (rep [true, true] b ++ Rr)) 0 false) := by
+  have h1 := m336_units n x 0 (b + 1) [true] Rr
+  have e0 : 0 + n = n := by omega
+  rw [e0] at h1
+  exact Steps.trans h1 (m336_phantom (x + 2 * n) b Rr)
+
+/-- **R3.**  One full cascade step: loop, phantom turn, epilogue.  The
+    end configuration has the same shape as the start, so this rule
+    composes with itself -- which is what makes it a rule of a system
+    rather than a one-off.
+
+    In counter terms, with the left block count `q = n + 1` (the trailing
+    `1` against blank tape being the last block) and the reservoir
+    `r = b + 3 + n`, this says
+
+        (q, r)  ->  (2q + 3,  r - (q + 2))
+
+    which is the cascade rule as measured. -/
+theorem m336_cascade (n x b : Nat) (Rr : List Bool) :
+    Steps m336 (unitCost x n + (4 * (x + 2 * n) + 12)
+                  + (2 * (x + 2 * n + 2) + 12))
+      (Cfg.mk ([true, true] ++ (rep [true, false] n ++ [true]))
+              (rep [true, false] x ++ (rep [true, true] (b + 3 + n) ++ Rr))
+              0 false)
+      (Cfg.mk ([true, true] ++ (rep [true, false] (x + 2 * n + 3) ++ [true]))
+              ([true, false] ++ (rep [true, true] b ++ Rr)) 0 false) := by
+  have e : b + 3 + n = (b + 2) + 1 + n := by omega
+  rw [e]
+  have h1 := m336_loop_full n x (b + 2) Rr
+  have h2 := m336_epilogue (x + 2 * n + 2) b Rr
+  exact Steps.trans h1 h2
+
+/-- The counter reading of R3, stated on the block counts themselves:
+    from `q` blocks and reservoir `r`, one cascade step reaches `2q + 3`
+    blocks and reservoir `r - (q + 2)`. -/
+theorem m336_cascade_counters (q r : Nat) (Rr : List Bool)
+    (hq : 1 ≤ q) (hr : q + 2 ≤ r) :
+    ∃ c : Nat,
+      Steps m336 c
+        (Cfg.mk ([true, true] ++ (rep [true, false] (q - 1) ++ [true]))
+                (rep [true, false] 1 ++ (rep [true, true] r ++ Rr)) 0 false)
+        (Cfg.mk ([true, true]
+                   ++ (rep [true, false] (2 * q + 3 - 1) ++ [true]))
+                (rep [true, false] 1
+                   ++ (rep [true, true] (r - (q + 2)) ++ Rr)) 0 false) := by
+  refine ⟨unitCost 1 (q - 1) + (4 * (1 + 2 * (q - 1)) + 12)
+            + (2 * (1 + 2 * (q - 1) + 2) + 12), ?_⟩
+  have h := m336_cascade (q - 1) 1 (r - (q + 2)) Rr
+  have e1 : r - (q + 2) + 3 + (q - 1) = r := by omega
+  have e2 : 1 + 2 * (q - 1) + 3 = 2 * q + 3 - 1 := by omega
+  rw [e1, e2] at h
+  exact h
+
 end Bb6
