@@ -1035,3 +1035,37 @@ outermost level at which the branching becomes simple. That is what
 digit consumption looks like from the inside, and it is the first
 mechanical account this study has produced of WHY these machines are
 hard rather than merely that they are.
+
+### Sharpening the self-similarity claim (and correcting it)
+
+"R4 is R3 one level down" was too loose. Measured, inside flip 2, the
+counters at each sub-run start are
+
+    (2, 1, 2492, 1)  (7, 1, 2488, 1)  (17, 1, 2479, 1)  (37, 1, 2460, 1)
+    (77, 1, 2421, 1) (157, 1, 2342, 1) (317, 1, 2183, 1) (637, 1, 1864, 1)
+
+so the first coordinate runs `2, 7, 17, 37, 77, 157, 317, 637` and the
+third decreases by `4, 9, 19, 39, 79, 159, 319`, i.e. by `q + 2`. The
+flip's cascade therefore obeys
+
+    (q, r)  ->  (2q + 3,  r - (q + 2))
+
+**exactly R3's rule** -- and the sub-run lengths `2, 7, 17, 37, ...` are
+`k = q`, exactly R2.
+
+But it obeys it at a DIFFERENT SHAPE. The outer cascade lives at
+`((3,2),0,0,(1,3))` with turn delta `(0,-1,+2,-1)` on coordinates 1 and
+3; the flip's cascade lives at `((1,),2,0,(2,3,1))` with turn delta
+`(-1,+2,-1,0)` on coordinates 0 and 2. Same rule, different embedding.
+
+So the self-similarity is real and exact, but it is not literal reuse.
+In Lean, R4 needs **its own unit lemma** -- a new four-fragment proof at
+the new shape, with its own crossings from the table -- after which the
+cascade scaffolding already built (units, loop, phantom, epilogue,
+compose) transfers, because that scaffolding never mentions the
+particular shape except through the unit lemma.
+
+That is the precise specification of the remaining work, and it is a
+single well-understood lemma plus a re-instantiation, not a fresh arc.
+The earlier withdrawal of the multi-session estimate stands; so does the
+correction to "one level down", which overstated what was measured.
