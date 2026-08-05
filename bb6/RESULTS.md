@@ -991,3 +991,47 @@ the gaps continue 37, 77, 157 -- cheap, decisive, and not yet done.
 
 **Status: R4 is open, its structure is identified but not confirmed, and
 no complete cryptid claim exists for any machine.**
+
+## CONFIRMED: the machine is exactly self-similar
+
+The decisive measurement, run across four independent flip windows of
+line 336. Inside each flip, the unit shape `((1,),2,0,(2,3,1))` recurs
+with constant delta `(-1,+2,-1,0)`, broken at these indices:
+
+| flip | unit observations | break indices | gaps |
+|---|---|---|---|
+| 0 | 187 | 1, 8, 25, 62, 139 | 7, 17, 37, 77 |
+| 1 | 605 | 1, 8, 25, 62, 139, 296 | 7, 17, 37, 77, 157 |
+| 2 | 2,476 | 1, 8, 25, 62, 139, 296, 613, 1250 | 7, 17, 37, 77, 157, 317, 637 |
+| 3 | 9,771 | ... 2527, 5084 | ... 1277, 2557 |
+
+The gaps are `7, 17, 37, 77, 157, 317, 637, 1277, 2557` -- exactly
+`a -> 2a + 3`, which is **the outer cascade's own sequence**, the one R3
+generates. The break indices are identical across all four windows and
+the sequence simply extends further in each larger flip.
+
+This is no longer the two-point coincidence flagged when it was first
+noticed. It is four windows, sequences of length 4, 5, 7 and 9, all
+agreeing exactly.
+
+**The machine is self-similar.** The outer level runs a cascade
+`q -> 2q + 3` punctuated by flips; inside each flip runs the same cascade
+with the same rule, punctuated by its own sub-flips; and so on down.
+
+### What this means for R4
+
+R4 is not a new structure needing its own R1-R3 arc. It is R3 one level
+down. The right formalisation is therefore recursive: a single theorem,
+parameterised by depth, whose inductive step is the cascade rule already
+proved, rather than a fresh development per level. That is a
+qualitatively different and much smaller job than the multi-session
+estimate this file recorded an hour ago, and the estimate should be
+treated as withdrawn rather than merely revised.
+
+It also explains, structurally, why the outer orbit resisted a closed
+form all day. A self-similar flip means the branch structure at every
+level is the branch structure at every other level, so there is no
+outermost level at which the branching becomes simple. That is what
+digit consumption looks like from the inside, and it is the first
+mechanical account this study has produced of WHY these machines are
+hard rather than merely that they are.
