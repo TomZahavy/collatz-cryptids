@@ -912,3 +912,42 @@ to build, which is the digit consumption the classification is about.
 A complete cryptid claim for this machine needs R4. What exists today is
 a proved reduction of the cascade phase, a proved halting criterion, and
 a measured -- not proved -- outer map.
+
+## The flip is structural, not incidental: a plan decision is needed
+
+Before grinding R4 for line 336, the other candidates were measured to
+see whether any closes cleanly. Line 106 has the cleanest structure found
+anywhere in this study:
+
+    ordinary cascade:  k -> 2k + 4,  cost 6k^2 + 26k + 36     30/30 exact
+    flips at k = 124, 252, 508, 1020, each resetting k to 4
+
+The cost formula is exact on every ordinary transition and fails only at
+the four flips. Line 168 and line 990 were measured too. **Every machine
+has a flip, and in every case it is the step that resists.**
+
+That is structural rather than incidental, and the reason is the one
+already given for 336: a cascade is regular because it is a fixed rule
+iterated, while a flip is where the machine reads deep digits of its
+accumulated block and decides how much reservoir to rebuild. Digit
+consumption is the third cryptid criterion. **A machine whose flip had a
+closed form would not be a cryptid candidate** -- the classification and
+the obstruction are the same fact seen twice.
+
+So "pick a machine where everything closes" has no solution among the
+six. The options are honest ones:
+
+**(A) Finish R4 for one machine.** It is a second nested loop, so it
+needs its own unit lemma, iteration, epilogue and composition -- the
+whole R1-R3 arc again, on a structure not yet explored. Line 106 is the
+best target: its cascade rule is exact 30/30 and its flips are frequent,
+so instances are cheap to observe. Multi-session.
+
+**(B) Ship what is complete, and say what it is.** For line 336: a
+machine-checked reduction of the cascade phase plus a machine-checked
+halting criterion. That is a real theorem and a complete one -- it is
+simply not the cryptid claim. The cryptid claims for all six remain
+measured conjectures, which is what this file has said throughout.
+
+What is NOT available is a complete cryptid claim for any machine today,
+and no amount of further measurement will produce one. Only (A) will.
