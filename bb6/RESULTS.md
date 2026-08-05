@@ -867,3 +867,48 @@ rather than the counter, and unlike the epilogue it is not a short fixed
 word: one measured instance cost 142,454 steps. It is the one rule still
 outside the formalisation, and it is what a full halting argument would
 need.
+
+## R4: what it actually is, and why it is not the epilogue's sibling
+
+Earlier this file called R4 "the same segment entered with the reservoir
+empty instead", and said that was a better-defined target than "no closed
+form". The first half is right and the second was too optimistic.
+Measured, the flip cost against the block it consumes:
+
+| x after the loop | flip cost | cost / x^2 |
+|---|---|---|
+| 25 | 142,454 | 228 |
+| 305 | 2,460,830 | 26.5 |
+| 1,235 | 39,012,534 | 25.6 |
+| 4,821 | 586,494,838 | 25.2 |
+| 17,911 | 7,986,062,046 | 24.9 |
+| 58,937 | 83,694,136,686 | 24.1 |
+| 120,987 | 301,776,560,038 | 20.6 |
+
+The epilogue costs `2X + 12` -- a fixed word plus one chain. The flip
+costs roughly `25 x^2`, and the ratio drifts rather than settling, so it
+is not even exactly quadratic. **R4 is not a segment at all; it is a
+second nested loop**, over the block the cascade accumulated, with its
+own inner structure to be found. Formalising it is comparable work to
+everything done for the cascade, not an increment on it.
+
+### Where that leaves the claim
+
+For line 336 the CASCADE is machine-checked, end to end, as an
+accelerated self-composing Collatz-like rule, together with the halting
+criterion. What is not machine-checked is the flip -- and the flip is
+what generates the outer orbit. The R_n sequence whose statistics the
+cryptid criteria measure is precisely the sequence of reservoirs the
+flips install.
+
+So the honest bottom line is slightly uncomfortable and worth stating
+plainly: **the part now proved is the regular recursive part, and the
+part carrying the Collatz-like difficulty is exactly the part that
+resists.** That is not an accident of effort. The cascade is regular
+because it is a fixed rule iterated; the flip is where the machine reads
+deep digits of its own accumulated block and decides how much reservoir
+to build, which is the digit consumption the classification is about.
+
+A complete cryptid claim for this machine needs R4. What exists today is
+a proved reduction of the cascade phase, a proved halting criterion, and
+a measured -- not proved -- outer map.
