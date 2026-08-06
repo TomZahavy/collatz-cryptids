@@ -1186,3 +1186,58 @@ form is right. But given how this check has already gone, "404 means
 undocumented" is not a conclusion I will assert for the remaining five
 without checking the Cryptids and Potential Cryptids tables directly and
 in full.
+
+## THE SIX ARE NOT SIX: 336, 555 and 1002 are the same machine
+
+Checked each candidate's own wiki URL directly.
+
+| line | `wiki.bbchallenge.org/wiki/<code>` |
+|---|---|
+| 336 | real article -- Potential BB(6) Cryptid, Beaver Math Olympiad problem 5 |
+| **555** | **redirect to 336's page** |
+| **1002** | **redirect to 336's page** |
+| 106 | 404 |
+| 168 | 404 |
+| 990 | 404 |
+
+The wiki redirects both 555 and 1002 to 336. It treats all three as one
+machine.
+
+### This explains the "shared rule system" and deflates it
+
+Every structural coincidence recorded above between these three now has a
+mundane explanation:
+
+* they "share a single rule system" -- because they are one machine;
+* 336 and 1002 have "identical block structure at the loop shape,
+  differing only in which state the loop runs in" -- that is what a state
+  relabelling looks like;
+* 555 has "the same rule with the two counters swapped" -- that is what a
+  mirror image looks like;
+* `m1002_unit` was proved by "the same proof with the state index
+  changed" -- because it is the same theorem about the same machine.
+
+What was written up as a family of siblings sharing a rule is one machine
+seen three times. The Lean development contains two proofs of one fact.
+
+### Revised count
+
+At most **four distinct machines** among the six candidates, not six:
+336 (= 555 = 1002), plus 106, 168 and 990. One of the four is fully
+documented, with a complete rule set the community derived first.
+
+### An unresolved discrepancy worth flagging
+
+The holdout list is described as "1,064 machines **up to equivalence**".
+If 336, 555 and 1002 are equivalent, the list contains three copies of
+one machine, so either its canonicalisation is weaker than the wiki's, or
+the wiki redirect means something looser than isomorphism (e.g. "the same
+analysis applies"). This is NOT resolved here, and it matters: if the
+list has that kind of redundancy, then every count in this file computed
+over "1,064 machines" is counting equivalence classes inconsistently.
+Checking whether 555 and 1002 are literally state-relabellings or mirror
+images of 336 is a short computation and has not been done.
+
+The 404s for 106, 168 and 990 are consistent with those being
+undocumented, but on the evidence of how this check has gone, they are
+not yet a conclusion.
