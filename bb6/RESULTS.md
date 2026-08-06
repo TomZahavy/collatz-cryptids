@@ -1127,3 +1127,62 @@ specific two-level architecture**, of which one (336) is already a known
 potential cryptid and five are, as far as this check goes, not
 individually documented. Whether those five are genuinely undocumented
 or simply not yet written up by the community is not established here.
+
+## CORRECTION: line 336 is fully documented, and R4 DOES have a closed form
+
+Tom's colleagues were right and my prior-art check was inadequate. I had
+relied on a fetch summariser answering "none of these codes appear",
+which is negative evidence from a lossy source, and I had asked about
+only four of the six machines. The direct test -- fetching each
+machine's own wiki page -- gives a different answer.
+
+`wiki.bbchallenge.org/wiki/1RB0LD_1LC0RA_1RA1LB_1LA1LE_1RF0LC_---0RE`
+is a real article. Line 336 is a **Potential BB(6) Cryptid** and is the
+**Beaver Math Olympiad's 5th problem**. Its analysis (credited to
+@mxdys) gives the complete rule set:
+
+    encoding:  (a,b) := 0^inf 01^a 110 A> 1^(2b+1) 0^inf
+
+    (a, b+a+2)  ->  (2a+3, b)
+    (a+b+1, b)  ->  (2, a+4b+5)
+    (a, a)      ->  halt
+    (a, a+1)    ->  (2, 2a+4)
+
+Andrew Ducharme forward-simulated it 33,342,087,612,867 steps with both
+coordinates reaching about 10^(2.00705e6), without halting.
+
+### What this does to the claims here
+
+* **R3 is confirmed, independently.** `(a, b+a+2) -> (2a+3, b)` is
+  exactly `(q,r) -> (2q+3, r-(q+2))`, derived here from measurement and
+  proved in Lean. Two independent derivations agreeing is worth
+  something, but it is confirmation, not discovery.
+* **"R4 has no closed form" was WRONG.** It is `(a+b+1,b) -> (2,a+4b+5)`.
+  I concluded no closed form existed after my own fits failed, and then
+  built an argument that the failure was structural -- that the flip
+  carried the digit-consuming difficulty and therefore could not close.
+  That argument was reasoning from my own failure to a fact about the
+  machine. The formula was on the wiki the whole time.
+* **The halting condition is `(a,a) -> halt`**, a clean counter-level
+  statement. The E/F scan criterion proved here is the tape-level
+  version of the same fact, and is the weaker way to say it.
+* The coordinates do not map directly: the wiki's section is
+  `0^inf 01^a 110 A> 1^(2b+1) 0^inf`, a different section from the one
+  used here, which is why the wiki's flip formula does not match this
+  file's measured flip numbers term by term. Reconciling the two
+  sections is not done.
+
+### The methodological failure
+
+Prior art was checked at the END of the work, not the start, and then
+checked badly. Two specific errors: trusting a summariser's negative,
+and testing only the machines I had already decided were interesting.
+The correct first move -- fetching `wiki.bbchallenge.org/wiki/<code>`
+for every candidate -- costs one command per machine and would have
+reframed the whole exercise on day one.
+
+Line 106's page returns 404 at that URL, and 336's does not, so the URL
+form is right. But given how this check has already gone, "404 means
+undocumented" is not a conclusion I will assert for the remaining five
+without checking the Cryptids and Potential Cryptids tables directly and
+in full.
