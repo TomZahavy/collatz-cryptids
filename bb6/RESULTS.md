@@ -1069,3 +1069,61 @@ That is the precise specification of the remaining work, and it is a
 single well-understood lemma plus a re-instantiation, not a fresh arc.
 The earlier withdrawal of the multi-session estimate stands; so does the
 correction to "one level down", which overstated what was measured.
+
+## PRIOR ART CHECK — and a false negative that matters more
+
+Tom asked whether the suspected cryptids are already known. Checked
+against the bbchallenge wiki. The answer is partly yes, and the check
+also exposed a worse problem.
+
+### Line 336 is already listed
+
+`1RB0LD_1LC0RA_1RA1LB_1LA1LE_1RF0LC_---0RE` appears in the wiki's
+**Potential Cryptids** section for BB(6). It is not a new discovery. The
+bbchallenge search summary for it reads: *"iterates upon a tuple (x,y)
+with one function if x < y, another function if x > y, and halts if
+x = y ... models a Piecewise Affine Function"* -- which is exactly the
+rule set derived here independently: branch on `q <= r` versus `q > r`,
+with `k = min(q, r)`. The community had the qualitative description; this
+work adds the exact rule `(q,r) -> (2q+3, r-(q+2))`, the cost formulas,
+and the Lean proofs of R1, R2, R3 and H. That is a contribution, but it
+is a contribution ON a known machine, not the identification of a new
+one.
+
+The other five are NOT in the wiki's Potential Cryptids list, nor among
+the 7 named cryptids (Bigfoot, Hydra, Bonus cryptid, Antihydra, Lucy's
+Moonlight, Space Needle, Fenrir) nor the 8 unnamed BB(6) cryptids.
+
+### The false negative: ANTIHYDRA IS IN OUR LIST AND WE MISSED IT
+
+Antihydra, `1RB1RA_0LC1LE_1LD1LC_1LA0LB_1LF1RE_---0RA`, is **line 69** of
+the 1,064. It is the canonical BB(6) cryptid, proved Collatz-hard in
+June 2024. Our pipeline classifies it:
+
+    rigidity census      NONRIGID
+    two-level structures found: 0
+    cryptid verdict      no two-level structure -- not flagged
+
+So the detector puts the single most famous cryptid on the list into the
+1,033-machine "no two-level structure" bucket.
+
+**This invalidates the census as a cryptid census.** "1,033 have no
+two-level structure" does NOT mean "1,033 are not cryptids"; it means
+they do not have the particular architecture `twolevel.py` looks for --
+an inner affine loop feeding a reservoir. Antihydra is a single-counter
+Collatz map and has a different shape entirely. The recall of this
+detector on known positives is 1 out of 2: it finds the
+Baker-Wustholz machine (used as the positive control all along) and
+misses Antihydra.
+
+One positive control was not enough, and the one chosen happened to
+share architecture with what the detector was built to find. Antihydra
+was in the list the whole time and testing against it costs one command.
+
+### What the six actually are
+
+Not "the cryptids in the list". They are **the machines matching one
+specific two-level architecture**, of which one (336) is already a known
+potential cryptid and five are, as far as this check goes, not
+individually documented. Whether those five are genuinely undocumented
+or simply not yet written up by the community is not established here.
